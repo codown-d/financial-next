@@ -1,0 +1,11 @@
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('/fonts/iJWKBXyIfDnIV7nBrXw.woff2') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'MyCustomFont', sans-serif;
+  }
+  
