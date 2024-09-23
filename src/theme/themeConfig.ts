@@ -5,6 +5,7 @@ const theme: ThemeConfig = {
   token: {
     fontSize: 14,
     colorPrimary: "rgb(245, 56, 85)",
+    fontFamily:'"Rubik", sans-serif'
   },
 };
 

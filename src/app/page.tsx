@@ -1,14 +1,16 @@
 
-import Feature from "@/components/Feature";
-import Hero from "@/components/Hero";
-import Pricing from "@/components/Pricing";
+import FinancialProduct from "@/components/FinancialProduct";
+import FinancialServices from "@/components/FinancialServices";
+import FinancialBusiness from "@/components/FinancialBusiness";
+import TzPageProgress from "@/components/TzPageProgress";
 
 export default function Home() {
   return (
     <>
-      <Hero />
-      <Feature />
-      <Pricing />
+      <FinancialBusiness />
+      {/* <FinancialServices /> */}
+      <FinancialProduct />
+      <TzPageProgress/>
     </>
   );
 }

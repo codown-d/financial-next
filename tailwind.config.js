@@ -39,6 +39,11 @@ module.exports = {
         400: "#AFB5C0",
         500: "#DDDDDD",
       },
+      primary: {
+        100: "rgb(245, 56, 85)",
+        400: "rgb(245, 56, 85)",
+        500: "rgb(245, 56, 85)",
+      },
     },
     extend: {
       fontFamily: {

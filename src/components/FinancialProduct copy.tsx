@@ -9,7 +9,7 @@ import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import { Tag } from "antd";
 
-const Pricing = () => {
+const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let financial = [
     {
@@ -196,4 +196,4 @@ const Pricing = () => {
   );
 };
 
-export default Pricing;
+export default FinancialProduct;

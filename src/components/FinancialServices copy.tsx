@@ -26,7 +26,7 @@ const features = [{
 }
 ];
 
-const Feature = () => {
+const FinancialServices = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <div
@@ -82,4 +82,4 @@ const Feature = () => {
   );
 };
 
-export default Feature;
+export default FinancialServices;
