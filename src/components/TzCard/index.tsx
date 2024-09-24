@@ -4,7 +4,6 @@ import React, { useMemo } from "react";
 import { type } from "os";
 interface TzCardProps extends CardProps {}
 export default function TzCard(props: TzCardProps) {
-  console.log(props)
   const realProps = useMemo(() => {
     return {
       ...props,

@@ -119,7 +119,6 @@ export const TzEffectButton = (
 ) => {
   let { effectType, disabled, showEffect, ...otherProps } = props;
   const realProps = useMemo(() => {
-    console.log(effectType)
     return {
       disabled,
       showEffect: effectType == "shake" ? showShakeEffect : showInsetEffect,

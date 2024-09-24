@@ -12,7 +12,6 @@ const TzPageProgress = () => {
       document.documentElement.scrollHeight - window.innerHeight;
     const scrollPosition = window.scrollY;
     const progress = (scrollPosition / totalHeight) * 100;
-    console.log(progress);
     setScrollProgress(progress);
   };
 

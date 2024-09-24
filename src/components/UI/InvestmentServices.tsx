@@ -1,3 +1,4 @@
+"use client";
 import { useMemo } from "react";
 import ScrollAnimationWrapper from "../Layout/ScrollAnimationWrapper";
 import TzCard from "../TzCard";
