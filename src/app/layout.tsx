@@ -4,24 +4,31 @@ import MainLayout from "@/components/Layout/MainLayout";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
-import "@/styles/tailwind.css";
-import "@/styles/slick.css";
-// import '@/styles/fonts.css';
-import '@public/fonts/css2.css';
-
+import "@/styles/globals.css";
 // 设置页面的元数据
 export const metadata: Metadata = {
-  title: "My Next.js App",
-  description: "A description of my Next.js app",
+  title: "广元金融服务集团",
+  description: "广元金融服务集团",
 };
 
-// 根布局组件
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html lang="en">
+    <html >
+      <head>
+        <link
+          rel="stylesheet"
+          href="/fontawesome/css/all.css"
+           type="text/css"
+        />
+         <link
+          rel="stylesheet"
+          href="/fonts/index.css"
+           type="text/css"
+        />
+      </head>
       <body>
         <AntdRegistry>
-          <ConfigProvider theme={theme} button={{autoInsertSpace:false}}>
+          <ConfigProvider theme={theme} button={{ autoInsertSpace: false }}>
             <MainLayout>{children}</MainLayout>
           </ConfigProvider>
         </AntdRegistry>

@@ -27,11 +27,60 @@ export default function PolicyArea() {
       description: 1000,
     },
   ];
-  let tabItems = useMemo(()=>[
-    { label: "政策原文", key: "policyText", children: <PolicyTable columns={[]} dataSource={[]} /> },
-    { label: "政策解析", key: "policyAnalysis", children: <PolicyTable columns={[]} dataSource={[]} /> },
-    { label: "申报日历", key: "reportingCalendar", children: <PolicyTable columns={[]} dataSource={[]} /> },
-  ],[])
+  let columns = [
+    {
+      title: "标题",
+      dataIndex: "title",
+      key: "title",
+    },
+    {
+      title: "时间",
+      dataIndex: "time",
+      key: "time",
+    },
+  ];
+  let dataSource = [
+    {
+      title: "科技型企业贷款风险补偿",
+      time: "2023-05-01",
+    },
+    {
+      title: "安徽省普惠型小微企业贷款风险补偿",
+      time: "2023-05-01",
+    },
+    {
+      title: " 促进经济高质量发展 ",
+      time: "2023-05-01",
+    },
+    {
+      title: "助企促发展若干举措  ",
+      time: "2023-05-01",
+    },
+    {
+      title: "  科技型中小企业担保费补贴  ",
+      time: "2023-05-01",
+    },
+  ];
+  let tabItems = useMemo(
+    () => [
+      {
+        label: "政策原文",
+        key: "policyText",
+        children: <PolicyTable columns={columns} dataSource={dataSource} />,
+      },
+      {
+        label: "政策解析",
+        key: "policyAnalysis",
+        children: <PolicyTable columns={columns} dataSource={dataSource} />,
+      },
+      {
+        label: "申报日历",
+        key: "reportingCalendar",
+        children: <PolicyTable columns={[]} dataSource={[]} />,
+      },
+    ],
+    []
+  );
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let onSearch = useCallback(() => {}, []);
   return (
@@ -63,7 +112,6 @@ export default function PolicyArea() {
         className="!text-xl"
         size={"large"}
       />
-     
     </>
   );
 }

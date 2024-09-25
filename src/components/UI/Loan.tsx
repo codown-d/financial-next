@@ -7,11 +7,13 @@ import { TzEffectButton } from "../TzEffectButton";
 import CountUp from "react-countup";
 import TzCard from "../TzCard";
 import TzSplitter, { TzPanel } from "../TzSplitter";
+import { Bank } from "@/constant";
 
 export default function Loan() {
   let financial = [
     {
-      title: "建设银行-小微贷",
+      imgUrl: Bank["jsyh"].img,
+      title: `${Bank["jsyh"].label}-小微贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -21,7 +23,8 @@ export default function Loan() {
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
     {
-      title: "建设银行-及时贷",
+      imgUrl: Bank["zgyh"].img,
+      title: `${Bank["zgyh"].label}-及时贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -31,7 +34,8 @@ export default function Loan() {
       guaranteeMethod: ["抵押", "质押", "保证"],
     },
     {
-      title: "建设银行-搭桥贷",
+      imgUrl: Bank["zsyh"].img,
+      title: `${Bank["zsyh"].label}-搭桥贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -40,14 +44,7 @@ export default function Loan() {
       amount: 500,
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
-    // {
-    //   title: "建设银行-抵押快贷",
-    //   type: "不限",
-    //   rateDown: "3.10",
-    //   rateUp: "3.90",
-    //   term: 36,
-    //   amount: 1000,
-    // },
+   
   ];
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -59,6 +56,7 @@ export default function Loan() {
           type,
           rateDown,
           rateUp,
+          imgUrl,
           amount,
           term,
           rate,
@@ -78,14 +76,16 @@ export default function Loan() {
               <TzCard className="text-left">
                 <div className="p-4 lg:p-0 mt-0 lg:mt-2 flex items-center">
                   <img
-                    src="https://www3.ccb.com/chn/imageDir/2022/09/2022091417041391737.png"
+                    src={
+                      imgUrl ||
+                      "https://www3.ccb.com/chn/imageDir/2022/09/2022091417041391737.png"
+                    }
                     className="h-[40px] mr-2"
                   />
-                  {/* <span>建设银行</span> */}
+                  <p className="text-lg text-black-600 font-bold capitalize">
+                    {title}
+                  </p>
                 </div>
-                <p className="text-lg text-black-600 font-bold capitalize my-2 sm:mt-4 sm:mb-2">
-                  {title}
-                </p>
                 {/* <div className="flex">
                   <Tag className="!text-l">{type}</Tag>
                 </div>
@@ -106,7 +106,7 @@ export default function Loan() {
                       <span className="text-primary-100 text-3xl mr-2">
                         {rate}
                       </span>
-                      {Number(rate)>0?'%':'倍'}
+                      {Number(rate) > 0 ? "%" : "倍"}
                     </>
                   ) : (
                     " 参考利率（年化）"

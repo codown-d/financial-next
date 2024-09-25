@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import Banner from "./UI/Banner";
+import TzIcon from "./TzIcon";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -13,29 +14,29 @@ const FinancialBusiness = (props) => {
     {
       name: "我要融资",
       number: "390",
-      icon: "/assets/Icon/heroicons_sm-user.svg",
+      icon: 'fa-user',
     },
     {
       name: "我要担保",
       number: "20",
-      icon: "/assets/Icon/gridicons_location.svg",
+      icon: "fa-briefcase",
     },
     {
       name: "应急转贷",
       number: "50",
-      icon: "/assets/Icon/bx_bxs-server.svg",
+      icon: "fa-coins",
     },
 
     {
       name: "电子保函",
       number: "50",
-      icon: "/assets/Icon/bx_bxs-server.svg",
+      icon: "fa-clipboard",
     },
 
     {
       name: "政策查询",
       number: "50",
-      icon: "/assets/Icon/bx_bxs-server.svg",
+      icon: "fa-file-contract",
     },
   ];
   return (
@@ -87,13 +88,11 @@ const FinancialBusiness = (props) => {
                 variants={scrollAnimation}
               >
                 <div className="flex flex-col items-center mx-auto w-40 sm:w-auto">
-                  <div className="flex items-center justify-center bg-orange-100 w-12 h-12 mb-6 rounded-full">
-                    <img src={item.icon} className="h-6 w-6" />
+                  <div className="flex items-center justify-center bg-orange-100 w-14 h-14 mb-6 rounded-full">
+                    <TzIcon className={item.icon} />
                   </div>
                   <div className="flex flex-col">
-                    {/* <p className="text-xl text-black-600 font-bold">
-                      {listUsers.number}+
-                    </p> */}
+                   
                     <p className="text-lg text-black-500">{item.name}</p>
                   </div>
                 </div>
