@@ -23,12 +23,12 @@ const Header = () => {
           (scrollActive ? " shadow-md pt-0" : " pt-4")
         }
       >
-        <nav className="max-w-screen-xl px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
+        <nav className="max-w-screen-lg px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
           <div className="col-start-1 col-end-2 flex items-center">
             <Logo/>
           </div>
-          <ul className="hidden lg:flex col-start-6 col-end-10 text-black-500  items-center justify-center">
-            <TzMenuUi/>
+          <ul className="hidden md:flex col-start-6 col-end-10 text-black-500  items-center justify-center">
+            <TzMenuUi key={Math.random()}/>
           </ul>
           <div className="col-start-14 col-end-12 font-medium flex justify-end items-center">
             <Link href="/">
@@ -42,7 +42,7 @@ const Header = () => {
       </header>
       {/* Mobile Navigation */}
 
-      <nav className="fixed lg:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t ">
+      <nav className="fixed md:hidden bottom-0 left-0 right-0 z-20 px-4 sm:px-8 shadow-t ">
         <div className="bg-white-500 sm:px-3">
           <ul className="flex w-full justify-between items-center text-black-500">
             <LinkScroll

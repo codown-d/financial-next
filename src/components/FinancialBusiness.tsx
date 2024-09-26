@@ -44,7 +44,7 @@ const FinancialBusiness = (props) => {
       <motion.div variants={scrollAnimation}>
         <Banner />
       </motion.div>
-      <div className="max-w-screen-xl mt-24 px-8 xl:px-16 mx-auto" id="about">
+      <div className="max-w-screen-lg mt-24 px-8 xl:px-16 mx-auto" id="about">
         {false && (
           <ScrollAnimationWrapper>
             <motion.div

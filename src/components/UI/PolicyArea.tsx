@@ -8,25 +8,10 @@ import { motion } from "framer-motion";
 import TzSearch from "../TzSearch";
 import TzTabs from "../TzTabs";
 import PolicyTable from "./PolicyTable";
+import { TzTitle } from "../TzTypography";
 
 export default function PolicyArea() {
-  let list = [
-    {
-      imgUrl: "建设银行-抵押快贷",
-      title: "广财基金介绍",
-      description: 1000,
-    },
-    {
-      imgUrl: "建设银行-抵押快贷",
-      title: "股权投资介绍",
-      description: 1000,
-    },
-    {
-      imgUrl: "建设银行-抵押快贷",
-      title: "贸易服务介绍",
-      description: 1000,
-    },
-  ];
+
   let columns = [
     {
       title: "标题",
@@ -66,23 +51,23 @@ export default function PolicyArea() {
       {
         label: "政策原文",
         key: "policyText",
-        children: <PolicyTable columns={columns} dataSource={dataSource} />,
+        children: <PolicyTable key={'policyText'} columns={columns} dataSource={dataSource} />,
       },
       {
         label: "政策解析",
         key: "policyAnalysis",
         children: <PolicyTable columns={columns} dataSource={dataSource} />,
       },
-      {
-        label: "申报日历",
-        key: "reportingCalendar",
-        children: <PolicyTable columns={[]} dataSource={[]} />,
-      },
+      // {
+      //   label: "申报日历",
+      //   key: "reportingCalendar",
+      //   children: <PolicyTable columns={[]} dataSource={[]} />,
+      // },
     ],
     []
   );
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  let onSearch = useCallback(() => {}, []);
+  let onSearch = useCallback(() => { }, []);
   return (
     <>
       <ScrollAnimationWrapper>
@@ -94,7 +79,7 @@ export default function PolicyArea() {
         </motion.h3>
         <motion.p
           variants={scrollAnimation}
-          className="leading-normal mx-auto mb-2 mt-4 w-10/12 sm:w-7/12 lg:w-6/12"
+          className="leading-normal mx-auto mb-2 mt-4 w-8/12 sm:w-11/12 md:w-8/12 lg:w-6/12"
         >
           <TzSearch
             addonBefore={<span className="text-lg">政策名称：</span>}
@@ -106,12 +91,20 @@ export default function PolicyArea() {
           />
         </motion.p>
       </ScrollAnimationWrapper>
-      <TzTabs
+      <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8 py-8 lg:py-8">
+        {tabItems.map(item => {
+          return <div key={item.key}>
+            <TzTitle level={2} className="text-left">{item.label}</TzTitle>
+            <PolicyTable columns={columns} dataSource={dataSource} />
+          </div>
+        })}
+      </div>
+      {/* <TzTabs
         items={tabItems}
         destroyInactiveTabPane
         className="!text-xl"
         size={"large"}
-      />
+      /> */}
     </>
   );
 }

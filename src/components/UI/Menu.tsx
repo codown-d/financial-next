@@ -1,14 +1,22 @@
 "use client";
 import { ConfigProvider, Menu } from "antd";
-import Link from "next/link";
+import { Link as LinkScroll } from "react-scroll";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Link from "next/link";
 
 export default function TzMenuUi() {
-  const currentPath = usePathname();
+  const [activeLink, setActiveLink] = useState(null);
+  const [scrollActive, setScrollActive] = useState(false);
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      setScrollActive(window.scrollY > 20);
+    });
+  }, []);
   let items = [
     {
       label: "金融服务",
-      key: "/financial-services",
+      key: "financialProduct",
       children: [
         {
           label: "小额贷款",
@@ -26,7 +34,7 @@ export default function TzMenuUi() {
     },
     {
       label: "保函服务",
-      key: "/guarantee-services",
+      key: "guaranteeServices",
       children: [
         {
           label: "履约保函",
@@ -44,7 +52,7 @@ export default function TzMenuUi() {
     },
     {
       label: "机构服务",
-      key: "/institutional-services",
+      key: "institutionalServices",
       children: [
         {
           label: "业务管理",
@@ -63,7 +71,7 @@ export default function TzMenuUi() {
 
     {
       label: "投资服务",
-      key: "/investment-services",
+      key: "investmentServices",
       children: [
         {
           label: "广财基金",
@@ -81,7 +89,7 @@ export default function TzMenuUi() {
     },
     {
       label: "政策服务",
-      key: "/policy-services",
+      key: "policyServices",
       children: [
         {
           label: "政策查询",
@@ -100,7 +108,27 @@ export default function TzMenuUi() {
   ].map((item) => {
     let { key, label, children } = item;
     return {
-      label: label,
+      label: (
+        <LinkScroll
+          key={key}
+          activeClass="active23"
+          to={key}
+          spy={true}
+          smooth={true}
+          offset={-95}
+          onSetActive={() => {
+            setActiveLink(key);
+          }}
+          className={
+            "cursor-pointer animation-hover inline-block relative" +
+            (activeLink === key
+              ? " text-orange-500 animation-active "
+              : " text-black-500 !hover:text-orange-500")
+          }
+        >
+          {label}
+        </LinkScroll>
+      ),
       key: key,
       children: children.map((ite) => {
         let { key, label } = ite;
@@ -123,10 +151,10 @@ export default function TzMenuUi() {
     >
       <Menu
         className="head-menu !bg-transparent !border-0"
-        selectedKeys={[currentPath]}
+        selectedKeys={[activeLink]}
         mode="horizontal"
         items={items}
-        onChange={() => {}}
+        onChange={() => { }}
       />
     </ConfigProvider>
   );

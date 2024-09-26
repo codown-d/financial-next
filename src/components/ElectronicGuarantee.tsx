@@ -12,25 +12,25 @@ export default function ElectronicGuarantee() {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let list = [
     {
-      imgUrl: "/images/logo.jpg",
+      imgUrl: "/images/gcdb-logo.jpg",
       title: "履约保函",
       rateDown: "3.10",
       rateUp: "3.90",
     },
     {
-      imgUrl: "/images/logo.jpg",
+      imgUrl: "/images/gcdb-logo.jpg",
       title: "农民工工资保函",
       rateDown: "3.10",
       rateUp: "3.90",
     },
     {
-      imgUrl: "/images/logo.jpg",
+      imgUrl: "/images/gcdb-logo.jpg",
       title: "财产保全保函",
       rateDown: "3.10",
       rateUp: "3.90",
     },
     {
-      imgUrl: "/images/logo.jpg",
+      imgUrl: "/images/gcdb-logo.jpg",
       title: "保函定制",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -38,8 +38,8 @@ export default function ElectronicGuarantee() {
   ];
 
   return (
-    <div className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14">
-      <div className="max-w-screen-xl  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+    <div id='guaranteeServices' className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14">
+      <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
           <ScrollAnimationWrapper>
             <motion.h3
@@ -68,7 +68,7 @@ export default function ElectronicGuarantee() {
                   <TzCard
                     key={index}
                     hoverable
-                    cover={<img alt="example" src={imgUrl} />}
+                    cover={<img alt="example" src={imgUrl} className=" !w-4/5 mx-auto" />}
                   >
                     <Meta
                       title={<span className="text-lg">{title}</span>}

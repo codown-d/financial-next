@@ -1,30 +1,49 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import TzTabs from "./TzTabs";
-import ServiceAgency from "./UI/ServiceAgency";
-import InvestmentServices from "./UI/InvestmentServices";
-import PolicyArea from "./UI/PolicyArea";
 import Loan from "./UI/Loan";
 import Guaranteed from "./UI/Guaranteed";
+import Emergency from "./UI/Emergency";
 
+
+export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  let [tabPosition,setTabPosition]=useState<TabPosition>('left')
   let tabItems = [
-    { label: "贷款类", key: "loan", children: <Loan /> },
-    { label: "担保类", key: "guarantee", children: <Guaranteed /> },
-    // { label: "保险类", key: "insurance", children: <SmallLoan /> },
+    { label: "贷款服务", key: "loan", children: <Loan /> },
+    { label: "担保服务", key: "guarantee", children: <Guaranteed /> },
+    { label: "应急转贷服务", key: "emergency", children: <Emergency /> },
     // { label: "转贷类", key: "refinancing", children: <SmallLoan /> },
     // { label: "租赁类", key: "leasing", children: <SmallLoan /> },
     // { label: "保理类", key: "factoring", children: <SmallLoan /> },
     // { label: "服务类", key: "service", children: <SmallLoan /> },
   ];
 
+  useEffect(() => {
+    const element = document.querySelector("body");
+    const resizeObserver = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        console.log("新高度:", entry.contentRect.height);
+        if (entry.contentRect.width < 560) {
+          setTabPosition('top')
+        } else {
+          setTabPosition('left')
+        }
+      }
+    });
+    resizeObserver.observe(element);
+  }, []);
+
   return (
-    <div className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14">
-      <div className="max-w-screen-xl  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+    <div
+      className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
+      id="financialProduct"
+    >
+      <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
           <ScrollAnimationWrapper>
             <motion.h3
@@ -43,6 +62,7 @@ const FinancialProduct = () => {
           <TzTabs
             items={tabItems}
             destroyInactiveTabPane
+            tabPosition={tabPosition}
             className="!text-xl"
             size={"large"}
           />

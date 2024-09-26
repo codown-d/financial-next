@@ -18,7 +18,7 @@ export default function PolicyTable(props: {
       <motion.div variants={scrollAnimation}>
         <div className="flex">
           {/* <img src="/assets/banner.png" alt="" className="w-[200px] mr-5"/> */}
-          <TzTable dataSource={dataSource} columns={columns} className="w-full" showHeader={false} size="large"/>
+          <TzTable key={'policyText'}  dataSource={dataSource} columns={columns} className="w-full" showHeader={false} size="large"/>
         </div>
       </motion.div>
     </ScrollAnimationWrapper>

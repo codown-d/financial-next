@@ -5,6 +5,16 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    screens: {
+      'sm': '576px',
+      // => @media (min-width: 576px) { ... }
+
+      'md': '960px',
+      // => @media (min-width: 960px) { ... }
+
+      'lg': '1440px',
+      // => @media (min-width: 1440px) { ... }
+    },
     boxShadow: {
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
       DEFAULT:
@@ -49,6 +59,15 @@ module.exports = {
       fontFamily: {
         custom: ['MyCustomFont', 'sans-serif'],
       },
+      padding: {
+        '22': '5.5rem', // 将 5.5rem 转换为适合的值（22/4 = 5.5）
+      },
+      height: {
+        '128': '32rem', // 将 32rem 转换为适合的值（128/4 = 32）
+        '160': '40rem',
+        '180': '45rem',
+      },
+
     },
   },
   variants: {

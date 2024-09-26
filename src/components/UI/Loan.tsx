@@ -44,7 +44,6 @@ export default function Loan() {
       amount: 500,
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
-   
   ];
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -75,13 +74,7 @@ export default function Loan() {
             >
               <TzCard className="text-left">
                 <div className="p-4 lg:p-0 mt-0 lg:mt-2 flex items-center">
-                  <img
-                    src={
-                      imgUrl ||
-                      "https://www3.ccb.com/chn/imageDir/2022/09/2022091417041391737.png"
-                    }
-                    className="h-[40px] mr-2"
-                  />
+                  <img src={"/images/gxxd.jpg"} className="h-[40px] mr-2" />
                   <p className="text-lg text-black-600 font-bold capitalize">
                     {title}
                   </p>
