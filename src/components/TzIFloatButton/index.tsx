@@ -1,6 +1,5 @@
 "use client";
-import { FloatButton, FloatButtonGroupProps, FloatButtonProps } from "antd";
-import { FloatButtonBadgeProps } from "antd/es/float-button/interface";
+import { BackTopProps, FloatButton, FloatButtonGroupProps, FloatButtonProps, FloatButtonRef } from "antd";
 import React, { useMemo } from "react";
 interface TzFloatButton  extends FloatButtonProps{
   className?: string;
@@ -24,14 +23,16 @@ TzFloatButton.Group=(props: FloatButtonGroupProps)=> {
   }, [props]);
   return <FloatButton.Group {...realProps} >{children}</FloatButton.Group>;
 }
-TzFloatButton.BackTop=(props: FloatButtonBadgeProps)=> {
+interface TzBackTopProps  extends BackTopProps{
+}
+TzFloatButton.BackTop=(props:TzBackTopProps)=> {
   const realProps = useMemo(() => {
     return {
       ...props,
       className: `tz-float-button-group ${props.className}`,
     };
   }, [props]);
-  return <FloatButton.BackTop {...realProps} />;
+  return <FloatButton.BackTop {...realProps} />
 }
 export const TzFloatButtonGroup=TzFloatButton.Group
 export const TzFloatButtonBackTop=TzFloatButton.BackTop
