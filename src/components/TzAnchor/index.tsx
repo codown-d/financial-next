@@ -1,13 +1,13 @@
 "use client";
-import { Card, CardProps, Image } from "antd";
+import { Anchor, AnchorProps, } from "antd";
 import React, { useMemo } from "react";
-export interface TzCardProps extends CardProps {}
-export default function TzCard(props: TzCardProps) {
+interface TzAnchorProps extends AnchorProps {}
+export default function TzAnchor(props: TzAnchorProps) {
   const realProps = useMemo(() => {
     return {
       ...props,
       className: `tz-card ${props.className}`,
     };
   }, [props]);
-  return <Card {...realProps}></Card>;
+  return <Anchor {...realProps}/>;
 }

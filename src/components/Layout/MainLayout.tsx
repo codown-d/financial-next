@@ -24,7 +24,6 @@ const MainLayout: React.FC<{
             <TzFloatButton icon={<TzIcon className={"fa-wand-magic-sparkles"} />} />
           </TzFloatButtonGroup> */}
           <TzPageProgress />
-          
           <Footer />
         </div>
       </GlobalProvider>

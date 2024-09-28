@@ -28,22 +28,27 @@ export default function PolicyArea() {
     {
       title: "科技型企业贷款风险补偿",
       time: "2023-05-01",
+      id:0
     },
     {
       title: "安徽省普惠型小微企业贷款风险补偿",
       time: "2023-05-01",
+      id:1
     },
     {
       title: " 促进经济高质量发展 ",
       time: "2023-05-01",
+      id:2
     },
     {
       title: "助企促发展若干举措  ",
       time: "2023-05-01",
+      id:3
     },
     {
       title: "  科技型中小企业担保费补贴  ",
       time: "2023-05-01",
+      id:4
     },
   ];
   let tabItems = useMemo(
@@ -91,7 +96,7 @@ export default function PolicyArea() {
           />
         </motion.p>
       </ScrollAnimationWrapper>
-      <div className="grid grid-flow-row grid-cols-1 lg:grid-cols-2 gap-8 py-8 lg:py-8">
+      <div className="grid grid-flow-row md:grid-cols-2 grid-cols-1 gap-8 py-8 lg:py-8">
         {tabItems.map(item => {
           return <div key={item.key}>
             <TzTitle level={2} className="text-left">{item.label}</TzTitle>

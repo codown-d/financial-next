@@ -12,8 +12,8 @@ import { Bank } from "@/constant";
 export default function Loan() {
   let financial = [
     {
-      imgUrl: Bank["jsyh"].img,
-      title: `${Bank["jsyh"].label}-小微贷`,
+      imgUrl: '/images/gxxd.jpg',
+      title: `国信小贷-小微贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -23,8 +23,8 @@ export default function Loan() {
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
     {
-      imgUrl: Bank["zgyh"].img,
-      title: `${Bank["zgyh"].label}-及时贷`,
+      imgUrl: '/images/gxxd.jpg',
+      title: `国信小贷-及时贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -34,8 +34,8 @@ export default function Loan() {
       guaranteeMethod: ["抵押", "质押", "保证"],
     },
     {
-      imgUrl: Bank["zsyh"].img,
-      title: `${Bank["zsyh"].label}-搭桥贷`,
+      imgUrl: '/images/gxxd.jpg',
+      title: `国信小贷-搭桥贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -48,7 +48,7 @@ export default function Loan() {
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-3 gap-3 lg:gap-12 py-8 lg:py-8 ">
+    <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-12 lg:gap-12 ">
       {financial.map((item, index) => {
         let {
           title,
@@ -73,8 +73,8 @@ export default function Loan() {
               }}
             >
               <TzCard className="text-left">
-                <div className="p-4 lg:p-0 mt-0 lg:mt-2 flex items-center">
-                  <img src={"/images/gxxd.jpg"} className="h-[40px] mr-2" />
+                <div className=" lg:p-0 mt-0 lg:mt-2 flex items-center">
+                  <img src={imgUrl} className="h-[40px] mr-2" />
                   <p className="text-lg text-black-600 font-bold capitalize">
                     {title}
                   </p>

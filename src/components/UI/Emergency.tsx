@@ -11,7 +11,7 @@ import TzSplitter, { TzPanel } from "../TzSplitter";
 export default function Emergency() {
   let financial = [
     {
-      title: "建设银行-双创贷",
+      title: "工业应急转贷-双创贷",
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -22,45 +22,45 @@ export default function Emergency() {
       guaranteeMethod: ["信用"],
       policies: ["贴息"],
     },
-    {
-      title: "建设银行-融创科贷",
-      type: "不限",
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      guaranteedRate: "0.8",
-      term: 36,
-      amount: 60,
-      guaranteeMethod: ["信用"],
-      policies: ["贴息"],
-    },
-    {
-      title: "建设银行-产业贷",
-      type: "不限",
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      guaranteedRate: "0.6",
-      term: 36,
-      amount: 200,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
-    },
-    {
-      title: "建设银行-蜀担快贷",
-      type: "不限",
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      guaranteedRate: "0.8",
-      term: 36,
-      amount: 500,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
-    },
+    // {
+    //   title: "工业应急转贷-融创科贷",
+    //   type: "不限",
+    //   rateDown: "3.10",
+    //   rateUp: "3.90",
+    //   rate: "3.35",
+    //   guaranteedRate: "0.8",
+    //   term: 36,
+    //   amount: 60,
+    //   guaranteeMethod: ["信用"],
+    //   policies: ["贴息"],
+    // },
+    // {
+    //   title: "工业应急转贷-产业贷",
+    //   type: "不限",
+    //   rateDown: "3.10",
+    //   rateUp: "3.90",
+    //   rate: "3.35",
+    //   guaranteedRate: "0.6",
+    //   term: 36,
+    //   amount: 200,
+    //   guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    // },
+    // {
+    //   title: "工业应急转贷-蜀担快贷",
+    //   type: "不限",
+    //   rateDown: "3.10",
+    //   rateUp: "3.90",
+    //   rate: "3.35",
+    //   guaranteedRate: "0.8",
+    //   term: 36,
+    //   amount: 500,
+    //   guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    // },
   ];
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-x-36 lg:gap-12 py-8 lg:py-8">
+    <div className="grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-x-12 lg:gap-12">
       {financial.map((item, index) => {
         let {
           title,
@@ -88,7 +88,7 @@ export default function Emergency() {
               <TzCard className="text-left h-full max-w-md">
                 <div className="h-[330px] flex flex-col justify-between">
                   <div>
-                    <div className="p-4 lg:p-0 mt-0 lg:mt-2 flex items-center">
+                    <div className=" lg:p-0 mt-0 lg:mt-2 flex items-center">
                       <img
                         src={"/images/logo-small.jpg"}
                         className="h-[40px] mr-2"

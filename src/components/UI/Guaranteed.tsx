@@ -11,7 +11,7 @@ import TzSplitter, { TzPanel } from "../TzSplitter";
 export default function Guaranteed() {
   let financial = [
     {
-      title: "建设银行-双创贷",
+      title: "广创担保-双创贷",
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -23,7 +23,7 @@ export default function Guaranteed() {
       policies: ["贴息"],
     },
     {
-      title: "建设银行-融创科贷",
+      title: "广创担保-融创科贷",
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -35,7 +35,7 @@ export default function Guaranteed() {
       policies: ["贴息"],
     },
     {
-      title: "建设银行-产业贷",
+      title: "广创担保-产业贷",
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -46,7 +46,7 @@ export default function Guaranteed() {
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
     {
-      title: "建设银行-蜀担快贷",
+      title: "广创担保-蜀担快贷",
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -60,7 +60,7 @@ export default function Guaranteed() {
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className=" grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-x-36 lg:gap-12 py-8 lg:py-8 ">
+    <div className=" grid grid-flow-row grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-x-12 lg:gap-12 ">
       {financial.map((item, index) => {
         let {
           title,

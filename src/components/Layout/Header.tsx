@@ -6,6 +6,7 @@ import { Link as LinkScroll } from "react-scroll";
 import ButtonOutline from "../misc/ButtonOutline";
 import TzMenuUi from "../UI/Menu";
 import Logo from "../UI/Logo";
+import TzDropdownUI from "../UI/TzDropdownUI";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
@@ -28,7 +29,8 @@ const Header = () => {
             <Logo/>
           </div>
           <ul className="hidden md:flex col-start-6 col-end-10 text-black-500  items-center justify-center">
-            <TzMenuUi key={Math.random()}/>
+            <TzDropdownUI/>
+            {/* <TzMenuUi/> */}
           </ul>
           <div className="col-start-14 col-end-12 font-medium flex justify-end items-center">
             <Link href="/">

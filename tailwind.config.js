@@ -67,7 +67,9 @@ module.exports = {
         '160': '40rem',
         '180': '45rem',
       },
-
+      backgroundImage: {
+        imgbg: "url('/images/h2_bg-bn.png')",
+      },
     },
   },
   variants: {

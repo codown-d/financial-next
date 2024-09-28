@@ -39,7 +39,7 @@ export default function ElectronicGuarantee() {
 
   return (
     <div id='guaranteeServices' className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14">
-      <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
+      <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center my-16">
         <div className="flex flex-col w-full">
           <ScrollAnimationWrapper>
             <motion.h3
@@ -48,18 +48,18 @@ export default function ElectronicGuarantee() {
             >
               电子保函
             </motion.h3>
-            <motion.p
+            {/* <motion.p
               variants={scrollAnimation}
               className="leading-normal w-10/12 sm:w-7/12 lg:w-6/12 mx-auto my-2 text-center"
             >
               让我们选择最适合您的套餐，并愉快地探索它。
-            </motion.p>
+            </motion.p> */}
           </ScrollAnimationWrapper>
         </div>
-        <div className="flex flex-col w-full my-16">
+        <div className="flex flex-col w-full ">
           <ScrollAnimationWrapper>
             <motion.div
-              className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-4 gap-4 lg:gap-8 py-8 lg:py-8 "
+              className="grid grid-flow-row grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 lg:gap-12 py-8 lg:py-8 "
               variants={scrollAnimation}
             >
               {list.map((item, index) => {
@@ -68,12 +68,12 @@ export default function ElectronicGuarantee() {
                   <TzCard
                     key={index}
                     hoverable
-                    cover={<img alt="example" src={imgUrl} className=" !w-4/5 mx-auto" />}
+                    cover={<img alt="example" src={imgUrl} className=" !w-2/5 mx-auto pt-3" />}
                   >
                     <Meta
                       title={<span className="text-lg">{title}</span>}
                       description={
-                        <div className="flex items-end mt-2">
+                        <div className="flex items-end mt-2 justify-center">
                           费率：
                           <div className="flex items-center">
                             <span className="text-primary-100 text-3xl mr-2">

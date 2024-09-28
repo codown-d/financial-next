@@ -1,11 +1,11 @@
 "use client";
 import { ConfigProvider, Menu } from "antd";
 import { Link as LinkScroll } from "react-scroll";
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import TzDropdown from "../TzDropdown";
 
-export default function TzMenuUi() {
+export default function TzDropdownUI() {
   const [activeLink, setActiveLink] = useState(null);
   const [scrollActive, setScrollActive] = useState(false);
   useEffect(() => {
@@ -133,7 +133,15 @@ export default function TzMenuUi() {
       children: children.map((ite) => {
         let { key, label } = ite;
         return {
-          label: <Link href={key}>{label}</Link>,
+          label: (
+            <Link
+              href={key}
+              key={key}
+              className="text-[16px] px-1 py-1 min-w-36"
+            >
+              {label}
+            </Link>
+          ),
           key: key,
         };
       }),
@@ -149,13 +157,24 @@ export default function TzMenuUi() {
         },
       }}
     >
-      <Menu
-        className="head-menu !bg-transparent !border-0"
-        selectedKeys={[activeLink]}
-        mode="horizontal"
-        items={items}
-        onChange={() => { }}
-      />
+      <div
+        id={"header"}
+        className="flex items-center justify-center text-[16px]"
+      >
+        {items.map((item, index) => {
+          let { label, children } = item;
+          return (
+            <TzDropdown
+              key={index}
+              className="!bg-transparent !border-0 px-4 mx-2 py-3"
+              menu={{ items: children }}
+              getPopupContainer={() => document.getElementById("header")}
+            >
+              {label}
+            </TzDropdown>
+          );
+        })}
+      </div>
     </ConfigProvider>
   );
 }

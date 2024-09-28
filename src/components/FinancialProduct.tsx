@@ -7,12 +7,11 @@ import TzTabs from "./TzTabs";
 import Loan from "./UI/Loan";
 import Guaranteed from "./UI/Guaranteed";
 import Emergency from "./UI/Emergency";
+import { useResize } from "@/hooks";
 
-
-export type TabPosition = 'left' | 'right' | 'top' | 'bottom';
+export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  let [tabPosition,setTabPosition]=useState<TabPosition>('left')
   let tabItems = [
     { label: "贷款服务", key: "loan", children: <Loan /> },
     { label: "担保服务", key: "guarantee", children: <Guaranteed /> },
@@ -22,21 +21,7 @@ const FinancialProduct = () => {
     // { label: "保理类", key: "factoring", children: <SmallLoan /> },
     // { label: "服务类", key: "service", children: <SmallLoan /> },
   ];
-
-  useEffect(() => {
-    const element = document.querySelector("body");
-    const resizeObserver = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        console.log("新高度:", entry.contentRect.height);
-        if (entry.contentRect.width < 560) {
-          setTabPosition('top')
-        } else {
-          setTabPosition('left')
-        }
-      }
-    });
-    resizeObserver.observe(element);
-  }, []);
+  let {isMobile} = useResize()
 
   return (
     <div
@@ -48,22 +33,23 @@ const FinancialProduct = () => {
           <ScrollAnimationWrapper>
             <motion.h3
               variants={scrollAnimation}
-              className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed"
+              className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed mb-10"
             >
               金融产品
             </motion.h3>
-            <motion.p
+            {/* <motion.p
               variants={scrollAnimation}
               className="leading-normal w-10/12 sm:w-7/12 lg:w-6/12 mx-auto my-2 text-center"
             >
               让我们选择最适合您的套餐，并愉快地探索它。
-            </motion.p>
+            </motion.p> */}
           </ScrollAnimationWrapper>
           <TzTabs
             items={tabItems}
+            tabBarStyle={{paddingTop:isMobile?0:60}}
             destroyInactiveTabPane
-            tabPosition={tabPosition}
-            className="!text-xl"
+            tabPosition={isMobile?'top':"left"}
+            className="!text-xl !pt-10"
             size={"large"}
           />
         </div>
