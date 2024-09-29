@@ -35,7 +35,6 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
   let { items, onChange, defaultChecked, ...otherProps } = props;
   let [value, setValue] = useState<any[]>(defaultChecked || []);
   let handleChange = (tag: any, checked: boolean) => {
-    console.log(tag, checked);
     setValue((pre) => {
       if (checked) {
         return [...pre, tag];
@@ -52,7 +51,7 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
       {items.map((item) => {
         return (
           <TzCheckableTag
-          key={item.value}
+            key={item.value}
             checked={!!item.disabled}
             {...otherProps}
             onChange={(checked) => handleChange(item.value, checked)}
