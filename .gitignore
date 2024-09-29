@@ -34,3 +34,4 @@ yarn-error.log*
 .vercel
 dist
 dist/*
+dist.zip
