@@ -7,7 +7,7 @@ import { TzEffectButton } from "../TzEffectButton";
 import CountUp from "react-countup";
 import TzCard from "../TzCard";
 import TzSplitter, { TzPanel } from "../TzSplitter";
-
+import Image from "next/image";
 export default function Emergency() {
   let financial = [
     {
@@ -89,9 +89,10 @@ export default function Emergency() {
                 <div className="h-[330px] flex flex-col justify-between">
                   <div>
                     <div className=" lg:p-0 mt-0 lg:mt-2 flex items-center">
-                      <img
+                      <Image
                         src={"/images/logo-small.jpg"}
                         className="h-[40px] mr-2"
+                        alt={"logo"}
                       />
                       <p className="text-lg text-black-600 font-bold capitalize my-2 sm:mt-4 sm:mb-2">
                         {title}
