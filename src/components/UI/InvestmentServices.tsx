@@ -34,7 +34,7 @@ export default function InvestmentServices() {
           variants={scrollAnimation}
           className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-normal w-9/12 sm: lg:w-4/12 mx-auto"
         >
-          投资服务
+          企业公共服务
         </motion.h3>
         {/* <motion.p
           variants={scrollAnimation}

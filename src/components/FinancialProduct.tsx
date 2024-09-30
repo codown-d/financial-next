@@ -12,17 +12,52 @@ import { useResize } from "@/hooks";
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  let tabItems = [
-    { label: "贷款服务", key: "loan", children: <Loan /> },
-    { label: "担保服务", key: "guarantee", children: <Guaranteed /> },
-    { label: "应急转贷服务", key: "emergency", children: <Emergency /> },
+  let tabItems_1 = [
+    { label: "银行贷款", key: "key_1", children: <Loan /> },
+    { label: "小额贷款", key: "key_2", children: <Guaranteed /> },
+    { label: "应急转贷", key: "key_3", children: <Emergency /> },
+    { label: "股权融资", key: "key_4", children: <Emergency /> },
     // { label: "转贷类", key: "refinancing", children: <SmallLoan /> },
     // { label: "租赁类", key: "leasing", children: <SmallLoan /> },
     // { label: "保理类", key: "factoring", children: <SmallLoan /> },
     // { label: "服务类", key: "service", children: <SmallLoan /> },
   ];
-  let {isMobile} = useResize()
-
+  let tabItems_2 = [
+    { label: "融资担保", key: "key_1", children: <Loan /> },
+    { label: "电子保函", key: "key_2", children: <Guaranteed /> },
+    { label: "综合保险", key: "key_3", children: <Emergency /> },
+    // { label: "转贷类", key: "refinancing", children: <SmallLoan /> },
+    // { label: "租赁类", key: "leasing", children: <SmallLoan /> },
+    // { label: "保理类", key: "factoring", children: <SmallLoan /> },
+    // { label: "服务类", key: "service", children: <SmallLoan /> },
+  ];
+  let { isMobile } = useResize();
+  let items = [
+    {
+      label: "融资服务",
+      key: "key_1",
+      children: (
+        <TzTabs
+          items={tabItems_1}
+          tabBarStyle={{ paddingTop: isMobile ? 0 : 60 }}
+          destroyInactiveTabPane
+          tabPosition={isMobile ? "top" : "left"}
+          className="!text-xl"
+          size={"large"}
+        />
+      ),
+    },
+    {
+      label: "增信服务", key: "key_2", children: <TzTabs
+        items={tabItems_2}
+        tabBarStyle={{ paddingTop: isMobile ? 0 : 60 }}
+        destroyInactiveTabPane
+        tabPosition={isMobile ? "top" : "left"}
+        className="!text-xl"
+        size={"large"}
+      />
+    },
+  ];
   return (
     <div
       className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
@@ -35,7 +70,7 @@ const FinancialProduct = () => {
               variants={scrollAnimation}
               className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed mb-10"
             >
-              金融产品
+              业务专区
             </motion.h3>
             {/* <motion.p
               variants={scrollAnimation}
@@ -44,14 +79,14 @@ const FinancialProduct = () => {
               让我们选择最适合您的套餐，并愉快地探索它。
             </motion.p> */}
           </ScrollAnimationWrapper>
-          <TzTabs
-            items={tabItems}
-            tabBarStyle={{paddingTop:isMobile?0:60}}
-            destroyInactiveTabPane
-            tabPosition={isMobile?'top':"left"}
-            className="!text-xl !pt-10"
-            size={"large"}
-          />
+          <ScrollAnimationWrapper>
+            <TzTabs
+              items={items}
+              destroyInactiveTabPane
+              className="!text-xl !pt-10"
+              size={"large"}
+            />
+          </ScrollAnimationWrapper>
         </div>
       </div>
     </div>

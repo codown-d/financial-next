@@ -27,3 +27,83 @@ export const Bank = {
   snyh: { img: "/images/bank/snyh.jpg", label: "中国遂宁银行" },
   dzyh: { img: "/images/bank/dzyh.jpg", label: "中国达州银行" },
 };
+
+export const MenuList = [
+  {
+    label: "融资服务",
+    key: "financialProduct",
+    children: [
+      {
+        label: "银行贷款",
+        key: "/small-loan",
+      },
+      {
+        label: "小额贷款",
+        key: "/loan-guarantee",
+      },
+      {
+        label: "应急转贷",
+        key: "/emergency-3",
+      },
+      
+      {
+        label: "股权融资",
+        key: "/emergency-4",
+      },
+    ],
+  },
+  {
+    label: "增信服务",
+    key: "guaranteeServices",
+    children: [
+      {
+        label: "融资担保",
+        key: "/performance-bond",
+      },
+      {
+        label: "电子保函",
+        key: "/wage-bond",
+      },
+      {
+        label: "综合保险",
+        key: "/advance-payment-bond",
+      },
+    ],
+  },
+  {
+    label: "金融创新服务",
+    key: "institutionalServices",
+    children: [
+      {
+        label: "数字金融工具",
+        key: "/business-management",
+      },
+      {
+        label: "风险评估服务",
+        key: "/asset-management",
+      },
+      {
+        label: "不良资产管理",
+        key: "/risk-warning",
+      },
+    ],
+  },
+  {
+    label: "企业公共服务",
+    key: "investmentServices",
+    children: [
+      {
+        label: "政策服务",
+        key: "/guangcai-fund",
+      },
+      {
+        label: "数据资产入表",
+        key: "/equity-investment",
+      },
+      {
+        label: "供应链贸易",
+        key: "/trade-services",
+      },
+    ],
+  },
+]

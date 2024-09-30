@@ -13,7 +13,7 @@ const nextConfig = {
   //   unoptimized: true, // 禁用图片优化
   // },
   // reactStrictMode: true,
-  distDir: "dist",
+  // distDir: "dist",
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

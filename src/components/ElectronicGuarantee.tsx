@@ -3,10 +3,11 @@ import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
-import Loan from "./UI/Loan";
 import TzCard from "./TzCard";
 import Meta from "antd/es/card/Meta";
-import { Span } from "next/dist/trace";
+import Image from "next/image";
+import TzImage from "./TzImage";
+import TzNextImage from "./TzNextImage";
 
 export default function ElectronicGuarantee() {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -68,7 +69,7 @@ export default function ElectronicGuarantee() {
                   <TzCard
                     key={index}
                     hoverable
-                    cover={<img alt="example" src={imgUrl} className=" !w-2/5 mx-auto pt-3" />}
+                    cover={<TzNextImage src={imgUrl} className=" !w-2/5 mx-auto pt-3" />}
                   >
                     <Meta
                       title={<span className="text-lg">{title}</span>}

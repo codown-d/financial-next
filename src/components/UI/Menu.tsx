@@ -4,6 +4,7 @@ import { Link as LinkScroll } from "react-scroll";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { MenuList } from "@/constant";
 
 export default function TzMenuUi() {
   const [activeLink, setActiveLink] = useState(null);
@@ -13,99 +14,7 @@ export default function TzMenuUi() {
       setScrollActive(window.scrollY > 20);
     });
   }, []);
-  let items = [
-    {
-      label: "金融服务",
-      key: "financialProduct",
-      children: [
-        {
-          label: "小额贷款",
-          key: "/small-loan",
-        },
-        {
-          label: "融资担保",
-          key: "/loan-guarantee",
-        },
-        {
-          label: "应急转贷",
-          key: "/emergency-loan",
-        },
-      ],
-    },
-    {
-      label: "保函服务",
-      key: "guaranteeServices",
-      children: [
-        {
-          label: "履约保函",
-          key: "/performance-bond",
-        },
-        {
-          label: "农民工工资保函",
-          key: "/wage-bond",
-        },
-        {
-          label: "预付款保函",
-          key: "/advance-payment-bond",
-        },
-      ],
-    },
-    {
-      label: "机构服务",
-      key: "institutionalServices",
-      children: [
-        {
-          label: "业务管理",
-          key: "/business-management",
-        },
-        {
-          label: "资产管理",
-          key: "/asset-management",
-        },
-        {
-          label: "风险预警",
-          key: "/risk-warning",
-        },
-      ],
-    },
-
-    {
-      label: "投资服务",
-      key: "investmentServices",
-      children: [
-        {
-          label: "广财基金",
-          key: "/guangcai-fund",
-        },
-        {
-          label: "股权投资",
-          key: "/equity-investment",
-        },
-        {
-          label: "贸易服务",
-          key: "/trade-services",
-        },
-      ],
-    },
-    {
-      label: "政策服务",
-      key: "policyServices",
-      children: [
-        {
-          label: "政策查询",
-          key: "/policy-inquiry",
-        },
-        {
-          label: "政策原文",
-          key: "/policy-matching",
-        },
-        {
-          label: "政策解析",
-          key: "/online-application",
-        },
-      ],
-    },
-  ].map((item) => {
+  let items = MenuList.map((item) => {
     let { key, label, children } = item;
     return {
       label: (
