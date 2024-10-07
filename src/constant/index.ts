@@ -30,6 +30,10 @@ export const Bank = {
 
 export const MenuList = [
   {
+    label: "首页",
+    key: "home",
+  },
+  {
     label: "融资服务",
     key: "financialProduct",
     children: [

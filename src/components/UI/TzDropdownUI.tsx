@@ -29,18 +29,13 @@ export default function TzDropdownUI() {
           onSetActive={() => {
             setActiveLink(key);
           }}
-          className={
-            "cursor-pointer animation-hover inline-block relative" +
-            (activeLink === key
-              ? " text-orange-500 animation-active "
-              : " text-black-500 !hover:text-orange-500")
-          }
+          className={''}
         >
           {label}
         </LinkScroll>
       ),
       key: key,
-      children: children.map((ite) => {
+      children: children?.map((ite) => {
         let { key, label } = ite;
         return {
           label: (
@@ -78,7 +73,7 @@ export default function TzDropdownUI() {
           return (
             <TzDropdown
               key={index}
-              className="!bg-transparent !border-0 px-4 mx-2 py-3"
+              className="!bg-transparent !border-0 px-[66px] py-[18px]"
               menu={{ items: children }}
               getPopupContainer={() => dropdownRef.current}
             >

@@ -7,6 +7,7 @@ import ButtonOutline from "../misc/ButtonOutline";
 import TzMenuUi from "../UI/Menu";
 import Logo from "../UI/Logo";
 import TzDropdownUI from "../UI/TzDropdownUI";
+import { TzButton } from "../TzButton";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
@@ -21,24 +22,19 @@ const Header = () => {
       <header
         className={
           "fixed top-0 w-full  z-30 bg-white-500 transition-all " +
-          (scrollActive ? " shadow-md pt-0" : " pt-4")
+          (scrollActive ? " shadow-md pt-0" : "")
         }
       >
-        <nav className="max-w-screen-lg px-6 sm:px-8 lg:px-16 mx-auto grid grid-flow-col py-3 sm:py-4">
+        <nav className="max-w-screen-lg mx-auto grid grid-flow-col">
           <div className="col-start-1 col-end-2 flex items-center">
             <Logo/>
           </div>
           <ul className="hidden md:flex col-start-6 col-end-10 text-black-500  items-center justify-center">
-            <TzDropdownUI/>
-            {/* <TzMenuUi/> */}
+            <TzMenuUi/>
           </ul>
           <div className="col-start-14 col-end-12 font-medium flex justify-end items-center">
-            <Link href="/">
-              <span className="text-black-600 mx-2 sm:mx-4 capitalize tracking-wide hover:text-orange-500 transition-all">
-                  登 录
-              </span>
-            </Link>
-            <ButtonOutline>免费注册</ButtonOutline>
+            <TzButton type="primary" shape="round" className="custom-primary">登录</TzButton>
+            <TzButton shape="round" className="custom-primary ml-[14px]">注册</TzButton>
           </div>
         </nav>
       </header>

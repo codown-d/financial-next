@@ -8,7 +8,7 @@ import getScrollAnimation from "@/utils/getScrollAnimation";
 export default function () {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="relative bg-[url('/assets/banner.png')] h-[50vh] bg-cover bg-center" >
+    <div className="relative bg-[url('/assets/banner.png')] h-[520px] bg-cover bg-center" >
       <motion.h3
         variants={scrollAnimation}
         className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "

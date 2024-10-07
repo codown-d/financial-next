@@ -17,29 +17,9 @@ export default function TzMenuUi() {
   let items = MenuList.map((item) => {
     let { key, label, children } = item;
     return {
-      label: (
-        <LinkScroll
-          key={key}
-          activeClass="active23"
-          to={key}
-          spy={true}
-          smooth={true}
-          offset={-95}
-          onSetActive={() => {
-            setActiveLink(key);
-          }}
-          className={
-            "cursor-pointer animation-hover inline-block relative" +
-            (activeLink === key
-              ? " text-orange-500 animation-active "
-              : " text-black-500 !hover:text-orange-500")
-          }
-        >
-          {label}
-        </LinkScroll>
-      ),
+      label: label,
       key: key,
-      children: children.map((ite) => {
+      children: children?.map((ite) => {
         let { key, label } = ite;
         return {
           label: <Link href={key}>{label}</Link>,
@@ -49,22 +29,29 @@ export default function TzMenuUi() {
     };
   });
   return (
-    <ConfigProvider
-      theme={{
-        components: {
-          Menu: {
-            fontSize: 16,
-          },
-        },
-      }}
-    >
+    <ConfigProvider theme={{
+      token: {
+        colorPrimary: "#3C5BF6",
+      },
+    }}>
       <Menu
-        className="head-menu !bg-transparent !border-0"
+        className="header-menu !bg-transparent !border-0"
         selectedKeys={[activeLink]}
         mode="horizontal"
-        items={items}
-        onChange={() => { }}
-      />
+        onChange={() => {}}
+      >
+        {items.map((item) => {
+          return (
+            <Menu.Item
+              key={item.key}
+              title={item.label}
+              className="leading-[60px] w-40 text-center hover:!bg-[#3C5BF6] hover:!text-[#fff] font-bold"
+            >
+              {item.label}
+            </Menu.Item>
+          );
+        })}
+      </Menu>
     </ConfigProvider>
   );
 }

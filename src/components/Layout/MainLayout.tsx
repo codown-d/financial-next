@@ -18,7 +18,7 @@ const MainLayout: React.FC<{
       <GlobalProvider>
         <div className={`${styles.container} bg-slate-100`}>
           <Header />
-          <main className={`${styles.main} pt-22 w-full`}>{children}</main>
+          <main className={`${styles.main} pt-[60px] w-full`}>{children}</main>
           {/* <TzFloatButtonGroup className="!w-14 !h-14" icon={<TzIcon className={"fa-phone"} />} trigger="click">
             <TzFloatButton />
             <TzFloatButton icon={<TzIcon className={"fa-wand-magic-sparkles"} />} />
