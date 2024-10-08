@@ -28,6 +28,10 @@ const Header = () => {
         <nav className="max-w-screen-lg mx-auto grid grid-flow-col">
           <div className="col-start-1 col-end-2 flex items-center">
             <Logo/>
+            <div className="ml-[5px]">
+              <div className="text-2xl leading-6 font-bold">广元市综合金融服务平台</div>
+              <div className="text-xs leading-3 text-[#959595]">GUANGYUAN INTEGRATED FINANCIAL SERVICES PLATFORM</div>
+            </div>
           </div>
           <ul className="hidden md:flex col-start-6 col-end-10 text-black-500  items-center justify-center">
             <TzMenuUi/>

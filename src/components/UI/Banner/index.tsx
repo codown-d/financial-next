@@ -11,10 +11,10 @@ export default function () {
     <div className="relative bg-[url('/assets/banner.png')] h-[520px] bg-cover bg-center" >
       <motion.h3
         variants={scrollAnimation}
-        className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
+        className="font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
       >
-        <p className="bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text mt-[18vh]">广元市综合金融服务平台</p>
-        <p className="text-accent px-20 py-10">焕新金融服务 赋能实体经济</p>
+        <p className=" text-[76px] bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text mt-[160px]">广元市综合金融服务平台</p>
+        <p className="text-accent px-20  text-[36px]">焕新金融服务 赋能实体经济</p>
       </motion.h3>
       {/* <img src={"/assets/banner.png"} className="w-full" /> */}
       {/* <Lace /> */}

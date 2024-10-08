@@ -7,6 +7,7 @@ import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import Banner from "./UI/Banner";
 import TzIcon from "./TzIcon";
+import Title from "./UI/Title";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -78,6 +79,7 @@ const FinancialBusiness = (props) => {
             </motion.div>
           </ScrollAnimationWrapper>
         )}
+          <Title title="服务直通车" bg="/images/service-eirect-expre.png"/>
         <div className="relative w-full flex pb-20">
           <ScrollAnimationWrapper className="rounded-lg w-full grid grid-flow-row sm:grid-flow-row grid-cols-1 sm:grid-cols-4 py-4 divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-gray-100 bg-white-500 z-10">
             {data.map((item, index) => (
