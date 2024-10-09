@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
@@ -10,6 +9,7 @@ import { TzTitle } from "./TzTypography";
 import TzInput from "./TzInput";
 import TzSelect from "./TzSelect";
 import TzCard from "./TzCard";
+import Title from "./UI/Title";
 
 const items = [
   {
@@ -54,14 +54,6 @@ const KeyBusiness = () => {
       id="feature"
     >
       <div className="grid grid-flow-row   ">
-        <ScrollAnimationWrapper className="flex w-full justify-center">
-          <motion.h3
-            variants={scrollAnimation}
-            className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed mb-10"
-          >
-            重点业务
-          </motion.h3>
-        </ScrollAnimationWrapper>
         <ScrollAnimationWrapper>
           <div className="flex ">
             <motion.div
@@ -89,7 +81,9 @@ const KeyBusiness = () => {
             >
               <div className="grid grid-cols-4 gap-7">
                 {items.map((item) => (
-                  <TzCard key={item.title} hoverable>{item.title}</TzCard>
+                  <TzCard key={item.title} hoverable>
+                    {item.title}
+                  </TzCard>
                 ))}
               </div>
             </motion.div>

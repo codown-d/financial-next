@@ -9,25 +9,11 @@ import KeyBusiness from "@/components/KeyBusiness";
 export default function Home() {
   return (
     <>
-    
       <FinancialBusiness />
-      {/* <FinancialServices /> */}
-      <KeyBusiness/>
       <FinancialProduct />
       <ElectronicGuarantee />
-      <ServiceOrg/>
-      <PolicyServices/>
+      <ServiceOrg />
+      <PolicyServices />
     </>
   );
 }
-
-
-
-
-
-
-
-
-
-
-

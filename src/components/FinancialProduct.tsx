@@ -8,6 +8,8 @@ import Loan from "./UI/Loan";
 import Guaranteed from "./UI/Guaranteed";
 import Emergency from "./UI/Emergency";
 import { useResize } from "@/hooks";
+import Title from "./UI/Title";
+import Image from "next/image";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
@@ -34,7 +36,12 @@ const FinancialProduct = () => {
   let { isMobile } = useResize();
   let items = [
     {
-      label: "融资服务",
+      label: (
+        <div className="flex flex-col items-center px-[76px]">
+          <Image src={"/images/rzfw.png"} alt={""} width={88} height={88} />
+          <span>融资服务</span>
+        </div>
+      ),
       key: "key_1",
       children: (
         <TzTabs
@@ -48,46 +55,39 @@ const FinancialProduct = () => {
       ),
     },
     {
-      label: "增信服务", key: "key_2", children: <TzTabs
-        items={tabItems_2}
-        tabBarStyle={{ paddingTop: isMobile ? 0 : 60 }}
-        destroyInactiveTabPane
-        tabPosition={isMobile ? "top" : "left"}
-        className="!text-xl"
-        size={"large"}
-      />
+      label: (
+        <div className="flex flex-col items-center px-[76px]">
+          <Image src={"/images/zxfw.png"} alt={""} width={88} height={88} />
+          <span>增信服务</span>
+        </div>
+      ),
+      key: "key_2",
+      children: (
+        <TzTabs
+          items={tabItems_2}
+          tabBarStyle={{ paddingTop: isMobile ? 0 : 60 }}
+          destroyInactiveTabPane
+          tabPosition={isMobile ? "top" : "left"}
+          className="!text-xl"
+          size={"large"}
+        />
+      ),
     },
   ];
   return (
-    <div
-      className="bg-gradient-to-b from-white-300 to-white-500 w-full py-14"
-      id="financialProduct"
-    >
-      <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex flex-col w-full text-center justify-center">
-        <div className="flex flex-col w-full">
-          <ScrollAnimationWrapper>
-            <motion.h3
-              variants={scrollAnimation}
-              className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-relaxed mb-10"
-            >
-              业务专区
-            </motion.h3>
-            {/* <motion.p
-              variants={scrollAnimation}
-              className="leading-normal w-10/12 sm:w-7/12 lg:w-6/12 mx-auto my-2 text-center"
-            >
-              让我们选择最适合您的套餐，并愉快地探索它。
-            </motion.p> */}
-          </ScrollAnimationWrapper>
-          <ScrollAnimationWrapper>
-            <TzTabs
-              items={items}
-              destroyInactiveTabPane
-              className="!text-xl !pt-10"
-              size={"large"}
-            />
-          </ScrollAnimationWrapper>
-        </div>
+    <div className="max-w-screen-lg  px-6 sm:px-8 lg:px-16 mx-auto flex mt-20 flex-col w-full text-center justify-center">
+      <div className="flex flex-col w-full">
+        <Title title={"融资服务"} bg={"/images/financingservices.png"} />
+        <ScrollAnimationWrapper className="mt-3">
+          <TzTabs
+            className="financing-services-tab"
+            items={items}
+            centered
+            destroyInactiveTabPane
+            tabBarGutter={96}
+            tabBarStyle={{ padding: "0px 76px" }}
+          />
+        </ScrollAnimationWrapper>
       </div>
     </div>
   );

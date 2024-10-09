@@ -4,7 +4,7 @@ import MainLayout from "@/components/Layout/MainLayout";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
-import "@/styles/globals.css";
+import "@/styles/globals.scss";
 // 设置页面的元数据
 export const metadata: Metadata = {
   title: "广元金融服务集团",
@@ -13,18 +13,14 @@ export const metadata: Metadata = {
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <html >
+    <html>
       <head>
         <link
           rel="stylesheet"
           href="/fontawesome/css/all.css"
-           type="text/css"
+          type="text/css"
         />
-         <link
-          rel="stylesheet"
-          href="/fonts/index.css"
-           type="text/css"
-        />
+        <link rel="stylesheet" href="/fonts/index.css" type="text/css" />
       </head>
       <body>
         <AntdRegistry>
