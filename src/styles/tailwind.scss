@@ -4,11 +4,9 @@
 @tailwind components;
 @tailwind utilities;
 
-html {
-    font-family: "Rubik", sans-serif;
-}
 
 body {
     @apply bg-white-500;
     color: #333;
+    font-family:'SourceHanSansCN, SourceHanSansCN'
 }

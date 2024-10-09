@@ -104,7 +104,7 @@ const FinancialBusiness = (props) => {
           variants={scrollAnimation}
         >
           <TzCard
-            bodyStyle={{ padding: "17px 92px 32px" }}
+            styles={{ body: { padding: "17px 92px 32px" } }}
             className="shadow shadow-red-500 md:shadow-xl w-[896px]"
           >
             <div className="flex flex-col items-center justify-center">

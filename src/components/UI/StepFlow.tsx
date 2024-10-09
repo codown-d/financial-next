@@ -21,7 +21,7 @@ const StepFlow = () => {
               style={{
                 background: "rgba(46, 69, 195,0.14)",
                 padding: "10px 0",
-                zIndex: 99,
+                zIndex: 9,
               }}
             >
               {step.title}
