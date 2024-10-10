@@ -1,0 +1,15 @@
+module.exports = {
+    apps: [
+      {
+        name: 'next-app',
+        script: 'npm',
+        args: 'start',
+        env: {
+          NODE_ENV: 'production',
+          PORT: 3000,
+          // 其他环境变量
+        },
+      },
+    ],
+  };
+  

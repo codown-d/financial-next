@@ -11,7 +11,6 @@ export default function (props: FinanceCardProps) {
   let {
     imgUrl,
     title,
-    type,
     rateDown,
     rateUp,
     rate,
