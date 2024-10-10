@@ -14,7 +14,6 @@ import Meta from "antd/es/card/Meta";
 export interface FinanceItemProps{
   imgUrl: string;
   title: string;
-  type: string;
   rateDown: string;
   rateUp: string;
   rate: string;
@@ -27,7 +26,6 @@ export default function Loan() {
     {
       imgUrl: '/images/gxxd.jpg',
       title: `小微贷`,
-      type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
@@ -38,7 +36,6 @@ export default function Loan() {
     {
       imgUrl: '/images/gxxd.jpg',
       title: `小微贷`,
-      type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
@@ -49,7 +46,6 @@ export default function Loan() {
     {
       imgUrl: '/images/gxxd.jpg',
       title: `小微贷`,
-      type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
@@ -65,7 +61,6 @@ export default function Loan() {
       {financial.map((item, index) => {
         let {
           title,
-          type,
           rateDown,
           rateUp,
           imgUrl,
