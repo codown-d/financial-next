@@ -1,14 +1,14 @@
 "use client";
-import { Input, InputProps, Typography, TypographyProps } from "antd";
-import { SearchProps } from "antd/es/input";
+import { Typography, TypographyProps } from "antd";
+import { ParagraphProps } from "antd/es/typography/Paragraph";
 import { TitleProps } from "antd/es/typography/Title";
-import {  useMemo } from "react";
-const { Title, Paragraph, Text, Link } = Typography;
+import { useMemo } from "react";
+const { Title, Paragraph } = Typography;
 interface TzTypographyProps extends TypographyProps {
-  children?:React.ReactNode
+  children?: React.ReactNode;
 }
 export default function TzTypography(props: TzTypographyProps) {
-  let {children} =props
+  let { children } = props;
   const realProps = useMemo(() => {
     return {
       ...props,
@@ -17,27 +17,27 @@ export default function TzTypography(props: TzTypographyProps) {
   }, [props]);
   return <Typography {...realProps}>{children}</Typography>;
 }
-interface TzTitleProps extends TitleProps {
-}
-TzTypography.TzTitle=(props: TzTitleProps) => {
-  let {children} =props
+interface TzTitleProps extends TitleProps {}
+TzTypography.TzTitle = (props: TzTitleProps) => {
+  let { children } = props;
   const realProps = useMemo(() => {
     return {
       ...props,
       className: `tz-title ${props.className || ""}`,
     };
   }, [props]);
-  return <Title {...realProps} >{children}</Title>;
+  return <Title {...realProps}>{children}</Title>;
 };
-export const TzTitle=TzTypography.TzTitle
-// interface TzSearchProps extends SearchProps {}
-// const { Search } = Input;
-// export const TzSearch = (props: TzSearchProps) => {
-//   const realProps = useMemo(() => {
-//     return {
-//       ...props,
-//       className: `tz-search ${props.className || ""}`,
-//     };
-//   }, [props]);
-//   return <Search {...realProps} />;
-// };
+export const TzTitle = TzTypography.TzTitle;
+interface TzParagraphProps extends ParagraphProps {}
+TzTypography.TzParagraph = (props: TzParagraphProps) => {
+  let { children } = props;
+  const realProps = useMemo(() => {
+    return {
+      ...props,
+      className: `tz-paragraph ${props.className || ""}`,
+    };
+  }, [props]);
+  return <Paragraph {...realProps}>{children}</Paragraph>;
+};
+export const TzParagraph = TzTypography.TzParagraph;

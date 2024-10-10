@@ -10,5 +10,5 @@ export default function TzIcon(props: TzIconProps) {
       className: `tz-icon text-3xl text-primary-100 fa-solid ${props.className}`,
     };
   }, [props]);
-  return <i {...realProps} ></i>;
+  return <i {...realProps}></i>;
 }

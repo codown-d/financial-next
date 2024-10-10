@@ -9,9 +9,11 @@ import TzSearch from "../TzSearch";
 import TzTabs from "../TzTabs";
 import PolicyTable from "./PolicyTable";
 import { TzTitle } from "../TzTypography";
+import Title from "./Title";
+import Image from "next/image";
+import SeeMore from "./SeeMore";
 
 export default function PolicyArea() {
-
   let columns = [
     {
       title: "标题",
@@ -28,27 +30,27 @@ export default function PolicyArea() {
     {
       title: "科技型企业贷款风险补偿",
       time: "2023-05-01",
-      id:0
+      id: 0,
     },
     {
       title: "安徽省普惠型小微企业贷款风险补偿",
       time: "2023-05-01",
-      id:1
+      id: 1,
     },
     {
       title: " 促进经济高质量发展 ",
       time: "2023-05-01",
-      id:2
+      id: 2,
     },
     {
       title: "助企促发展若干举措  ",
       time: "2023-05-01",
-      id:3
+      id: 3,
     },
     {
       title: "  科技型中小企业担保费补贴  ",
       time: "2023-05-01",
-      id:4
+      id: 4,
     },
   ];
   let tabItems = useMemo(
@@ -56,7 +58,13 @@ export default function PolicyArea() {
       {
         label: "政策原文",
         key: "policyText",
-        children: <PolicyTable key={'policyText'} columns={columns} dataSource={dataSource} />,
+        children: (
+          <PolicyTable
+            key={"policyText"}
+            columns={columns}
+            dataSource={dataSource}
+          />
+        ),
       },
       {
         label: "政策解析",
@@ -72,44 +80,30 @@ export default function PolicyArea() {
     []
   );
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  let onSearch = useCallback(() => { }, []);
+  let onSearch = useCallback(() => {}, []);
   return (
     <>
-      <ScrollAnimationWrapper>
-        <motion.h3
-          variants={scrollAnimation}
-          className="text-2xl sm:text-3xl lg:text-4xl font-medium text-black-600 leading-normal w-9/12 sm: lg:w-4/12 mx-auto"
-        >
-          全方位政策服务
-        </motion.h3>
-        <motion.p
-          variants={scrollAnimation}
-          className="leading-normal mx-auto mb-2 mt-4 w-8/12 sm:w-11/12 md:w-8/12 lg:w-6/12"
-        >
-          <TzSearch
-            addonBefore={<span className="text-lg">政策名称：</span>}
-            placeholder="如：广元财政指导意见征求意见稿"
-            allowClear
-            enterButton="查政策"
-            size="large"
-            onSearch={onSearch}
-          />
-        </motion.p>
-      </ScrollAnimationWrapper>
-      <div className="grid grid-flow-row md:grid-cols-2 grid-cols-1 gap-8 py-8 lg:py-8">
-        {tabItems.map(item => {
-          return <div key={item.key}>
-            <TzTitle level={2} className="text-left">{item.label}</TzTitle>
+      {/* <Title title={"融资服务"} bg={"/images/financingservices.png"} /> */}
+      <div className="grid grid-flow-row md:grid-cols-12 grid-cols-1 gap-8 h-[473px]">
+        <div className="md:col-span-6 col-span-6 flex bg-white-500">
+          <Image src={"/images/ggfw_1.png"} alt={""} width={280} height={0} />
+          <div className="flex-1 px-7">
+            <TzTitle level={3} className="text-2xl flex justify-between">
+              <span>政策原文</span> <SeeMore />
+            </TzTitle>
             <PolicyTable columns={columns} dataSource={dataSource} />
+            <TzTitle level={3} className="text-2xl flex justify-between mt-7">
+              <span>政策解读</span> <SeeMore />
+            </TzTitle>
           </div>
-        })}
+        </div>
+        <div className="md:col-span-3 col-span-3 ">
+          <Image src={"/images/ggfw_2.png"} alt={""} width={280} height={0} />
+        </div>
+        <div className="md:col-span-3 col-span-3 ">
+          <Image src={"/images/ggfw_3.png"} alt={""} width={280} height={0} />
+        </div>
       </div>
-      {/* <TzTabs
-        items={tabItems}
-        destroyInactiveTabPane
-        className="!text-xl"
-        size={"large"}
-      /> */}
     </>
   );
 }

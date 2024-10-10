@@ -16,18 +16,15 @@ export default function PolicyTable(props: {
   return (
     <ScrollAnimationWrapper>
       <motion.div variants={scrollAnimation}>
-        <div className="flex">
-          {/* <img src="/assets/banner.png" alt="" className="w-[200px] mr-5"/> */}
-          <TzTable
-            rowKey={"id"}
-            dataSource={dataSource}
-            columns={columns}
-            pagination={false}
-            className="w-full"
-            showHeader={false}
-            size="large"
-          />
-        </div>
+        <TzTable
+          rowKey={"id"}
+          dataSource={dataSource}
+          columns={columns}
+          pagination={false}
+          className="w-full"
+          showHeader={false}
+          size="small"
+        />
       </motion.div>
     </ScrollAnimationWrapper>
   );

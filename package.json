@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@ant-design/happy-work-theme": "^1.0.0",
+    "@ant-design/icons": "^5.5.1",
     "@ant-design/nextjs-registry": "^1.0.1",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
