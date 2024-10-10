@@ -108,8 +108,9 @@ const FinancialBusiness = (props) => {
             className="shadow shadow-red-500 md:shadow-xl w-[896px]"
           >
             <div className="flex flex-col items-center justify-center">
-              <div className="text-[32px] text-center ">一键融资</div>
-              <div className="text-[14px] text-center mb-6">
+              <div className="text-[32px] text-center ">
+                <Image src={"/images/yjrz.png"} width={123} height={0}alt={""}/></div>
+              <div className="text-[14px] text-center mb-6 text-[#999]">
                 一键触达，快速响应
               </div>
               <TzForm

@@ -8,16 +8,13 @@ import getScrollAnimation from "@/utils/getScrollAnimation";
 export default function () {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="relative bg-[url('/assets/banner.png')] h-[520px] bg-cover bg-center" >
+    <div className="relative bg-[url('/assets/banner.png')] flex  items-center h-[520px] bg-cover bg-center" >
       <motion.h3
         variants={scrollAnimation}
         className="font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
       >
-        <p className=" text-[76px] bg-gradient-to-r from-blue-500 to-purple-600 bg-clip-text mt-[160px]">广元市综合金融服务平台</p>
-        <p className="text-accent px-20  text-[36px]">焕新金融服务 赋能实体经济</p>
-      </motion.h3>
-      {/* <img src={"/assets/banner.png"} className="w-full" /> */}
-      {/* <Lace /> */}
+        <Image src={"/images/banner-text.png"} alt={""} width={798} height={0} />
+       </motion.h3>
     </div>
   );
 }
