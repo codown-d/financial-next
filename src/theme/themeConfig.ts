@@ -11,6 +11,7 @@ const theme: ThemeConfig = {
     },
   },
   token: {
+    fontFamily: 'SourceHanSansCN, SourceHanSansCN',
     colorTextBase: "#333",
     colorLink: "#333",
     fontSize: 14,

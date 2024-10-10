@@ -8,12 +8,25 @@ import CountUp from "react-countup";
 import TzCard from "../TzCard";
 import TzSplitter, { TzPanel } from "../TzSplitter";
 import { Bank } from "@/constant";
+import FinanceCard from "./FinanceCard";
+import Meta from "antd/es/card/Meta";
 
+export interface FinanceItemProps{
+  imgUrl: string;
+  title: string;
+  type: string;
+  rateDown: string;
+  rateUp: string;
+  rate: string;
+  term: number;
+  amount: number;
+  guaranteeMethod: string[];
+}
 export default function Loan() {
   let financial = [
     {
       imgUrl: '/images/gxxd.jpg',
-      title: `国信小贷-小微贷`,
+      title: `小微贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -24,7 +37,7 @@ export default function Loan() {
     },
     {
       imgUrl: '/images/gxxd.jpg',
-      title: `国信小贷-及时贷`,
+      title: `小微贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
@@ -35,11 +48,11 @@ export default function Loan() {
     },
     {
       imgUrl: '/images/gxxd.jpg',
-      title: `国信小贷-搭桥贷`,
+      title: `小微贷`,
       type: "不限",
       rateDown: "3.10",
       rateUp: "3.90",
-      rate: "LPR2-4",
+      rate: "3.25",
       term: 36,
       amount: 500,
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
@@ -72,67 +85,7 @@ export default function Loan() {
                 },
               }}
             >
-              <TzCard className="text-left">
-                <div className=" lg:p-0 mt-0 lg:mt-2 flex items-center">
-                  <img src={imgUrl} className="h-[40px] mr-2" />
-                  <p className="text-lg text-black-600 font-bold capitalize">
-                    {title}
-                  </p>
-                </div>
-                {/* <div className="flex">
-                  <Tag className="!text-l">{type}</Tag>
-                </div>
-                <div className="flex items-center mt-2">
-                  <span className="text-primary-100 text-3xl mr-2">
-                    {rateDown}
-                  </span>
-                  ——
-                  <span className="text-primary-100  text-3xl  ml-2 mr-2">
-                    {rateUp}
-                  </span>
-                  %
-                </div>  */}
-                <div className="mt-2">
-                  {rate ? (
-                    <>
-                      最低利率：
-                      <span className="text-primary-100 text-3xl mr-2">
-                        {rate}
-                      </span>
-                      {Number(rate) > 0 ? "%" : "倍"}
-                    </>
-                  ) : (
-                    " 参考利率（年化）"
-                  )}
-                </div>
-                <TzSplitter className="!mt-2">
-                  <TzPanel>
-                    1 - {term}个月
-                    <br />
-                    贷款期限
-                  </TzPanel>
-                  <TzPanel className="ml-4">
-                    1 - {amount}万
-                    <br />
-                    贷款额度
-                  </TzPanel>
-                </TzSplitter>
-                <div className="mt-2">
-                  担保方式：{guaranteeMethod.join("/")}
-                </div>
-                <div className="mt-2">
-                  <CountUp
-                    end={Math.floor(Math.random() * 100000 + 10000)}
-                    separator=","
-                  />
-                  笔需求对接成功
-                </div>
-                <div className="flex flex-col w-full justify-center mt-4">
-                  <TzEffectButton type="primary" effectType={"inset"}>
-                    查看详情
-                  </TzEffectButton>
-                </div>
-              </TzCard>
+              <FinanceCard {...item}/>
             </motion.div>
           </ScrollAnimationWrapper>
         );
