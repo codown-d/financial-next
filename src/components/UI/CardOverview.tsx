@@ -5,7 +5,7 @@ export default function CardOverview(props) {
   let { description, title } = props;
   return (
     <div>
-      <TzParagraph ellipsis={ellipsis}>{description}</TzParagraph>
+      <TzParagraph ellipsis={true}>{description}</TzParagraph>
     </div>
   );
 }
