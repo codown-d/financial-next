@@ -57,20 +57,10 @@ export default function Loan() {
 
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-12 lg:gap-12 ">
+    <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-12 lg:gap-12 ">
       {financial.map((item, index) => {
-        let {
-          title,
-          rateDown,
-          rateUp,
-          imgUrl,
-          amount,
-          term,
-          rate,
-          guaranteeMethod = [],
-        } = item;
         return (
-          <ScrollAnimationWrapper key={index}>
+          <ScrollAnimationWrapper key={index} className='w-[536px]'>
             <motion.div
               variants={scrollAnimation}
               whileHover={{

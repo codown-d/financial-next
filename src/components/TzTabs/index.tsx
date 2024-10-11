@@ -2,7 +2,7 @@
 import { Tabs, TabsProps } from "antd";
 import React, { useMemo } from "react";
 import { type } from "os";
-interface TzTabsProps extends TabsProps {}
+export interface TzTabsProps extends TabsProps {}
 export default function TzTabs(props: TzTabsProps) {
   const realProps = useMemo(() => {
     return {

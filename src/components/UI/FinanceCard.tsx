@@ -6,6 +6,7 @@ import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
 import { FinanceItemProps } from "./Loan";
 import { TzButton } from "../TzButton";
+import TzIcon from "../TzIcon";
 type FinanceCardProps = TzCardProps & FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
@@ -24,8 +25,8 @@ export default function (props: FinanceCardProps) {
       <TzCard
         {...otherProps}
         hoverable
-        className={"!rounded-2xl h-[312px]"}
-        styles={{ body: { padding: "0", position: "relative" } }}
+        className={"!rounded-2xl h-[338px] "}
+        styles={{ body: { padding: "0", position: "relative",display:'inline-block' } }}
       >
         <Image
           src={"/images/card-header.png"}
@@ -50,7 +51,7 @@ export default function (props: FinanceCardProps) {
           className="absolute top-16  rounded-2xl bg-white-500 w-full"
           style={{ background: "#fff" }}
         >
-          <div className="pt-6 pl-6">
+          <div className="pt-6 pl-6 text-left">
             <div className="flex  text-[#3D5AF5]">
               {[
                 {
@@ -63,9 +64,9 @@ export default function (props: FinanceCardProps) {
                   value: amount,
                   p: "万元",
                 },
-              ].map((item) => {
+              ].map((item,index) => {
                 return (
-                  <div className="mr-2">
+                  <div className="mr-2" key={index}>
                     <div className="text-[#999999] mb-[6px] ">{item.label}</div>
                     <div className="bg-[#F9F9F9] w-[156px] pt-[11px] pl-[12px] pb-[10px] text-left rounded-lg">
                       <span className="text-[40px] leading-[40px]">
@@ -80,13 +81,21 @@ export default function (props: FinanceCardProps) {
             <div className="mt-4 text-left">
               担保方式：{guaranteeMethod.join("/")}
             </div>
-            <TzButton
-              className="mt-[53px] !py-[10px] !px-[28px] text-white-500"
+            <div className="mt-[18px]  flex items-end justify-between">
+              <TzButton
+              className=" !py-[10px] !px-[28px] text-white-500"
               shape="round"
               type="primary"
+              icon={<TzIcon className={"fa-arrow-right text-white-500 text-sm"} />} iconPosition={'end'}
             >
               查看详情
             </TzButton>
+            <div className="mr-[53px]">
+              <Image src={imgUrl} alt={""} width={52} height={52}/>
+              <span>国信小贷</span>
+            </div>
+            </div>
+            
           </div>
         </div>
       </TzCard>
