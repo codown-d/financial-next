@@ -7,7 +7,8 @@ export const TzButton = (props: TzButtonProps) => {
   const realProps = useMemo(() => {
     return {
       ...props,
-      className: `tz-button ${props.className}`,
+      className: `tz-button ${props.className} ${props.type==='link'?'!h-[auto]':''}`,
+
     };
   }, [props]);
   return <Button {...realProps} />;

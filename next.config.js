@@ -21,6 +21,9 @@ const nextConfig = {
     });
     return config;
   },
+  images: {
+    domains: ['os.alipayobjects.com'], // 允许 os.alipayobjects.com 加载图片
+  },
 };
 
 module.exports = nextConfig;

@@ -5,6 +5,8 @@ import { useResize } from "@/hooks";
 import { useMemo, useState } from "react";
 import CardOverview from "./CardOverview";
 import Loan, { FinanceItemProps } from "./Loan";
+import { TzButton } from "../TzButton";
+import { SwapRightOutlined } from "@ant-design/icons";
 interface TabItem {
   title: string;
   description: string;
@@ -22,7 +24,7 @@ export default function FinancialTab(props: FinancialTabProps) {
     return items.find((item) => item.key === activeKey).list;
   }, [items, activeKey]);
   return (
-    <div className="flex ">
+    <div className="flex mt-[52px]">
       <div className="mr-14">
         {items.map((item) => {
           let { key, title, description } = item;
@@ -35,12 +37,16 @@ export default function FinancialTab(props: FinancialTabProps) {
                 setActiveKey(key);
               }}
             >
-              <CardOverview description={description} title={title} />
+              <CardOverview
+                description={description}
+                title={title}
+                isActive={activeKey === key}
+              />
             </div>
           );
         })}
       </div>
-      <div>
+      <div className="text-left">
         <Loan items={list} />
       </div>
     </div>

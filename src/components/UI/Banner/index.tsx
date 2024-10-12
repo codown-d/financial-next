@@ -18,7 +18,6 @@ export default function () {
           alt={""}
           width={798}
           height={0}
-          layout="responsive"
         />
       </motion.h3>
     </div>

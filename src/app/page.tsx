@@ -11,8 +11,6 @@ export default function Home() {
     <>
       <FinancialBusiness />
       <FinancialProduct />
-      <ElectronicGuarantee />
-      <ServiceOrg />
       <PolicyServices />
     </>
   );

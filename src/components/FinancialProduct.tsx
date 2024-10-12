@@ -17,6 +17,10 @@ import {
   EquityFinancing,
   Microloans,
 } from "@/constant";
+import { TzButton } from "./TzButton";
+import { SwapRightOutlined } from "@ant-design/icons";
+import { Span } from "next/dist/trace";
+import InnovativeServicesCard from "./UI/InnovativeServicesCard";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
@@ -51,13 +55,7 @@ const FinancialProduct = () => {
     },
   ];
   return (
-    <div
-      style={{
-        background:
-          "linear-gradient( 180deg, #F9F9F9 0%, rgba(249,249,249,0) 100%)",
-      }}
-      className="overflow-hidden"
-    >
+    <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-[#F9F9F9]">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
           <Title title={"融资服务"} bg={"/images/financingservices.png"} />
@@ -69,6 +67,34 @@ const FinancialProduct = () => {
             tabBarGutter={96}
             tabBarStyle={{ padding: "0px 76px" }}
           />
+        </div>
+      </div>
+      <div className="bg-[url('/images/jrcxfw-bg.png')] bg-cover bg-center h-[976px]">
+        <div className="max-w-screen-lg mx-auto flex flex-col justify-center">
+          <div className="">
+            <div className="mt-8 flex flex-row">
+              <div className="w-[264px] mr-14"></div>
+              <TzButton
+                className="!px-[56px]"
+                shape="round"
+                icon={<SwapRightOutlined style={{ fontSize: 18 }} />}
+                iconPosition={"end"}
+              >
+                查看全部
+              </TzButton>
+            </div>
+
+            <Title
+              className={"mt-[216px] mb-[68px]"}
+              title={<span className="text-[#fff]">金融创新服务</span>}
+              bg={"/images/financialinnovation.png"}
+            />
+            <div className="grid grid-cols-3 gap-[144px] px-[96px]">
+              <InnovativeServicesCard items={[]}/>
+              <InnovativeServicesCard items={[]}/>
+              <InnovativeServicesCard items={[]}/>
+            </div>
+          </div>
         </div>
       </div>
     </div>

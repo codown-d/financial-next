@@ -29,7 +29,6 @@ export default function TzDropdownUI() {
           onSetActive={() => {
             setActiveLink(key);
           }}
-          className={''}
         >
           {label}
         </LinkScroll>
@@ -73,7 +72,7 @@ export default function TzDropdownUI() {
           return (
             <TzDropdown
               key={index}
-              className="!bg-transparent !border-0 px-[66px] py-[18px]"
+              className="w-[160px] h-[60px] text-center leading-[60px] hover:text-white-500 hover:bg-primary-500"
               menu={{ items: children }}
               getPopupContainer={() => dropdownRef.current}
             >
