@@ -83,7 +83,7 @@ export default function PolicyArea() {
   let onSearch = useCallback(() => {}, []);
   return (
     <>
-      {/* <Title title={"融资服务"} bg={"/images/financingservices.png"} /> */}
+      <Title title={"融资服务"} bg={"/images/financingservices.png"} />
       <div className="grid grid-flow-row md:grid-cols-12 grid-cols-1 gap-8 h-[473px]">
         <div className="md:col-span-6 col-span-6 flex bg-white-500">
           <Image src={"/images/ggfw_1.png"} alt={""} width={280} height={0} />

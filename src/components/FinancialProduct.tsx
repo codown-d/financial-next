@@ -10,59 +10,24 @@ import Emergency from "./UI/Emergency";
 import { useResize } from "@/hooks";
 import Title from "./UI/Title";
 import Image from "next/image";
-import CardOverview from "./UI/CardOverview";
 import FinancialTab from "./UI/FinancialTab";
+import {
+  BankLoans,
+  EmergencyRefinancing,
+  EquityFinancing,
+  Microloans,
+} from "@/constant";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let tabItems_1 = [
-    {
-      label: (
-        <CardOverview
-          description={"银行或其他金融机构向个人或企业发放的资金"}
-          title={"银行贷款"}
-        />
-      ),
-      key: "key_1",
-      children: <Loan />,
-    },
-    {
-      label: (
-        <CardOverview
-          description={"银行或其他金融机构向个人或企业发放的资金"}
-          title={"小额贷款"}
-        />
-      ),
-      key: "key_2",
-      children: <Guaranteed />,
-    },
-    {
-      label: (
-        <CardOverview
-          description={"银行或其他金融机构向个人或企业发放的资金"}
-          title={"应急转贷"}
-        />
-      ),
-      key: "key_3",
-      children: <Emergency />,
-    },
-    {
-      label: (
-        <CardOverview
-          description={"银行或其他金融机构向个人或企业发放的资金"}
-          title={"股权融资"}
-        />
-      ),
-      key: "key_4",
-      children: <Emergency />,
-    },
+    BankLoans,
+    Microloans,
+    EmergencyRefinancing,
+    EquityFinancing,
   ];
-  let tabItems_2 = [
-    { label: "融资担保", key: "key_1", children: <Loan /> },
-    { label: "电子保函", key: "key_2", children: <Guaranteed /> },
-    { label: "综合保险", key: "key_3", children: <Emergency /> },
-  ];
+  let tabItems_2 = [BankLoans, Microloans, EmergencyRefinancing];
   let items = [
     {
       label: (
@@ -86,20 +51,24 @@ const FinancialProduct = () => {
     },
   ];
   return (
-    <div  style={{background: 'linear-gradient( 180deg, #F9F9F9 0%, rgba(249,249,249,0) 100%)'}}>
-      <div className="max-w-screen-lg  mx-auto flex mt-20 flex-col w-full text-center justify-center">
+    <div
+      style={{
+        background:
+          "linear-gradient( 180deg, #F9F9F9 0%, rgba(249,249,249,0) 100%)",
+      }}
+      className="overflow-hidden"
+    >
+      <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
           <Title title={"融资服务"} bg={"/images/financingservices.png"} />
-          <ScrollAnimationWrapper className="mt-3">
-            <TzTabs
-              className="financing-services-tab"
-              items={items}
-              centered
-              destroyInactiveTabPane
-              tabBarGutter={96}
-              tabBarStyle={{ padding: "0px 76px" }}
-            />
-          </ScrollAnimationWrapper>
+          <TzTabs
+            className="financing-services-tab mt-3"
+            items={items}
+            centered
+            destroyInactiveTabPane
+            tabBarGutter={96}
+            tabBarStyle={{ padding: "0px 76px" }}
+          />
         </div>
       </div>
     </div>

@@ -49,7 +49,7 @@ export const MenuList = [
         label: "应急转贷",
         key: "/emergency-3",
       },
-      
+
       {
         label: "股权融资",
         key: "/emergency-4",
@@ -110,4 +110,143 @@ export const MenuList = [
       },
     ],
   },
-]
+];
+
+export const BankLoans = {
+  title: "银行贷款",
+  description: "银行或其他金融机构向个人或企业发放的资金",
+  key: "BankLoans",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.25",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+  ],
+};
+export const Microloans = {
+  title: "小额贷款",
+  description: "银行或其他金融机构向个人或企业发放的资金",
+  key: "Microloans",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.25",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+  ],
+};
+export const EmergencyRefinancing = {
+  title: "应急转贷",
+  description: "银行或其他金融机构向个人或企业发放的资金",
+  key: "EmergencyRefinancing",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["抵押", "质押", "保证"],
+    },
+  ],
+};
+export const EquityFinancing = {
+  title: "股权融资",
+  description: "银行或其他金融机构向个人或企业发放的资金",
+  key: "EquityFinancing",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["抵押", "质押", "保证"],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.25",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+  ],
+};
