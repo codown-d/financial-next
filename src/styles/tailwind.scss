@@ -15,3 +15,10 @@ body {
         height: auto;
     }
 }
+
+.text-desc{
+    @apply font-normal text-[14px] text-[#999999] leading-[18px]
+}
+.footer-item{
+    @apply font-bold text-[20px] text-white-500 leading-[30px]
+}

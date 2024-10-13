@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 // Import react scroll
@@ -27,16 +27,24 @@ const Header = () => {
       >
         <nav className="max-w-screen-lg mx-auto flex justify-between items-center">
           <div className=" flex items-center">
-            <Logo/>
+            <Logo />
             <div className="ml-[5px]">
-              <div className="text-2xl leading-6 font-bold">广元市综合金融服务平台</div>
-              <div className="text-xs leading-3 text-[#959595]">GUANGYUAN INTEGRATED FINANCIAL SERVICES PLATFORM</div>
+              <div className="text-2xl leading-6 font-bold">
+                广元市综合金融服务平台
+              </div>
+              <div className="text-xs leading-3 text-[#959595]">
+                GUANGYUAN INTEGRATED FINANCIAL SERVICES PLATFORM
+              </div>
             </div>
           </div>
-            <TzDropdownUI/>
+          <TzDropdownUI />
           <div className=" font-medium flex justify-end items-center">
-            <TzButton type="primary" shape="round" className="custom-primary">登录</TzButton>
-            <TzButton shape="round" className="custom-primary ml-[14px]">注册</TzButton>
+            <TzButton type="primary" shape="round" className="custom-primary">
+              登录
+            </TzButton>
+            <TzButton shape="round" className="custom-primary ml-[14px]">
+              注册
+            </TzButton>
           </div>
         </nav>
       </header>

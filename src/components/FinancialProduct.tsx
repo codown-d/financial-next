@@ -21,6 +21,7 @@ import { TzButton } from "./TzButton";
 import { SwapRightOutlined } from "@ant-design/icons";
 import { Span } from "next/dist/trace";
 import InnovativeServicesCard from "./UI/InnovativeServicesCard";
+import FinancialServices from "./FinancialServices";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
@@ -83,17 +84,7 @@ const FinancialProduct = () => {
                 查看全部
               </TzButton>
             </div>
-
-            <Title
-              className={"mt-[216px] mb-[68px]"}
-              title={<span className="text-[#fff]">金融创新服务</span>}
-              bg={"/images/financialinnovation.png"}
-            />
-            <div className="grid grid-cols-3 gap-[144px] px-[96px]">
-              <InnovativeServicesCard items={[]}/>
-              <InnovativeServicesCard items={[]}/>
-              <InnovativeServicesCard items={[]}/>
-            </div>
+            <FinancialServices />
           </div>
         </div>
       </div>

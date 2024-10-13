@@ -1,58 +1,94 @@
 "use client";
 import Image from "next/image";
 import React, { useMemo } from "react";
-import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
-import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
-import { Tabs } from "antd";
-
-const features = [{
-  title: '财务咨询',
-  subTitle: '为企业和个人提供量身定制的财务规划和投资策略。'
-}, {
-  title: '资产管理',
-  subTitle: '管理客户的投资组合，优化收益，降低风险。'
-}, {
-  title: '税务规划',
-  subTitle: '帮助客户合理规划税务，以实现税收优化。'
-}, {
-  title: '融资服务',
-  subTitle: '提供贷款、信贷和其他融资解决方案，助力企业发展。'
-}, {
-  title: '市场分析',
-  subTitle: '深入研究市场动态，为客户提供精准的市场洞察和建议。'
-}, {
-  title: '风险管理',
-  subTitle: '评估和管理潜在风险，制定应对策略，确保财务安全。'
-}
-];
+import Title from "./UI/Title";
+import InnovativeServicesCard from "./UI/InnovativeServicesCard";
+import TzIcon from "./TzIcon";
+import { Divider } from "antd";
+import { TzButton } from "./TzButton";
+import SeeMore from "./UI/SeeMore";
 
 const FinancialServices = () => {
+  let item = [
+    {
+      coverImg: "/images/szjrgj.png",
+      title: "数字金融工具",
+      hover: {
+        desc: "银行或其他金融机构向个人或企业发放的资金，银行或其他金融机构向个人或企业发放的资金",
+      },
+    },
+    {
+      coverImg: "/images/blzcgl.png",
+      title: "不良资产管理",
+      hover: {
+        desc: "银行或其他金融机构向个人或企业发放的资金，银行或其他金融机构向个人或企业发放的资金",
+      },
+    },
+    {
+      coverImg: "/images/fxpgfw.png",
+      title: "风险评估服务",
+      hover: {
+        desc: "银行或其他金融机构向个人或企业发放的资金，银行或其他金融机构向个人或企业发放的资金",
+      },
+    },
+  ];
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div
-      className="max-w-screen-lg mt-8 mb-6 sm:mt-14 sm:mb-14 px-6 sm:px-8 lg:px-16 mx-auto"
-      id="feature"
-    >
-      <div className="grid grid-flow-row sm:grid-flow-col grid-cols-1 sm:grid-cols-2 gap-8 p  y-8 my-12">
-        <ScrollAnimationWrapper className="flex w-full justify-end">
-          <motion.div className="h-full w-full p-4" variants={scrollAnimation}>
-            <Tabs
-              tabPosition={'left'}
-              items={new Array(3).fill(null).map((_, i) => {
-                const id = String(i + 1);
-                return {
-                  label: `Tab ${id}`,
-                  key: id,
-                  children: `Content of Tab ${id}`,
-                };
-              })}
-            />
-          </motion.div>
-        </ScrollAnimationWrapper>
-        
+    <>
+      <Title
+        className={"mt-[216px] mb-[68px]"}
+        title={<span className="text-[#fff]">金融创新服务</span>}
+        bg={"/images/financialinnovation.png"}
+      />
+      <div className="grid grid-cols-3 gap-[144px] px-[96px]">
+        {item.map((item, index) => {
+          return (
+            <InnovativeServicesCard key={index}>
+              <div className="relative !h-[400px] overflow-hidden group bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] rounded-lg hover:bg-white-500 transition-all duration-300 ">
+                <div className="absolute inset-0 flex opacity-100 group-hover:opacity-0 transition-opacity duration-300">
+                  <Image
+                    src={item.coverImg}
+                    alt={""}
+                    layout="fill"
+                    objectFit="cover"
+                  />
+                  <div className="flex flex-col rounded-2xl h-[140px] absolute bottom-0 w-full bg-white-500 py-[30px] px-[30px]">
+                    <span className="font-medium text-[24px] text-[#333333] leading-[36px]">
+                      {item.title}
+                    </span>
+                    <TzIcon
+                      className={"fa-arrow-right mt-7 !text-[#333] text-xl"}
+                    ></TzIcon>
+                  </div>
+                </div>
+                <div className="absolute inset-0 flex flex-col justify-between  opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className=" pt-[56px] px-[32px] w-full">
+                    <div className="font-medium text-[24px] text-[#333333] leading-[36px]">
+                      {item.title}
+                    </div>
+                    <Divider className="bg-[#3D5AF5] !mt-[58px]" />
+                    <div className="font-normal text-[14px] text-[#999999] leading-[20px]">
+                      {item.hover.desc}
+                    </div>
+                  </div>
+                  <TzButton
+                    className="!px-[56px] mb-[36px] w-fit left-[32px]"
+                    shape="round"
+                    icon={<TzIcon
+                      className={"fa-arrow-right text-xs "}
+                    ></TzIcon>}
+                    iconPosition={"end"}
+                  >
+                    查看全部
+                  </TzButton>
+                </div>
+              </div>
+            </InnovativeServicesCard>
+          );
+        })}
       </div>
-    </div>
+    </>
   );
 };
 

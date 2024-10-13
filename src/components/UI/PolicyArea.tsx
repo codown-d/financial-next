@@ -13,6 +13,8 @@ import Title from "./Title";
 import Image from "next/image";
 import SeeMore from "./SeeMore";
 import PublicServicesDes from "./PublicServicesDes";
+import { TzButton } from "../TzButton";
+import TzIcon from "../TzIcon";
 
 export default function PolicyArea() {
   let columns = [
@@ -72,10 +74,10 @@ export default function PolicyArea() {
         bg={"/images/financingservices.png"}
         className="mb-[56px]"
       />
-      <div className="flex justify-between h-[473px] mb-[268px] ">
-        <div className=" flex bg-white-500 flex-1 w-0 border border-solid border-[#3D5AF5] rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]">
+      <div className="flex justify-around space-x-8 justify-between h-[473px] mb-[268px] ">
+        <div className="group flex min-w-[280px] transition-all duration-300  hover:border border-solid border-[#3D5AF5] rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]">
           <Image src={"/images/ggfw_1.png"} alt={""} width={280} height={0} />
-          <div className="flex-1 px-7 w-0 pt-6">
+          <div className="group-hover:opacity-100 flex-1 w-0 overflow-hidden group-hover:w-full transition-all duration-300 group-hover:px-7 pt-6 ">
             <TzTitle level={3} className=" flex justify-between !mb-0">
               <span className="leading-6">政策原文</span> <SeeMore />
             </TzTitle>
@@ -85,9 +87,9 @@ export default function PolicyArea() {
             </TzTitle>
             <ScrollAnimationWrapper>
               <motion.div variants={scrollAnimation}>
-                {dataList.map((item) => {
+                {dataList.map((item, index) => {
                   return (
-                    <PublicServicesDes className="mt-3">
+                    <PublicServicesDes className="mt-3" key={index}>
                       <div className="flex flex-col w-[100%]">
                         <span className="text-base mb-1">{item.title}</span>
                         <TzParagraph
@@ -104,11 +106,53 @@ export default function PolicyArea() {
             </ScrollAnimationWrapper>
           </div>
         </div>
-        <div className="w-[280px] ml-8">
+        <div className="group flex min-w-[280px] transition-all duration-300  hover:border border-solid border-[#3D5AF5] rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]">
           <Image src={"/images/ggfw_2.png"} alt={""} width={280} height={0} />
+          <div className="group-hover:opacity-100 flex flex-col justify-between flex-1 w-0 overflow-hidden group-hover:w-full transition-all duration-300 group-hover:px-[28px] pt-[30px] pb-[32px]">
+            <div className="text-desc w-[470px]">
+              绿色保险是指保险业在环境资源保护与社会治理、绿色产业运行和绿色生活消费等方面提供风险保障和资金支持等经济行为的统称。为贯彻落实党中央、国务院关于推动绿色发展的决策部署，充分发挥保险在促进经济社会发展全面绿色转型中的重要作用，积极稳妥助力碳达峰、碳中和，现提出以下意见。
+            </div>
+            <Image
+              src="/images/sjzcrb.png"
+              alt={""}
+              className=" w-[470px]"
+              width={480}
+              height={0}
+            ></Image>
+            <TzButton
+              className="!px-[56px] w-fit "
+              shape="round"
+              type="primary"
+              icon={<TzIcon className={"fa-arrow-right text-xs text-white-500"}></TzIcon>}
+              iconPosition={"end"}
+            >
+              查看详情
+            </TzButton>
+          </div>
         </div>
-        <div className="w-[280px] ml-8">
+        <div className="group flex min-w-[280px] transition-all duration-300  hover:border border-solid border-[#3D5AF5] rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]">
           <Image src={"/images/ggfw_3.png"} alt={""} width={280} height={0} />
+          <div className=" group-hover:opacity-100  flex flex-col justify-between flex-1  w-0  overflow-hidden group-hover:w-full transition-all duration-300 group-hover:px-[28px] pt-[30px] pb-[32px]">
+            <div className="text-desc w-[470px]">
+              绿色保险是指保险业在环境资源保护与社会治理、绿色产业运行和绿色生活消费等方面提供风险保障和资金支持等经济行为的统称。为贯彻落实党中央、国务院关于推动绿色发展的决策部署，充分发挥保险在促进经济社会发展全面绿色转型中的重要作用，积极稳妥助力碳达峰、碳中和，现提出以下意见。
+            </div>
+            <Image
+              src="/images/gylmyzq.png"
+              alt={""}
+              width={480}
+              height={0}
+              className="mt-9  w-[470px]"
+            ></Image>
+            <TzButton
+              className="!px-[56px] w-fit "
+              shape="round"
+              type="primary"
+              icon={<TzIcon className={"fa-arrow-right text-xs text-white-500"}></TzIcon>}
+              iconPosition={"end"}
+            >
+              查看详情
+            </TzButton>
+          </div>
         </div>
       </div>
     </>

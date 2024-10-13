@@ -1,6 +1,5 @@
 import React from "react";
 import InvestmentServices from "./UI/InvestmentServices";
-import PolicyArea from "./UI/PolicyArea";
 import ServiceAgency from "./UI/ServiceAgency";
 
 export default function ServiceOrg() {

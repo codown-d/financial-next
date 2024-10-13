@@ -17,18 +17,14 @@ interface TabItem {
 interface FinancialTabProps {
   items: TabItem[];
 }
-export default function InnovativeServicesCard(props) {
+export default function InnovativeServicesCard(props: {
+  children: React.ReactNode;
+}) {
   let { children } = props;
   return (
     <TzCard
-      cover={
-        <Image
-          src={"https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png"}
-          alt={""}
-          width={536}
-          height={0}
-        />
-      }
+      className="!rounded-2xl !border-0 overflow-hidden"
+      styles={{body:{padding:0}}}
     >
       {children}
     </TzCard>

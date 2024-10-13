@@ -31,7 +31,7 @@ const TzPageProgress = () => {
           cx={width / 2 + strokeWidth}
           cy={width / 2 + strokeWidth}
           r={width / 2}
-          stroke={"rgb(245, 56, 85)"}
+          stroke={"rgb(61, 90, 245)"}
           strokeWidth={strokeWidth}
           fill="none"
           strokeDasharray={getStrokeDasharray}
@@ -41,7 +41,7 @@ const TzPageProgress = () => {
           transition={{ duration: 0.3 }}
         ></motion.circle>
       </svg>
-      <TzFloatButtonBackTop className="!absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-90"/>
+      <TzFloatButtonBackTop className="!absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 rotate-90" />
     </div>
 
   );
