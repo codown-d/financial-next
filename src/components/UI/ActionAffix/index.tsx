@@ -1,7 +1,7 @@
+"use client";
 import Image from "next/image";
 import TzFloatButton, { TzFloatButtonGroup } from "../../TzIFloatButton";
 import TzPageProgress from "../../TzPageProgress";
-import "./index.css";
 export default function ActionAffix() {
   return (
     <>
