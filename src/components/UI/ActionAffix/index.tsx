@@ -1,7 +1,5 @@
 import Link from "next/link";
 import Image from "next/image";
-import SvgLogo from "@public/images/logo.png";
-import { Affix } from "antd";
 import TzFloatButton, { TzFloatButtonGroup } from "../../TzIFloatButton";
 import TzPageProgress from "../../TzPageProgress";
 import "./index.css";
