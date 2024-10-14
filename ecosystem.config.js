@@ -12,6 +12,8 @@ function getLocalIP() {
   }
 }
 const localIP = getLocalIP();
+console.log('123.56.86.66')
+console.log(localIP)
 module.exports = {
     apps: [
       {
@@ -21,7 +23,7 @@ module.exports = {
         env: {
           NODE_ENV: 'production',
           PORT: 3000,
-          HOST: localIP, // 使用动态获取的 IP 地址
+          // HOST: localIP, // 使用动态获取的 IP 地址
           // 其他环境变量
         },
       },
