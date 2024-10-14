@@ -1,12 +1,7 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useResize } from "@/hooks";
-import { useMemo, useState } from "react";
-import CardOverview from "./CardOverview";
 import Loan, { FinanceItemProps } from "./Loan";
-import { TzButton } from "../TzButton";
-import { SwapRightOutlined } from "@ant-design/icons";
 import TzCard from "../TzCard";
 interface TabItem {
   title: string;
