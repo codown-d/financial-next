@@ -14,6 +14,15 @@ module.exports = {
 
       'lg': '1440px',
       // => @media (min-width: 1440px) { ... }
+      'xl': '1920px',
+      // => @media (min-width: 1920px) { ... }
+      screen_576: '576px',
+      screen_960: '960px',
+      screen_1080: '1080px',
+      screen_1440: '1440px',
+      screen_1920: '1920px',
+      screen_2560: '2560px',
+    
     },
     boxShadow: {
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",

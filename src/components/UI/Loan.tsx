@@ -18,7 +18,7 @@ export default function Loan(props) {
   let { items } = props;
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
-    <div className="grid grid-flow-row grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-12 md:gap-x-12 lg:gap-12 ">
+    <div className="grid grid-flow-row grid-cols-1 screen_1440:grid-cols-2 gap-12 md:gap-x-12 lg:gap-12  ">
       {items.map((item: FinanceItemProps, index: number) => {
         return (
           <ScrollAnimationWrapper key={index} className="w-[536px]">

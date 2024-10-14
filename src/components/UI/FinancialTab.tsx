@@ -24,13 +24,13 @@ export default function FinancialTab(props: FinancialTabProps) {
     return items.find((item) => item.key === activeKey).list;
   }, [items, activeKey]);
   return (
-    <div className="flex mt-[52px]">
+    <div className="flex mt-[52px] justify-center">
       <div className="mr-14">
         {items.map((item) => {
           let { key, title, description } = item;
           return (
             <div
-              className="mt-6 "
+              className="mb-6 "
               key={key}
               onClick={() => {
                 console.log(key);

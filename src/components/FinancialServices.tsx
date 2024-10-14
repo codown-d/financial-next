@@ -40,11 +40,11 @@ const FinancialServices = () => {
         className={"mt-[216px] mb-[68px]"}
         title={<span className="text-[#fff]">金融创新服务</span>}
         bg={"/images/financialinnovation.png"}
-      />
-      <div className="grid grid-cols-3 gap-[144px] px-[96px]">
+      /> 
+      <div className="flex justify-between px-[40px] sm:px-[30px] lg:px-[96px] flex">
         {item.map((item, index) => {
           return (
-            <InnovativeServicesCard key={index}>
+            <InnovativeServicesCard key={index} className={'w-[320px] sm:w-[280px]'}>
               <div className="relative !h-[400px] overflow-hidden group bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] rounded-lg hover:bg-white-500 transition-all duration-300 ">
                 <div className="absolute inset-0 flex opacity-100 group-hover:opacity-0 transition-opacity duration-300">
                   <Image

@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-// Import react scroll
 import { Link as LinkScroll } from "react-scroll";
-import ButtonOutline from "../misc/ButtonOutline";
-import TzMenuUi from "../UI/Menu";
 import Logo from "../UI/Logo";
 import TzDropdownUI from "../UI/TzDropdownUI";
 import { TzButton } from "../TzButton";

@@ -76,11 +76,11 @@ const FinancialBusiness = (props) => {
       </motion.div>
       <div className="max-w-screen-lg mt-24 mx-auto" id="about">
         <Title title="服务直通车" bg="/images/service-eirect-expre.png" />
-        <ScrollAnimationWrapper className="grid grid-cols-8">
+        <ScrollAnimationWrapper className="grid grid-cols-4 screen_1440:grid-cols-8">
           {data.map((item, index) => (
             <motion.div
               key={index}
-              className="flex  justify-center"
+              className="flex  justify-center  mb-4"
               custom={{ duration: 2 + index }}
               variants={scrollAnimation}
             >

@@ -72,7 +72,7 @@ export default function TzDropdownUI() {
           return (
             <TzDropdown
               key={index}
-              className="w-[160px] h-[60px] text-center leading-[60px] hover:text-white-500 hover:bg-primary-500"
+              className="w-[160px] sm:w-[110px] h-[60px] text-center leading-[60px] hover:text-white-500 hover:bg-primary-500"
               menu={{ items: children }}
               getPopupContainer={() => dropdownRef.current}
             >
