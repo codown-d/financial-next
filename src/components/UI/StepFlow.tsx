@@ -12,7 +12,7 @@ const StepFlow = () => {
     <div className="flex items-end justify-center ">
       {steps.map((step, index) => (
         <React.Fragment key={step.id}>
-          <div className="relative flex flex-col items-center  rounded border-dashed border-[#ddd] border w-[88px] mx-4">
+          <div className="relative flex flex-col items-center  rounded  w-[88px] mx-4">
             <div className="text-[32px] font-bold text-left w-full  pl-4 text-[#3C5BF6] leading-[40px] pb-5">
               {step.number}
             </div>

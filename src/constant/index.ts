@@ -32,7 +32,7 @@ export const MenuList = [
   {
     label: "首页",
     key: "home",
-    children:[],
+    children: [],
   },
   {
     label: "融资服务",
@@ -161,29 +161,29 @@ export const Microloans = {
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
-      term: 36,
+      term: 12,
       amount: 50,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+      guaranteeMethod: ["信用", "抵质押", "保证",'组合'],
     },
     {
       imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
+      title: `及时贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
-      term: 36,
-      amount: 500,
-      guaranteeMethod: ["抵押", "质押", "保证"],
+      term: 12,
+      amount: 50,
+      guaranteeMethod: ["抵押", "质押", "保证",'组合'],
     },
     {
       imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
+      title: `搭桥贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
-      term: 36,
+      term: 3,
       amount: 500,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+      guaranteeMethod: ["抵质押", "保证",'组合'],
     },
   ],
 };
@@ -221,7 +221,24 @@ export const EquityFinancing = {
   list: [
     {
       imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
+      title: `应急转贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 1000,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    }
+  ],
+};
+export const FinanceGuarantee = {
+  title: "融资担保",
+  description: "银行或其他金融机构向个人或企业发放的资金",
+  key: "FinanceGuarantee",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `基金业务`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
@@ -231,7 +248,7 @@ export const EquityFinancing = {
     },
     {
       imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
+      title: `基金业务`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
@@ -241,7 +258,7 @@ export const EquityFinancing = {
     },
     {
       imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
+      title: `基金业务`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
@@ -251,3 +268,32 @@ export const EquityFinancing = {
     },
   ],
 };
+export const purposeOp = [
+  {
+    label: "消费",
+    value: "",
+  },
+];
+export const termOp=[6,12,36,60].map(item=>( {
+  label: item+"个月",
+  value: item,
+}))
+
+export const collateralOp = [
+  {
+    label: "信用",
+    value: "Credit",
+  },
+  {
+    label: "抵押",
+    value: "Mortgage",
+  },
+  {
+    label: "质押",
+    value: "Pledge",
+  },
+  {
+    label: "保证",
+    value: "Guarantee",
+  },
+];

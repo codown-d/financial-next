@@ -24,12 +24,11 @@ export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let tabItems_1 = [
-    BankLoans,
     Microloans,
     EmergencyRefinancing,
     EquityFinancing,
   ];
-  let tabItems_2 = [BankLoans, Microloans, EmergencyRefinancing];
+  let tabItems_2 = [BankLoans, Microloans];
   let items = [
     {
       label: (

@@ -15,6 +15,7 @@ import TzSelect from "./TzSelect";
 import { Col, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
+import { collateralOp, purposeOp, termOp } from "@/constant";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -69,6 +70,7 @@ const FinancialBusiness = (props) => {
       img: "/images/fuwu.png",
     },
   ];
+
   return (
     <>
       <motion.div variants={scrollAnimation}>
@@ -120,23 +122,23 @@ const FinancialBusiness = (props) => {
               >
                 <Row gutter={[76, 16]}>
                   <Col span={12}>
-                    <TzFormItem label="金额">
+                    <TzFormItem label="金额" name={'amount'}>
                       <TzInput placeholder="请输入" />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="用途">
-                      <TzSelect placeholder="请选择" options={[]} />
+                    <TzFormItem label="用途" name={'purpose'}>
+                      <TzSelect placeholder="请选择" options={purposeOp} />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="期限">
-                      <TzSelect placeholder="请选择" options={[]} />
+                    <TzFormItem label="期限" name={'term'}>
+                      <TzSelect placeholder="请选择" options={termOp} />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="担保方式">
-                      <TzSelect placeholder="请选择" options={[]} />
+                    <TzFormItem label="担保方式" name={'collateral'}>
+                      <TzSelect placeholder="请选择" options={collateralOp} />
                     </TzFormItem>
                   </Col>
                 </Row>
