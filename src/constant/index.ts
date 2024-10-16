@@ -115,7 +115,7 @@ export const MenuList = [
 
 export const BankLoans = {
   title: "银行贷款",
-  description: "银行或其他金融机构向个人或企业发放的资金",
+  description: "银行金融业机构，为企业和个人提供资金支持。",
   key: "BankLoans",
   list: [
     {
@@ -152,7 +152,7 @@ export const BankLoans = {
 };
 export const Microloans = {
   title: "小额贷款",
-  description: "银行或其他金融机构向个人或企业发放的资金",
+  description: "短期资金周转，办理便捷、形式灵活。",
   key: "Microloans",
   list: [
     {
@@ -189,7 +189,7 @@ export const Microloans = {
 };
 export const EmergencyRefinancing = {
   title: "应急转贷",
-  description: "银行或其他金融机构向个人或企业发放的资金",
+  description: "广元市工业应急转贷专区。",
   key: "EmergencyRefinancing",
   list: [
     {
@@ -233,8 +233,55 @@ export const EquityFinancing = {
 };
 export const FinanceGuarantee = {
   title: "融资担保",
-  description: "银行或其他金融机构向个人或企业发放的资金",
+  description: "政府性融资担保机构，服务“小微”与“三农”。",
   key: "FinanceGuarantee",
+  list: [
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `小微增额保`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 24,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `创业担保贷款`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 24,
+      amount: 500,
+      guaranteeMethod: ["抵/质押", "保证",'组合'],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `融创科贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.25",
+      term: 36,
+      amount: 500,
+      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+    },
+    {
+      imgUrl: "/images/gxxd.jpg",
+      title: `极速贷`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.25",
+      term: 36,
+      amount: 200,
+      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+    },
+  ],
+};
+export const ElectronicGuarantee = {
+  title: "电子保函",
+  description: "代替现金保证金，为企业降压减负。",
+  key: "ElectronicGuarantee",
   list: [
     {
       imgUrl: "/images/gxxd.jpg",
@@ -246,36 +293,25 @@ export const FinanceGuarantee = {
       amount: 50,
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
-    {
-      imgUrl: "/images/gxxd.jpg",
-      title: `基金业务`,
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      term: 36,
-      amount: 500,
-      guaranteeMethod: ["抵押", "质押", "保证"],
-    },
-    {
-      imgUrl: "/images/gxxd.jpg",
-      title: `基金业务`,
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.25",
-      term: 36,
-      amount: 500,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
-    },
   ],
 };
 export const purposeOp = [
   {
-    label: "消费",
-    value: "",
+    label: "生产经营",
+    value: "1",
+  },{
+    label: "创业助业",
+    value: "2",
+  },{
+    label: "购买资产",
+    value: "3",
+  },{
+    label: "归还贷款",
+    value: "4",
   },
 ];
-export const termOp=[6,12,36,60].map(item=>( {
-  label: item+"个月",
+export const termOp=[3,12,24,36].map(item=>( {
+  label: item+"个月内",
   value: item,
 }))
 
@@ -285,15 +321,32 @@ export const collateralOp = [
     value: "Credit",
   },
   {
-    label: "抵押",
+    label: "抵/质押",
     value: "Mortgage",
-  },
-  {
-    label: "质押",
-    value: "Pledge",
   },
   {
     label: "保证",
     value: "Guarantee",
   },
+  {
+    label: "组合",
+    value: "Pledge",
+  },
+];
+export const PolicyData = [
+  {
+    title:'数据资产入表',
+    key:'policy_2',
+    imgUrl:'/images/ggfw_2.png',
+    descImgUrl:'/images/sjzcrb.png',
+    desc: "数据资产入表指的是将企业或组织所拥有的各种数据资源，纳入到资产管理体系中进行有效管理和利用，实质是将数据作为一种有价值的资产进行确认、计量和报告。助力企业优化财务指标，提升融资能力。",
+  },
+  {
+    title:'供应链贸易业务',
+    key:'policy_3',
+    imgUrl:'/images/ggfw_3.png',
+    descImgUrl:'/images/gylmyzq.png',
+    desc: "供应链贸易业务，通过有效地整合和管理供应链上的各个环节，实现产品从生产到销售的无缝衔接和协同运作，提高供应链的效率、降低成本和提升服务质量，实现企业间的合作共赢，促进我市经济发展。",
+  },
+ 
 ];

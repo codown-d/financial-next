@@ -10,8 +10,10 @@ import Image from "next/image";
 import FinancialTab from "./UI/FinancialTab";
 import {
   BankLoans,
+  ElectronicGuarantee,
   EmergencyRefinancing,
   EquityFinancing,
+  FinanceGuarantee,
   Microloans,
 } from "@/constant";
 import { TzButton } from "./TzButton";
@@ -28,7 +30,7 @@ const FinancialProduct = () => {
     EmergencyRefinancing,
     EquityFinancing,
   ];
-  let tabItems_2 = [BankLoans, Microloans];
+  let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
   let items = [
     {
       label: (
@@ -52,7 +54,7 @@ const FinancialProduct = () => {
     },
   ];
   return (
-    <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-[#F9F9F9]">
+    <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-white-500 ">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
           <Title title={"融资服务"} bg={"/images/financingservices.png"} />
@@ -66,7 +68,7 @@ const FinancialProduct = () => {
           />
         </div>
       </div>
-      <div className="bg-[url('/images/jrcxfw-bg.png')] bg-cover bg-center h-[976px]">
+      <div className=" bg-[url('/images/jrcxfw-bg.png')] bg-size-auto-repeat h-[976px]">
         <div className="max-w-screen-lg mx-auto flex flex-col justify-center">
           <div className="">
             <div className="mt-8 flex flex-row">

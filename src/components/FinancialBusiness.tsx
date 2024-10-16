@@ -1,12 +1,9 @@
 "use client";
 import React, { useMemo } from "react";
 import Image from "next/image";
-import ButtonPrimary from "./misc/ButtonPrimary";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
-import Banner from "./UI/Banner";
-import TzIcon from "./TzIcon";
 import Title from "./UI/Title";
 import TzCard from "./TzCard";
 import TzForm, { TzFormItem } from "./TzForm";
@@ -16,6 +13,7 @@ import { Col, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
 import { collateralOp, purposeOp, termOp } from "@/constant";
+import SwiperBanner from "./UI/SwiperBanner";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -74,7 +72,7 @@ const FinancialBusiness = (props) => {
   return (
     <>
       <motion.div variants={scrollAnimation}>
-        <Banner />
+        <SwiperBanner />
       </motion.div>
       <div className="max-w-screen-lg mt-24 mx-auto" id="about">
         <Title title="服务直通车" bg="/images/service-eirect-expre.png" />

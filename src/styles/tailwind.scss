@@ -3,22 +3,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
+@layer utilities {
+    .bg-full-80 {
+      background-size: 100% 100%;
+    }
+  }
 body {
-    @apply bg-white-500;
-    color: #333;
-    font-family:'SourceHanSansCN, SourceHanSansCN'
+  @apply bg-white-500;
+  color: #333;
+  font-family: "SourceHanSansCN, SourceHanSansCN";
 }
 @layer base {
-    img {
-        height: auto;
-    }
+  img {
+    height: auto;
+  }
 }
 
-.text-desc{
-    @apply font-normal text-[14px] text-[#999999] leading-[18px]
+.text-desc {
+  @apply font-normal text-[14px] text-[#999999] leading-[18px];
 }
-.footer-item{
-    @apply font-bold text-[20px] text-white-500 leading-[30px]
+.footer-item {
+  @apply font-bold text-[20px] text-white-500 leading-[30px];
+}
+.bg-size-auto-repeat {
+  @apply bg-bottom bg-no-repeat bg-full-80;
 }
