@@ -112,14 +112,29 @@ export const MenuList = [
     ],
   },
 ];
-
+export enum FinanceDataTypeEmu {
+   /** 银行贷款 */
+  BankLoans = "BankLoans",
+  /** 小额贷款 */
+  Microloans = "Microloans",
+  /** 股权融资 */
+  EmergencyRefinancing = "EmergencyRefinancing",
+  /** 应急转贷 */
+  EquityFinancing = "EquityFinancing",
+  /** 融资担保 */
+  FinanceGuarantee = "FinanceGuarantee",
+  /** 电子保函 */
+  ElectronicGuarantee = "ElectronicGuarantee",
+}
 export const BankLoans = {
   title: "银行贷款",
   description: "银行金融业机构，为企业和个人提供资金支持。",
   key: "BankLoans",
   list: [
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.BankLoans,
+      imgUrl: "/images/gxxd.png",
+      logo:'广创担保',
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -129,7 +144,9 @@ export const BankLoans = {
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.BankLoans,
+      imgUrl: "/images/gxxd.png",
+      logo:'广创担保',
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -139,7 +156,9 @@ export const BankLoans = {
       guaranteeMethod: ["抵押", "质押", "保证"],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.BankLoans,
+      imgUrl: "/images/gxxd.png",
+      logo:'广创担保',
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -156,7 +175,9 @@ export const Microloans = {
   key: "Microloans",
   list: [
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.Microloans,
+      imgUrl: "/images/gxxd.png",
+      logo:'国信小贷',
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -166,7 +187,9 @@ export const Microloans = {
       guaranteeMethod: ["信用", "抵质押", "保证",'组合'],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.Microloans,
+      imgUrl: "/images/gxxd.png",
+      logo:'国信小贷',
       title: `及时贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -176,7 +199,9 @@ export const Microloans = {
       guaranteeMethod: ["抵押", "质押", "保证",'组合'],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.Microloans,
+      imgUrl: "/images/gxxd.png",
+      logo:'国信小贷',
       title: `搭桥贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -187,40 +212,15 @@ export const Microloans = {
     },
   ],
 };
-export const EmergencyRefinancing = {
-  title: "应急转贷",
-  description: "广元市工业应急转贷专区。",
+export const EmergencyRefinancing  = {
+  title: "股权融资",
+  description: "银行或其他金融机构向个人或企业发放的资金",
   key: "EmergencyRefinancing",
   list: [
     {
-      imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      term: 36,
-      amount: 50,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
-    },
-    {
-      imgUrl: "/images/gxxd.jpg",
-      title: `小微贷`,
-      rateDown: "3.10",
-      rateUp: "3.90",
-      rate: "3.35",
-      term: 36,
-      amount: 500,
-      guaranteeMethod: ["抵押", "质押", "保证"],
-    },
-  ],
-};
-export const EquityFinancing = {
-  title: "股权融资",
-  description: "银行或其他金融机构向个人或企业发放的资金",
-  key: "EquityFinancing",
-  list: [
-    {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.EmergencyRefinancing,
+      imgUrl: "/images/gxxd.png",
+      logo:'国信小贷',
       title: `应急转贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -231,13 +231,34 @@ export const EquityFinancing = {
     }
   ],
 };
+export const EquityFinancing= {
+  title: "应急转贷",
+  description: "广元市工业应急转贷专区。",
+  key: "EquityFinancing",
+  list: [
+    {
+      dataType:FinanceDataTypeEmu.EquityFinancing,
+      imgUrl: "/images/gcjj.png",
+      logo:'广财基金',
+      title: `广元市产业发展投资引导基金`,
+      rateDown: "3.10",
+      rateUp: "3.90",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+    },
+  ],
+};
 export const FinanceGuarantee = {
   title: "融资担保",
   description: "政府性融资担保机构，服务“小微”与“三农”。",
   key: "FinanceGuarantee",
   list: [
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
       title: `小微增额保`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -247,7 +268,9 @@ export const FinanceGuarantee = {
       guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
       title: `创业担保贷款`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -257,7 +280,9 @@ export const FinanceGuarantee = {
       guaranteeMethod: ["抵/质押", "保证",'组合'],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
       title: `融创科贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -267,7 +292,9 @@ export const FinanceGuarantee = {
       guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
     },
     {
-      imgUrl: "/images/gxxd.jpg",
+      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
       title: `极速贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -284,14 +311,52 @@ export const ElectronicGuarantee = {
   key: "ElectronicGuarantee",
   list: [
     {
-      imgUrl: "/images/gxxd.jpg",
-      title: `基金业务`,
-      rateDown: "3.10",
-      rateUp: "3.90",
+      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
+      title: `履约保函`,
+      rateDown: "0.3",
+      rateUp: "3",
       rate: "3.35",
       term: 36,
       amount: 50,
-      guaranteeMethod: ["信用", "抵押", "质押", "保证"],
+      guaranteeMethod: ["电子保函","纸质保函"],
+    },
+    {
+      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
+      title: `农民工工资保函`,
+      rateDown: "0.3",
+      rateUp: "3",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["电子保函","纸质保函"],
+    },
+    {
+      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
+      title: `财产保全保函`,
+      rateDown: "0.02",
+      rateUp: "3",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["电子保函","纸质保函"],
+    },
+    {
+      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      imgUrl: "/images/gcdb.png",
+      logo:'广创担保',
+      title: `通用保函`,
+      rateDown: "0.3",
+      rateUp: "3",
+      rate: "3.35",
+      term: 36,
+      amount: 50,
+      guaranteeMethod: ["电子保函","纸质保函"],
     },
   ],
 };

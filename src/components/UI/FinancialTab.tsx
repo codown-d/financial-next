@@ -46,8 +46,18 @@ export default function FinancialTab(props: FinancialTabProps) {
           );
         })}
       </div>
-      <div className="text-left">
+      <div>
         <Loan items={list} />
+        <div className="flex flex-row">
+          <TzButton
+            className="!px-[56px] mt-8 "
+            shape="round"
+            icon={<SwapRightOutlined style={{ fontSize: 18 }} />}
+            iconPosition={"end"}
+          >
+            查看全部
+          </TzButton>
+        </div>
       </div>
     </div>
   );

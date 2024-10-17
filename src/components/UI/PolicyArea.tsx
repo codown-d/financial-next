@@ -78,13 +78,13 @@ export default function PolicyArea() {
           onMouseEnter={() => setActItem("policy_1")}
           className={`${
             actItem === "policy_1" ? styles["policy-hover"] : ""
-          }  group flex min-w-[280px] transition-all duration-0 border border-solid border-[transparent]  rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]`}
+          }  group flex min-w-[280px] border border-solid border-[transparent]  rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]`}
         >
           <Image src={"/images/ggfw_1.png"} alt={""} width={280} height={0} />
           <div
             className={`${
               actItem === "policy_1" ? styles["desc-item"] : ""
-            } bg-white-500 screen_1440:opacity-0 flex-1 w-0 overflow-hidden transition-all duration-300 rounded-[16px]`}
+            } bg-white-500 screen_1440:opacity-0 flex-1 w-0 overflow-hidden transition-all duration-0 rounded-[16px]`}
           >
             <div className=" px-[28px] pt-6 ">
               <TzTitle level={3} className=" flex justify-between !mb-0">
@@ -123,7 +123,7 @@ export default function PolicyArea() {
               onMouseEnter={() => setActItem(item.key)}
               className={`${
                 actItem === item.key ? styles["policy-hover"] : ""
-              } group flex min-w-[280px] transition-all border border-solid border-[transparent]  rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]`}
+              } group flex min-w-[280px] border border-solid border-[transparent]  rounded-[16px] shadow-[0_4px_20px_0_rgba(119,98,170,0.21)]`}
             >
               <Image src={item.imgUrl} alt={""} width={280} height={0} />
 

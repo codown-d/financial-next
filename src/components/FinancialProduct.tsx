@@ -25,11 +25,7 @@ import FinancialServices from "./FinancialServices";
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
-  let tabItems_1 = [
-    Microloans,
-    EmergencyRefinancing,
-    EquityFinancing,
-  ];
+  let tabItems_1 = [Microloans, EmergencyRefinancing, EquityFinancing];
   let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
   let items = [
     {
@@ -70,20 +66,7 @@ const FinancialProduct = () => {
       </div>
       <div className=" bg-[url('/images/jrcxfw-bg.png')] bg-size-auto-repeat h-[976px]">
         <div className="max-w-screen-lg mx-auto flex flex-col justify-center">
-          <div className="">
-            <div className="mt-8 flex flex-row">
-              <div className="w-[264px] mr-14"></div>
-              <TzButton
-                className="!px-[56px]"
-                shape="round"
-                icon={<SwapRightOutlined style={{ fontSize: 18 }} />}
-                iconPosition={"end"}
-              >
-                查看全部
-              </TzButton>
-            </div>
-            <FinancialServices />
-          </div>
+          <FinancialServices />
         </div>
       </div>
     </div>
