@@ -42,7 +42,7 @@ export default function TzDropdownUI() {
               href={key}
               key={key}
               passHref
-              className="text-[16px] px-1 py-1 min-w-36"
+              className="text-[16px] px-1 py-1 min-w-36 hover:!text-white-500"
             >
               {label}
             </Link>
@@ -60,6 +60,9 @@ export default function TzDropdownUI() {
           Menu: {
             fontSize: 16,
           },
+        },
+        token: {
+          controlItemBgHover:'#3D5AF5',
         },
       }}
     >

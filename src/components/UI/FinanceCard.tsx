@@ -30,7 +30,6 @@ export default function (props: FinanceCardProps) {
           {
             label: (
               <span className="text-[#333]">
-                {" "}
                 收费标准
                 <span className="font-normal text-xs text-gray-400 leading-3 ml-6">
                   以审批结果为准
@@ -41,7 +40,13 @@ export default function (props: FinanceCardProps) {
             p: "%",
           },
         ]
-      : dataType === FinanceDataTypeEmu.EquityFinancing
+        : dataType === FinanceDataTypeEmu.EquityFinancing?[
+          {
+            label: <span className="text-[#333]">最低利率</span>,
+            value: <span className="text-[20px]">当期LPR</span>
+          },
+        ]
+      : dataType === FinanceDataTypeEmu.EmergencyRefinancing
       ? [
           {
             label: <span className="text-[#333]">认缴金额</span>,
@@ -51,12 +56,12 @@ export default function (props: FinanceCardProps) {
         ]
       : [
           {
-            label: "最低利率",
+            label: "最低费率",
             value: rate,
             p: "%",
           },
           {
-            label: "最低利率",
+            label: "最高额度",
             value: amount,
             p: "万元",
           },
@@ -67,13 +72,13 @@ export default function (props: FinanceCardProps) {
       <TzCard
         {...otherProps}
         hoverable
-        className={"!rounded-2xl h-[260px] "}
+        className={"!rounded-2xl h-[260px]"}
         styles={{
           body: { padding: "0", position: "relative", display: "inline-block" },
         }}
       >
         <Image
-          src={"/images/card-header.png"}
+          src={FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
           alt={""}
           width={360}
           height={0}
@@ -81,7 +86,7 @@ export default function (props: FinanceCardProps) {
         <div className="flex absolute top-3 items-center left-5">
           <div className="text-[20px] leading-[20px] font-bold">{title}</div>
           {![
-            FinanceDataTypeEmu.ElectronicGuarantee,
+            FinanceDataTypeEmu.EmergencyRefinancing,
             FinanceDataTypeEmu.EquityFinancing,
           ].includes(dataType) ? (
             <div className="relative w-[106px] mt-[2px] ml-[6px]">
@@ -98,9 +103,9 @@ export default function (props: FinanceCardProps) {
             </div>
           ) : null}
         </div>
-        <div className="absolute top-1 right-2 text-white-500 text-[10px]">
+        {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
           84,972 笔需求对接成功
-        </div>
+        </div>}
         <div
           className="absolute top-11  rounded-2xl bg-white-500 w-full"
           style={{ background: "#fff" }}
@@ -114,18 +119,18 @@ export default function (props: FinanceCardProps) {
                       {item.label}
                     </div>
                     <div className="bg-[#F9F9F9] w-[156px] pt-[11px] pl-[12px] pb-[10px] text-left rounded-lg">
-                      <span className="text-[40px] leading-[40px] font-bold">
+                      <span className="text-[40px] leading-[40px] font-bold inline-flex items-center ">
                         {item.value}
                       </span>
-                      {item.p}
+                     &nbsp;{item.p}
                     </div>
                   </div>
                 );
               })}
             </div>
-            {dataType === FinanceDataTypeEmu.EquityFinancing ? null : (
+            {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
               <div className="mt-3 text-left leading-[14px]">
-                担保方式：{guaranteeMethod.join("/")}
+                担保方式：{guaranteeMethod.join("\\")}
               </div>
             )}
             <div className="flex items-end justify-between">

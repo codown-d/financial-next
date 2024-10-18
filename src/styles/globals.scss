@@ -1,6 +1,9 @@
 @import url('./slick.css');
 @import url('./tailwind.scss');
 
+@import 'swiper/css';
+@import "swiper/css/pagination";
+
 .financing-services-tab {
     .ant-tabs-ink-bar {
         height: 6px !important;

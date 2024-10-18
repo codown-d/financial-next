@@ -69,8 +69,8 @@ export default function PolicyArea() {
   return (
     <>
       <Title
-        title={"融资服务"}
-        bg={"/images/financingservices.png"}
+        title={"企业公共服务"}
+        bg={"/images/corporatepublicser.png"}
         className="mb-[56px]"
       />
       <div className="flex gap-8 mt-10 screen_1440:mt-0 flex-col justify-around  mb-[268px] screen_1440:flex-row screen_1440:h-[473px] px-[100px] screen_960:px-[60px] screen_1080:px-[100px] screen_1440:px-[0px]">

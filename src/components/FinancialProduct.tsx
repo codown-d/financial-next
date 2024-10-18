@@ -53,7 +53,7 @@ const FinancialProduct = () => {
     <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-white-500 ">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
-          <Title title={"融资服务"} bg={"/images/financingservices.png"} />
+          <Title title={"金融服务"} bg={"/images/financingservices.png"} />
           <TzTabs
             className="financing-services-tab mt-3"
             items={items}

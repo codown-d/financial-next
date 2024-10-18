@@ -24,7 +24,7 @@ export default function FinancialTab(props: FinancialTabProps) {
     return items.find((item) => item.key === activeKey).list;
   }, [items, activeKey]);
   return (
-    <div className="flex mt-[52px] justify-center">
+    <div className="flex mt-[52px] justify-center px-10 screen_1440:px-0 ">
       <div className="mr-14">
         {items.map((item) => {
           let { key, title, description } = item;
@@ -46,11 +46,11 @@ export default function FinancialTab(props: FinancialTabProps) {
           );
         })}
       </div>
-      <div>
+      <div className="w-0 flex-1">
         <Loan items={list} />
         <div className="flex flex-row">
           <TzButton
-            className="!px-[56px] mt-8 "
+            className="!px-[56px] "
             shape="round"
             icon={<SwapRightOutlined style={{ fontSize: 18 }} />}
             iconPosition={"end"}
