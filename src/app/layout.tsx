@@ -5,7 +5,6 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
 import "@/styles/globals.scss";
-
 // 设置页面的元数据
 export const metadata: Metadata = {
   title: "广元金融服务集团",
