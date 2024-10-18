@@ -113,7 +113,7 @@ export const MenuList = [
   },
 ];
 export enum FinanceDataTypeEmu {
-   /** 银行贷款 */
+  /** 银行贷款 */
   BankLoans = "BankLoans",
   /** 小额贷款 */
   Microloans = "Microloans",
@@ -132,9 +132,9 @@ export const BankLoans = {
   key: "BankLoans",
   list: [
     {
-      dataType:FinanceDataTypeEmu.BankLoans,
+      dataType: FinanceDataTypeEmu.BankLoans,
       imgUrl: "/images/gxxd.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -144,9 +144,9 @@ export const BankLoans = {
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
     },
     {
-      dataType:FinanceDataTypeEmu.BankLoans,
+      dataType: FinanceDataTypeEmu.BankLoans,
       imgUrl: "/images/gxxd.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -156,9 +156,9 @@ export const BankLoans = {
       guaranteeMethod: ["抵押", "质押", "保证"],
     },
     {
-      dataType:FinanceDataTypeEmu.BankLoans,
+      dataType: FinanceDataTypeEmu.BankLoans,
       imgUrl: "/images/gxxd.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -175,52 +175,52 @@ export const Microloans = {
   key: "Microloans",
   list: [
     {
-      dataType:FinanceDataTypeEmu.Microloans,
+      dataType: FinanceDataTypeEmu.Microloans,
       imgUrl: "/images/gxxd.png",
-      logo:'国信小贷',
+      logo: "国信小贷",
       title: `小微贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
       term: 12,
       amount: 50,
-      guaranteeMethod: ["信用", "抵质押", "保证",'组合'],
+      guaranteeMethod: ["信用", "抵质押", "保证", "组合"],
     },
     {
-      dataType:FinanceDataTypeEmu.Microloans,
+      dataType: FinanceDataTypeEmu.Microloans,
       imgUrl: "/images/gxxd.png",
-      logo:'国信小贷',
+      logo: "国信小贷",
       title: `及时贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
       term: 12,
       amount: 50,
-      guaranteeMethod: ["抵押", "质押", "保证",'组合'],
+      guaranteeMethod: ["抵押", "质押", "保证", "组合"],
     },
     {
-      dataType:FinanceDataTypeEmu.Microloans,
+      dataType: FinanceDataTypeEmu.Microloans,
       imgUrl: "/images/gxxd.png",
-      logo:'国信小贷',
+      logo: "国信小贷",
       title: `搭桥贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
       term: 3,
       amount: 500,
-      guaranteeMethod: ["抵质押", "保证",'组合'],
+      guaranteeMethod: ["抵质押", "保证", "组合"],
     },
   ],
 };
-export const EmergencyRefinancing  = {
+export const EmergencyRefinancing = {
   title: "股权融资",
   description: "银行或其他金融机构向个人或企业发放的资金",
   key: "EmergencyRefinancing",
   list: [
     {
-      dataType:FinanceDataTypeEmu.EmergencyRefinancing,
-      imgUrl: "/images/gxxd.png",
-      logo:'国信小贷',
+      dataType: FinanceDataTypeEmu.EmergencyRefinancing,
+      imgUrl: "/images/gcjj.png",
+      logo: "广财基金",
       title: `应急转贷`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -228,18 +228,18 @@ export const EmergencyRefinancing  = {
       term: 36,
       amount: 1000,
       guaranteeMethod: ["信用", "抵押", "质押", "保证"],
-    }
+    },
   ],
 };
-export const EquityFinancing= {
+export const EquityFinancing = {
   title: "应急转贷",
   description: "广元市工业应急转贷专区。",
   key: "EquityFinancing",
   list: [
     {
-      dataType:FinanceDataTypeEmu.EquityFinancing,
+      dataType: FinanceDataTypeEmu.EquityFinancing,
       imgUrl: "/images/gcjj.png",
-      logo:'广财基金',
+      logo: "广财基金",
       title: `广元市产业发展投资引导基金`,
       rateDown: "3.10",
       rateUp: "3.90",
@@ -256,52 +256,52 @@ export const FinanceGuarantee = {
   key: "FinanceGuarantee",
   list: [
     {
-      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      dataType: FinanceDataTypeEmu.FinanceGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `小微增额保`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
       term: 24,
       amount: 50,
-      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+      guaranteeMethod: ["信用", "抵/质押", "保证", "组合"],
     },
     {
-      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      dataType: FinanceDataTypeEmu.FinanceGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `创业担保贷款`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.35",
       term: 24,
       amount: 500,
-      guaranteeMethod: ["抵/质押", "保证",'组合'],
+      guaranteeMethod: ["抵/质押", "保证", "组合"],
     },
     {
-      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      dataType: FinanceDataTypeEmu.FinanceGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `融创科贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
       term: 36,
       amount: 500,
-      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+      guaranteeMethod: ["信用", "抵/质押", "保证", "组合"],
     },
     {
-      dataType:FinanceDataTypeEmu.FinanceGuarantee,
+      dataType: FinanceDataTypeEmu.FinanceGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `极速贷`,
       rateDown: "3.10",
       rateUp: "3.90",
       rate: "3.25",
       term: 36,
       amount: 200,
-      guaranteeMethod: ["信用", "抵/质押", "保证",'组合'],
+      guaranteeMethod: ["信用", "抵/质押", "保证", "组合"],
     },
   ],
 };
@@ -311,52 +311,52 @@ export const ElectronicGuarantee = {
   key: "ElectronicGuarantee",
   list: [
     {
-      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      dataType: FinanceDataTypeEmu.ElectronicGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `履约保函`,
       rateDown: "0.3",
       rateUp: "3",
       rate: "3.35",
       term: 36,
       amount: 50,
-      guaranteeMethod: ["电子保函","纸质保函"],
+      guaranteeMethod: ["电子保函", "纸质保函"],
     },
     {
-      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      dataType: FinanceDataTypeEmu.ElectronicGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `农民工工资保函`,
       rateDown: "0.3",
       rateUp: "3",
       rate: "3.35",
       term: 36,
       amount: 50,
-      guaranteeMethod: ["电子保函","纸质保函"],
+      guaranteeMethod: ["电子保函", "纸质保函"],
     },
     {
-      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      dataType: FinanceDataTypeEmu.ElectronicGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `财产保全保函`,
       rateDown: "0.02",
       rateUp: "3",
       rate: "3.35",
       term: 36,
       amount: 50,
-      guaranteeMethod: ["电子保函","纸质保函"],
+      guaranteeMethod: ["电子保函", "纸质保函"],
     },
     {
-      dataType:FinanceDataTypeEmu.ElectronicGuarantee,
+      dataType: FinanceDataTypeEmu.ElectronicGuarantee,
       imgUrl: "/images/gcdb.png",
-      logo:'广创担保',
+      logo: "广创担保",
       title: `通用保函`,
       rateDown: "0.3",
       rateUp: "3",
       rate: "3.35",
       term: 36,
       amount: 50,
-      guaranteeMethod: ["电子保函","纸质保函"],
+      guaranteeMethod: ["电子保函", "纸质保函"],
     },
   ],
 };
@@ -364,21 +364,24 @@ export const purposeOp = [
   {
     label: "生产经营",
     value: "1",
-  },{
+  },
+  {
     label: "创业助业",
     value: "2",
-  },{
+  },
+  {
     label: "购买资产",
     value: "3",
-  },{
+  },
+  {
     label: "归还贷款",
     value: "4",
   },
 ];
-export const termOp=[3,12,24,36].map(item=>( {
-  label: item+"个月内",
+export const termOp = [3, 12, 24, 36].map((item) => ({
+  label: item + "个月内",
   value: item,
-}))
+}));
 
 export const collateralOp = [
   {
@@ -400,18 +403,17 @@ export const collateralOp = [
 ];
 export const PolicyData = [
   {
-    title:'数据资产入表',
-    key:'policy_2',
-    imgUrl:'/images/ggfw_2.png',
-    descImgUrl:'/images/sjzcrb.png',
+    title: "数据资产入表",
+    key: "policy_2",
+    imgUrl: "/images/ggfw_2.png",
+    descImgUrl: "/images/sjzcrb.png",
     desc: "数据资产入表指的是将企业或组织所拥有的各种数据资源，纳入到资产管理体系中进行有效管理和利用，实质是将数据作为一种有价值的资产进行确认、计量和报告。助力企业优化财务指标，提升融资能力。",
   },
   {
-    title:'供应链贸易业务',
-    key:'policy_3',
-    imgUrl:'/images/ggfw_3.png',
-    descImgUrl:'/images/gylmyzq.png',
+    title: "供应链贸易业务",
+    key: "policy_3",
+    imgUrl: "/images/ggfw_3.png",
+    descImgUrl: "/images/gylmyzq.png",
     desc: "供应链贸易业务，通过有效地整合和管理供应链上的各个环节，实现产品从生产到销售的无缝衔接和协同运作，提高供应链的效率、降低成本和提升服务质量，实现企业间的合作共赢，促进我市经济发展。",
   },
- 
 ];

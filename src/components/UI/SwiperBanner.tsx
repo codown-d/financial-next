@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import getScrollAnimation from "@/utils/getScrollAnimation";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
+import "swiper/css"; // 导入 Swiper 的 CSS
+import "swiper/css/pagination";
 
 const SwiperBanner = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
