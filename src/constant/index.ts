@@ -40,20 +40,20 @@ export const MenuList = [
     children: [
       {
         label: "银行贷款",
-        key: "/small-loan",
+        key: "/bank-loan",
       },
       {
         label: "小额贷款",
-        key: "/loan-guarantee",
+        key: "/small-loan",
       },
       {
         label: "应急转贷",
-        key: "/emergency-3",
+        key: "/emergency-refinancing",
       },
 
       {
         label: "股权融资",
-        key: "/emergency-4",
+        key: "/equity-financing",
       },
     ],
   },
@@ -289,7 +289,7 @@ export const FinanceGuarantee = {
       rate: "1",
       term: 12,
       amount: 500,
-      guaranteeMethod: ["信用","保证"],
+      guaranteeMethod: ["信用", "保证"],
     },
     {
       dataType: FinanceDataTypeEmu.FinanceGuarantee,
@@ -301,7 +301,7 @@ export const FinanceGuarantee = {
       rate: "0.8",
       term: 36,
       amount: 400,
-      guaranteeMethod: ["信用","抵质押", "保证", "组合"],
+      guaranteeMethod: ["信用", "抵质押", "保证", "组合"],
     },
     {
       dataType: FinanceDataTypeEmu.FinanceGuarantee,
@@ -453,3 +453,20 @@ export const PolicyData = [
     desc: "供应链贸易业务，通过有效地整合和管理供应链上的各个环节，实现产品从生产到销售的无缝衔接和协同运作，提高供应链的效率、降低成本和提升服务质量，实现企业间的合作共赢，促进我市经济发展。",
   },
 ];
+
+export const FinancialMarket = {
+  entity: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "企业",
+      value: "key2",
+    },
+    {
+      label: "个人",
+      value: "key3",
+    },
+  ],
+};
