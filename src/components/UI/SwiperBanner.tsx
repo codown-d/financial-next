@@ -8,15 +8,17 @@ import { Autoplay, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 const SwiperBanner = () => {
   const [activeIndex, setActiveIndex] = useState(0); // 当前激活的索引
+  const swiperRef = useRef(null);
   const [progress, setProgress] = useState(0); // 当前激活的索引
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   const onAutoplayTimeLeft = useCallback((s, time, progress) => {
-     setProgress(progress);
+    setProgress(progress);
   }, []);
   let itemList = ["banner", "banner2", "banner3"];
   return (
     <Swiper
-    className="relative"
+      ref={swiperRef}
+      className="relative"
       onAutoplayTimeLeft={onAutoplayTimeLeft}
       onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
       modules={[Autoplay, Pagination]}
@@ -53,18 +55,27 @@ const SwiperBanner = () => {
         {itemList.map((item, index) => {
           return (
             <div
-              className={`w-[40px] h-[4px] bg-[#D8D8D8] rounded-[2px] overflow-hidden ${
-                index < activeIndex ? "bg-[#7BF1C2]" : ""
-              }`}
-             
+              className="py-2  cursor-pointer"
+              onClick={() => swiperRef.current.swiper.slideTo(index)}
             >
-              {index == activeIndex?<div className="bg-[#7BF1C2] h-[4px]" style={{
-                width: `${(1-progress)*40}px`,
-              }}></div>:null}
+              <div
+                className={`w-[40px] h-[4px] bg-[#D8D8D8] rounded-[2px] overflow-hidden ${
+                  index < activeIndex ? "bg-[#7BF1C2]" : ""
+                }`}
+              >
+                {index == activeIndex ? (
+                  <div
+                    className="bg-[#7BF1C2] h-[4px]"
+                    style={{
+                      width: `${(1 - progress) * 40}px`,
+                    }}
+                  ></div>
+                ) : null}
+              </div>
             </div>
           );
         })}
-      </div> 
+      </div>
     </Swiper>
   );
 };

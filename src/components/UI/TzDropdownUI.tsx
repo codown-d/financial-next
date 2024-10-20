@@ -68,7 +68,7 @@ export default function TzDropdownUI() {
     >
       <div
         ref={dropdownRef}
-        className="flex items-center justify-center text-[16px]"
+        className="flex items-center justify-center text-[18px] font-bold"
       >
         {items.map((item, index) => {
           let { label, children } = item;
