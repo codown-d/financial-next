@@ -1,45 +1,70 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useCallback, useMemo, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import getScrollAnimation from "@/utils/getScrollAnimation";
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper/modules";
-
+import { Autoplay, Pagination, Scrollbar, A11y } from "swiper/modules";
 
 const SwiperBanner = () => {
+  const [activeIndex, setActiveIndex] = useState(0); // 当前激活的索引
+  const [progress, setProgress] = useState(0); // 当前激活的索引
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const onAutoplayTimeLeft = useCallback((s, time, progress) => {
+     setProgress(progress);
+  }, []);
+  let itemList = ["banner", "banner2", "banner3"];
   return (
     <Swiper
-      modules={[Pagination]}
-      pagination={{
-        clickable: true,
-        renderBullet: (index, className) => {
-          return `<div class="w-[40px] h-[4px] bg-[#D8D8D8] rounded-[2px] opacity-30"></div>`; // 自定义分页内容
-        },
+    className="relative"
+      onAutoplayTimeLeft={onAutoplayTimeLeft}
+      onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+      modules={[Autoplay, Pagination]}
+      autoplay={{
+        delay: 3000, // 自动播放的延迟时间（3秒）
+        disableOnInteraction: false, // 用户操作后是否停止自动播放
       }}
     >
-      <SwiperSlide>
-        <div className="relative bg-[url('/assets/banner.png')] flex  items-center h-[520px] bg-cover bg-center">
-          <motion.h3
-            variants={scrollAnimation}
-            className="font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
-          >
-            <Image
-              src={"/images/banner-text.png"}
-              alt={""}
-              width={798}
-              height={0}
-            />
-          </motion.h3>
-        </div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="relative bg-[url('/images/banner2.png')] flex  items-center h-[520px] bg-cover bg-center"></div>
-      </SwiperSlide>
-      <SwiperSlide>
-        <div className="relative bg-[url('/images/banner3.png')] flex  items-center h-[520px] bg-cover bg-center"></div>
-      </SwiperSlide>
+      {itemList.map((item, index) => {
+        return (
+          <SwiperSlide key={index}>
+            <div
+              className={`relative  flex  items-center h-[520px] bg-cover bg-center`}
+              style={{ backgroundImage: `url('/images/${item}.png')` }}
+            >
+              {index == 0 ? (
+                <motion.h3
+                  variants={scrollAnimation}
+                  className="font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
+                >
+                  <Image
+                    src={"/images/banner-text.png"}
+                    alt={""}
+                    width={798}
+                    height={0}
+                  />
+                </motion.h3>
+              ) : null}
+            </div>
+          </SwiperSlide>
+        );
+      })}
+      <div className="w-full flex flex-row gap-x-4 justify-center items-center absolute bottom-4 z-10">
+        {itemList.map((item, index) => {
+          return (
+            <div
+              className={`w-[40px] h-[4px] bg-[#D8D8D8] rounded-[2px] overflow-hidden ${
+                index < activeIndex ? "bg-[#7BF1C2]" : ""
+              }`}
+             
+            >
+              {index == activeIndex?<div className="bg-[#7BF1C2] h-[4px]" style={{
+                width: `${(1-progress)*40}px`,
+              }}></div>:null}
+            </div>
+          );
+        })}
+      </div> 
     </Swiper>
   );
 };
