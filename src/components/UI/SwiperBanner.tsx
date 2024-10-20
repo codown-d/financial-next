@@ -20,7 +20,10 @@ const SwiperBanner = () => {
       ref={swiperRef}
       className="relative"
       onAutoplayTimeLeft={onAutoplayTimeLeft}
-      onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+      onSlideChange={(swiper) => {
+        console.log(swiper.activeIndex)
+        setActiveIndex(swiper.activeIndex)
+      }}
       modules={[Autoplay, Pagination]}
       autoplay={{
         delay: 3000, // 自动播放的延迟时间（3秒）
@@ -53,6 +56,7 @@ const SwiperBanner = () => {
       })}
       <div className="w-full flex flex-row gap-x-4 justify-center items-center absolute bottom-4 z-10">
         {itemList.map((item, index) => {
+          console.log(index , activeIndex)
           return (
             <div
               className="py-2  cursor-pointer"
@@ -60,7 +64,7 @@ const SwiperBanner = () => {
             >
               <div
                 className={`w-[40px] h-[4px] bg-[#D8D8D8] rounded-[2px] overflow-hidden ${
-                  index < activeIndex ? "bg-[#7BF1C2]" : ""
+                  index < activeIndex ? "!bg-[#7BF1C2]" : ""
                 }`}
               >
                 {index == activeIndex ? (

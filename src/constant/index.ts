@@ -195,7 +195,7 @@ export const Microloans = {
       rateUp: "3.90",
       rate: "6.7",
       term: 12,
-      amount: 50,
+      amount: 500,
       guaranteeMethod: ["抵质押", "保证", "组合"],
     },
     {
