@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React, { useMemo } from "react";
 import getScrollAnimation from "../utils/getScrollAnimation";
-import Title from "./UI/Title";
+import TitleBg from "./UI/TitleBg";
 import InnovativeServicesCard from "./UI/InnovativeServicesCard";
 import TzIcon from "./TzIcon";
 import { Divider } from "antd";
@@ -36,7 +36,7 @@ const FinancialServices = () => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <>
-      <Title
+      <TitleBg
         className={"mt-[216px] mb-[68px]"}
         title={<span className="text-[#fff]">金融创新服务</span>}
         bg={"/images/financialinnovation.png"}

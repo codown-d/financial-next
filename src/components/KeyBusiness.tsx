@@ -9,7 +9,6 @@ import { TzTitle } from "./TzTypography";
 import TzInput from "./TzInput";
 import TzSelect from "./TzSelect";
 import TzCard from "./TzCard";
-import Title from "./UI/Title";
 
 const items = [
   {

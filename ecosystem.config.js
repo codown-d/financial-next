@@ -12,8 +12,6 @@ function getLocalIP() {
   }
 }
 const localIP = getLocalIP();
-console.log('123.56.86.66')
-console.log(localIP)
 module.exports = {
     apps: [
       {

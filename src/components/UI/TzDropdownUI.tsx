@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import TzDropdown from "../TzDropdown";
 import { MenuList } from "@/constant";
+import { Span } from "next/dist/trace";
 
 export default function TzDropdownUI() {
   const [activeLink, setActiveLink] = useState(null);
@@ -18,21 +19,14 @@ export default function TzDropdownUI() {
   let items = MenuList.map((item) => {
     let { key, label, children } = item;
     return {
-      label: (
-        <LinkScroll
-          key={key}
-          activeClass="active"
-          to={key}
-          spy={true}
-          smooth={true}
-          offset={-95}
-          onSetActive={() => {
-            setActiveLink(key);
-          }}
-        >
-          {label}
-        </LinkScroll>
-      ),
+      label:
+        key.indexOf("/") === 0 ? (
+          <Link href={key} key={key} passHref>
+            {label}
+          </Link>
+        ) : (
+          <span>{label}</span>
+        ),
       key: key,
       children: children?.map((ite) => {
         let { key, label } = ite;
@@ -52,7 +46,7 @@ export default function TzDropdownUI() {
       }),
     };
   });
-  
+
   return (
     <ConfigProvider
       theme={{
@@ -62,7 +56,7 @@ export default function TzDropdownUI() {
           },
         },
         token: {
-          controlItemBgHover:'#F0F3FF',
+          controlItemBgHover: "#F0F3FF",
         },
       }}
     >
@@ -80,7 +74,7 @@ export default function TzDropdownUI() {
               getPopupContainer={() => dropdownRef.current}
             >
               {label}
-            </TzDropdown> 
+            </TzDropdown>
           );
         })}
       </div>

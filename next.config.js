@@ -14,6 +14,15 @@ const nextConfig = {
   // },
   // reactStrictMode: true,
   // distDir: "dist",
+  async redirects() {
+    return [
+      {
+        source: '/home', // 旧路径
+        destination: '/',    // 新路径
+        permanent: true,     // 如果为 true，则表示永久重定向（301），false 为临时重定向（302）
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,

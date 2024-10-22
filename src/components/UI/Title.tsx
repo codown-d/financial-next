@@ -1,12 +1,13 @@
-import Link from "next/link";
-import Image from "next/image";
-import SvgLogo from "@public/images/logo.png";
-export default function Title(props: { title: React.ReactNode; bg: any;className?:string }) {
-  let {title,bg,className} = props
+export default function Title(props: {
+  title: React.ReactNode;
+  className?: string;
+}) {
+  let { title, className } = props;
   return (
-    <div className={`py-6 relative ${className}`}>
-      <Image src={bg} alt="" className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-0"  width={712} height={40}/>
-      <div className="text-center text-[40px] leading-10">{title}</div>
-    </div> 
+    <div
+      className={`pl-2 relative before:content-[''] before:absolute before:rounded-sm before:left-0 before:w-1 before:h-full before:bg-[#3D5AF5] font-medium text-sm text-[#333333] leading-[21px] text-left ${className}`}
+    >
+      {title}
+    </div>
   );
 }

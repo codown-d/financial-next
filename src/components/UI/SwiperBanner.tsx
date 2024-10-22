@@ -21,7 +21,6 @@ const SwiperBanner = () => {
       className="relative"
       onAutoplayTimeLeft={onAutoplayTimeLeft}
       onSlideChange={(swiper) => {
-        console.log(swiper.activeIndex)
         setActiveIndex(swiper.activeIndex)
       }}
       modules={[Autoplay, Pagination]}
@@ -56,7 +55,6 @@ const SwiperBanner = () => {
       })}
       <div className="w-full flex flex-row gap-x-4 justify-center items-center absolute bottom-4 z-10">
         {itemList.map((item, index) => {
-          console.log(index , activeIndex)
           return (
             <div
               className="py-2  cursor-pointer"

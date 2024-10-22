@@ -4,7 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
-import Title from "./UI/Title";
+import TitleBg from "./UI/TitleBg";
 import TzCard from "./TzCard";
 import TzForm, { TzFormItem } from "./TzForm";
 import TzInput from "./TzInput";
@@ -75,7 +75,7 @@ const FinancialBusiness = (props) => {
         <SwiperBanner />
       </motion.div>
       <div className="max-w-screen-lg mt-24 mx-auto" id="about">
-        <Title title="服务直通车" bg="/images/service-eirect-expre.png" />
+        <TitleBg title="服务直通车" bg="/images/service-eirect-expre.png" />
         <ScrollAnimationWrapper className="grid grid-cols-4 screen_1440:grid-cols-8">
           {data.map((item, index) => (
             <motion.div

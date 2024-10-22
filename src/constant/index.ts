@@ -31,7 +31,7 @@ export const Bank = {
 export const MenuList = [
   {
     label: "首页",
-    key: "home",
+    key: "/home",
     children: [],
   },
   {
@@ -469,4 +469,120 @@ export const FinancialMarket = {
       value: "key3",
     },
   ],
+  type: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "政策性",
+      value: "key2",
+    },
+    {
+      label: "商业性",
+      value: "key3",
+    },
+  ],
+  institution: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "银行",
+      value: "key2",
+    },
+    {
+      label: "担保",
+      value: "key3",
+    },
+    {
+      label: "小额贷款",
+      value: "key4",
+    },
+    {
+      label: "基金",
+      value: "key5",
+    },
+  ],
+  financing: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "信用",
+      value: "key2",
+    },
+    {
+      label: "抵/质押",
+      value: "key3",
+    },
+    {
+      label: "保证",
+      value: "key4",
+    },
+    {
+      label: "组合",
+      value: "key5",
+    },
+  ],
+  guarantee: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "0-50万（含）",
+      value: "key2",
+    },
+    {
+      label: "50万-100万（含）",
+      value: "key3",
+    },
+    {
+      label: "100万-500万（含）",
+      value: "key4",
+    },
+    {
+      label: "500万以上",
+      value: "key5",
+    },
+  ],
+  term: [
+    {
+      label: "全部",
+      value: "key1",
+    },
+    {
+      label: "6个月以下",
+      value: "key2",
+    },
+    {
+      label: "12个月及以下",
+      value: "key3",
+    },
+    {
+      label: "36个月及以下",
+      value: "key4",
+    },
+    {
+      label: "60个月及以下",
+      value: "key5",
+    },
+  ],
+};
+
+export const MarketDataList = [
+  ...BankLoans.list,
+  ...Microloans.list,
+  ...EmergencyRefinancing.list,
+  ...EquityFinancing.list,
+  ...FinanceGuarantee.list,
+  ...ElectronicGuarantee.list,
+];
+export const ProductInfo = {
+  ...BankLoans.list[0],
+  location: "广元市",
+  repaymentMethod: ['按周期付息','到期还本/分期还款/一次性还本付息'],
 };

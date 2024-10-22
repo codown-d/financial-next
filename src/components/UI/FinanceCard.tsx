@@ -118,7 +118,7 @@ export default function (props: FinanceCardProps) {
                     <div className="text-[#999999] mb-[6px] text-sm">
                       {item.label}
                     </div>
-                    <div className="bg-[#F9F9F9] w-[156px] pt-[11px] pl-[12px] pb-[10px] text-left rounded-lg">
+                    <div className="bg-[#F9F9F9] min-w-[156px] pt-[11px] pl-[12px] pb-[10px] text-left rounded-lg">
                       <span className="text-[40px] leading-[40px] font-bold inline-flex items-center ">
                         {item.value}
                       </span>

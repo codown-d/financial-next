@@ -22,7 +22,7 @@ TzForm.Item = (props: TzFormItemProps) => {
   const realProps = useMemo(() => {
     return {
       ...props,
-      className: `tz-form-item ${props.className || ""}`,
+      className: `tz-form-item !mb-4 ${props.className || ""}`,
     };
   }, [props]);
   return <Form.Item {...realProps} />;

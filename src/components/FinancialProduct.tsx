@@ -5,7 +5,7 @@ import getScrollAnimation from "../utils/getScrollAnimation";
 import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
 import TzTabs from "./TzTabs";
 import Loan from "./UI/Loan";
-import Title from "./UI/Title";
+import TitleBg from "./UI/TitleBg";
 import Image from "next/image";
 import FinancialTab from "./UI/FinancialTab";
 import {
@@ -53,7 +53,7 @@ const FinancialProduct = () => {
     <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-white-500 ">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">
         <div className="flex flex-col w-full">
-          <Title title={"金融服务"} bg={"/images/financingservices.png"} />
+          <TitleBg title={"金融服务"} bg={"/images/financingservices.png"} />
           <TzTabs
             className="financing-services-tab mt-3"
             items={items}

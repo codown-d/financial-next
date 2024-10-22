@@ -5,7 +5,7 @@ import getScrollAnimation from "@/utils/getScrollAnimation";
 import { motion } from "framer-motion";
 import PolicyTable from "./PolicyTable";
 import { TzParagraph, TzTitle } from "../TzTypography";
-import Title from "./Title";
+import TitleBg from "./TitleBg";
 import Image from "next/image";
 import SeeMore from "./SeeMore";
 import PublicServicesDes from "./PublicServicesDes";
@@ -68,7 +68,7 @@ export default function PolicyArea() {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <>
-      <Title
+      <TitleBg
         title={"企业公共服务"}
         bg={"/images/corporatepublicser.png"}
         className="mb-[56px]"
