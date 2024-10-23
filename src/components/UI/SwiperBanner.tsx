@@ -56,7 +56,7 @@ const SwiperBanner = () => {
       <div className="w-full flex flex-row gap-x-4 justify-center items-center absolute bottom-4 z-10">
         {itemList.map((item, index) => {
           return (
-            <div
+            <div key={index}
               className="py-2  cursor-pointer"
               onClick={() => swiperRef.current.swiper.slideTo(index)}
             >

@@ -13,6 +13,7 @@ import { TzButton } from "../TzButton";
 import TzIcon from "../TzIcon";
 import { PolicyData } from "@/constant";
 import styles from "./ui.module.scss";
+import { useRouter } from "next/navigation";
 
 export default function PolicyArea() {
   let [actItem, setActItem] = useState("policy_1");
@@ -66,6 +67,7 @@ export default function PolicyArea() {
     },
   ];
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
+  const router = useRouter();
   return (
     <>
       <TitleBg
@@ -88,7 +90,9 @@ export default function PolicyArea() {
           >
             <div className=" px-[28px] pt-6 ">
               <TzTitle level={3} className=" flex justify-between !mb-0">
-                <span className="leading-6">政策原文</span> <SeeMore />
+                <span className="leading-6">政策原文</span> <SeeMore onClick={()=>{
+                  router.push("/policy-services")
+                }} />
               </TzTitle>
               <PolicyTable columns={columns} dataSource={dataSource} />
               <TzTitle level={3} className="text-2xl flex justify-between mt-6">

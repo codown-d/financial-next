@@ -78,7 +78,7 @@ export default function (props: FinanceCardProps) {
         }}
       >
         <Image
-          src={FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
+          src={dataType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
           alt={""}
           width={360}
           height={0}

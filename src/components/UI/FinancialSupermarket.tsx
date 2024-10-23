@@ -35,6 +35,7 @@ export default function FinancialSupermarket(props) {
       children: <FilterMarket type={"credit"} />,
     },
   ];
+  
   return (
     <div className="relative bg-[#F8F8F8]">
       <div className="h-[360px] relative flex justify-center">

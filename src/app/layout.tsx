@@ -4,6 +4,7 @@ import MainLayout from "@/components/Layout/MainLayout";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
+import zhCN from 'antd/locale/zh_CN';
 import "@/styles/globals.scss";
 // 设置页面的元数据
 export const metadata: Metadata = {
@@ -24,7 +25,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
       </head>
       <body>
         <AntdRegistry>
-          <ConfigProvider theme={theme} button={{ autoInsertSpace: false }}>
+          <ConfigProvider theme={theme} button={{ autoInsertSpace: false }} locale={zhCN}>
             <MainLayout>{children}</MainLayout>
           </ConfigProvider>
         </AntdRegistry>

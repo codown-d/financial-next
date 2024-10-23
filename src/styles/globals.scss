@@ -1,15 +1,16 @@
-@import url('./slick.css');
-@import url('./tailwind.scss');
+@import url("./slick.css");
+@import url("./tailwind.scss");
 
-@import 'swiper/css';
+@import "swiper/css";
 @import "swiper/css/pagination";
 
 .financing-services-tab {
-    .ant-tabs-ink-bar {
-        height: 6px !important;
-    }
-
+  .ant-tabs-ink-bar {
+    height: 6px !important;
+  }
 }
 .ant-float-btn-body {
-    background-color: transparent !important;
-  }
+  background-color: transparent !important;
+}
+
+

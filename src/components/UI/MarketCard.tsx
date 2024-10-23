@@ -1,11 +1,8 @@
 "use client";
 import Image from "next/image";
 import { TzButton } from "../TzButton";
-import { FinanceDataTypeEmu } from "@/constant";
 import { FinanceItemProps } from "./Loan";
-import { useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { useDataType } from "@/hooks";
 import DataTypeCom from "./DataTypeCom";
 import LogoInfo from "./LogoInfo";
 import DataTypeTitleCom from "./DataTypeTitleCom";
@@ -37,7 +34,7 @@ export default function MarketCard(props: FinanceItemProps) {
           className=""
           shape={"round"}
           onClick={() => {
-            router.push("/product-introduction");
+            router.push(`/product-introduction?dataType=${dataType}`);
           }}
         >
           查看详情

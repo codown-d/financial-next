@@ -95,11 +95,11 @@ export const MenuList = [
   },
   {
     label: "企业公共服务",
-    key: "investmentServices",
+    key: "/policy-services",
     children: [
       {
         label: "政策服务",
-        key: "/guangcai-fund",
+        key: "/policy-services",
       },
       {
         label: "数据资产入表",
@@ -114,17 +114,17 @@ export const MenuList = [
 ];
 export enum FinanceDataTypeEmu {
   /** 银行贷款 */
-  BankLoans = "BankLoans",
+  BankLoans = "bankLoans",
   /** 小额贷款 */
-  Microloans = "Microloans",
+  Microloans = "microloans",
   /** 股权融资 */
-  EmergencyRefinancing = "EmergencyRefinancing",
+  EmergencyRefinancing = "emergencyRefinancing",
   /** 应急转贷 */
-  EquityFinancing = "EquityFinancing",
+  EquityFinancing = "equityFinancing",
   /** 融资担保 */
-  FinanceGuarantee = "FinanceGuarantee",
+  FinanceGuarantee = "financeGuarantee",
   /** 电子保函 */
-  ElectronicGuarantee = "ElectronicGuarantee",
+  ElectronicGuarantee = "electronicGuarantee",
 }
 export const BankLoans = {
   title: "银行贷款",
@@ -585,4 +585,12 @@ export const ProductInfo = {
   ...BankLoans.list[0],
   location: "广元市",
   repaymentMethod: ['按周期付息','到期还本/分期还款/一次性还本付息'],
+};
+export const ProductBankInfo = {
+  ...EmergencyRefinancing.list[0],
+  location: "广元市",
+};
+export const ProductGuaranteeInfo = {
+  ...ElectronicGuarantee.list[0],
+  location: "广元市",
 };
