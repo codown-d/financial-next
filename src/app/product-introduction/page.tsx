@@ -1,16 +1,15 @@
  "use client"
 import Image from "next/image";
 import SmallLoans from "./components/SmallLoans";
-import { useSearchParams, usePathname } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { FinanceDataTypeEmu } from "@/constant";
 import { useMemo } from "react";
 import Fund from "./components/Fund";
 import Guarantee from "./components/Guarantee";
 
-export default function ProductIntroduction() {
+export default function ProductIntroduction () {
   const searchParams = useSearchParams();
   const paramValue = searchParams.get('dataType') as FinanceDataTypeEmu; // 'myParam' 是 URL 中的参数名
-  console.log(paramValue)
   let getDataTypeDom = useMemo(()=>{
     if([FinanceDataTypeEmu.BankLoans,
       FinanceDataTypeEmu.Microloans,
