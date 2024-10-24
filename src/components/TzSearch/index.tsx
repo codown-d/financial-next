@@ -5,9 +5,9 @@ import type { GetProps } from 'antd';
 
 type SearchProps = GetProps<typeof Input.Search>;
 
-interface TzCardProps extends SearchProps{}
+interface TzSearchProps extends SearchProps{}
 const { Search } = Input;
-export default function TzSearch(props: TzCardProps) {
+export default function TzSearch(props: TzSearchProps) {
   const realProps = useMemo(() => {
     return {
       ...props,

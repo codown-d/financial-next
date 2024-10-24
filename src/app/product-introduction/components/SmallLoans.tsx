@@ -16,12 +16,15 @@ import { ProductInfo } from "@/constant";
 import { Form, Segmented, Space } from "antd";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import TzSegmented from "@/components/TzSegmented";
 import ProductApplication from "./ProductApplication";
+import useApplicationAction from "../hooks";
 
 export default function SmallLoans() {
   let productInfo = ProductInfo;
   let [segmentedValue, setSegmentedValue] = useState("qy");
-  let { logo, imgUrl, title, dataType, amount, guaranteeMethod } = productInfo;
+  let { logo, imgUrl, title, dataType, amount, guaranteeMethod, location } =
+    productInfo;
   let list = [
     "贷款业务应符合国家信贷政策和监管要求，不得为地方政府（及地方融资平台）提供贷款担保",
     "贷款天数不超过一年",
@@ -78,7 +81,46 @@ export default function SmallLoans() {
       );
     }
   }, [segmentedValue]);
-  const [form] = Form.useForm();
+  let { submit, success, fail } = useApplicationAction();
+  const items = [
+    {
+      key: "1",
+      label: "类型",
+      children: "自然人",
+    },
+    {
+      key: "2",
+      label: "公司名称/姓名",
+      children: "王小明",
+    },
+    {
+      key: "3",
+      label: "证件号码",
+      children: "000000000000000000",
+    },
+    {
+      key: "4",
+      label: "申请金额",
+      children: "500,000元",
+    },
+    {
+      key: "5",
+      label: "申请期限",
+      children: "36个月",
+    },
+
+    {
+      key: "6",
+      label: "反担保措施",
+      children: "抵押",
+    },
+
+    {
+      key: "6",
+      label: "联系方式",
+      children: "180 0000 0000",
+    },
+  ];
   return (
     <>
       <TzCard
@@ -94,11 +136,18 @@ export default function SmallLoans() {
           />
           <div className="flex flex-row border-l-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">
             <div className="flex flex-col mr-9">
-              <DataTypeTitleCom
-                dataType={dataType}
-                amount={amount}
-                title={title}
-              />
+              <div className="flex">
+                <DataTypeTitleCom
+                  dataType={dataType}
+                  amount={amount}
+                  title={title}
+                />
+                <span className="ml-5 flex items-center text-[#3D5AF5]">
+                  <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
+                  {location}
+                </span>
+              </div>
+
               <div className="mt-5 flex">
                 <DescMethod
                   method={"担保方式"}
@@ -116,28 +165,16 @@ export default function SmallLoans() {
             </div>
           </div>
           <div className="w-[245px] flex flex-col justify-center items-center">
-            <TzButton type={"primary"} shape={"round"} onClick={() => { 
-              TzConfirm({
-                width:620,
-                title: '小微贷申请',
-                content: <ProductApplication formIns={form} />,
-                okText: '提交申请',
-                okButtonProps: {
-                  shape:"round"
-                },
-                cancelButtonProps:{
-                  shape:"round"
-                },
-                onOk() {
-                  return form.validateFields().then(val=>{
-                    console.log(val)
-                  })
-                },
-                onCancel() {
-                  console.log('Cancel');
-                },
-              })
-            }}>
+            <TzButton
+              type={"primary"}
+              shape={"round"}
+              onClick={() => {
+                fail();
+                // submit().then(res=>{
+                //   console.log(123)
+                // })
+              }}
+            >
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
@@ -176,9 +213,8 @@ export default function SmallLoans() {
       <TzCard
         className="flex-1 w-full !mt-3"
         title={
-          <Segmented
-            size={"large"}
-            onChange={setSegmentedValue}
+          <TzSegmented
+            onChange={(val: string) => setSegmentedValue(val)}
             options={[
               {
                 label: "企业",

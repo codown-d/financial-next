@@ -1,20 +1,17 @@
-"use client";
-import Image from "next/image";
-import TzInput from "../TzInput";
-import { Divider, Form, Space } from "antd";
-import { TzButton } from "../TzButton";
 import TzCard from "../TzCard";
-import TzForm, { TzFormItem } from "../TzForm";
-import { TzCheckableTagNormal } from "../TzCheckableTag";
-import { FinanceDataTypeEmu, FinancialMarket } from "@/constant";
-import TzDivider from "../TzDivider";
-import TzSpace from "../TzSpace";
 
-export default function FilterHeader(props) {
-  let { items } = props;
+export default function FilterHeader(props: {
+  left: React.ReactNode;
+  className?: string;
+  right?: React.ReactNode;
+}) {
+  let { className = "", left, right } = props;
   return (
-    <div>
-     
-    </div>
+    <TzCard className={`${className}`}>
+      <div className="flex items-center justify-between">
+        <div>{left}</div>
+        <div>{right}</div>
+      </div>
+    </TzCard>
   );
 }

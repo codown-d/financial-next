@@ -13,15 +13,3 @@ export default function TzInput(props: TzInputProps) {
   }, [props]);
   return <Input {...realProps} />;
 }
-
-interface TzSearchProps extends SearchProps {}
-const { Search } = Input;
-export const TzSearch = (props: TzSearchProps) => {
-  const realProps = useMemo(() => {
-    return {
-      ...props,
-      className: `tz-search ${props.className || ""}`,
-    };
-  }, [props]);
-  return <Search {...realProps} />;
-};

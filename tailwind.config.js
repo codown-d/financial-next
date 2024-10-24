@@ -80,6 +80,8 @@ module.exports = {
       },
       backgroundImage: {
         imgbg: "url('/images/h2_bg-bn.png')",
+        'success': "url('/images/succ-bg.png')",
+        'fail': "url('/images/fail-bg.png')",
       },
     },
   },
