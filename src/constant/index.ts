@@ -1,3 +1,5 @@
+import PolicyTable from "@/components/UI/PolicyTable";
+
 export const colorScale = [
   "rgb(252 211 77)",
   "rgb(52 211 153)",
@@ -584,7 +586,7 @@ export const MarketDataList = [
 export const ProductInfo = {
   ...BankLoans.list[0],
   location: "广元市",
-  repaymentMethod: ['按周期付息','到期还本/分期还款/一次性还本付息'],
+  repaymentMethod: ["按周期付息", "到期还本/分期还款/一次性还本付息"],
 };
 export const ProductBankInfo = {
   ...EmergencyRefinancing.list[0],
@@ -594,3 +596,10 @@ export const ProductGuaranteeInfo = {
   ...ElectronicGuarantee.list[0],
   location: "广元市",
 };
+
+export const PolicyTableData = new Array(100).fill("").map((item, index) => ({
+  id: index,
+  title: "",
+  desc: "",
+  time: 0,
+}));

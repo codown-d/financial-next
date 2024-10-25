@@ -1,9 +1,32 @@
- "use client"
+"use client";
 import { TzInput } from "@/components";
 import { TzButton } from "@/components/TzButton";
+import TzTable from "@/components/TzTable";
+import PolicyTableItem from "@/components/UI/PolicyTableItem";
+import { fetchData } from "@/utils/fetchData";
 import { Space } from "antd";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+export interface DataType {
+  id: any;
+  title: string;
+  time: number;
+  desc: string;
+}
 export default function PolicyServices() {
+  const [dataSource, setDataSource] = useState([]);
+  useEffect(() => {
+    fetchData("/api/realDataEndpoint").then((data) =>
+      setDataSource(data.items)
+    );
+  }, []);
+  let columns = [
+    {
+      title: "标题",
+      dataIndex: "title",
+      render: (text, row) => <PolicyTableItem {...row} />,
+    },
+  ];
   return (
     <div className="relative bg-[#F8F8F8]">
       <div className="h-[360px] relative flex justify-center">
@@ -20,7 +43,7 @@ export default function PolicyServices() {
             height={0}
             width={240}
             className="mb-10"
-          /> 
+          />
 
           <Space.Compact className="w-[560px] p-1">
             <TzInput placeholder="请输入你想要搜索的内容" />
@@ -29,7 +52,12 @@ export default function PolicyServices() {
         </div>
       </div>
       <div className="max-w-screen-lg  mx-auto ">
-        
+        <TzTable<DataType>
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={"id"}
+          showHeader={false}
+        />
       </div>
     </div>
   );
