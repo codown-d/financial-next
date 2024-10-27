@@ -2,7 +2,13 @@
 import { Select, Tag, TagProps } from "antd";
 import { BaseOptionType, DefaultOptionType } from "antd/es/select";
 import CheckableTag, { CheckableTagProps } from "antd/es/tag/CheckableTag";
-import { useEffect, useLayoutEffect, useMemo, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useState,
+} from "react";
 
 interface TzTagProps extends TagProps {}
 export default function TzTag(props: TzTagProps) {
@@ -26,23 +32,36 @@ TzTag.CheckableTag = (props: TzCheckableTagProps) => {
   return <CheckableTag {...realProps} />;
 };
 export const TzCheckableTag = TzTag.CheckableTag;
-interface TzCheckableTagNormalProps extends Omit<TzCheckableTagProps, 'onChange'|'checked'>{
+interface TzCheckableTagNormalProps
+  extends Omit<TzCheckableTagProps, "onChange" | "checked"> {
   items: DefaultOptionType[];
   onChange?: (values: any[]) => void;
   defaultChecked?: any[];
   value?: any[];
   checked?: boolean;
-
+  multiple?: boolean;
 }
 export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
-  let { items, onChange, defaultChecked,value, ...otherProps } = props;
-  let [selectedTags, setSelectedTags] = useState<any[]>(defaultChecked || value||[]);
+  let {
+    items,
+    onChange,
+    defaultChecked,
+    value,
+    multiple = false,
+    ...otherProps
+  } = props;
+
+  let [selectedTags, setSelectedTags] = useState(
+    defaultChecked === undefined && value === undefined
+      ? []
+      : defaultChecked||value
+  );
   let handleChange = (tag: any, checked: boolean) => {
     setSelectedTags((pre) => {
       if (checked) {
-        return [...pre, tag];
+        return multiple ? [...pre, tag] : [tag];
       } else {
-        return pre?.filter((item) => item !== tag);
+        return multiple ? pre?.filter((item) => item !== tag) : [];
       }
     });
   };

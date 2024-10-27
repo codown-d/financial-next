@@ -12,7 +12,7 @@ import TzSelect from "./TzSelect";
 import { Col, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
-import { collateralOp, purposeOp, termOp } from "@/constant";
+import { collateralOp, purposeOp, selectOp, termOp } from "@/constant";
 import SwiperBanner from "./UI/SwiperBanner";
 
 const FinancialBusiness = (props) => {
@@ -136,7 +136,7 @@ const FinancialBusiness = (props) => {
                   </Col>
                   <Col span={12}>
                     <TzFormItem label="担保方式" name={'collateral'}>
-                      <TzSelect placeholder="请选择" options={collateralOp} />
+                      <TzSelect placeholder="请选择" options={selectOp} />
                     </TzFormItem>
                   </Col>
                 </Row>

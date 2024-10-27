@@ -3,20 +3,9 @@ import ScrollAnimationWrapper from "../Layout/ScrollAnimationWrapper";
 import { useMemo } from "react";
 import getScrollAnimation from "@/utils/getScrollAnimation";
 import FinanceCard from "./FinanceCard";
-import { FinanceDataTypeEmu } from "@/constant";
+import { FinanceItemProps } from "@/fetch/definition";
 
-export interface FinanceItemProps {
-  dataType:FinanceDataTypeEmu;
-  imgUrl: string;
-  logo: string;
-  title: string;
-  rateDown: string;
-  rateUp: string;
-  rate: string;
-  term: number;
-  amount: number;
-  guaranteeMethod: string[];
-}
+
 export default function Loan(props:{items:FinanceItemProps[]}) {
   let { items } = props;
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);

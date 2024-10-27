@@ -8,29 +8,25 @@ import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { ProductInfo } from "@/constant";
+import { collateralOp, MarketDataList, ProductInfo } from "@/constant";
 import { useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
 import useApplicationAction from "../hooks";
+import CountUp from "react-countup";
+import { FinancingEntityEmu } from "@/fetch/definition";
+import { find } from "lodash";
 
-export default function SmallLoans() {
-  let productInfo = ProductInfo;
-  let [segmentedValue, setSegmentedValue] = useState("qy");
-  let { logo, imgUrl, title, dataType, amount, guaranteeMethod, location } =
-    productInfo;
-  let list = [
-    "贷款业务应符合国家信贷政策和监管要求，不得为地方政府（及地方融资平台）提供贷款担保",
-    "贷款天数不超过一年",
-    "贷款业务应为承办银行确认的经营性担保贷款，并在借款合同注明贷款用途",
-    "贷款发放前承办银行需要查询借款人的人行征信信息，借款人需符合承办银行准入标准（在保合作业务因债务人到期不能清偿，以借新还旧或无还本续贷等贷款重组方式缓释风险并报送融资担保体系的，不适用本条）",
-    "首次贷款业务不得为展期或借新还旧项目",
-  ];
+export default function SmallLoans(props:{id:string}) {
+  let [segmentedValue, setSegmentedValue] = useState(FinancingEntityEmu.Enterprise);
+  let dataInfo=useMemo(()=>{
+    return find(MarketDataList,(item)=>item.id==props.id)
+  },[props.id])
   let getSegmentedDom = useMemo(() => {
-    if (segmentedValue === "qy") {
+    if (segmentedValue === FinancingEntityEmu.Enterprise) {
       let arr = [
-        "股东：个人简介、身份证、户口本、结婚证、征信报告、半年银行流水、产调抵押物",
-        "担保人/抵押物：身份信息、产调、征信报告、价值评估表",
-        "经营性资料：企业基础资料证照一套、企业简介章程、征信、产调、主要交易账户半年银行流水、近三年完整年度财务报表及纳税申报表、主要上下游经营合同等",
+        "股东：个人简介、身份证、户口本、结婚证、征信报告、半年银行流水、产调抵押物。",
+        "担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
+        "经营性资料：企业基础资料证照一套、企业简介章程、征信、产调、主要交易账户半年银行流水、近三年完整年度财务报表及纳税申报表、主要上下游经营合同等。",
       ];
       return (
         <DescInfo title={"申请资料"}>
@@ -40,7 +36,7 @@ export default function SmallLoans() {
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + index}
+                  data-index={"0" + (index+1)}
                 >
                   {item}
                 </div>
@@ -51,9 +47,9 @@ export default function SmallLoans() {
       );
     } else {
       let arr = [
-        "股东：个人简介、身份证、户口本、结婚证、征信报告、半年银行流水、产调抵押物",
-        "担保人/抵押物：身份信息、产调、征信报告、价值评估表",
-        "经营性资料：企业基础资料证照一套、企业简介章程、征信、产调、主要交易账户半年银行流水、近三年完整年度财务报表及纳税申报表、主要上下游经营合同等",
+        "借款人及担保人：身份证、户口本、结离婚证、征信报告、半年银行流水、工作证明、产调。",
+        "担保人/担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
+        "经营性资料：经营项目情况（项目简介、规模、经营及盈利模式、前期投入及后期盈利目标等）、经营场所的买卖协议（付款凭证）、营业执照、上下游经营合同等。",
       ];
       return (
         <DescInfo title={"申请资料"}>
@@ -63,7 +59,7 @@ export default function SmallLoans() {
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + index}
+                  data-index={"0" + (index+1)}
                 >
                   {item}
                 </div>
@@ -114,6 +110,7 @@ export default function SmallLoans() {
       children: "180 0000 0000",
     },
   ];
+  
   return (
     <>
       <TzCard
@@ -123,21 +120,21 @@ export default function SmallLoans() {
         <div className="flex">
           <LogoInfo
             size="large"
-            logo={logo}
-            logoUrl={imgUrl}
+            logo={dataInfo?.companyName}
+            logoUrl={dataInfo?.logoUrl}
             className="w-[184px]"
           />
           <div className="flex flex-row border-l-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">
             <div className="flex flex-col mr-9">
               <div className="flex">
                 <DataTypeTitleCom
-                  dataType={dataType}
-                  amount={amount}
-                  title={title}
+                  dataType={dataInfo?.dataType}
+                  amount={dataInfo?.amount}
+                  title={dataInfo?.name}
                 />
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
-                  {location}
+                  {dataInfo?.location}
                 </span>
               </div>
 
@@ -145,15 +142,20 @@ export default function SmallLoans() {
                 <DescMethod
                   method={"担保方式"}
                   className="mr-3"
-                  desc={guaranteeMethod.join("/")}
+                  desc={collateralOp.reduce((pre:any[],item)=>{
+                    if(dataInfo?.guaranteeMethod.includes(item.value)){
+                       pre?.push?.(item.label)
+                    }
+                    return pre
+                  },[]).join('/')}
                 />
                 <DescMethod
                   method={"还款方式"}
-                  desc={"按周期付息,到期还本/分期还款/一次性还本付息"}
+                  desc={dataInfo?.repaymentMethod.join('/')}
                 />
               </div>
               <div className="flex mt-10">
-                <DataTypeCom {...productInfo} />
+                <DataTypeCom {...dataInfo} />
               </div>
             </div>
           </div>
@@ -171,30 +173,29 @@ export default function SmallLoans() {
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
-              84,972 笔需求对接成功
+            <CountUp end={dataInfo?.dealOrder} /> 笔需求对接成功
             </span>
           </div>
         </div>
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
         <DescInfo title={"服务对象"}>
-          <div className="text-[#666]">三农、小微企业、公职人员、个体商户</div>
+          <div className="text-[#666]">{dataInfo?.serviceObjects}</div>
           <TzDivider />
         </DescInfo>
         <DescInfo title={"产品介绍"}>
           <div className="text-[#666]">
-            “蜀担快贷—小微增额保”是由四川省信用再担保公司、我公司等省内12家担保公司集合体、中国工商银行股份有限公司四川省分行三方合作的一个批量担保产品，该产品在共担风险、事先锁定总体担保代偿率上限的前提下，由承办银行负责对贷款业务进行审批、放款和贷后管理，融资担保体系全部成员都不再进行贷款担保审核。由承办担保机构在承办银行贷款发放时直接提供担保，省再担保公司对承办担保机构承保的项目提供批量再担保。
-          </div>
+          {dataInfo?.productIntroduction}</div>
           <TzDivider />
         </DescInfo>
         <DescInfo title={"申请条件"}>
           <div className="text-[#666]">
-            {list.map((item, index) => {
+            {dataInfo?.applicationConditions.map((item, index) => {
               return (
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + index}
+                  data-index={"0" + (index+1)}
                 >
                   {item}
                 </div>
@@ -207,16 +208,16 @@ export default function SmallLoans() {
         className="flex-1 w-full !mt-3"
         title={
           <TzSegmented
-            onChange={(val: string) => setSegmentedValue(val)}
+            onChange={(val) => setSegmentedValue(val)}
             options={[
               {
                 label: "企业",
-                value: "qy",
+                value: FinancingEntityEmu.Enterprise,
                 icon: <TzIcon className={"fa-building text-sm"} />,
               },
               {
                 label: "个人",
-                value: "gr",
+                value:  FinancingEntityEmu.Personal,
                 icon: <TzIcon className={"fa-user text-sm"} />,
               },
             ]}

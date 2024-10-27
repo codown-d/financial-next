@@ -4,9 +4,10 @@ import Image from "next/image";
 import { useResize } from "@/hooks";
 import { useMemo, useState } from "react";
 import CardOverview from "./CardOverview";
-import Loan, { FinanceItemProps } from "./Loan";
+import Loan from "./Loan";
 import { TzButton } from "../TzButton";
 import { SwapRightOutlined } from "@ant-design/icons";
+import { FinanceItemProps } from "@/fetch/definition";
 interface TabItem {
   title: string;
   description: string;

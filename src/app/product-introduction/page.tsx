@@ -1,50 +1,60 @@
- "use client"
+"use client"
 import Image from "next/image";
 import SmallLoans from "./components/SmallLoans";
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 import { FinanceDataTypeEmu } from "@/constant";
 import { useMemo } from "react";
 import Fund from "./components/Fund";
 import Guarantee from "./components/Guarantee";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 
-export default function ProductIntroduction () {
+
+export default function ProductIntroduction(props) {
+  console.log(props)
   const searchParams = useSearchParams();
-  const paramValue = searchParams.get('dataType') as FinanceDataTypeEmu; // 'myParam' 是 URL 中的参数名
-  let getDataTypeDom = useMemo(()=>{
-    if([FinanceDataTypeEmu.BankLoans,
-      FinanceDataTypeEmu.Microloans,
-      FinanceDataTypeEmu.EquityFinancing,
-      FinanceDataTypeEmu.FinanceGuarantee].includes(paramValue)){
-      return <SmallLoans />
-    }else if([FinanceDataTypeEmu.EmergencyRefinancing].includes(paramValue)){
-      return <Fund />
-    }else{
-      return <Guarantee />
+  const dataType = searchParams.get("dataType") as FinanceDataTypeEmu;
+  const id = searchParams.get("id");
+  let getDataTypeDom = useMemo(() => {
+    if (
+      [
+        FinanceDataTypeEmu.BankLoans,
+        FinanceDataTypeEmu.Microloans,
+        FinanceDataTypeEmu.EquityFinancing,
+        FinanceDataTypeEmu.FinanceGuarantee,
+      ].includes(dataType)
+    ) {
+      return <SmallLoans id={id} />;
+    } else if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataType)) {
+      return <Fund  id={id}/>;
+    } else {
+      return <Guarantee  id={id}/>;
     }
-  },[paramValue])
+  }, [dataType]);
 
   return (
-    <div className="relative bg-[#F8F8F8] overflow-hidden">
-      <div className="h-[320px] relative flex justify-center">
-        <Image
-          src={"/images/cp-banner.png"}
-          alt={""}
-          fill
-          style={{ objectFit: "cover" }}
-        />
-        <div className="max-w-screen-lg mx-auto mt-[60px] flex flex-col items-start z-10 w-full">
+    <AntdRegistry>
+      <div className="relative bg-[#F8F8F8] overflow-hidden">
+        <div className="h-[320px] relative flex justify-center">
           <Image
-            src={"/images/cpjs-title.png"}
+            src={"/images/cp-banner.png"}
             alt={""}
-            height={0}
-            width={332}
-            className="ml-[50px]"
+            fill
+            style={{ objectFit: "cover" }}
           />
+          <div className="max-w-screen-lg mx-auto mt-[60px] flex flex-col items-start z-10 w-full">
+            <Image
+              src={"/images/cpjs-title.png"}
+              alt={""}
+              height={0}
+              width={332}
+              className="ml-[50px]"
+            />
+          </div>
+        </div>
+        <div className="max-w-screen-lg mx-auto mb-[90px] !mt-[-98px]">
+          {getDataTypeDom}
         </div>
       </div>
-      <div className="max-w-screen-lg mx-auto mb-[90px] !mt-[-98px]">
-        {getDataTypeDom}
-      </div>
-    </div>
+    </AntdRegistry>
   );
 }

@@ -1,12 +1,12 @@
 import { Form, Pagination } from "antd";
 import TzForm, { TzFormItem } from "../TzForm";
-import { MarketDataList } from "@/constant";
+import { MarketDataList, TabType } from "@/constant";
 import TzSpace from "../TzSpace";
 import FilterHeader from "./FilterHeader";
 import MarketCard from "./MarketCard";
 import ItemSort from "./ItemSort";
 
-export default function FilterMarket(props: { type: "service" | "credit" }) {
+export default function FilterMarket(props: { type: TabType }) {
   let { type } = props;
   const [form] = Form.useForm();
   return (

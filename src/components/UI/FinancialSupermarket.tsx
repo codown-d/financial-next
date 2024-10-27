@@ -11,6 +11,7 @@ import TzDivider from "../TzDivider";
 import FilterMarket from "./FilterMarket";
 import TzTabs from "../TzTabs";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
+import TzNextImage from "../TzNextImage";
 
 
 
@@ -21,7 +22,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
     {
       label: (
         <div className="flex flex-col items-center px-[76px]">
-          <Image src={"/images/rzfw.png"} alt={""} width={88} height={88} />
+          <TzNextImage src={"/images/rzfw.png"} width={88} height={88} />
           <span>融资服务</span>
         </div>
       ),
@@ -31,7 +32,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
     {
       label: (
         <div className="flex flex-col items-center px-[76px]">
-          <Image src={"/images/zxfw.png"} alt={""} width={88} height={88} />
+          <TzNextImage src={"/images/zxfw.png"} width={88} height={88} />
           <span>增信服务</span>
         </div>
       ),
@@ -71,7 +72,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"融资主体"}
                 name={"entity"}
-                initialValue={["key1"]}
+                initialValue={'all'}
               >
                 <TzCheckableTagNormal items={FinancialMarket.entity} />
               </TzFormItem>
@@ -79,7 +80,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"融资类型"}
                 name={"type"}
-                initialValue={["key1"]}
+                initialValue={'all'}
               >
                 <TzCheckableTagNormal items={FinancialMarket.type} />
               </TzFormItem>
@@ -87,7 +88,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"机构类型"}
                 name={"institution"}
-                initialValue={["key1"]}
+                initialValue={'all'}
               >
                 <TzCheckableTagNormal items={FinancialMarket.institution} />
               </TzFormItem>
@@ -95,7 +96,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"担保类型"}
                 name={"financing"}
-                initialValue={["key1"]}
+                initialValue={'all'}
               >
                 <TzCheckableTagNormal items={FinancialMarket.financing} />
               </TzFormItem>
@@ -103,7 +104,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"融资额度"}
                 name={"guarantee"}
-                initialValue={["key1"]}
+                initialValue={0}
               >
                 <TzCheckableTagNormal items={FinancialMarket.guarantee} />
               </TzFormItem>
@@ -111,7 +112,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"融资期限"}
                 name={"term"}
-                initialValue={["key1"]}
+                initialValue={0}
                 className="!mb-[0px]"
               >
                 <TzCheckableTagNormal items={FinancialMarket.term} />
@@ -121,7 +122,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         </div>
         <div className="max-w-screen-lg  mx-auto ">
           <TzTabs
-            activeKey={activeKey}
+            defaultActiveKey={activeKey}
             className="financing-services-tab !mt-[380px]"
             items={items}
             centered

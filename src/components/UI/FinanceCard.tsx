@@ -1,26 +1,25 @@
-"use client";
 import React, { useMemo } from "react";
-import Meta from "antd/es/card/Meta";
-import { getColorScale } from "@/lib";
 import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
-import { FinanceItemProps } from "./Loan";
 import { TzButton } from "../TzButton";
 import TzIcon from "../TzIcon";
-import { FinanceDataTypeEmu } from "@/constant";
-import { Span } from "next/dist/trace";
+import { collateralOp, FinanceDataTypeEmu } from "@/constant";
+import { FinanceItemProps } from "@/fetch/definition";
+import TzNextImage from "../TzNextImage";
+import CountUp from "react-countup";
 type FinanceCardProps = TzCardProps & FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
     dataType,
-    imgUrl,
-    logo,
-    title,
+    logoUrl,
+    companyName,
+    name,
     rateDown,
     rateUp,
     rate,
     term,
     amount,
+    dealOrder,
     guaranteeMethod,
     ...otherProps
   } = props;
@@ -70,21 +69,19 @@ export default function (props: FinanceCardProps) {
   return (
     <>
       <TzCard
-        {...otherProps}
         hoverable
         className={"!rounded-2xl h-[260px]"}
         styles={{
           body: { padding: "0", position: "relative", display: "inline-block" },
         }}
       >
-        <Image
+        <TzNextImage
           src={dataType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
-          alt={""}
           width={360}
           height={0}
         />
         <div className="flex absolute top-3 items-center left-5">
-          <div className="text-[20px] leading-[20px] font-bold">{title}</div>
+          <div className="text-[20px] leading-[20px] font-bold">{name}</div>
           {![
             FinanceDataTypeEmu.EmergencyRefinancing,
             FinanceDataTypeEmu.EquityFinancing,
@@ -104,7 +101,7 @@ export default function (props: FinanceCardProps) {
           ) : null}
         </div>
         {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
-          84,972 笔需求对接成功
+          <CountUp end={dealOrder} separator="," /> 笔需求对接成功
         </div>}
         <div
           className="absolute top-11  rounded-2xl bg-white-500 w-full"
@@ -130,7 +127,12 @@ export default function (props: FinanceCardProps) {
             </div>
             {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
               <div className="mt-3 text-left leading-[14px]">
-                担保方式：{guaranteeMethod.join("\\")}
+                担保方式：{ collateralOp.reduce((pre:any[],item)=>{
+                  if(guaranteeMethod.includes(item.value)){
+                     pre?.push?.(item.label)
+                  }
+                  return pre
+                },[]).join('/')}
               </div>
             )}
             <div className="flex items-end justify-between">
@@ -146,8 +148,8 @@ export default function (props: FinanceCardProps) {
                 查看详情
               </TzButton>
               <div className="mr-[23px] mt-[-4px]">
-                <Image src={imgUrl} alt={""} width={52} height={52} />
-                <span className="leading-[14px]">{logo}</span>
+                <Image src={logoUrl} alt={""} width={52} height={52} />
+                <span className="leading-[14px]">{companyName}</span>
               </div>
             </div>
           </div>
