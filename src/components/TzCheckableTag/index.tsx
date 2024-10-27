@@ -26,11 +26,13 @@ TzTag.CheckableTag = (props: TzCheckableTagProps) => {
   return <CheckableTag {...realProps} />;
 };
 export const TzCheckableTag = TzTag.CheckableTag;
-interface TzCheckableTagNormalProps {
+interface TzCheckableTagNormalProps extends Omit<TzCheckableTagProps, 'onChange'|'checked'>{
   items: DefaultOptionType[];
   onChange?: (values: any[]) => void;
   defaultChecked?: any[];
   value?: any[];
+  checked?: boolean;
+
 }
 export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
   let { items, onChange, defaultChecked,value, ...otherProps } = props;

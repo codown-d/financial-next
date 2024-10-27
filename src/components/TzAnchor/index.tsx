@@ -1,4 +1,3 @@
-"use client";
 import { Anchor, AnchorProps, } from "antd";
 import React, { useMemo } from "react";
 interface TzAnchorProps extends AnchorProps {}

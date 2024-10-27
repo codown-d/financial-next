@@ -1,12 +1,27 @@
- "use client"
-import { TzInput } from "@/components";
 import { TzButton } from "@/components/TzButton";
-import { Space } from "antd";
+import TzNextImage from "@/components/TzNextImage";
 import Image from "next/image";
-export default function EquityInvestment() {
+import ClientSideTable from "./components/ClientTable";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { getInvestmentList } from "@/fetch";
+
+async function getServerSideProps(context) {
+  const { page = 1, pageSize = 10 } = context;
+  const res = await getInvestmentList();
+  return {
+    items: res.items,
+    total: res.items.length,
+  };
+}
+export default async function EquityInvestment() {
+  const { items: dataSource, total } = await getServerSideProps({
+    page: 1,
+    pageSize: 10,
+  });
   return (
-    <div className="relative bg-[#F8F8F8]">
-      <div className="h-[360px] relative flex justify-center">
+    <AntdRegistry>
+    <div className="relative bg-white-500">
+      <div className="h-[320px] relative flex justify-center">
         <Image
           src={"/images/zcsj-banner.png"}
           alt={""}
@@ -19,13 +34,25 @@ export default function EquityInvestment() {
             alt={""}
             height={0}
             width={360}
-            className="mb-10"
-          /> 
+            className="mt-3"
+          />
         </div>
       </div>
-      <div className="max-w-screen-lg  mx-auto ">
-        
+      <div className="max-w-screen-lg  mx-auto pb-[112px]">
+        <div className="flex items-center justify-between mt-[60px] mb-10">
+          <div className="flex">
+            <div>
+            <TzNextImage src={"/images/gxxd.png"} width={80} height={80} className="ml-8 mr-6" />
+            </div>
+             <div>
+              <div className="text-[32px] text-[#333] font-bold mb-4 leading-[32px]">广财企服</div>
+              <div className="text-[14px]">深圳数据交易所四川数据要素服务广元分站&nbsp;&nbsp; 地址：四川省广元市xxxx区xxxx街道xx号</div>
+            </div>
+          </div>
+          <TzButton shape={"round"} type={"primary"}>立即申请</TzButton>
+        </div>
+        <ClientSideTable initialData={dataSource} />
       </div>
-    </div>
+    </div></AntdRegistry>
   );
 }

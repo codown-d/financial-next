@@ -4,6 +4,7 @@
 // let env = getPublicEnvVariables();
 // console.log(env);
 const nextConfig = {
+  reactStrictMode: true,
   // env,
   // basePath: env.NEXT_PUBLIC_BASE_PATH,
   // output: "export", //适合不需要图片优化的静态网站，适合不依赖服务器的纯静态站点。

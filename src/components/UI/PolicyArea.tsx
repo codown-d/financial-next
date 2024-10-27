@@ -153,6 +153,9 @@ export default function PolicyArea() {
                         className={"fa-arrow-right text-xs text-white-500"}
                       ></TzIcon>
                     }
+                    onClick={() => {
+                      router.push(item.key)
+                    }}
                     iconPosition={"end"}
                   >
                     查看详情

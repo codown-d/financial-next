@@ -25,7 +25,7 @@ export default function ProductIntroduction () {
 
   return (
     <div className="relative bg-[#F8F8F8] overflow-hidden">
-      <div className="h-[360px] relative flex justify-center">
+      <div className="h-[320px] relative flex justify-center">
         <Image
           src={"/images/cp-banner.png"}
           alt={""}

@@ -1,4 +1,3 @@
-"use client";
 import React, { useMemo } from "react";
 import "./index.scss";
 import { Button, ButtonProps } from "antd";

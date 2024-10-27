@@ -7,11 +7,11 @@ export default function FilterHeader(props: {
 }) {
   let { className = "", left, right } = props;
   return (
-    <TzCard className={`${className}`}>
+    <div className={`rounded-2xl bg-white-500 py-5 px-[30px] ${className} `}>
       <div className="flex items-center justify-between">
         <div>{left}</div>
         <div>{right}</div>
       </div>
-    </TzCard>
+    </div>
   );
 }

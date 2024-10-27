@@ -15,4 +15,14 @@
 .ant-segmented-item-selected{
   background: linear-gradient( 270deg, #7B9DF1 0%, #3C5BF6 100%) !important;
 }
+.custom-header .ant-table-thead{
+  background: linear-gradient( 270deg, #5CC1DC 0%, #3C5BF6 100%);
+}
 
+.custom-tag .ant-tag-checkable-checked{
+  background: #F0F3FF;
+  color: #3D5AF5;
+}
+.border-0 .ant-tabs-nav::before{
+border-bottom: 0px !important;
+}

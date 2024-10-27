@@ -1,23 +1,16 @@
 "use client";
-import { TzInput, TzForm, TzFormItem } from "@/components";
 import { TzButton } from "@/components/TzButton";
 import TzCard from "@/components/TzCard";
 import TzDivider from "@/components/TzDivider";
 import TzIcon from "@/components/TzIcon";
-import { TzConfirm } from "@/components/TzModal";
-import TzTabs from "@/components/TzTabs";
 import DataTypeCom from "@/components/UI/DataTypeCom";
 import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import Title from "@/components/UI/Title";
 import { ProductInfo } from "@/constant";
-import { Form, Segmented, Space } from "antd";
-import Image from "next/image";
 import { useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
-import ProductApplication from "./ProductApplication";
 import useApplicationAction from "../hooks";
 
 export default function SmallLoans() {

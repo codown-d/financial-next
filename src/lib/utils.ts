@@ -16,3 +16,7 @@ export const getChildrenToRender = (item, i) => {
   }
   return React.createElement(tag, { key: i.toString(), ...item }, children);
 };
+export function toQuery(obj:any) {
+  const params = new URLSearchParams(obj);
+  return '?'+params.toString();
+}

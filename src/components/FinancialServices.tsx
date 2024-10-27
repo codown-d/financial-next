@@ -41,7 +41,7 @@ const FinancialServices = () => {
         title={<span className="text-[#fff]">金融创新服务</span>}
         bg={"/images/financialinnovation.png"}
       /> 
-      <div className="flex justify-between px-[40px] sm:px-[30px] lg:px-[96px] flex">
+      <div className="flex justify-between px-[40px] sm:px-[30px] lg:px-[96px]">
         {item.map((item, index) => {
           return (
             <InnovativeServicesCard key={index} className={'w-[320px] sm:w-[280px]'}>

@@ -82,7 +82,9 @@ module.exports = {
         imgbg: "url('/images/h2_bg-bn.png')",
         'success': "url('/images/succ-bg.png')",
         'fail': "url('/images/fail-bg.png')",
+        'pylmy': "url('/images/ggfw-bg.png')",
       },
+
     },
   },
   variants: {

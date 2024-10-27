@@ -28,3 +28,7 @@ body {
 .bg-size-auto-repeat {
   @apply bg-bottom bg-no-repeat bg-full-80;
 }
+
+.before-cir {
+  @apply relative before:content-[''] before:w-[6px] before:h-[6px] before:bg-primary-500 before:rounded-full before:absolute before:left-0 before:top-[50%] before:!mt-[-3px] pl-3 /* 自定义按钮样式 */
+}

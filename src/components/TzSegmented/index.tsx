@@ -1,6 +1,6 @@
 import { ConfigProvider, Segmented, SegmentedProps } from "antd";
 import React, { useMemo } from "react";
-interface TzSegmentedProps extends SegmentedProps {}
+interface TzSegmentedProps extends SegmentedProps { }
 export default function TzSegmented(props: TzSegmentedProps) {
   const realProps = useMemo(() => {
     return {
@@ -18,7 +18,8 @@ export default function TzSegmented(props: TzSegmentedProps) {
         },
       }}
     >
-      <Segmented {...realProps} size={"large"}  />
+      <Segmented {...realProps} size={"large"}
+        style={{ border: '1px solid #DDDDDD', background: '#fff' }} />
     </ConfigProvider>
   );
 }

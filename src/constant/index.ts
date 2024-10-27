@@ -69,7 +69,7 @@ export const MenuList = [
       },
       {
         label: "电子保函",
-        key: "/wage-bond",
+        key: "/ele-bond",
       },
       {
         label: "综合保险",
@@ -127,6 +127,10 @@ export enum FinanceDataTypeEmu {
   FinanceGuarantee = "financeGuarantee",
   /** 电子保函 */
   ElectronicGuarantee = "electronicGuarantee",
+}
+export enum TabType {
+  service='service',
+  credit='credit'
 }
 export const BankLoans = {
   title: "银行贷款",
@@ -442,14 +446,14 @@ export const collateralOp = [
 export const PolicyData = [
   {
     title: "数据资产入表",
-    key: "policy_2",
+    key: "/equity-investment",
     imgUrl: "/images/ggfw_2.png",
     descImgUrl: "/images/sjzcrb.png",
     desc: "数据资产入表指的是将企业或组织所拥有的各种数据资源，纳入到资产管理体系中进行有效管理和利用，实质是将数据作为一种有价值的资产进行确认、计量和报告。助力企业优化财务指标，提升融资能力。",
   },
   {
     title: "供应链贸易业务",
-    key: "policy_3",
+    key: "/trade-services",
     imgUrl: "/images/ggfw_3.png",
     descImgUrl: "/images/gylmyzq.png",
     desc: "供应链贸易业务，通过有效地整合和管理供应链上的各个环节，实现产品从生产到销售的无缝衔接和协同运作，提高供应链的效率、降低成本和提升服务质量，实现企业间的合作共赢，促进我市经济发展。",
@@ -603,3 +607,17 @@ export const PolicyTableData = new Array(100).fill("").map((item, index) => ({
   desc: "",
   time: 0,
 }));
+export const PolicyTags = [
+  {
+    label: "全部",
+    value: "key1",
+  },
+  {
+    label: "原文",
+    value: "key2",
+  },
+  {
+    label: "解读",
+    value: "key3",
+  },
+]
