@@ -53,28 +53,36 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
 
   let [selectedTags, setSelectedTags] = useState(
     defaultChecked === undefined && value === undefined
-      ? []
-      : defaultChecked||value
+      ? multiple
+        ? []
+        : undefined
+      : defaultChecked || value
   );
   let handleChange = (tag: any, checked: boolean) => {
     setSelectedTags((pre) => {
       if (checked) {
-        return multiple ? [...pre, tag] : [tag];
+        return multiple ? [...pre, tag] : tag;
       } else {
-        return multiple ? pre?.filter((item) => item !== tag) : [];
+        return multiple ? pre?.filter((item) => item !== tag) : undefined;
       }
     });
   };
   useLayoutEffect(() => {
-    onChange && onChange(selectedTags);
-  }, [JSON.stringify(selectedTags)]);
+    onChange?.(selectedTags);
+  }, [selectedTags]);
+  let getChecked = useCallback(
+    (value) => {
+      return multiple ? selectedTags?.includes(value) : selectedTags === value;
+    },
+    [multiple, selectedTags]
+  );
   return (
     <>
       {items.map((item) => {
         return (
           <TzCheckableTag
             key={item.value}
-            checked={selectedTags.includes(item.value)}
+            checked={getChecked(item.value)}
             {...otherProps}
             onChange={(checked) => handleChange(item.value, checked)}
           >

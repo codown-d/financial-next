@@ -141,6 +141,7 @@ export enum TabType {
 }
 export const MarketDataList: FinanceItemProps[] = [
   {
+    tabType: TabType.service,
     name: "小微贷",
     companyName: "国信小贷",
     logoUrl: "/images/gxxd.png",
@@ -175,6 +176,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.Microloans,
     id: FinanceDataTypeEmu.Microloans + "2",
     rateDown: "3.10",
@@ -208,6 +210,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.Microloans,
     id: FinanceDataTypeEmu.Microloans + "3",
     logoUrl: "/images/gxxd.png",
@@ -241,6 +244,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.EmergencyRefinancing,
     id: FinanceDataTypeEmu.EmergencyRefinancing + "1",
     logoUrl: "/images/gcjj.png",
@@ -268,6 +272,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.EmergencyRefinancing,
     id: FinanceDataTypeEmu.EmergencyRefinancing + "2",
     logoUrl: "/images/gcjj.png",
@@ -295,6 +300,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.EmergencyRefinancing,
     id: FinanceDataTypeEmu.EmergencyRefinancing + "3",
     logoUrl: "/images/gcjj.png",
@@ -321,6 +327,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.FinanceGuarantee,
     id: FinanceDataTypeEmu.FinanceGuarantee + "1",
     logoUrl: "/images/gcdb.png",
@@ -351,6 +358,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.FinanceGuarantee,
     id: FinanceDataTypeEmu.FinanceGuarantee + "2",
     logoUrl: "/images/gcdb.png",
@@ -385,6 +393,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.FinanceGuarantee,
     id: FinanceDataTypeEmu.FinanceGuarantee + "3",
     logoUrl: "/images/gcdb.png",
@@ -418,6 +427,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.FinanceGuarantee,
     id: FinanceDataTypeEmu.FinanceGuarantee + "4",
     logoUrl: "/images/gcdb.png",
@@ -447,6 +457,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.FinanceGuarantee,
     id: FinanceDataTypeEmu.FinanceGuarantee + "5",
     logoUrl: "/images/gcdb.png",
@@ -478,6 +489,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.service,
     dataType: FinanceDataTypeEmu.EquityFinancing,
     id: FinanceDataTypeEmu.EquityFinancing + "1",
     logoUrl: "/images/gcjj.png",
@@ -510,6 +522,7 @@ export const MarketDataList: FinanceItemProps[] = [
   },
 
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.ElectronicGuarantee,
     id: FinanceDataTypeEmu.ElectronicGuarantee + "1",
     logoUrl: "/images/gcdb.png",
@@ -544,6 +557,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.ElectronicGuarantee,
     id: FinanceDataTypeEmu.ElectronicGuarantee + "2",
     logoUrl: "/images/gcdb.png",
@@ -577,6 +591,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.ElectronicGuarantee,
     id: FinanceDataTypeEmu.ElectronicGuarantee + "3",
     logoUrl: "/images/gcdb.png",
@@ -609,6 +624,7 @@ export const MarketDataList: FinanceItemProps[] = [
     location: "广元市",
   },
   {
+    tabType: TabType.credit,
     dataType: FinanceDataTypeEmu.ElectronicGuarantee,
     id: FinanceDataTypeEmu.ElectronicGuarantee + "4",
     logoUrl: "/images/gcdb.png",
@@ -732,7 +748,7 @@ export const collateralOp = [
     label: "电子保函",
     value: GuaranteeMethodEmu.ElectronicGuarantee,
   },
-  
+
   {
     label: "纸质保函",
     value: GuaranteeMethodEmu.ElectronicGuarantee,
@@ -832,7 +848,7 @@ export const FinancialMarket = {
     },
     {
       label: "500万以上",
-      value: 501,
+      value: Infinity,
     },
   ],
   term: [
@@ -858,29 +874,6 @@ export const FinancialMarket = {
     },
   ],
 };
-
-export const ProductInfo = {
-  [FinanceDataTypeEmu.Microloans + "1"]: {
-    ...BankLoans.list[0],
-    location: "广元市",
-    repaymentMethod: ["按周期付息", "到期还本/分期还款/一次性还本付息"],
-  },
-};
-export const ProductBankInfo = {
-  ...EmergencyRefinancing.list[0],
-  location: "广元市",
-};
-export const ProductGuaranteeInfo = {
-  ...ElectronicGuarantee.list[0],
-  location: "广元市",
-};
-
-export const PolicyTableData = new Array(100).fill("").map((item, index) => ({
-  id: index,
-  title: "",
-  desc: "",
-  time: 0,
-}));
 export const PolicyTags = [
   {
     label: "全部",

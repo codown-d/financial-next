@@ -1,4 +1,4 @@
-import { FinanceDataTypeEmu } from "@/constant";
+import { FinanceDataTypeEmu, TabType } from "@/constant";
 
 export interface IResponseData<T> {
   kind?: string;
@@ -59,6 +59,7 @@ export enum GuaranteeMethodEmu {
   PaperGuarantee = "paperGuarantee",
 }
 export interface FinanceItemProps {
+  tabType: TabType;
   id: string;
   dataType: FinanceDataTypeEmu;
   logoUrl: string;
@@ -70,9 +71,13 @@ export interface FinanceItemProps {
   term: number;
   amount: number;
   dealOrder: number;
+  //融资主体
   financingEntity: FinancingEntityEmu;
+  //融资类型
   financingType: FinancingTypeEmu;
+  //机构类型
   institutionType: InstitutionTypeEmu;
+  //担保类型
   guaranteeMethod: GuaranteeMethodEmu[];
   //产品介绍
   productIntroduction?: string;
@@ -93,5 +98,5 @@ export interface FinanceItemProps {
   //基金公司介绍
   fundCompanyIntroduction?: string;
   //位置
-  location:string
+  location: string;
 }
