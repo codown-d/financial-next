@@ -18,7 +18,7 @@ interface ClientSideTableProps {
 export default function ClientSideTable(props: ClientSideTableProps) {
   let { initialData } = props;
   const [dataSource, setDataSource] = useState(initialData);
-  console.log(dataSource)
+  console.log(dataSource);
   let columns = [
     {
       title: "序号",
@@ -53,9 +53,15 @@ export default function ClientSideTable(props: ClientSideTableProps) {
       title: "数据资源梳理盘点",
       dataIndex: "resource2",
       width: "20%",
-      render: (text, row) => <span className="font-bold flex flex-col">{text.map(item=>
-      <span className="before-cir">{item}</span>
-    )} </span>,
+      render: (text, row) => (
+        <span className="font-bold flex flex-col">
+          {text.map((item, index) => (
+            <span className="before-cir" key={index}>
+              {item}
+            </span>
+          ))}{" "}
+        </span>
+      ),
     },
   ];
   const CustomHeader: React.FC<{ children: React.ReactNode }> = ({
@@ -63,7 +69,7 @@ export default function ClientSideTable(props: ClientSideTableProps) {
     ...restProps
   }) => {
     return (
-      <th
+      <th 
         {...restProps}
         className="!py-[11px] before:!w-0 !bg-transparent !text-white-500"
       >
@@ -76,7 +82,7 @@ export default function ClientSideTable(props: ClientSideTableProps) {
       theme={{
         components: {
           Table: {
-            padding:30
+            padding: 30,
           },
         },
       }}
@@ -97,7 +103,7 @@ export default function ClientSideTable(props: ClientSideTableProps) {
         })}
         components={{
           header: {
-            cell: CustomHeader, 
+            cell: CustomHeader,
           },
         }}
       />

@@ -1,4 +1,5 @@
 "use client"
+import { FilterSortEmu } from "@/fetch/definition";
 import Image from "next/image";
 import { useMemo, useState } from "react";
 
@@ -7,20 +8,19 @@ export default function ItemSort(props: {
   defaultValue?: string;
   className?: string;
   value?: string;
-  onChange?: (value: string) => void;
+  onChange?: (value: FilterSortEmu) => void;
 }) {
   let { label, className } = props;
-  let [value, setValue] = useState(props.value || props.defaultValue || "sort");
-
+  let [value, setValue] = useState(props.value || props.defaultValue || FilterSortEmu.All);
   let getIcon = useMemo(() => {
-    let obj = { asc: "sort-asc.png", desc: "sort-desc.png", sort: "sort.png" };
+    let obj = { asc: "sort-asc.png", desc: "sort-desc.png", all: "sort.png" };
     return `/images/${obj[value]}`;
   }, [value]);
   return (
     <div
       className={`flex items-center cursor-pointer ${className}`}
       onClick={() => {
-        let f=value === "sort" ?'desc':value === "desc" ?"asc" : "sort"
+        let f=value === FilterSortEmu.All?FilterSortEmu.Desc:value === FilterSortEmu.Desc ?FilterSortEmu.Asc : FilterSortEmu.All
         setValue(f);
         props.onChange?.(f);
       }}

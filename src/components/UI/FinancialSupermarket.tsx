@@ -13,10 +13,12 @@ import TzTabs from "../TzTabs";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import TzNextImage from "../TzNextImage";
 import { useMemo, useState } from "react";
+import TzSearch from "../TzSearch";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({});
+  let [keyword, setKeyword] = useState();
   const [form] = Form.useForm();
   let items = useMemo(() => {
     return [
@@ -28,7 +30,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           </div>
         ),
         key: TabType.service,
-        children: <FilterMarket type={TabType.service} filter={filter} />,
+        children: <FilterMarket type={TabType.service} filter={filter} keyword={keyword}/>,
       },
       {
         label: (
@@ -38,10 +40,10 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           </div>
         ),
         key: TabType.credit,
-        children: <FilterMarket type={TabType.credit} filter={filter} />,
+        children: <FilterMarket type={TabType.credit} filter={filter} keyword={keyword}/>,
       },
     ];
-  }, [filter]);
+  }, [filter,keyword]);
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8]">
@@ -53,7 +55,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             style={{ objectFit: "cover" }}
           />
           <div className="mt-[50px] flex flex-col items-center z-10">
-            <Image
+            <TzNextImage
               src={"/images/jrcs-title.png"}
               alt={""}
               height={0}
@@ -61,10 +63,14 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               className="mb-10"
             />
 
-            <Space.Compact className="w-[560px] p-1">
-              <TzInput placeholder="请输入你想要搜索的内容" />
-              <TzButton type="primary">搜索</TzButton>
-            </Space.Compact>
+            <TzSearch
+              placeholder="请输入你想要搜索的内容"
+              allowClear
+              className="!w-[560px] p-1"
+              enterButton="搜索"
+              size={'large'}
+              onSearch={(val) => setKeyword(val)}
+            />
           </div>
         </div>
         <div className="flex absolute shadow-sm top-[278px] left-1/2 transform -translate-x-1/2 ">

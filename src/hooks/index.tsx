@@ -1,5 +1,7 @@
-import { FinanceItemProps } from "@/components/UI/Loan";
+import { TzConfirm } from "@/components/TzModal";
+import FundContent from "@/components/UI/FundContent";
 import { FinanceDataTypeEmu } from "@/constant";
+import { FinanceItemProps } from "@/fetch/definition";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ResizeProps {

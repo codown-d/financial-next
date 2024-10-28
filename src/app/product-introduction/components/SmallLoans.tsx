@@ -8,7 +8,7 @@ import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { collateralOp, MarketDataList, ProductInfo } from "@/constant";
+import { collateralOp, MarketDataList } from "@/constant";
 import { useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
 import useApplicationAction from "../hooks";
@@ -130,7 +130,7 @@ export default function SmallLoans(props:{id:string}) {
                 <DataTypeTitleCom
                   dataType={dataInfo?.dataType}
                   amount={dataInfo?.amount}
-                  title={dataInfo?.name}
+                  name={dataInfo?.name}
                 />
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />

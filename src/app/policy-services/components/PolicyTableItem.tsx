@@ -4,16 +4,16 @@ import TzIcon from "../../../components/TzIcon";
 import { DataType } from "@/app/policy-services/components/ClientTable";
 
 export default function PolicyTableItem(props: DataType) {
-  let { title, desc, time, id } = props;
+  let { title, name, publishdate, id } = props;
   return (
     <div>
       <div className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px]">
-        {title}
+        {name}
       </div>
-      <div className="text-[#999] text-xs mb-5">{desc}</div>
+      <div className="text-[#999] text-xs mb-5">{title}</div>
       <div className="flex items-center justify-between">
         {/* <span>{timeFormat(time)}</span> */}
-        <span>{time}</span>
+        <span>{publishdate}</span>
         <TzButton
           type="link"
           size={'small'}

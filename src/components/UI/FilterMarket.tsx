@@ -5,14 +5,19 @@ import TzSpace from "../TzSpace";
 import FilterHeader from "./FilterHeader";
 import MarketCard from "./MarketCard";
 import ItemSort from "./ItemSort";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { FilterSortEmu } from "@/fetch/definition";
 
-export default function FilterMarket(props: { type: TabType; filter: any }) {
-  let { type, filter } = props;
+export default function FilterMarket(props: { type: TabType; filter: any,keyword?:string }) {
+  let { type, filter,keyword } = props;
+  let [filterData, setFilterData] = useState({
+    amount: FilterSortEmu.All,
+    term: FilterSortEmu.All,
+    rate: FilterSortEmu.All,
+  });
   const [form] = Form.useForm();
   let dataList = useMemo(() => {
-    console.log(filter, MarketDataList);
-    return MarketDataList.filter((item) => {
+    let list = MarketDataList.filter((item) => {
       let entity =
         filter.entity === "all" ? true : filter.entity === item.financingEntity;
       let financing =
@@ -37,8 +42,37 @@ export default function FilterMarket(props: { type: TabType; filter: any }) {
         guarantee &&
         term
       );
-    });
-  }, [props]);
+    }).filter(item=>!keyword||item.name.includes(keyword));
+    if (filterData.amount !== FilterSortEmu.All) {
+      console.log(list);
+      list.sort((a, b) => {
+        if (filterData.amount === FilterSortEmu.Asc) {
+          return b.rate - a.rate;
+        } else {
+          return a.rate - b.rate;
+        }
+      });
+    }
+    if (filterData.term !== FilterSortEmu.All) {
+      list.sort((a, b) => {
+        if (filterData.term === FilterSortEmu.Asc) {
+          return b.rate - a.rate;
+        } else {
+          return a.rate - b.rate;
+        }
+      });
+    }
+    if (filterData.rate !== FilterSortEmu.All) {
+      list.sort((a, b) => {
+        if (filterData.rate === FilterSortEmu.Asc) {
+          return b.rate - a.rate;
+        } else {
+          return a.rate - b.rate;
+        }
+      });
+    }
+    return list;
+  }, [props, filterData,keyword]);
   return (
     <div>
       <div className="mb-2 mt-1 ml-3 text-[#999]">
@@ -52,7 +86,8 @@ export default function FilterMarket(props: { type: TabType; filter: any }) {
             layout={"inline"}
             form={form}
             onValuesChange={(changedValues, allValues) => {
-              console.log(changedValues, allValues);
+              console.log({ ...allValues, ...changedValues });
+              setFilterData({ ...allValues, ...changedValues });
             }}
           >
             <TzFormItem noStyle name={"rate"}>
@@ -72,7 +107,7 @@ export default function FilterMarket(props: { type: TabType; filter: any }) {
           return <MarketCard {...item} key={index} />;
         })}
       </TzSpace>
-      <div className="mt-[60px] mb-[90px] flex">
+      <div className="mt-[60px] mb-[90px] flex justify-end">
         <Pagination defaultCurrent={6} total={dataList.length} />
       </div>
     </div>

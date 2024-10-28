@@ -1,4 +1,3 @@
-"use client";
 import { Modal, ModalFuncProps, ModalProps } from "antd";
 import { useMemo } from "react";
 

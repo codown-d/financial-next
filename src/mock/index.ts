@@ -42,7 +42,7 @@ export const getInvestmentTableData = () => {
 
 export const getHotWords = () => {
   return Mock.mock({
-    "items": ['热搜词1','热搜词2','热搜词3','热搜词4','热搜词5',],
+    "items": ['发改委','住建局','财政部',],
   });
 };
 

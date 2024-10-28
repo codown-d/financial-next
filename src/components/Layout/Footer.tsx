@@ -3,20 +3,7 @@ import Logo from "../UI/Logo";
 import TzIcon from "../TzIcon";
 import { Image } from "antd";
 const Footer = () => {
-  let jsdw = [
-    {
-      title: "关于我们",
-    },
-    {
-      title: "关于我们",
-    },
-    {
-      title: "关于我们",
-    },
-    {
-      title: "关于我们",
-    },
-  ];
+  
   let link = [
     {
       title: "标题名称",

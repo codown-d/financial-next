@@ -4,6 +4,7 @@ import Image from "next/image";
 import ClientSideTable from "./components/ClientTable";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { getInvestmentList } from "@/fetch";
+import { useFundModal } from "@/hooks/server";
 
 async function getServerSideProps(context) {
   const { page = 1, pageSize = 10 } = context;
@@ -18,6 +19,7 @@ export default async function EquityInvestment() {
     page: 1,
     pageSize: 10,
   });
+  let {getFundModal}=useFundModal()
   return (
     <AntdRegistry>
     <div className="relative bg-white-500">
@@ -29,9 +31,8 @@ export default async function EquityInvestment() {
           style={{ objectFit: "cover" }}
         />
         <div className="flex flex-col items-center justify-center z-10">
-          <Image
+          <TzNextImage
             src={"/images/zcsj-title.png"}
-            alt={""}
             height={0}
             width={360}
             className="mt-3"
@@ -49,7 +50,7 @@ export default async function EquityInvestment() {
               <div className="text-[14px]">深圳数据交易所四川数据要素服务广元分站&nbsp;&nbsp; 地址：四川省广元市xxxx区xxxx街道xx号</div>
             </div>
           </div>
-          <TzButton shape={"round"} type={"primary"}>立即申请</TzButton>
+          <TzButton shape={"round"} type={"primary"} onClick={getFundModal}>立即申请</TzButton>
         </div>
         <ClientSideTable initialData={dataSource} />
       </div>

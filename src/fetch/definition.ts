@@ -58,6 +58,15 @@ export enum GuaranteeMethodEmu {
   /**  纸质保函 */
   PaperGuarantee = "paperGuarantee",
 }
+export enum FilterSortEmu {
+   /** 暂无排序 */
+  All = "all",
+  /** 升序 */
+  Desc = "desc",
+  /**  降序 */
+  Asc = "asc",
+}
+
 export interface FinanceItemProps {
   tabType: TabType;
   id: string;
@@ -67,7 +76,7 @@ export interface FinanceItemProps {
   name: string;
   rateDown: string;
   rateUp: string;
-  rate: string;
+  rate: number;
   term: number;
   amount: number;
   dealOrder: number;

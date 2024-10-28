@@ -1,3 +1,3 @@
-export default function PolicyServices({ children }) {
+export default function PolicyServicesLayout({ children }) {
   return <>{children}</>;
 }
