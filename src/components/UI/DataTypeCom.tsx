@@ -1,5 +1,5 @@
+import { FinanceItemProps } from "@/fetch/definition";
 import { useDataType } from "@/hooks";
-import { FinanceItemProps } from "./Loan";
 export default function DataTypeCom(props: FinanceItemProps) {
   let dataTypeList = useDataType(props);
   return (

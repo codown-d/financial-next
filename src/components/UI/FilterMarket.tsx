@@ -44,7 +44,6 @@ export default function FilterMarket(props: { type: TabType; filter: any,keyword
       );
     }).filter(item=>!keyword||item.name.includes(keyword));
     if (filterData.amount !== FilterSortEmu.All) {
-      console.log(list);
       list.sort((a, b) => {
         if (filterData.amount === FilterSortEmu.Asc) {
           return b.rate - a.rate;
@@ -86,7 +85,6 @@ export default function FilterMarket(props: { type: TabType; filter: any,keyword
             layout={"inline"}
             form={form}
             onValuesChange={(changedValues, allValues) => {
-              console.log({ ...allValues, ...changedValues });
               setFilterData({ ...allValues, ...changedValues });
             }}
           >

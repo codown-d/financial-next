@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { TzButton } from "../TzButton";
 import { useRouter } from "next/navigation";
 import DataTypeCom from "./DataTypeCom";

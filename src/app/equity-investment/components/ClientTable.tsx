@@ -17,7 +17,6 @@ interface ClientSideTableProps {
 export default function ClientSideTable(props: ClientSideTableProps) {
   let { initialData } = props;
   const [dataSource, setDataSource] = useState(initialData);
-  console.log(dataSource);
   let columns = [
     {
       title: "序号",

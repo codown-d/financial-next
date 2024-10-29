@@ -208,7 +208,7 @@ export default function SmallLoans(props:{id:string}) {
         className="flex-1 w-full !mt-3"
         title={
           <TzSegmented
-            onChange={(val) => setSegmentedValue(val)}
+            onChange={(val:FinancingEntityEmu) => setSegmentedValue(val)}
             options={[
               {
                 label: "企业",

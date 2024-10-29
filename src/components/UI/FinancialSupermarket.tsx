@@ -18,7 +18,7 @@ import TzSearch from "../TzSearch";
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({});
-  let [keyword, setKeyword] = useState();
+  let [keyword, setKeyword] = useState('');
   const [form] = Form.useForm();
   let items = useMemo(() => {
     return [

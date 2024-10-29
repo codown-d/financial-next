@@ -32,13 +32,10 @@ const nextConfig = {
     return config;
   },
   images: {
-    disableStaticImages: true, // 禁用静态图片优化
-
     domains: ['os.alipayobjects.com'], // 允许 os.alipayobjects.com 加载图片
   },
   experimental: {
     optimizeCss: false,
-    optimizeImages: false,
   },
 };
 

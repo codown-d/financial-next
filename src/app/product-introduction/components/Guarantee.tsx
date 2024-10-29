@@ -13,7 +13,6 @@ import { useMemo } from "react";
 
 export default function Guarantee(props: { id: string }) {
   let {id} = props
-  console.log(123,id)
   let dataInfo = useMemo(() => {
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);

@@ -1,4 +1,3 @@
-import PolicyTable from "@/components/UI/PolicyTable";
 import {
   FinanceItemProps,
   FinancingEntityEmu,

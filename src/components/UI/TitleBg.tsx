@@ -1,6 +1,4 @@
-import Link from "next/link";
 import Image from "next/image";
-import SvgLogo from "@public/images/logo.png";
 export default function TitleBg(props: { title: React.ReactNode; bg: any;className?:string }) {
   let {title,bg,className} = props
   return (

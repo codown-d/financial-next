@@ -36,7 +36,6 @@ export default function FinancialTab(props: FinancialTabProps) {
               className="mb-6 "
               key={key}
               onClick={() => {
-                console.log(key);
                 setActiveKey(key);
               }}
             >

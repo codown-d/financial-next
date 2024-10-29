@@ -21,7 +21,6 @@ export default function useApplicationAction() {
           return form
             .validateFields()
             .then((val) => {
-              console.log(val);
               resolve(val);
             })
             .catch(reject);

@@ -1,17 +1,4 @@
-"use client";
-import Link from "next/link";
-import Image from "next/image";
-import Loan, { FinanceItemProps } from "./Loan";
 import TzCard from "../TzCard";
-interface TabItem {
-  title: string;
-  description: string;
-  key: string;
-  list: FinanceItemProps[];
-}
-interface FinancialTabProps {
-  items: TabItem[];
-}
 export default function InnovativeServicesCard(props: {
   children: React.ReactNode;
   className?:string

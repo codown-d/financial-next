@@ -9,7 +9,6 @@ import { find } from "lodash";
 import { useMemo } from "react";
 
 export default function Fund(props: { id: string }) {
-  console.log('props',props)
   let dataInfo = useMemo(() => {
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);
