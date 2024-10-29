@@ -7,24 +7,22 @@ const nextConfig = {
   reactStrictMode: true,
   // env,
   // basePath: env.NEXT_PUBLIC_BASE_PATH,
-  output: "export", //适合不需要图片优化的静态网站，适合不依赖服务器的纯静态站点。
+  // output: "export", //适合不需要图片优化的静态网站，适合不依赖服务器的纯静态站点。
   // images: {
   //   // 默认情况下会启用图片优化
   //   path: `${env.NEXT_PUBLIC_BASE_PATH}`,
   //   unoptimized: true, // 禁用图片优化
   // },
-  // reactStrictMode: true,
   // distDir: "dist",
-  //静态站点注释
-  // async redirects() {
-  //   return [
-  //     {
-  //       source: '/home', // 旧路径
-  //       destination: '/',    // 新路径
-  //       permanent: true,     // 如果为 true，则表示永久重定向（301），false 为临时重定向（302）
-  //     },
-  //   ];
-  // },
+  async redirects() {
+    return [
+      {
+        source: '/home', // 旧路径
+        destination: '/',    // 新路径
+        permanent: true,     // 如果为 true，则表示永久重定向（301），false 为临时重定向（302）
+      },
+    ];
+  },
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/,
