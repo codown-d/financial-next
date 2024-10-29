@@ -61,7 +61,7 @@ export const getApplyPolicyList = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post(
-    "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getApplyPolicyList",
+    "/proxyApi/gygyx/rest/ayystPolicy/getApplyPolicyList",
     params
   );
 };

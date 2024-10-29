@@ -17,6 +17,14 @@ const nextConfig = {
   //   unoptimized: true, // 禁用图片优化
   // },
   // distDir: "dist",
+  async rewrites() {
+    return [
+      {
+        source: '/proxyApi/:path*',
+        destination: 'https://gyx.gyzwfw.com/:path*', // 目标 API 地址
+      },
+    ];
+  },
   async redirects() {
     return [
       {
@@ -33,9 +41,16 @@ const nextConfig = {
     });
     return config;
   },
-  images: {
-    domains: ['os.alipayobjects.com'], // 允许 os.alipayobjects.com 加载图片
-  },
+  // images: {
+  //   remotePatterns: [
+  //     {
+  //       protocol: 'https',
+  //       hostname: 'example.com',
+  //       port: '', // 端口可选
+  //       pathname: '/**', // 匹配的路径
+  //     },
+  //   ],
+  // },
   experimental: {
     optimizeCss: false,
   },
