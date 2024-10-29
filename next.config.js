@@ -17,14 +17,14 @@ const nextConfig = {
   //   unoptimized: true, // 禁用图片优化
   // },
   // distDir: "dist",
-  // async rewrites() {
-  //   return [
-  //     {
-  //       source: '/proxyApi/:path*',
-  //       destination: 'https://gyx.gyzwfw.com/:path*', // 目标 API 地址
-  //     },
-  //   ];
-  // },
+  async rewrites() {
+    return [
+      {
+        source: '/proxyApi/:path*',
+        destination: 'http://123.56.86.66:3000/:path*', // 目标 API 地址
+      },
+    ];
+  },
   async redirects() {
     return [
       {
