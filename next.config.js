@@ -4,7 +4,10 @@
 // let env = getPublicEnvVariables();
 // console.log(env);
 const nextConfig = {
-  reactStrictMode: false,
+  reactStrictMode: process.env.NODE_ENV === 'development',
+  swcMinify: true,
+  // assetPrefix: env.NEXT_PUBLIC_BASE_PATH,
+
   // env,
   // basePath: env.NEXT_PUBLIC_BASE_PATH,
   // output: "export", //适合不需要图片优化的静态网站，适合不依赖服务器的纯静态站点。
