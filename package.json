@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "linux": "cpulimit -l 80 -- next build",
+    "linux": "ionice -c2 -n6 cpulimit -l 80 next build",
     "build": "next build",
     "start": "next start"
   },
