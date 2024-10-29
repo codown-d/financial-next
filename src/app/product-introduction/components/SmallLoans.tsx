@@ -166,7 +166,6 @@ export default function SmallLoans(props:{id:string}) {
               onClick={() => {
                 fail();
                 // submit().then(res=>{
-                //   console.log(123)
                 // })
               }}
             >

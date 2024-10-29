@@ -10,7 +10,7 @@ import TzDivider from "@/components/TzDivider";
 import { useCallback, useState } from "react";
 import { TzTableServerPage } from "@/components/TzTable";
 import PolicyTableItem from "./PolicyTableItem";
-import { getApplyPolicyList } from "@/fetch";
+import { getApplyPolicyList, getProxyApplyPolicyList } from "@/fetch";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import TzSearch from "@/components/TzSearch";
 import { FilterSortEmu } from "@/fetch/definition";
@@ -31,7 +31,7 @@ export default function PolicyServices(props: any) {
   let getTableData = useCallback(
     async (pagination) => {
       const { current = 1, pageSize = 10 } = pagination;
-      let res:any = await getApplyPolicyList({
+      let res: any = await getProxyApplyPolicyList({
         params: {
           currentpage: current - 1,
           pagesize: pageSize,
@@ -50,7 +50,6 @@ export default function PolicyServices(props: any) {
         },
         token: "epoint_webserivce_**##0601",
       });
-      setDataTotal(res.custom.totalnum);
       return {
         data: res.custom.list,
         total: res.custom.totalnum,
@@ -106,7 +105,7 @@ export default function PolicyServices(props: any) {
             className={"!mb-3 !pl-[10px] !py-2"}
             left={
               <TzSegmented
-                onChange={(val:number) => {
+                onChange={(val: number) => {
                   setLawlevel(val);
                 }}
                 options={[

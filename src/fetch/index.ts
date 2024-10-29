@@ -52,16 +52,21 @@ export const getHotWordList = async (
   }
 };
 interface GetPolicyListProps {
-  custom: { 
-    list: any[]; 
-    totalnum: number 
+  custom: {
+    list: any[];
+    totalnum: number;
   };
 }
 export const getApplyPolicyList = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post(
-    "/proxyApi/gygyx/rest/ayystPolicy/getApplyPolicyList",
+    "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getApplyPolicyList",
     params
   );
+};
+export const getProxyApplyPolicyList = async (
+  params?: any
+): Promise<IResponseData<GetPolicyListProps>> => {
+  return http.post("/api/proxy", params);
 };
