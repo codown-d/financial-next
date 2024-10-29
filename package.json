@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "linux:build": "nice -n 10 ionice -c 2 -n 7 next build",
     "build": "next build",
     "start": "next start",
     "pm2": "pm2 start ecosystem.config.js",
