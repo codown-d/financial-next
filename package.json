@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "linux": "ionice -c2 -n6 next build",
     "build": "next build",
     "start": "next start"
   },
