@@ -3,7 +3,6 @@ import TzTable from "@/components/TzTable";
 import { useState } from "react";
 import { InvestmentListProps } from "@/fetch";
 import { ConfigProvider } from "antd";
-import { Span } from "next/dist/trace";
 
 enum AlignType {
   left = "left",
@@ -69,7 +68,7 @@ export default function ClientSideTable(props: ClientSideTableProps) {
     ...restProps
   }) => {
     return (
-      <th 
+      <th
         {...restProps}
         className="!py-[11px] before:!w-0 !bg-transparent !text-white-500"
       >

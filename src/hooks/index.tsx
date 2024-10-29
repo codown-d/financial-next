@@ -76,4 +76,19 @@ export const useDataType = (props: FinanceItemProps) => {
   return getDataType;
 };
 
-
+export const useFundModal = () => {
+  let getFundModal = useCallback(() => {
+    TzConfirm({
+      //   centered: true,
+      //   maskClosable: true,
+      footer: (_, { OkBtn, CancelBtn }) => (
+        <div className="flex items-center justify-center mt-[20px] mb-2">
+          <CancelBtn />
+        </div>
+      ),
+      cancelText: "关闭",
+      content: <FundContent />,
+    });
+  }, []);
+  return { getFundModal };
+};

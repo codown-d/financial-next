@@ -3,27 +3,26 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    'node_modules/swiper/**/*.{js,css}',
+    "node_modules/swiper/**/*.{js,css}",
   ],
   theme: {
     screens: {
-      'sm': '576px',
+      sm: "576px",
       // => @media (min-width: 576px) { ... }
 
-      'md': '960px',
+      md: "960px",
       // => @media (min-width: 960px) { ... }
 
-      'lg': '1440px',
+      lg: "1440px",
       // => @media (min-width: 1440px) { ... }
-      'xl': '1920px',
+      xl: "1920px",
       // => @media (min-width: 1920px) { ... }
-      screen_576: '576px',
-      screen_960: '960px',
-      screen_1080: '1080px',
-      screen_1440: '1440px',
-      screen_1920: '1920px',
-      screen_2560: '2560px',
-    
+      screen_576: "576px",
+      screen_960: "960px",
+      screen_1080: "1080px",
+      screen_1440: "1440px",
+      screen_1920: "1920px",
+      screen_2560: "2560px",
     },
     boxShadow: {
       sm: "0 1px 2px 0 rgba(0, 0, 0, 0.05)",
@@ -59,7 +58,7 @@ module.exports = {
         400: "#AFB5C0",
         500: "#DDDDDD",
       },
-      
+
       primary: {
         100: "#3D5AF5",
         400: "#3D5AF5",
@@ -68,23 +67,22 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        custom: ['MyCustomFont', 'sans-serif'],
+        custom: ["MyCustomFont", "sans-serif"],
       },
       padding: {
-        '22': '5.5rem', // 将 5.5rem 转换为适合的值（22/4 = 5.5）
+        22: "5.5rem", // 将 5.5rem 转换为适合的值（22/4 = 5.5）
       },
       height: {
-        '128': '32rem', // 将 32rem 转换为适合的值（128/4 = 32）
-        '160': '40rem',
-        '180': '45rem',
+        128: "32rem", // 将 32rem 转换为适合的值（128/4 = 32）
+        160: "40rem",
+        180: "45rem",
       },
       backgroundImage: {
         imgbg: "url('/images/h2_bg-bn.png')",
-        'success': "url('/images/succ-bg.png')",
-        'fail': "url('/images/fail-bg.png')",
-        'pylmy': "url('/images/ggfw-bg.png')",
+        success: "url('/images/succ-bg.png')",
+        fail: "url('/images/fail-bg.png')",
+        pylmy: "url('/images/gylmy-bg.png')",
       },
-
     },
   },
   variants: {

@@ -6,10 +6,17 @@ import TzNextImage from "@/components/TzNextImage";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Space } from "antd";
 import Image from "next/image";
+import ClientButton from "../equity-investment/components/ClientButton";
 export default function TradeServices() {
   return (
     <AntdRegistry>
-      <div className="relative" style={{background:'linear-gradient( 180deg, #FFFFFF 0%, rgba(255,255,255,0) 100%)'}}>
+      <div
+        className="relative"
+        style={{
+          background:
+            "linear-gradient( 180deg, #FFFFFF 0%, rgba(255,255,255,0) 100%)",
+        }}
+      >
         <div className="h-[320px] relative flex justify-center">
           <Image
             src={"/images/my-banner.png"}
@@ -23,7 +30,7 @@ export default function TradeServices() {
               alt={""}
               height={0}
               width={420}
-            className="mt-3"
+              className="mt-3"
             />
           </div>
         </div>
@@ -37,7 +44,13 @@ export default function TradeServices() {
             />
             <TzCard
               className="w-[960px] backdrop-blur-sm bg-opacity-10 !bg-transparent "
-              styles={{ body: { paddingLeft: "200px", paddingRight: 60 ,border:'2px solid #fff'} }}
+              styles={{
+                body: {
+                  paddingLeft: "200px",
+                  paddingRight: 60,
+                  border: "2px solid #fff",
+                },
+              }}
             >
               <div className="flex justify-between items-end">
                 <span className="text-[32px] font-medium">广发创投</span>
@@ -50,11 +63,17 @@ export default function TradeServices() {
               </p>
               <div className="flex justify-between">
                 <div>
-                  <span className="flex"><TzNextImage src={"/images/dizhi.png"} width={24} height={24} className="mr-2"/>地址：四川省广元市xxxx区xxxx街道xx号</span>
+                  <span className="flex">
+                    <TzNextImage
+                      src={"/images/dizhi.png"}
+                      width={24}
+                      height={24}
+                      className="mr-2"
+                    />
+                    地址：四川省广元市xxxx区xxxx街道xx号
+                  </span>
                 </div>
-                 <TzButton shape={"round"} type={"primary"}>
-                  立即申请
-                </TzButton>
+                <ClientButton />
               </div>
             </TzCard>
           </div>

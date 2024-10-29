@@ -8,6 +8,7 @@ import Loan from "./Loan";
 import { TzButton } from "../TzButton";
 import { SwapRightOutlined } from "@ant-design/icons";
 import { FinanceItemProps } from "@/fetch/definition";
+import { useRouter } from "next/navigation";
 interface TabItem {
   title: string;
   description: string;
@@ -19,8 +20,9 @@ interface FinancialTabProps {
 }
 export default function FinancialTab(props: FinancialTabProps) {
   let { items } = props;
-  let { isMobile } = useResize();
   let [activeKey, setActiveKey] = useState(items[0].key);
+  let { isMobile } = useResize();
+  const router = useRouter();
   let list = useMemo(() => {
     return items.find((item) => item.key === activeKey).list;
   }, [items, activeKey]);
@@ -55,6 +57,9 @@ export default function FinancialTab(props: FinancialTabProps) {
             shape="round"
             icon={<SwapRightOutlined style={{ fontSize: 18 }} />}
             iconPosition={"end"}
+            onClick={() => {
+              router.push(`/small-loan`);
+            }}
           >
             查看全部
           </TzButton>
