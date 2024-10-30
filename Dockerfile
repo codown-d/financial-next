@@ -4,6 +4,8 @@ FROM node:20
 # 设置工作目录
 WORKDIR /app
 
+RUN npm install -g pnpm
+
 # 复制 package.json 和 package-lock.json
 COPY package.json pnpm-lock.yaml ./
 
