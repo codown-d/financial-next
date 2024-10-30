@@ -1,5 +1,5 @@
 # 使用 Node.js 官方镜像
-FROM node:18
+FROM node:20
 
 # 设置工作目录
 WORKDIR /app
@@ -8,7 +8,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 
 # 安装依赖
-RUN npm install
+RUN pnpm install
 
 # 复制项目文件
 COPY . .
@@ -21,3 +21,4 @@ EXPOSE 3000
 
 # 启动应用
 CMD ["npm", "start"]
+ls
