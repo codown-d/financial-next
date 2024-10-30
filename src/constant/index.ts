@@ -142,6 +142,7 @@ export const MarketDataList: FinanceItemProps[] = [
   {
     tabType: TabType.service,
     name: "小微贷",
+    prodType:'小额贷款',
     companyName: "国信小贷",
     logoUrl: "/images/gxxd.png",
     dataType: FinanceDataTypeEmu.Microloans,
@@ -182,6 +183,7 @@ export const MarketDataList: FinanceItemProps[] = [
     rateUp: "3.90",
     rate: 6.7,
     name: "及时贷",
+    prodType:'小额贷款',
     companyName: "国信小贷",
     logoUrl: "/images/gxxd.png",
     term: 12,
@@ -215,6 +217,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gxxd.png",
     companyName: "国信小贷",
     name: `搭桥贷`,
+    prodType:'小额贷款',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 6.7,
@@ -249,6 +252,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcjj.png",
     companyName: "广财基金",
     name: `广元市产业发展投资引导基金`,
+    prodType:'股权投资',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 3.35,
@@ -277,6 +281,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcjj.png",
     companyName: "广财基金",
     name: `广元市乡村振兴基金`,
+    prodType:'股权投资',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 3.35,
@@ -305,6 +310,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcjj.png",
     companyName: "广财基金",
     name: `广元市铝基新材料产业发展基金`,
+    prodType:'股权投资',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 3.35,
@@ -332,6 +338,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `小微增额保`,
+    prodType:'融资担保',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 1,
@@ -363,6 +370,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `创业担保贷款`,
+    prodType:'融资担保',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 0.8,
@@ -398,6 +406,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `企业担保贷款`,
+    prodType:'融资担保',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 1,
@@ -432,6 +441,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `融创科贷`,
+    prodType:'融资担保',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 0.8,
@@ -452,7 +462,9 @@ export const MarketDataList: FinanceItemProps[] = [
     repaymentMethod: ["按周期付息,到期还本", "分期还款"],
     serviceObjects:
       "广元市辖区内的小微企业(含科技型小微企业）、科技型人才、个体工商户以及从事农业及涉农相关产业的各类企业、组织和个人。",
-    applicationConditions: ["--"],
+    applicationConditions: [
+      "科技型小微企业和科技型人才:科技型小微企业认定标准：由广元市科学技术局认定的科技型企业；2、科技型人才认定标准（1）被列入国家级重点学科、重点实验室、工程（技术）研究中心、企业技术中心、工程实验室的首席科学家，国家科学技术奖获得者，国家有突出贡献中青年专家，“百千万人才工程”国家级人选，国家“千人计划”入选者； （2）被列入省级重点实验室、工程（技术）研究中心、企业技术中心、工程实验室的学术技术带头人，省有突出贡献的中青年专家，省级“千人计划”入选者，享受国务院政府特殊津贴专家； （3）被列入四川省“天府万人计划”；具有国家部委认定的高级技师等级资格的技能型人才，经认定的大中型企业高级管理人才；（4）普通高校毕业的博士研究生或具有广元市承认的副高级（含以上）专业技术职务任职资格的人员；（5）普通高校毕业的硕士研究生，或具有广元市承认中级专业技术职务任职资格（按我国专业技术职称分类标准执行）的人员，或被列入地市级（含以上）科技人才项目计划的人员，广元市学术和技术带头人或获得地市级（含以上）政府政策财政补贴的人员。",'支小支农双创类: 广元市辖区内的小微企业、个体工商户、从事农业及涉农相关产业的各类企业、组织和个人创业创新融资主体。','两类贷款担保主体申请担保基本要求:1、符合科技型企业和支小支农划型认定；2、具有持续经营能力和合法的还款来源，且具备偿债能力；3、营业执照及资质有效、齐全，能够独立依法承担民事责任；4、有固定经营场所（灵活创业的个人类贷款担保主体除外），连续经营达到3个月以上；'
+    ],
     location: "广元市",
   },
   {
@@ -462,6 +474,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `极速贷`,
+    prodType:'融资担保',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 0.6,
@@ -494,6 +507,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcjj.png",
     companyName: "广财基金",
     name: `广元市工业企业应急转贷`,
+    prodType:'应急转贷',
     rateDown: "3.10",
     rateUp: "3.90",
     rate: 3.35,
@@ -527,6 +541,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `履约保函`,
+    prodType:'保函服务',
     rateDown: "0.3",
     rateUp: "3",
     rate: 0.3,
@@ -562,6 +577,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `农民工工资保函`,
+    prodType:'保函服务',
     rateDown: "0.3",
     rateUp: "3",
     rate: 0.3,
@@ -596,6 +612,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `财产保全保函`,
+    prodType:'保函服务',
     rateDown: "0.02",
     rateUp: "3",
     rate: 0.2,
@@ -629,6 +646,7 @@ export const MarketDataList: FinanceItemProps[] = [
     logoUrl: "/images/gcdb.png",
     companyName: "广创担保",
     name: `通用保函`,
+    prodType:'保函服务',
     rateDown: "0.3",
     rateUp: "3",
     rate: 0.3,
@@ -885,5 +903,29 @@ export const PolicyTags = [
   {
     label: "解读",
     value: "key3",
+  },
+];
+export const MicroloansOp = [
+  {
+    label: "公司",
+    value: "公司",
+  },
+  {
+    label: "自然人",
+    value: "自然人",
+  },
+];
+export const MicroloansOp2 = [
+  {
+    label: "小微贷",
+    value: "小微贷",
+  },
+  {
+    label: "及时贷",
+    value: "及时贷",
+  },
+  {
+    label: "搭桥贷",
+    value: "搭桥贷",
   },
 ];

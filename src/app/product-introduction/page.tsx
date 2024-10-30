@@ -32,8 +32,8 @@ export default function ProductIntroduction(props) {
 
   return (
     <AntdRegistry>
-      <div className="relative bg-[#F8F8F8] overflow-hidden">
-        <div className="h-[320px] relative flex justify-center">
+      <div className="relative bg-[#F8F8F8] overflow-hidden ">
+        <div className="h-[320px] relative flex justify-center z-0">
           <Image
             src={"/images/cp-banner.png"}
             alt={""}

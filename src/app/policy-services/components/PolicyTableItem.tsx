@@ -1,10 +1,13 @@
 "use client";
+import { useRouter } from "next/navigation";
 import { TzButton } from "../../../components/TzButton";
 import TzIcon from "../../../components/TzIcon";
 import { DataType } from "@/app/policy-services/components/ClientTable";
 
 export default function PolicyTableItem(props: DataType) {
-  let { title, name, publishdate, id } = props;
+  let { title, name, publishdate, id ,policyguid} = props;
+  console.log(props)
+  const router = useRouter();
   return (
     <div>
       <div className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px]">
@@ -20,6 +23,10 @@ export default function PolicyTableItem(props: DataType) {
           className="!text-[#3D5AF5]"
           icon={<TzIcon className={"fa-chevron-right text-[#3D5AF5] text-sm"} />}
           iconPosition={"end"}
+          onClick={()=>{
+            
+            router.push(`/policy-detail?policyguid=${policyguid}`);
+          }}
         >
           查看详情
         </TzButton>

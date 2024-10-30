@@ -7,6 +7,7 @@ export interface DataType {
   title: string;
   publishdate: number;
   name: string;
+  policyguid:string
 }
 interface ClientSideTableProps {
   initialData: DataType[];

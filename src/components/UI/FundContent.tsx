@@ -17,7 +17,7 @@ export default function FundContent() {
         </div>
         <div>
           <Image
-            src="/images/qr-code.png"
+            src="/images/qr-code.jpg"
             width={182}
             height={182}
             alt=""

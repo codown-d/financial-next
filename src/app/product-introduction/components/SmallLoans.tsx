@@ -8,19 +8,22 @@ import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { collateralOp, MarketDataList } from "@/constant";
+import { collateralOp, MarketDataList, MicroloansOp, selectOp } from "@/constant";
 import { useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
 import useApplicationAction from "../hooks";
 import CountUp from "react-countup";
 import { FinancingEntityEmu } from "@/fetch/definition";
-import { find } from "lodash";
+import { find, keys } from "lodash";
 
-export default function SmallLoans(props:{id:string}) {
-  let [segmentedValue, setSegmentedValue] = useState(FinancingEntityEmu.Enterprise);
-  let dataInfo=useMemo(()=>{
-    return find(MarketDataList,(item)=>item.id==props.id)
-  },[props.id])
+export default function SmallLoans(props: { id: string }) {
+  let [segmentedValue, setSegmentedValue] = useState(
+    FinancingEntityEmu.Enterprise
+  );
+  let dataInfo = useMemo(() => {
+    console.log(find(MarketDataList, (item) => item.id == props.id))
+    return find(MarketDataList, (item) => item.id == props.id);
+  }, [props.id]);
   let getSegmentedDom = useMemo(() => {
     if (segmentedValue === FinancingEntityEmu.Enterprise) {
       let arr = [
@@ -36,7 +39,7 @@ export default function SmallLoans(props:{id:string}) {
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index+1)}
+                  data-index={"0" + (index + 1)}
                 >
                   {item}
                 </div>
@@ -59,7 +62,7 @@ export default function SmallLoans(props:{id:string}) {
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index+1)}
+                  data-index={"0" + (index + 1)}
                 >
                   {item}
                 </div>
@@ -71,46 +74,7 @@ export default function SmallLoans(props:{id:string}) {
     }
   }, [segmentedValue]);
   let { submit, success, fail } = useApplicationAction();
-  const items = [
-    {
-      key: "1",
-      label: "类型",
-      children: "自然人",
-    },
-    {
-      key: "2",
-      label: "公司名称/姓名",
-      children: "王小明",
-    },
-    {
-      key: "3",
-      label: "证件号码",
-      children: "000000000000000000",
-    },
-    {
-      key: "4",
-      label: "申请金额",
-      children: "500,000元",
-    },
-    {
-      key: "5",
-      label: "申请期限",
-      children: "36个月",
-    },
 
-    {
-      key: "6",
-      label: "反担保措施",
-      children: "抵押",
-    },
-
-    {
-      key: "6",
-      label: "联系方式",
-      children: "180 0000 0000",
-    },
-  ];
-  
   return (
     <>
       <TzCard
@@ -131,6 +95,7 @@ export default function SmallLoans(props:{id:string}) {
                   dataType={dataInfo?.dataType}
                   amount={dataInfo?.amount}
                   name={dataInfo?.name}
+                  prodType={dataInfo?.prodType}
                 />
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
@@ -142,16 +107,18 @@ export default function SmallLoans(props:{id:string}) {
                 <DescMethod
                   method={"担保方式"}
                   className="mr-3"
-                  desc={collateralOp.reduce((pre:any[],item)=>{
-                    if(dataInfo?.guaranteeMethod.includes(item.value)){
-                       pre?.push?.(item.label)
-                    }
-                    return pre
-                  },[]).join('/')}
+                  desc={collateralOp
+                    .reduce((pre: any[], item) => {
+                      if (dataInfo?.guaranteeMethod.includes(item.value)) {
+                        pre?.push?.(item.label);
+                      }
+                      return pre;
+                    }, [])
+                    .join("/")}
                 />
                 <DescMethod
                   method={"还款方式"}
-                  desc={dataInfo?.repaymentMethod.join('/')}
+                  desc={dataInfo?.repaymentMethod.join("/")}
                 />
               </div>
               <div className="flex mt-10">
@@ -164,15 +131,45 @@ export default function SmallLoans(props:{id:string}) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                fail();
-                // submit().then(res=>{
-                // })
+                // fail();
+                let obj = {
+                  type: "类型",
+                  name: "公司名称/姓名",
+                  credential: "证件号码",
+                  amount: "申请金额",
+                  deadline: "申请期限",
+                  measure: "反担保措施",
+                  contact: "联系方式",
+                };
+                submit().then((res) => {
+                  let items = keys(res).reduce((pre, item) => {
+                    let text = res[item];
+                    if ("amount" === item) {
+                      text = `${text} 元`;
+                    } else if ("deadline" === item) {
+                      text = `${text} 个月`;
+                    }else if ("type" === item) {
+                      text = find(MicroloansOp,(ite=>ite.value===text))?.label
+                    } else if ("measure" === item) {
+                      text = find(selectOp,(ite=>ite.value===text))?.label;
+                    }
+                    pre.push({
+                      key: item,
+                      label: obj[item],
+                      children: text,
+                    });
+                    return pre;
+                  }, []);
+
+                  console.log(items);
+                  success(items);
+                });
               }}
             >
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
-            <CountUp end={dataInfo?.dealOrder} /> 笔需求对接成功
+              <CountUp end={dataInfo?.dealOrder} /> 笔需求对接成功
             </span>
           </div>
         </div>
@@ -183,8 +180,7 @@ export default function SmallLoans(props:{id:string}) {
           <TzDivider />
         </DescInfo>
         <DescInfo title={"产品介绍"}>
-          <div className="text-[#666]">
-          {dataInfo?.productIntroduction}</div>
+          <div className="text-[#666]">{dataInfo?.productIntroduction}</div>
           <TzDivider />
         </DescInfo>
         <DescInfo title={"申请条件"}>
@@ -194,7 +190,7 @@ export default function SmallLoans(props:{id:string}) {
                 <div
                   key={index}
                   className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index+1)}
+                  data-index={"0" + (index + 1)}
                 >
                   {item}
                 </div>
@@ -207,7 +203,7 @@ export default function SmallLoans(props:{id:string}) {
         className="flex-1 w-full !mt-3"
         title={
           <TzSegmented
-            onChange={(val:FinancingEntityEmu) => setSegmentedValue(val)}
+            onChange={(val: FinancingEntityEmu) => setSegmentedValue(val)}
             options={[
               {
                 label: "企业",
@@ -216,7 +212,7 @@ export default function SmallLoans(props:{id:string}) {
               },
               {
                 label: "个人",
-                value:  FinancingEntityEmu.Personal,
+                value: FinancingEntityEmu.Personal,
                 icon: <TzIcon className={"fa-user text-sm"} />,
               },
             ]}

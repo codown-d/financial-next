@@ -1,3 +1,4 @@
+"use client";
 import React, { useMemo } from "react";
 import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
@@ -7,6 +8,7 @@ import { collateralOp, FinanceDataTypeEmu } from "@/constant";
 import { FinanceItemProps } from "@/fetch/definition";
 import TzNextImage from "../TzNextImage";
 import CountUp from "react-countup";
+import { useRouter } from "next/navigation";
 type FinanceCardProps = TzCardProps & FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
@@ -21,8 +23,10 @@ export default function (props: FinanceCardProps) {
     amount,
     dealOrder,
     guaranteeMethod,
+    id,
     ...otherProps
   } = props;
+  console.log(props)
   let getRateList = useMemo(() => {
     return dataType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
@@ -66,6 +70,7 @@ export default function (props: FinanceCardProps) {
           },
         ];
   }, [dataType, rate, amount]);
+  const router = useRouter();
   return (
     <>
       <TzCard
@@ -143,6 +148,9 @@ export default function (props: FinanceCardProps) {
                 icon={
                   <TzIcon className={"fa-arrow-right text-white-500 text-sm"} />
                 }
+                onClick={()=>{
+                  router.push(`/product-introduction?id=${id}&dataType=${dataType}`)
+                }}
                 iconPosition={"end"}
               >
                 查看详情

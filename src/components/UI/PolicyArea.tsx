@@ -14,6 +14,7 @@ import TzIcon from "../TzIcon";
 import { PolicyData } from "@/constant";
 import styles from "./ui.module.scss";
 import { useRouter } from "next/navigation";
+import TzNextImage from "../TzNextImage";
 
 export default function PolicyArea() {
   let [actItem, setActItem] = useState("policy_1");
@@ -90,9 +91,12 @@ export default function PolicyArea() {
           >
             <div className=" px-[28px] pt-6 ">
               <TzTitle level={3} className=" flex justify-between !mb-0">
-                <span className="leading-6">政策原文</span> <SeeMore onClick={()=>{
-                  router.push("/policy-services")
-                }} />
+                <span className="leading-6">政策原文</span>{" "}
+                <SeeMore
+                  onClick={() => {
+                    router.push("/policy-services");
+                  }}
+                />
               </TzTitle>
               <PolicyTable columns={columns} dataSource={dataSource} />
               <TzTitle level={3} className="text-2xl flex justify-between mt-6">
@@ -138,12 +142,7 @@ export default function PolicyArea() {
               >
                 <div className="flex flex-col justify-between h-full px-[28px]  pt-[30px] pb-[32px]">
                   <div className="text-desc">{item.desc}</div>
-                  <Image
-                    src={item.descImgUrl}
-                    alt={""}
-                    width={480}
-                    height={0}
-                  ></Image>
+                  <TzNextImage src={item.descImgUrl} width={480} height={0} />
                   <TzButton
                     className="!px-[56px] w-fit "
                     shape="round"
@@ -154,7 +153,6 @@ export default function PolicyArea() {
                       ></TzIcon>
                     }
                     onClick={() => {
-                      router.push(item.key)
                     }}
                     iconPosition={"end"}
                   >

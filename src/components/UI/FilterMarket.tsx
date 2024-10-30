@@ -1,6 +1,6 @@
 import { Form, Pagination } from "antd";
 import TzForm, { TzFormItem } from "../TzForm";
-import { MarketDataList, TabType } from "@/constant";
+import { FinanceDataTypeEmu, MarketDataList, TabType } from "@/constant";
 import TzSpace from "../TzSpace";
 import FilterHeader from "./FilterHeader";
 import MarketCard from "./MarketCard";
@@ -8,8 +8,13 @@ import ItemSort from "./ItemSort";
 import { useMemo, useState } from "react";
 import { FilterSortEmu } from "@/fetch/definition";
 
-export default function FilterMarket(props: { type: TabType; filter: any,keyword?:string }) {
-  let { type, filter,keyword } = props;
+export default function FilterMarket(props: {
+  type: TabType;
+  filter: any;
+  keyword?: string;
+}) {
+  let { type, filter, keyword } = props;
+  console.log(props);
   let [filterData, setFilterData] = useState({
     amount: FilterSortEmu.All,
     term: FilterSortEmu.All,
@@ -20,29 +25,38 @@ export default function FilterMarket(props: { type: TabType; filter: any,keyword
     let list = MarketDataList.filter((item) => {
       let entity =
         filter.entity === "all" ? true : filter.entity === item.financingEntity;
-      let financing =
-        filter.financing === "all"
-          ? true
-          : filter.financing === item.financingType;
       let type =
-        filter.type === "all" ? true : filter.type === item.guaranteeMethod;
+        filter.type === "all" ? true : filter.type === item.financingType;
       let institution =
         filter.institution === "all"
           ? true
           : filter.institution === item.institutionType;
-      let guarantee =
-        filter.guarantee === 0 ? true : item.amount <= filter.guarantee;
+      let financing =
+        filter.financing === "all"
+          ? true
+          : item.guaranteeMethod.includes(filter.financing);
+
+      let guarantee = filter.guarantee === 0 ? true : false;
+      if (filter.guarantee == 50) {
+        guarantee = item.amount <= filter.guarantee&&item.dataType!== FinanceDataTypeEmu.EmergencyRefinancing
+      } else if (filter.guarantee == 100) {
+        guarantee = item.amount <= filter.guarantee && item.amount > 50;
+      } else if (filter.guarantee == 500) {
+        guarantee = item.amount <= filter.guarantee && item.amount > 100;
+      } else {
+        guarantee = item.amount > filter.guarantee ||item.dataType=== FinanceDataTypeEmu.EmergencyRefinancing
+      }
       let term = filter.term === 0 ? true : item.term <= filter.term;
       return (
         item.tabType === props.type &&
         entity &&
-        financing &&
         type &&
         institution &&
+        financing &&
         guarantee &&
         term
       );
-    }).filter(item=>!keyword||item.name.includes(keyword));
+    }).filter((item) => !keyword || item.name.includes(keyword));
     if (filterData.amount !== FilterSortEmu.All) {
       list.sort((a, b) => {
         if (filterData.amount === FilterSortEmu.Asc) {
@@ -71,7 +85,7 @@ export default function FilterMarket(props: { type: TabType; filter: any,keyword
       });
     }
     return list;
-  }, [props, filterData,keyword]);
+  }, [props.filter, filterData, keyword]);
   return (
     <div>
       <div className="mb-2 mt-1 ml-3 text-[#999]">

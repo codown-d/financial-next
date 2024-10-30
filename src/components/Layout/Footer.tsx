@@ -6,16 +6,8 @@ const Footer = () => {
   
   let link = [
     {
-      title: "标题名称",
-    },
-    {
-      title: "标题名称",
-    },
-    {
-      title: "标题名称",
-    },
-    {
-      title: "标题名称",
+      title: "广元市中小企业金融服务有限公司",
+      url:'http://www.gyjrfw.com/'
     },
   ];
   return (
@@ -29,7 +21,7 @@ const Footer = () => {
       <div className="max-w-screen-lg w-full mx-auto  grid grid-rows-6 sm:grid-rows-1 grid-flow-row sm:grid-flow-col grid-cols-3 sm:grid-cols-12 gap-4">
         <div className="">
           <Image
-            src="/images/qr-code.png"
+            src="/images/qr-code.jpg"
             width={182}
             height={182}
             alt=""
@@ -40,26 +32,26 @@ const Footer = () => {
           <div className="footer-item  mb-6">
             联系方式
           </div>
-          <div className="text-[#7BF1C2] mb-4">0000-0000-000</div>
-          <div className="text-desc mb-4">邮箱：000000@xxx.com</div>
-          <div className="text-desc mb-4">地址：四川省广元市xxx区xxx街道xx号</div>
+          <div className="text-[#7BF1C2] mb-4">0839-3271399</div>
+          <div className="text-desc mb-4">邮箱：jrfwjt@163.com</div>
+          <div className="text-desc mb-4">地址：四川省广元市利州区利州东路二段509号康隆·财富旺角18楼</div>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-8 sm:col-end-11 flex flex-col">
+        <div className="row-span-2 sm:col-span-2 sm:col-start-8 sm:col-end-10 flex flex-col">
           <p className="footer-item mb-4">关于我们</p>
           <ul className="text-black-500">
-            {link.map((item, index) => {
+            {[].map((item, index) => {
               return (
                 <li
                   key={index}
                   className="text-desc mb-6"
                 >
-                  {item.title + index}
+                  {item.title}
                 </li>
               );
             })}
           </ul>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-11 sm:col-end-12 flex flex-col">
+        <div className="row-span-2 sm:col-span-2 sm:col-start-10 sm:col-end-12 flex flex-col">
           <p className="footer-item  mb-4">友情链接</p>
           <ul className="text-black-500">
             {link.map((item, index) => {
@@ -69,7 +61,6 @@ const Footer = () => {
                   className="text-desc mb-6"
                 >
                   {item.title}
-                  {index}
                 </li>
               );
             })}

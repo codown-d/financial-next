@@ -70,7 +70,7 @@ export default function TradeServices() {
                       height={24}
                       className="mr-2"
                     />
-                    地址：四川省广元市xxxx区xxxx街道xx号
+                    地址：四川省广元市利州区利州东路二段509号康隆·财富旺角21楼
                   </span>
                 </div>
                 <ClientButton />

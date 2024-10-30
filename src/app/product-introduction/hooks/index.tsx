@@ -22,8 +22,9 @@ export default function useApplicationAction() {
             .validateFields()
             .then((val) => {
               resolve(val);
+              form.resetFields()
             })
-            .catch(reject);
+            .catch();
         },
       });
     });

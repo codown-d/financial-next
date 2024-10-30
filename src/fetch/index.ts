@@ -65,6 +65,14 @@ export const getApplyPolicyList = async (
     params
   );
 };
+export const getPolicyByRowguid = async (
+  params?: any
+): Promise<IResponseData<GetPolicyListProps>> => {
+  return http.post(
+    "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getPolicyByRowguid",
+    params
+  );
+};
 export const getProxyApplyPolicyList = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {

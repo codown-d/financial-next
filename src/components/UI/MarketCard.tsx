@@ -17,6 +17,7 @@ export default function MarketCard(props: FinanceItemProps) {
     amount,
     logoUrl,
     dealOrder,
+    prodType,
     id,
   } = props;
   const router = useRouter();
@@ -26,7 +27,7 @@ export default function MarketCard(props: FinanceItemProps) {
       <LogoInfo logo={companyName} logoUrl={logoUrl} />
       <div className="flex flex-row border-x-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">
         <div className="flex flex-col mr-9">
-          <DataTypeTitleCom dataType={dataType} amount={amount} name={name} />
+          <DataTypeTitleCom dataType={dataType} amount={amount} name={name} prodType={prodType} />
           <div className="font-normal text-sm text-[#333333]  text-left mt-6">
             担保方式：
             {collateralOp
@@ -43,7 +44,7 @@ export default function MarketCard(props: FinanceItemProps) {
             </span>
           </div>
         </div>
-        <div className="flex ">
+        <div className="flex flex-wrap">
           <DataTypeCom {...props} />
         </div>
       </div>

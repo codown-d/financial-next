@@ -9,7 +9,6 @@ export default function useLoginModal() {
     TzConfirm({
       width: 620,
       styles:{content:{padding:'0px',borderRadius:'16px'}},
-
       icon: null,
       footer: null,
       content:<LoginContent/>

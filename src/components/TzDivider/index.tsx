@@ -6,7 +6,7 @@ export default function TzDivider(props: TzDividerProps) {
   const realProps = useMemo(() => {
     return {
       ...props,
-      className: `tz-divider !my-4 ${props.className}`,
+      className: `tz-divider !my-3 ${props.className}`,
     };
   }, [props]);
   return <Divider {...realProps}/>;

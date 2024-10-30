@@ -54,7 +54,7 @@ export default async function EquityInvestment() {
                 </div>
                 <div className="text-[14px]">
                   深圳数据交易所四川数据要素服务广元分站&nbsp;&nbsp;
-                  地址：四川省广元市xxxx区xxxx街道xx号
+                  地址：四川省广元市利州区利州东路二段509号康隆·财富旺角21楼
                 </div>
               </div>
             </div>

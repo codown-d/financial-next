@@ -73,6 +73,7 @@ export interface FinanceItemProps {
   dataType: FinanceDataTypeEmu;
   logoUrl: string;
   companyName: string;
+  prodType: string;
   name: string;
   rateDown: string;
   rateUp: string;
