@@ -21,7 +21,6 @@ export default function SmallLoans(props: { id: string }) {
     FinancingEntityEmu.Enterprise
   );
   let dataInfo = useMemo(() => {
-    console.log(find(MarketDataList, (item) => item.id == props.id))
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);
   let getSegmentedDom = useMemo(() => {
@@ -160,8 +159,6 @@ export default function SmallLoans(props: { id: string }) {
                     });
                     return pre;
                   }, []);
-
-                  console.log(items);
                   success(items);
                 });
               }}

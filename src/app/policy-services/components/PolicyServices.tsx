@@ -38,7 +38,6 @@ export default function PolicyServices(props: any) {
           lawlevel: lawlevel,
           lawtheme: "",
           applicableindustry: "",
-          taskname: taskname,
           orderfrom: orderfrom,
           areacode: "",
           publishdatetype: "",
@@ -47,11 +46,16 @@ export default function PolicyServices(props: any) {
           msjxType: "",
           area: "",
           ouguid: "",
+
+          keyword: taskname,
+          tran: 0,
+          policytype: "",
+          msjxitem: 0,
         },
         token: "epoint_webserivce_**##0601",
       });
       return {
-        data: res.custom.list,
+        data: res.custom.rtnlist,
         total: res.custom.totalnum,
       };
     },

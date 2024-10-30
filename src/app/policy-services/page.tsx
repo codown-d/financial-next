@@ -16,7 +16,7 @@ async function getServerSideProps(context) {
       lawlevel: lawlevel,
       lawtheme: "",
       applicableindustry: "",
-      taskname: taskname,
+      keyword: taskname,
       orderfrom: "desc",
       areacode: "",
       publishdatetype: "",
@@ -25,11 +25,14 @@ async function getServerSideProps(context) {
       msjxType: "",
       area: "",
       ouguid: "",
+      tran: 0,
+      policytype: "",
+      msjxitem: 0,
     },
     token: "epoint_webserivce_**##0601",
   });
   return {
-    items: res.custom.list,
+    items: res.custom.rtnlist,
     total: res.custom.totalnum,
   };
 }
@@ -47,10 +50,10 @@ export default async function () {
   });
   const { items: hotWords } = await getServerHotWordList();
   return (
-      <PolicyServices
-        hotWords={hotWords}
-        initialData={initialData}
-        total={total}
-      />
+    <PolicyServices
+      hotWords={hotWords}
+      initialData={initialData}
+      total={total}
+    />
   );
 }

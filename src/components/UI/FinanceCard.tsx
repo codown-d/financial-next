@@ -26,7 +26,6 @@ export default function (props: FinanceCardProps) {
     id,
     ...otherProps
   } = props;
-  console.log(props)
   let getRateList = useMemo(() => {
     return dataType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [

@@ -14,7 +14,6 @@ export default function FilterMarket(props: {
   keyword?: string;
 }) {
   let { type, filter, keyword } = props;
-  console.log(props);
   let [filterData, setFilterData] = useState({
     amount: FilterSortEmu.All,
     term: FilterSortEmu.All,

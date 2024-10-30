@@ -1,7 +1,7 @@
 // app/api/proxy/route.ts
 
 const apiEndpoints = {
-    host: "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getApplyPolicyList",
+    host: "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getPolicyList",
   };
   
   export async function GET(request: Request) {

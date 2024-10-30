@@ -11,7 +11,7 @@ export default function FundContent() {
         <div className="">
           <div className="mb-8 text-[20px] leading-[20px]">请您联系：</div>
           <div className="text-[#3D5AF5] text-[20px] font-bold ">
-            0000-0000-000
+          0839-3271399
           </div>
           <div className="text-[#999]">工作日：09:00-18:00 在线</div>
         </div>
