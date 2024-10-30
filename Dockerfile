@@ -21,4 +21,3 @@ EXPOSE 3000
 
 # 启动应用
 CMD ["npm", "start"]
-ls
