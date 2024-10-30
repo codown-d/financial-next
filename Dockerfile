@@ -5,7 +5,7 @@ FROM node:20
 WORKDIR /app
 
 # 复制 package.json 和 package-lock.json
-COPY package.json package-lock.json ./
+COPY package.json pnpm-lock.json ./
 
 # 安装依赖
 RUN pnpm install
