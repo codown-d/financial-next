@@ -23,6 +23,18 @@ export default function PolicyArea() {
       title: "标题",
       dataIndex: "title",
       key: "title",
+      render: (text, row) => (
+        <div
+          style={{
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+            textOverflow: "ellipsis",
+            width: "320px",
+          }}
+        >
+          {text}
+        </div>
+      ),
     },
     {
       title: "时间",
@@ -32,28 +44,31 @@ export default function PolicyArea() {
   ];
   let dataSource = [
     {
-      title: "科技型企业贷款风险补偿",
-      time: "2023-05-01",
+      title:
+        "财政部 国家发展改革委 关于继续执行部分行政事业性收费、政府性基金优惠政策的公告",
+      time: "2023-09-21",
       id: 0,
     },
     {
-      title: "安徽省普惠型小微企业贷款风险补偿",
-      time: "2023-05-01",
+      title: "国家林业和草原局2023年第13号公告",
+      time: "2023-04-25",
       id: 1,
     },
     {
-      title: " 促进经济高质量发展 ",
-      time: "2023-05-01",
+      title:
+        " 国务院办公厅转发国家发展改革委等部门 关于清理规范城镇供水供电供气供暖行业收费促进行业高质量发展意见的通知 ",
+      time: "2020-12-23",
       id: 2,
     },
     {
-      title: "助企促发展若干举措  ",
-      time: "2023-05-01",
+      title:
+        "四川省财政厅 四川省发展和改革委员会  四川省水利厅中国人民银行成都分行 关于印发《四川省水土保持补偿费征收使用管理实施办法》的通知  ",
+      time: "2014-05-21",
       id: 3,
     },
     {
-      title: "  科技型中小企业担保费补贴  ",
-      time: "2023-05-01",
+      title: "关于延续实施失业保险援企稳岗政策的通知",
+      time: "2024-07-01",
       id: 4,
     },
   ];
@@ -153,6 +168,7 @@ export default function PolicyArea() {
                       ></TzIcon>
                     }
                     onClick={() => {
+                      router.push(item.key);
                     }}
                     iconPosition={"end"}
                   >
