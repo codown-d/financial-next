@@ -23,7 +23,7 @@ export default async function ({ searchParams }) {
   return (
     <AntdRegistry>
       <div className="bg-[#F8F8F8]">
-        <div className="max-w-screen-lg  mx-auto overflow-hidden bg-[#F8F8F8] pb-[140px]">
+        <div className="max-w-screen-lg  mx-auto overflow-hidden bg-[#F8F8F8]">
           <Breadcrumb
             items={[{ title: "政策服务" }, { title: "政策详情" }]}
             separator=">"
@@ -32,7 +32,7 @@ export default async function ({ searchParams }) {
           <TzCard>
             <div dangerouslySetInnerHTML={{ __html: custom.content }}></div>
             <div className="flex justify-center mt-[60px] mb-5">
-              <ClientButton />
+              <ClientButton/>
             </div>
           </TzCard>
           <Title title="关联产品" className="mb-5 mt-10" />

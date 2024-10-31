@@ -1,36 +1,27 @@
 "use client";
-import React, { useEffect, useMemo, useState } from "react";
-import { motion } from "framer-motion";
-import getScrollAnimation from "../utils/getScrollAnimation";
-import ScrollAnimationWrapper from "./Layout/ScrollAnimationWrapper";
+import React from "react";
 import TzTabs from "./TzTabs";
-import Loan from "./UI/Loan";
 import TitleBg from "./UI/TitleBg";
 import Image from "next/image";
 import FinancialTab from "./UI/FinancialTab";
 import {
-  BankLoans,
   ElectronicGuarantee,
   EmergencyRefinancing,
   EquityFinancing,
   FinanceGuarantee,
   Microloans,
 } from "@/constant";
-import { TzButton } from "./TzButton";
-import { SwapRightOutlined } from "@ant-design/icons";
-import { Span } from "next/dist/trace";
-import InnovativeServicesCard from "./UI/InnovativeServicesCard";
 import FinancialServices from "./FinancialServices";
+import { useRouter } from "next/navigation";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
-  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   let tabItems_1 = [Microloans, EmergencyRefinancing, EquityFinancing];
   let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
   let items = [
     {
       label: (
-        <div className="flex flex-col items-center px-[76px]">
+        <div className="flex flex-col items-center px-[76px]" >
           <Image src={"/images/rzfw.png"} alt={""} width={88} height={88} />
           <span>融资服务</span>
         </div>
@@ -40,7 +31,7 @@ const FinancialProduct = () => {
     },
     {
       label: (
-        <div className="flex flex-col items-center px-[76px]">
+        <div className="flex flex-col items-center px-[76px]" >
           <Image src={"/images/zxfw.png"} alt={""} width={88} height={88} />
           <span>增信服务</span>
         </div>

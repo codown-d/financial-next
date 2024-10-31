@@ -12,8 +12,10 @@ import TzSelect from "./TzSelect";
 import { Col, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
-import { collateralOp, purposeOp, selectOp, termOp } from "@/constant";
+import { collateralOp, FinanceDataTypeEmu, purposeOp, selectOp, termOp } from "@/constant";
 import SwiperBanner from "./UI/SwiperBanner";
+import { useRouter } from "next/navigation";
+import { InstitutionTypeEmu } from "@/fetch/definition";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -21,54 +23,70 @@ const FinancialBusiness = (props) => {
     {
       name: "贷款",
       number: "390",
+      key:InstitutionTypeEmu.SmallLoan,
       icon: "fa-user",
       img: "/images/daikuan.png",
+      path:'/small-loan'
     },
     {
       name: "担保",
       number: "20",
+      key:InstitutionTypeEmu.Guaranteed,
       icon: "fa-briefcase",
       img: "/images/danbao.png",
+      path:'/ele-bond'
     },
     {
       name: "转贷",
       number: "50",
+      key:InstitutionTypeEmu.Guaranteed,
       icon: "fa-coins",
       img: "/images/zhuandai.png",
+      path:'/small-loan'
     },
 
     {
       name: "保函",
       number: "50",
+      key:InstitutionTypeEmu.Guaranteed,
       icon: "fa-clipboard",
       img: "/images/baohan.png",
+      path:'/ele-bond'
     },
     {
       name: "保险",
       number: "50",
+      key:null,
       icon: "fa-clipboard",
       img: "/images/baoxian.png",
+      path:''
     },
     {
       name: "投资",
       number: "50",
+      key:InstitutionTypeEmu.Fund,
       icon: "fa-clipboard",
       img: "/images/touzi.png",
+      path:'/small-loan'
     },
     {
       name: "政策",
       number: "50",
+      key:'policy',
       icon: "fa-clipboard",
       img: "/images/zhengce.png",
+      path:'/policy-services'
     },
     {
       name: "服务",
       number: "50",
+      key:'investment',
       icon: "fa-clipboard",
       img: "/images/fuwu.png",
+      path:'/equity-investment'
     },
   ];
-
+  const router = useRouter();
   return (
     <>
       <motion.div variants={scrollAnimation}>
@@ -88,6 +106,9 @@ const FinancialBusiness = (props) => {
                 className="flex flex-col items-center hover:bg-[#F7F7F7] w-[152px]"
                 hoverable
                 bordered={false}
+                onClick={()=>{
+                  item.path.indexOf('/')==0?router.push(`${item.path}?institution=${item.key}`):null
+                }}
               >
                 <div className="flex flex-col">
                   <Image alt="example" src={item.img} width={88} height={88} />
@@ -121,7 +142,7 @@ const FinancialBusiness = (props) => {
                 <Row gutter={[76, 16]}>
                   <Col span={12}>
                     <TzFormItem label="金额" name={'amount'}>
-                      <TzInput placeholder="请输入" />
+                      <TzInput placeholder="请输入"  suffix="元"/>
                     </TzFormItem>
                   </Col>
                   <Col span={12}>

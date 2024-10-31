@@ -17,7 +17,6 @@ export default function ProductIntroduction(props) {
       [
         FinanceDataTypeEmu.BankLoans,
         FinanceDataTypeEmu.Microloans,
-        FinanceDataTypeEmu.FinanceGuarantee,
       ].includes(dataType)
     ) {
       return <SmallLoans id={id} />;

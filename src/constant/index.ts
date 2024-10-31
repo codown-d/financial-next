@@ -125,7 +125,7 @@ export enum FinanceDataTypeEmu {
   BankLoans = "bankLoans",
   /** 小额贷款 */
   Microloans = "microloans",
-  /** 股权融资 */
+  /** 股权融资 基金 */
   EmergencyRefinancing = "emergencyRefinancing",
   /** 应急转贷 */
   EquityFinancing = "equityFinancing",
@@ -349,6 +349,9 @@ export const MarketDataList: FinanceItemProps[] = [
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Policy,
     institutionType: InstitutionTypeEmu.Guaranteed,
+    guaranteeAmount:'不超过500万元',
+    guaranteePeriod:'12月以内',
+    applicationInformation:'1、符合银行放贷条件2、《委托担保函》3、《最高额连带责任保证反担保承诺函》4、营业执照复印件5、法定代表人身份证复印件6、《年度所得税申报表》',
     productIntroduction:
       "“蜀担快贷—小微增额保”是由四川省信用再担保公司、我公司等省内12家担保公司集合体、中国工商银行股份有限公司四川省分行三方合作的一个批量担保产品，该产品在共担风险、事先锁定总体担保代偿率上限的前提下，由承办银行负责对贷款业务进行审批、放款和贷后管理，融资担保体系全部成员都不再进行贷款担保审核。由承办担保机构在承办银行贷款发放时直接提供担保，省再担保公司对承办担保机构承保的项目提供批量再担保。",
     repaymentMethod: ["按周期付息,到期还本", "分期还款"],
@@ -386,6 +389,10 @@ export const MarketDataList: FinanceItemProps[] = [
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Policy,
     institutionType: InstitutionTypeEmu.Guaranteed,
+    guaranteeAmount:'个人不超过30万元。企业不超过400万元。该额度范围可申请财政贴息',
+    guaranteePeriod:'企业24个月以内，个人不超过36以内',
+    applicationInformation:'1、广元市创业担保贷款申请审批表(需就业部门审批用印)。2、申请人身份证明相关资料（包括营业执照、身份证、户口薄、婚姻证明、征信、行业经营许可证照、经营场所证明材料等）3、体现经营状况的进销货单据、银行流水、微信收支情况、支付宝收支情况、财务报表等4、反担保资料',
+   
     productIntroduction:
       "创业担保贷款是符合条件的个人或小微企业由我公司提供担保、合作银行放款、由财政部门贴息的贷款。对于符合条件的创业担保贷款财政部门给予贷款实际利率50%的贴息。",
     repaymentMethod: ["按周期付息,到期还本", "分期还款"],
@@ -421,6 +428,9 @@ export const MarketDataList: FinanceItemProps[] = [
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Policy,
     institutionType: InstitutionTypeEmu.Guaranteed,
+    guaranteeAmount:'科技型小微企业和科技型人才类单笔贷款担保额度控制在60万元（含）以内，支小支农双创类单笔贷款额度控制在50万元（含）以内。',
+    guaranteePeriod:'24月以内',
+    applicationInformation:'1、申请人身份证明相关资料（包括营业执照、身份证、户口薄、婚姻证明、征信、行业经营许可证照、经营场所证明材料等）2、体现经营状况的进销货单据、银行流水、微信收支情况、支付宝收支情况、财务报表等 3、反担保资料',
     productIntroduction:
       "企业生产经营需要，向银行等金融机构申请贷款、银行承兑汇票等融资时，我公司提供担保。",
     repaymentMethod: ["按周期付息,到期还本", "分期还款"],
@@ -457,6 +467,10 @@ export const MarketDataList: FinanceItemProps[] = [
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Policy,
     institutionType: InstitutionTypeEmu.Guaranteed,
+    guaranteeAmount:'纯信用类贷款担保最高不超过80万元；增信类（抵押）客户不超过200万元。',
+    guaranteePeriod:'36月以内',
+    applicationInformation:'1、申请人身份证明相关资料（包括营业执照、身份证、户口薄、婚姻证明、征信、行业经营许可证照、经营场所证明材料等） 2、体现经营状况的进销货单据、银行流水、微信收支情况、支付宝收支情况、财务报表等 3、反担保资料 4、符合科技型企业、科技型人才认定材料（若有）',
+  
     productIntroduction:
       "为进一步提升服务小微、三农、重点就业群体融资担保的能力，满足科技企业和科技人才融资担保服务的需求，与广元市贵商村镇银行合作的、重点支持科技型小微企业和科技型人才、支小支农双创类的担保产品。 ",
     repaymentMethod: ["按周期付息,到期还本", "分期还款"],
@@ -490,6 +504,10 @@ export const MarketDataList: FinanceItemProps[] = [
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Policy,
     institutionType: InstitutionTypeEmu.Guaranteed,
+    guaranteeAmount:'纯信用类贷款担保最高不超过80万元；增信类（抵押）客户不超过200万元。',
+    guaranteePeriod:'36月以内',
+    applicationInformation:'1、申请人身份证明相关资料（包括营业执照、身份证、户口薄、婚姻证明、征信、行业经营许可证照、经营场所证明材料等） 2、体现经营状况的进销货单据、银行流水、微信收支情况、支付宝收支情况、财务报表等 3、反担保资料 ',
+  
     productIntroduction:
       "在公司和中国邮政储蓄银行股份有限公司广元市利州区支行合作下，按照“极速贷（信用、信用户）”专项合作协议与邮储银行利州支行共担风险、事先锁定担保代偿率上限的前提下，50万元（含）以下由承办银行负责对贷款业务进行审批、放款，我公司见贷即保，50万元（不含）以上，我公司与银行共同尽调、各自审批的贷款担保产品。",
     repaymentMethod: ["随借随还"],
@@ -521,16 +539,12 @@ export const MarketDataList: FinanceItemProps[] = [
     ],
     financingEntity: FinancingEntityEmu.Enterprise,
     financingType: FinancingTypeEmu.Commercial,
-    institutionType: InstitutionTypeEmu.Fund,
-    productIntroduction:
+    institutionType: InstitutionTypeEmu.Fund, 
+    fundCompanyIntroduction:
+    "广元广财私募基金公司成立于2023年2月14日，注册资本1500万元，为国有全资公司，已获得中国证券投资基金业协会登记认定的私募投资基金（股权投资、创业投资）管理人牌照（机构编号：P1074549），为第一家注册地在广元市的基金管理人。公司主要受托管理广元市产业发展投资引导基金、广元市铝基新材料产业发展基金，同时受托管理各类市场化基金。公司立足金融、服务实体，坚持“依法管理，合规经营，稳步发展，资产增值”的工作思路，围绕全市“1+3+3”优势产业布局，充分发挥政府投资基金的引导和放大作用，引导社会资本投资广元各类产业和基础设施项目，按照市场化方式募集和运营社会资本，支持企业（项目）发展壮大，推动产业转型升级，为全市产业发展服务。",
+    fundIntroduction:
       "广元市工业企业应急转贷资金是由市政府主导设立，主要为市内资金周转暂时困难、符合银行续贷条件的工业企业提供按时还贷续贷的周转资金。",
-    repaymentMethod: ["一次性还本付息"],
-    serviceObjects: "广元市范围内（不包括扩权县）符合银行续贷条件的工业企业。",
-    applicationConditions: [
-      "具有独立法人资格。",
-      "符合产业发展政策，生产经营正常，信用良好。",
-      "财务会计制度完整规范。",
-    ],
+    
     location: "广元市",
   },
 

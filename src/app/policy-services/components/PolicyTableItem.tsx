@@ -10,7 +10,7 @@ export default function PolicyTableItem(props: DataType) {
   return (
     <div>
       <div
-        className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px]"
+        className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px] cursor-pointer"
         onClick={() => {
           router.push(`/policy-detail?policyguid=${rowguid}`);
         }}

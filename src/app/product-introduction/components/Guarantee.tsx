@@ -7,7 +7,7 @@ import DataTypeCom from "@/components/UI/DataTypeCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { collateralOp, MarketDataList, MicroloansOp, selectOp } from "@/constant";
+import { collateralOp, FinanceDataTypeEmu, MarketDataList, MicroloansOp, selectOp } from "@/constant";
 import { find, keys } from "lodash";
 import { useMemo } from "react";
 import useApplicationAction from "../hooks";
@@ -15,6 +15,7 @@ import useApplicationAction from "../hooks";
 export default function Guarantee(props: { id: string }) {
   let {id} = props
   let dataInfo = useMemo(() => {
+    console.log(find(MarketDataList, (item) => item.id == props.id))
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);
   let { submit, success, fail } = useApplicationAction();
@@ -112,10 +113,11 @@ export default function Guarantee(props: { id: string }) {
           <div className="text-[#666]">{dataInfo?.serviceObjects}</div>
           <TzDivider />
         </DescInfo>
-        <DescInfo title={"受益人"}>
+        {dataInfo.dataType==FinanceDataTypeEmu.FinanceGuarantee || <DescInfo title={"受益人"}>
           <div className="text-[#666]">{dataInfo?.beneficiary}</div>
           <TzDivider />
-        </DescInfo>
+        </DescInfo>}
+        
         <DescInfo title={"产品介绍"}>
           <div className="text-[#666]">{dataInfo?.productIntroduction}</div>
         </DescInfo>

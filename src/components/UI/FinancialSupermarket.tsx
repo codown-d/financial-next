@@ -16,23 +16,27 @@ import FilterMarket from "./FilterMarket";
 import TzTabs from "../TzTabs";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import TzNextImage from "../TzNextImage";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import TzSearch from "../TzSearch";
 import TzModal, { TzConfirm } from "../TzModal";
 import FinanceCard from "./FinanceCard";
-import ClientFinanceCard from "@/app/policy-detail/components/ClientFinanceCard";
+import { useRouter, useSearchParams } from "next/navigation";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
+  const searchParams = useSearchParams();
   let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({});
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
+  const router = useRouter();
   let items = useMemo(() => {
     return [
       {
         label: (
-          <div className="flex flex-col items-center px-[76px]">
+          <div className="flex flex-col items-center px-[76px]" onClick={()=>{
+            router.push(`/small-loan`);
+          }}>
             <TzNextImage src={"/images/rzfw.png"} width={88} height={88} />
             <span>融资服务</span>
           </div>
@@ -48,7 +52,9 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
       },
       {
         label: (
-          <div className="flex flex-col items-center px-[76px]">
+          <div className="flex flex-col items-center px-[76px]"  onClick={()=>{
+            router.push(`/performance-bond`);
+          }}>
             <TzNextImage src={"/images/zxfw.png"} width={88} height={88} />
             <span>增信服务</span>
           </div>
@@ -130,7 +136,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"机构类型"}
                 name={"institution"}
-                initialValue={"all"}
+                initialValue={searchParams.get("institution")||"all"}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.institution} />
@@ -177,7 +183,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         </div>
         <div className="max-w-screen-lg  mx-auto ">
           <TzTabs
-            defaultActiveKey={activeKey}
+            activeKey={activeKey}
             className="financing-services-tab !mt-[380px]"
             items={items}
             centered
