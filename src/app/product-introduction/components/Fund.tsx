@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { TzButton } from "@/components/TzButton";
 import TzCard from "@/components/TzCard";
 import TzIcon from "@/components/TzIcon";
@@ -13,7 +13,7 @@ export default function Fund(props: { id: string }) {
   let dataInfo = useMemo(() => {
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);
-  let { submit, success, fail } = useApplicationAction();
+  let { submit, success, fail } = useApplicationAction({ type: "业务申请" });
   return (
     <>
       <TzCard
@@ -45,38 +45,45 @@ export default function Fund(props: { id: string }) {
             </div>
           </div>
           <div className="w-[245px] flex flex-col justify-center items-center">
-            <TzButton type={"primary"} shape={"round"} onClick={() => {
-              let obj = {
-                type: "类型",
-                name: "公司名称/姓名",
-                credential: "证件号码",
-                amount: "申请金额",
-                deadline: "申请期限",
-                measure: "反担保措施",
-                contact: "联系方式",
-              };
-              submit().then((res) => {
-                let items = keys(res).reduce((pre, item) => {
-                  let text = res[item];
-                  if ("amount" === item) {
-                    text = `${text} 元`;
-                  } else if ("deadline" === item) {
-                    text = `${text} 个月`;
-                  }else if ("type" === item) {
-                    text = find(MicroloansOp,(ite=>ite.value===text))?.label
-                  } else if ("measure" === item) {
-                    text = find(selectOp,(ite=>ite.value===text))?.label;
-                  }
-                  pre.push({
-                    key: item,
-                    label: obj[item],
-                    children: text,
-                  });
-                  return pre;
-                }, []);
-                success(items);
-              });
-            }}>
+            <TzButton
+              type={"primary"}
+              shape={"round"}
+              onClick={() => {
+                let obj = {
+                  type: "类型",
+                  name: "公司名称/姓名",
+                  credential: "证件号码",
+                  amount: "申请金额",
+                  deadline: "申请期限",
+                  measure: "反担保措施",
+                  contact: "联系方式",
+                };
+                submit().then((res) => {
+                  let items = keys(res).reduce((pre, item) => {
+                    let text = res[item];
+                    if ("amount" === item) {
+                      text = `${text} 元`;
+                    } else if ("deadline" === item) {
+                      text = `${text} 个月`;
+                    } else if ("type" === item) {
+                      text = find(
+                        MicroloansOp,
+                        (ite) => ite.value === text
+                      )?.label;
+                    } else if ("measure" === item) {
+                      text = find(selectOp, (ite) => ite.value === text)?.label;
+                    }
+                    pre.push({
+                      key: item,
+                      label: obj[item],
+                      children: text,
+                    });
+                    return pre;
+                  }, []);
+                  success(items);
+                });
+              }}
+            >
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">

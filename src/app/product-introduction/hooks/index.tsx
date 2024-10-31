@@ -5,14 +5,15 @@ import ProductApplication from "../components/ProductApplication";
 import ApplicationSuccess from "../components/ApplicationSuccess";
 import ApplicationFail from "../components/ApplicationFail";
 
-export default function useApplicationAction() {
+export default function useApplicationAction(props?: { type: string }) {
+  let { type } = props || { type: "小微贷申请" };
   let [form] = Form.useForm();
   let submit = useCallback(() => {
     return new Promise((resolve, reject) => {
       TzConfirm({
         title: (
           <div className="text-center font-bold mb-[50px] text-2xl text-gray-800 mt-5 leading-[32px]">
-            小微贷申请
+            {type}
           </div>
         ),
         content: <ProductApplication formIns={form} />,
@@ -22,7 +23,7 @@ export default function useApplicationAction() {
             .validateFields()
             .then((val) => {
               resolve(val);
-              form.resetFields()
+              form.resetFields();
             })
             .catch();
         },
@@ -38,7 +39,7 @@ export default function useApplicationAction() {
           <CancelBtn />
         </div>
       ),
-      styles:{content:{padding:'0px 0px 20px'}},
+      styles: { content: { padding: "0px 0px 20px" } },
       cancelText: "关闭",
     });
   }, []);
@@ -48,7 +49,7 @@ export default function useApplicationAction() {
       content: <ApplicationFail />,
       okText: "重新申请",
       cancelText: "关闭",
-      styles:{content:{padding:'0px 0px 20px'}},
+      styles: { content: { padding: "0px 0px 20px" } },
       onOk() {},
     });
   }, []);

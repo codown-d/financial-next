@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Image from "next/image";
 import SmallLoans from "./components/SmallLoans";
 import { useSearchParams } from "next/navigation";
@@ -7,7 +7,6 @@ import { useMemo } from "react";
 import Fund from "./components/Fund";
 import Guarantee from "./components/Guarantee";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
-
 
 export default function ProductIntroduction(props) {
   const searchParams = useSearchParams();
@@ -18,15 +17,19 @@ export default function ProductIntroduction(props) {
       [
         FinanceDataTypeEmu.BankLoans,
         FinanceDataTypeEmu.Microloans,
-        FinanceDataTypeEmu.EquityFinancing,
         FinanceDataTypeEmu.FinanceGuarantee,
       ].includes(dataType)
     ) {
       return <SmallLoans id={id} />;
-    } else if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataType)) {
-      return <Fund  id={id}/>;
+    } else if (
+      [
+        FinanceDataTypeEmu.EmergencyRefinancing,
+        FinanceDataTypeEmu.EquityFinancing,
+      ].includes(dataType)
+    ) {
+      return <Fund id={id} />;
     } else {
-      return <Guarantee  id={id}/>;
+      return <Guarantee id={id} />;
     }
   }, [dataType]);
 
