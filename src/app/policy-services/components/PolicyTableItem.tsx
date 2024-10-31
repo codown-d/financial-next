@@ -9,7 +9,12 @@ export default function PolicyTableItem(props: DataType) {
   const router = useRouter();
   return (
     <div>
-      <div className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px]">
+      <div
+        className="font-medium text-[20px] mb-5 text-[#333333] leading-[20px]"
+        onClick={() => {
+          router.push(`/policy-detail?policyguid=${rowguid}`);
+        }}
+      >
         {title}
       </div>
       <div className="text-[#999] text-xs mb-5">{fwbh}</div>
