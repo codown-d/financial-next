@@ -62,7 +62,7 @@ export default function ProductApplication(props: {
           name={"amount"}
           rules={[{ required: true }]}
         >
-          <TzInputNumber placeholder="请输入" suffix="元" />
+          <TzInputNumber placeholder="请输入" suffix="万元" />
         </TzFormItem>
         <TzFormItem
           label="申请期限"

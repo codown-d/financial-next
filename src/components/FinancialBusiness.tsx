@@ -142,7 +142,7 @@ const FinancialBusiness = (props) => {
                 <Row gutter={[76, 16]}>
                   <Col span={12}>
                     <TzFormItem label="金额" name={'amount'}>
-                      <TzInput placeholder="请输入"  suffix="元"/>
+                      <TzInput placeholder="请输入"  suffix="万元"/>
                     </TzFormItem>
                   </Col>
                   <Col span={12}>

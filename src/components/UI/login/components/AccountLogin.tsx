@@ -8,14 +8,14 @@ export default function (props: { formIns: FormInstance<any> }) {
   return (
     <TzForm form={formIns} colon={false} layout={"vertical"}>
       <TzFormItem
-        label="设置密码"
+        label="账号"
         name={"type"}
         className="!mb-4"
       >
         <TzInput placeholder="请输入" size={"large"} />
       </TzFormItem>
       <TzFormItem
-        label="确认密码"
+        label="密码"
         name={"type"}
         className="!mb-4"
       >
