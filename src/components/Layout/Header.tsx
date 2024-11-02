@@ -6,6 +6,7 @@ import Logo from "../UI/Logo";
 import TzDropdownUI from "../UI/TzDropdownUI";
 import { TzButton } from "../TzButton";
 import useLoginModal from "../UI/login/LoginModal";
+import LoginButton from "../UI/login/LoginButton";
 
 const Header = () => {
   const [activeLink, setActiveLink] = useState(null);
@@ -38,14 +39,7 @@ const Header = () => {
           </div>
           <TzDropdownUI />
           <div className=" font-medium flex justify-end items-center">
-            <TzButton type="primary" shape="round" className="custom-primary" onClick={()=>{
-              getLoginModal()
-            }}>
-              登录
-            </TzButton>
-            <TzButton shape="round" className="custom-primary ml-[14px]">
-              注册
-            </TzButton>
+            <LoginButton/>
           </div>
         </nav>
       </header>

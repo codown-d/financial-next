@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { TzConfirm } from "../../TzModal";
-import LoginContent from "./components/LoginContent";
+import LoginWrap from "./components/LoginWrap";
 
 export default function useLoginModal() {
   let getLoginModal = useCallback(() => {
@@ -10,7 +10,7 @@ export default function useLoginModal() {
       styles:{content:{padding:'0px',borderRadius:'16px',marginTop:200}},
       icon: null,
       footer: null,
-      content:<LoginContent/>
+      content:<LoginWrap/>
     });
   }, []);
   return { getLoginModal };

@@ -11,7 +11,6 @@ pm2 delete all
 # 保存当前应用列表
 pm2 save
 
-
 pnpm i
 
 # 构建项目

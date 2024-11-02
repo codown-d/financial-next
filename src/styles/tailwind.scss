@@ -18,7 +18,14 @@ body {
     height: auto;
   }
 }
+.flex-c-c {
+  @apply flex items-center justify-center flex-col
 
+}
+.flex-r-c {
+  @apply flex items-center justify-center flex-row
+
+}
 .text-desc {
   @apply font-normal text-[14px] text-[#999999] leading-[18px];
 }

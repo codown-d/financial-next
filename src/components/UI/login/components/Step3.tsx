@@ -1,26 +1,10 @@
 import TzNextImage from "@/components/TzNextImage";
-import TzTabs from "@/components/TzTabs";
 
 export default function () {
-  let items = [
-    {
-      label: "账号登录",
-      key: "/login",
-      children: 'Content of Tab Pane 1',
-      
-    },
-    {
-      label: "短信登录",
-      key: "/register",
-      children: 'Content of Tab Pane 1',
-    },
-  ];
   return (
-    <div className="flex w-full">
-      <TzNextImage src={"/images/login-img.png"} width={220}></TzNextImage>
-      <div className="flex-1">
-          <TzTabs items={items} centered tabBarStyle={{ borderBottom: 'none' }} className="border-0"></TzTabs>
-      </div>
+    <div className="flex-c-c h-full">
+      <TzNextImage src={"/images/zxcg.png"} width={80} height={0} />
+      <div className=" text-[#333] text-[20px] mt-[22px]">注册成功</div>
     </div>
   );
 }

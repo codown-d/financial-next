@@ -1,6 +1,6 @@
 "use client";
 import React, { useMemo } from "react";
-interface TzIconProps {
+interface TzIconProps extends React.HTMLAttributes<HTMLElement> {
   className: string;
 }
 export default function TzIcon(props: TzIconProps) {

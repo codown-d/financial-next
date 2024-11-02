@@ -9,14 +9,14 @@ export default function (props: { formIns: FormInstance<any> }) {
     <TzForm form={formIns} colon={false} layout={"vertical"}>
       <TzFormItem
         label="账号"
-        name={"type"}
+        name={"account"}
         className="!mb-4"
       >
         <TzInput placeholder="请输入" size={"large"} />
       </TzFormItem>
       <TzFormItem
         label="密码"
-        name={"type"}
+        name={"password"}
         className="!mb-4"
       >
         <TzInputPassword placeholder="请输入" size={"large"} />
@@ -24,7 +24,7 @@ export default function (props: { formIns: FormInstance<any> }) {
       <div className="flex items-end">
         <TzFormItem
           label="验证码"
-          name={"type"}
+          name={"code"}
           style={{ width: "180px",marginBottom:0 }}
         >
           <TzInput placeholder="请输入" size={"large"} />
