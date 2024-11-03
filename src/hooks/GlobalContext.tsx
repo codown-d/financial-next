@@ -1,10 +1,13 @@
 "use client";
-import  { createContext, useState, useContext } from "react";
+import { createContext, useState, useContext, useEffect } from "react";
 // 创建上下文
 const GlobalContext = createContext<any>(undefined);
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [userInfo, setUserInfo] = useState<any>(JSON.parse(window.localStorage.getItem('userInfo')));
+  const [userInfo, setUserInfo] = useState<any>();
+  useEffect(() => {
+    setUserInfo(JSON.parse(window.localStorage.getItem("userInfo")));
+  }, []);
   return (
     <GlobalContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
