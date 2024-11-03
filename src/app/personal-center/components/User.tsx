@@ -66,7 +66,7 @@ export default function User() {
   return (
     <AntdRegistry>
       <div className="flex-r-c">
-        <TzCard className="mr-3 flex-1">
+        <TzCard className="!mr-3 flex-1">
           <div className="flex-r-c !justify-between px-[70px]">
             {getDom(infoList.slice(0, 2))}
           </div>
@@ -77,7 +77,7 @@ export default function User() {
           </div>
         </TzCard>
       </div>
-      <TzCard className="mt-3">
+      <TzCard className="!mt-3">
         <div className="flex-c-c !items-start">
           <div className="mb-[30px] text-[20px]">需求发布</div>
           <StepFlow />
