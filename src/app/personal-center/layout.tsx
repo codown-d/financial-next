@@ -27,7 +27,6 @@ export default function PersonalCenterLayout(props) {
     setActiveItem(lastSegment);
   }, [pathname]);
   return (
-    <AntdRegistry>
     <div className="bg-[#F8F8F8] h-full pt-3 pb-[90px]">
       <div className="flex-r-c max-w-screen-lg !items-start  mx-auto">
         <TzCard className="w-[240px]" styles={{ body: { padding: "14px" } }}>
@@ -87,6 +86,5 @@ export default function PersonalCenterLayout(props) {
         <div className="flex-1 w-0 ml-3">{children}</div>
       </div>
     </div>
-    </AntdRegistry>
   );
 }
