@@ -34,7 +34,7 @@ export default function PersonalCenterLayout(props) {
           <div className="flex-c-c">
             <div className="text-[20px]">用户名</div>
             <div className="mt-[10px] mb-[20px]">180 **** 0000</div>
-            <div className="!flex-r-c">
+            <div className="flex-r-c !flex">
               <TzTag
                 icon={
                   <TzNextImage
@@ -43,7 +43,6 @@ export default function PersonalCenterLayout(props) {
                     height={0}
                   />
                 }
-                className="!flex-r-c"
                 color="#FFEEE3"
                 style={{ color: "#FF9958", fontWeight: "bold" }}
               >
@@ -57,7 +56,7 @@ export default function PersonalCenterLayout(props) {
                     height={0}
                   />
                 }
-                className="ml-3 flex-r-c"
+                className="ml-3 flex-r-c !flex"
                 color="#F0F3FF"
                 style={{ color: "#3D5AF5", fontWeight: "bold" }}
               >

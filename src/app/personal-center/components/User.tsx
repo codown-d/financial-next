@@ -114,7 +114,7 @@ export default function User() {
       </TzCard>
       <TzCard className="!mt-3">
         <div className="text-[20px]">智能匹配</div>
-        <div className="text-[#999] mt-2">AI智能匹配您可能需要的金融产品</div>
+        <div className="text-[#999] mt-2 mb-3">AI智能匹配您可能需要的金融产品</div>
         <div>
           <Loan items={MarketDataList} />
         </div>
