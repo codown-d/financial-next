@@ -6,8 +6,17 @@ import TzNextImage from "@/components/TzNextImage";
 import TzSelect from "@/components/TzSelect";
 import Loan from "@/components/UI/Loan";
 import StepFlow from "@/components/UI/StepFlow";
-import { purposeOp, termOp, selectOp, EmergencyRefinancing, EquityFinancing, Microloans, MarketDataList } from "@/constant";
+import {
+  purposeOp,
+  termOp,
+  selectOp,
+  EmergencyRefinancing,
+  EquityFinancing,
+  Microloans,
+  MarketDataList,
+} from "@/constant";
 import { insertAfterOddIndices } from "@/lib/utils";
+import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Row, Col } from "antd";
 import { title } from "process";
 import { useCallback } from "react";
@@ -55,7 +64,7 @@ export default function User() {
     );
   }, []);
   return (
-    <>
+    <AntdRegistry>
       <div className="flex-r-c">
         <TzCard className="mr-3 flex-1">
           <div className="flex-r-c !justify-between px-[70px]">
@@ -107,9 +116,9 @@ export default function User() {
         <div className="text-[20px]">智能匹配</div>
         <div className="text-[#999] mt-2">AI智能匹配您可能需要的金融产品</div>
         <div>
-        <Loan items={MarketDataList} />
+          <Loan items={MarketDataList} />
         </div>
       </TzCard>
-    </>
+    </AntdRegistry>
   );
 }
