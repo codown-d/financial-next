@@ -36,7 +36,7 @@ const Header = () => {
                 GUANGYUAN INTEGRATED FINANCIAL SERVICES PLATFORM
               </div>
             </div>
-          </div>
+          </div> 
           <TzDropdownUI />
           <div className=" font-medium flex justify-end items-center">
             <LoginButton/>

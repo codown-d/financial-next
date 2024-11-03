@@ -9,7 +9,7 @@ const steps = [
 
 const StepFlow = () => {
   return (
-    <div className="flex items-end justify-center ">
+    <div className="flex items-end justify-center mx-[-16px]">
       {steps.map((step, index) => (
         <React.Fragment key={step.id}>
           <div className="relative flex flex-col items-center  rounded  w-[88px] mx-4">

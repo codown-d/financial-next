@@ -45,3 +45,24 @@ border-bottom: 0px !important;
   transform: translateY(-20px);
   transition: opacity 300ms, transform 300ms;
 }
+.active-item{
+  color: #3D5AF5 !important;
+  position: relative;
+  &:hover{
+    color: #3D5AF5;
+    background: rgba(61, 90, 245, 0.1);
+  }
+  &::before{
+    content: '';
+    width: 4px;
+    position: absolute;
+    height: 14px;
+    top: 50%;
+    left: 0;
+    border-radius: 2px;
+    margin-top: -7px;
+    background: #3D5AF5;
+    
+  }
+
+}

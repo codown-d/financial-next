@@ -5,11 +5,14 @@ import { Form } from "antd";
 import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 
-export default function () {
+export default function (props) {
+  let {setOpen} = props
   let [formIns] = Form.useForm();
 
   const { setContentType } = useLoginContext();
+  let {setUserInfo} = useGlobalContext()
   let items = [
     {
       label: "账号登录",
@@ -54,6 +57,8 @@ export default function () {
                 account: formIns.getFieldValue('account'),
               })
             );
+            setOpen(false)
+            setUserInfo({account:formIns.getFieldValue('account')})
           }}
         >
           登录

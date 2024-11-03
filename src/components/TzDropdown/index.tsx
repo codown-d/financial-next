@@ -1,4 +1,3 @@
-"use client";
 import { Dropdown, DropdownProps } from "antd";
 import React, { useMemo } from "react";
 interface TzDropdownProps extends DropdownProps {}
@@ -7,7 +6,7 @@ export default function TzDropdown(props: TzDropdownProps) {
   const realProps = useMemo(() => {
     return {
       ...otherProps,
-      className: `tz-dropdown ${props.className}`,
+      className: `tz-dropdown ${props.className||''}`,
     };
   }, [props]);
   return <Dropdown {...realProps}>{children}</Dropdown>;

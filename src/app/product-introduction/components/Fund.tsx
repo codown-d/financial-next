@@ -62,7 +62,7 @@ export default function Fund(props: { id: string }) {
                   let items = keys(res).reduce((pre, item) => {
                     let text = res[item];
                     if ("amount" === item) {
-                      text = `${text} 元`;
+                      text = `${text} 万元`;
                     } else if ("deadline" === item) {
                       text = `${text} 个月`;
                     } else if ("type" === item) {

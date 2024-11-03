@@ -4,9 +4,9 @@ import  { createContext, useState, useContext } from "react";
 const GlobalContext = createContext<any>(undefined);
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [value, setValue] = useState<string>("Initial Value");
+  const [userInfo, setUserInfo] = useState<any>(JSON.parse(window.localStorage.getItem('userInfo')));
   return (
-    <GlobalContext.Provider value={{ value, setValue }}>
+    <GlobalContext.Provider value={{ userInfo, setUserInfo }}>
       {children}
     </GlobalContext.Provider>
   );

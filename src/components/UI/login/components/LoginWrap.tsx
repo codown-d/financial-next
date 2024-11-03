@@ -8,7 +8,8 @@ export const LoginContext = createContext(null!);
 export const useLoginContext = () => {
   return useContext(LoginContext);
 };
-export default function () {
+export default function (props) {
+  let {setOpen} = props
   const [contentType, setContentType] = useState("login");
   const [inProp, setInProp] = useState(true);
   useEffect(() => {
@@ -22,7 +23,7 @@ export default function () {
       <TzNextImage src={"/images/login-img.png"} width={220}></TzNextImage>
       <LoginContext.Provider value={{ contentType, setContentType }}>
         <CSSTransition in={inProp} timeout={300} classNames="fade">
-          {!inProp?<></>:contentType === "login" ? <LoginContent /> : <UserRegistration />}
+          {!inProp?<></>:contentType === "login" ? <LoginContent setOpen={setOpen} /> : <UserRegistration />}
         </CSSTransition>
       </LoginContext.Provider>
     </div>

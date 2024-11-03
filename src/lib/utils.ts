@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Button } from 'antd';
+import { flatMap } from 'lodash';
 
 export const isImg = /^http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-./?%&=]*)?/;
 export const getChildrenToRender = (item, i) => {
@@ -20,3 +21,8 @@ export function toQuery(obj:any) {
   const params = new URLSearchParams(obj);
   return '?'+params.toString();
 }
+export const insertAfterOddIndices = (array, elementToInsert) => {
+  return flatMap(array, (value, index:number) => {
+      return [value, ...(index % 2 === 0 ? [elementToInsert] : [])];
+  });
+};
