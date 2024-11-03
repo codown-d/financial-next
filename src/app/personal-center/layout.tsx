@@ -43,7 +43,7 @@ export default function PersonalCenterLayout(props) {
                     height={0}
                   />
                 }
-                className="flex-r-c"
+                className="!flex-r-c"
                 color="#FFEEE3"
                 style={{ color: "#FF9958", fontWeight: "bold" }}
               >
