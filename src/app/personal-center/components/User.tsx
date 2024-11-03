@@ -81,7 +81,7 @@ export default function User() {
         <div className="flex-c-c !items-start">
           <div className="mb-[30px] text-[20px]">需求发布</div>
           <StepFlow />
-          <TzForm className="mt-[30px]" colon={false} layout="vertical">
+          <TzForm className="!mt-[30px]" colon={false} layout="vertical">
             <Row gutter={[120, 0]}>
               <Col span={12}>
                 <TzFormItem label="金额" name={"amount"} className="w-[320px]">
@@ -112,7 +112,7 @@ export default function User() {
           <TzButton type={"primary"}>发布</TzButton>
         </div>
       </TzCard>
-      <TzCard className="mt-3">
+      <TzCard className="!mt-3">
         <div className="text-[20px]">智能匹配</div>
         <div className="text-[#999] mt-2">AI智能匹配您可能需要的金融产品</div>
         <div>

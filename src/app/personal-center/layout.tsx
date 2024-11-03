@@ -30,7 +30,7 @@ export default function PersonalCenterLayout(props) {
     <div className="bg-[#F8F8F8] h-full pt-3 pb-[90px]">
       <div className="flex-r-c max-w-screen-lg !items-start  mx-auto">
         <TzCard className="w-[240px]" styles={{ body: { padding: "14px" } }}>
-          <div className="flex-c-c">
+          <div className="!flex-c-c">
             <div className="text-[20px]">用户名</div>
             <div className="mt-[10px] mb-[20px]">180 **** 0000</div>
             <div className="flex-r-c">
