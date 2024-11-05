@@ -9,8 +9,10 @@ import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
 import { collateralOp, FinanceDataTypeEmu, MarketDataList, MicroloansOp, selectOp } from "@/constant";
 import { find, keys } from "lodash";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
+import { DescriptionsProps, Form } from "antd";
+import { formLabelObj } from "../hooks/const";
 
 export default function Guarantee(props: { id: string }) {
   let {id} = props
@@ -18,9 +20,46 @@ export default function Guarantee(props: { id: string }) {
     console.log(find(MarketDataList, (item) => item.id == props.id))
     return find(MarketDataList, (item) => item.id == props.id);
   }, [props.id]);
-  let { submit, success, fail } = useApplicationAction();
+  let {
+    Submit,
+    Success,
+    Fail,
+    setSubmitVisible,
+    setSuccessVisible,
+    setFailVisible,
+  } = useApplicationAction();
+  let [form] = Form.useForm();
+  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
   return (
     <>
+       <Submit
+        form={form}
+        type={"业务申请"}
+        callback={(val) => {
+          let items = keys(val).reduce((pre, item) => {
+            let text = val[item];
+            if ("amount" === item) {
+              text = `${text} 万元`;
+            } else if ("deadline" === item) {
+              text = `${text} 个月`;
+            } else if ("type" === item) {
+              text = find(MicroloansOp, (ite) => ite.value === text)?.label;
+            } else if ("measure" === item) {
+              text = find(selectOp, (ite) => ite.value === text)?.label;
+            }
+            pre.push({
+              key: item,
+              label: formLabelObj[item],
+              children: text,
+            });
+            return pre;
+          }, []);
+          setItems(items);
+          setSuccessVisible(true);
+        }}
+      />
+      <Success items={items} />
+      <Fail />
       <TzCard
         className="flex-1 w-full"
         styles={{ body: { padding: "30px 0px" } }}
@@ -61,36 +100,7 @@ export default function Guarantee(props: { id: string }) {
           </div>
           <div className="w-[245px] flex flex-col justify-center items-center">
             <TzButton type={"primary"} shape={"round"} onClick={() => {
-              let obj = {
-                type: "类型",
-                name: "公司名称/姓名",
-                credential: "证件号码",
-                amount: "申请金额",
-                deadline: "申请期限",
-                measure: "反担保措施",
-                contact: "联系方式",
-              };
-              submit().then((res) => {
-                let items = keys(res).reduce((pre, item) => {
-                  let text = res[item];
-                  if ("amount" === item) {
-                    text = `${text} 万元`;
-                  } else if ("deadline" === item) {
-                    text = `${text} 个月`;
-                  }else if ("type" === item) {
-                    text = find(MicroloansOp,(ite=>ite.value===text))?.label
-                  } else if ("measure" === item) {
-                    text = find(selectOp,(ite=>ite.value===text))?.label;
-                  }
-                  pre.push({
-                    key: item,
-                    label: obj[item],
-                    children: text,
-                  });
-                  return pre;
-                }, []);
-                success(items);
-              });
+                setSubmitVisible(true);
             }}>
               立即申请
             </TzButton>

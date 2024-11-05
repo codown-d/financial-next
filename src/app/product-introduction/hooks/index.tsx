@@ -1,58 +1,136 @@
-import { TzConfirm } from "@/components/TzModal";
-import { DescriptionsProps, Form } from "antd";
-import { useCallback } from "react";
+import TzModal, { TzConfirm } from "@/components/TzModal";
+import { DescriptionsProps, Form, FormInstance } from "antd";
+import { useCallback, useState } from "react";
 import ProductApplication from "../components/ProductApplication";
 import ApplicationSuccess from "../components/ApplicationSuccess";
 import ApplicationFail from "../components/ApplicationFail";
+import { TzButton } from "@/components/TzButton";
 
-export default function useApplicationAction(props?: { type: string }) {
-  let { type } = props || { type: "小微贷申请" };
-  let [form] = Form.useForm();
-  let submit = useCallback(() => {
-    return new Promise((resolve, reject) => {
-      TzConfirm({
-        title: (
-          <div className="text-center font-bold mb-[50px] text-2xl text-gray-800 mt-5 leading-[32px]">
+export default function useApplicationAction() {
+  let [failVisible, setFailVisible] = useState(false);
+  let [successVisible, setSuccessVisible] = useState(false);
+  let [submitVisible, setSubmitVisible] = useState(false);
+  let Submit = (props: {
+    form: FormInstance<any>;
+    type: string;
+    callback?: (arg: any) => void;
+  }) => {
+    let { form, type, callback } = props;
+    return (
+      <TzModal
+        closeIcon={false}
+        width={620}
+        open={submitVisible}
+        title={
+          <div className="text-center font-bold mb-[50px] text-2xl pt-10 text-gray-800  leading-[32px]">
             {type}
           </div>
-        ),
-        content: <ProductApplication formIns={form} />,
-        okText: "提交申请",
-        onOk() {
+        }
+        okButtonProps={{
+          shape: "round",
+          style: { minWidth: "120px" },
+        }}
+        cancelButtonProps={{
+          shape: "round",
+          style: { minWidth: "120px" },
+        }}
+        footer={(_, { OkBtn, CancelBtn }) => (
+          <div className="flex items-center justify-center mt-[40px] mb-2">
+            <CancelBtn />
+            <div className="ml-5">
+              <OkBtn />
+            </div>
+          </div>
+        )}
+        okText={"提交申请"}
+        onCancel={() => {
+          setSubmitVisible(false);
+        }}
+        onOk={() => {
           return form
             .validateFields()
             .then((val) => {
-              resolve(val);
+              callback?.(val);
+              setSubmitVisible(false);
               form.resetFields();
             })
             .catch();
-        },
-      });
-    });
-  }, []);
-  let success = useCallback((items: DescriptionsProps["items"]) => {
-    TzConfirm({
-      title: null,
-      content: <ApplicationSuccess items={items} />,
-      footer: (_, { OkBtn, CancelBtn }) => (
-        <div className="flex items-center justify-center mt-[40px] mb-2">
-          <CancelBtn />
-        </div>
-      ),
-      styles: { content: { padding: "0px 0px 20px" } },
-      cancelText: "关闭",
-    });
-  }, []);
-  let fail = useCallback(() => {
-    TzConfirm({
-      title: null,
-      content: <ApplicationFail />,
-      okText: "重新申请",
-      cancelText: "关闭",
-      styles: { content: { padding: "0px 0px 20px" } },
-      onOk() {},
-    });
-  }, []);
-
-  return { submit, success, fail };
+        }}
+      >
+        <ProductApplication formIns={form} />
+      </TzModal>
+    );
+  };
+  let Success = (props: DescriptionsProps) => {
+    let { items } = props;
+    return (
+      <TzModal
+        closeIcon={false}
+        width={620}
+        open={successVisible}
+        styles={{ content: { padding: "0px 0px 20px" } }}
+        footer={
+          <div className="flex items-center justify-center mt-[40px] mb-2">
+            <TzButton
+              shape={"round"}
+              type={"primary"}
+              style={{ minWidth: "120px" }}
+              onClick={() => {
+                setSuccessVisible(false);
+              }}
+            >
+              关闭
+            </TzButton>
+          </div>
+        }
+      >
+        <ApplicationSuccess items={items} />
+      </TzModal>
+    );
+  };
+  let Fail = () => {
+    return (
+      <TzModal
+        width={620}
+        closeIcon={false}
+        open={failVisible}
+        styles={{ content: { padding: "0px 0px 20px" } }}
+        okText={"重新申请"}
+        cancelText={"关闭"}
+        onOk={() => {
+          setFailVisible(false);
+          setSubmitVisible(true);
+        }}
+        onCancel={() => {
+          setFailVisible(false);
+        }}
+        okButtonProps={{
+          shape: "round",
+          style: { minWidth: "120px" },
+        }}
+        cancelButtonProps={{
+          shape: "round",
+          style: { minWidth: "120px" },
+        }}
+        footer={(_, { OkBtn, CancelBtn }) => (
+          <div className="flex items-center justify-center mt-[40px] mb-2">
+            <CancelBtn />
+            <div className="ml-5">
+              <OkBtn />
+            </div>
+          </div>
+        )}
+      >
+        <ApplicationFail />
+      </TzModal>
+    );
+  };
+  return {
+    Submit,
+    setSubmitVisible,
+    Success,
+    setSuccessVisible,
+    Fail,
+    setFailVisible,
+  };
 }

@@ -15,6 +15,8 @@ import useApplicationAction from "../hooks";
 import CountUp from "react-countup";
 import { FinancingEntityEmu } from "@/fetch/definition";
 import { find, keys } from "lodash";
+import { DescriptionsProps, Form } from "antd";
+import { formLabelObj } from "../hooks/const";
 
 export default function SmallLoans(props: { id: string }) {
   let [segmentedValue, setSegmentedValue] = useState(
@@ -71,11 +73,47 @@ export default function SmallLoans(props: { id: string }) {
         </DescInfo>
       );
     }
-  }, [segmentedValue]);
-  let { submit, success, fail } = useApplicationAction();
+  }, [segmentedValue]); let {
+    Submit,
+    Success,
+    Fail,
+    setSubmitVisible,
+    setSuccessVisible,
+    setFailVisible,
+  } = useApplicationAction();
+  let [form] = Form.useForm();
+  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
 
   return (
     <>
+       <Submit
+        form={form}
+        type={"业务申请"}
+        callback={(val) => {
+          let items = keys(val).reduce((pre, item) => {
+            let text = val[item];
+            if ("amount" === item) {
+              text = `${text} 万元`;
+            } else if ("deadline" === item) {
+              text = `${text} 个月`;
+            } else if ("type" === item) {
+              text = find(MicroloansOp, (ite) => ite.value === text)?.label;
+            } else if ("measure" === item) {
+              text = find(selectOp, (ite) => ite.value === text)?.label;
+            }
+            pre.push({
+              key: item,
+              label: formLabelObj[item],
+              children: text,
+            });
+            return pre;
+          }, []);
+          setItems(items);
+          setSuccessVisible(true);
+        }}
+      />
+      <Success items={items} />
+      <Fail />
       <TzCard
         className="flex-1 w-full"
         styles={{ body: { padding: "30px 0px" } }}
@@ -130,37 +168,7 @@ export default function SmallLoans(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                // fail();
-                let obj = {
-                  type: "类型",
-                  name: "公司名称/姓名",
-                  credential: "证件号码",
-                  amount: "申请金额",
-                  deadline: "申请期限",
-                  measure: "反担保措施",
-                  contact: "联系方式",
-                };
-                submit().then((res) => {
-                  let items = keys(res).reduce((pre, item) => {
-                    let text = res[item];
-                    if ("amount" === item) {
-                      text = `${text} 万元`;
-                    } else if ("deadline" === item) {
-                      text = `${text} 个月`;
-                    }else if ("type" === item) {
-                      text = find(MicroloansOp,(ite=>ite.value===text))?.label
-                    } else if ("measure" === item) {
-                      text = find(selectOp,(ite=>ite.value===text))?.label;
-                    }
-                    pre.push({
-                      key: item,
-                      label: obj[item],
-                      children: text,
-                    });
-                    return pre;
-                  }, []);
-                  success(items);
-                });
+                setSubmitVisible(true);
               }}
             >
               立即申请

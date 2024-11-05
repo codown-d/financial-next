@@ -1,7 +1,6 @@
 "use client";
 import TzCard from "@/components/TzCard";
 import TzTag from "@/components/TzCheckableTag";
-import TzIcon from "@/components/TzIcon";
 import TzNextImage from "@/components/TzNextImage";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import Link from "next/link";
@@ -28,7 +27,7 @@ export default function PersonalCenterLayout(props) {
   }, [pathname]);
   return (
     <AntdRegistry>
-    <div className="bg-[#F8F8F8] h-full pt-3 pb-[90px]">
+    <div className="bg-[#F8F8F8]  pt-3 pb-[90px] min-h-[900px]">
       <div className="flex-r-c max-w-screen-lg !items-start  mx-auto">
         <TzCard className="w-[240px]" styles={{ body: { padding: "14px" } }}>
           <div className="flex-c-c">
@@ -89,3 +88,4 @@ export default function PersonalCenterLayout(props) {
     </AntdRegistry>
   );
 }
+

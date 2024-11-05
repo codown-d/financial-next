@@ -9,9 +9,12 @@ export const useLoginContext = () => {
   return useContext(LoginContext);
 };
 export default function (props) {
-  let {setOpen} = props
-  const [contentType, setContentType] = useState("login");
-  const [inProp, setInProp] = useState(true);
+  let {setOpen,type} = props
+  const [contentType, setContentType] = useState(type);
+  const [inProp, setInProp] = useState(true);  
+  useEffect(() => {
+    setContentType(type)
+  },[type])
   useEffect(() => {
     setInProp(false);
     setTimeout(() => {

@@ -1,7 +1,7 @@
 import TzTabs from "@/components/TzTabs";
 import AccountLogin from "./AccountLogin";
 import SMSLogin from "./SMSLogin";
-import { Form } from "antd";
+import { Form, Modal } from "antd";
 import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
@@ -57,7 +57,7 @@ export default function (props) {
                 account: formIns.getFieldValue('account'),
               })
             );
-            setOpen(false)
+            Modal.destroyAll();
             setUserInfo({account:formIns.getFieldValue('account')})
           }}
         >

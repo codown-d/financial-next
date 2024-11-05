@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import TzModal from "@/components/TzModal";
+import TzModal, { TzConfirm } from "@/components/TzModal";
 import LoginWrap from "./components/LoginWrap";
 import { TzButton } from "@/components/TzButton";
 import TzDropdown from "@/components/TzDropdown";
@@ -10,6 +10,7 @@ import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function LoginButton() {
   const [open, setOpen] = useState(false);
+  const [type, setType] = useState('login');
   let {userInfo,setUserInfo} = useGlobalContext()
   const items = [
     {
@@ -50,12 +51,16 @@ export default function LoginButton() {
             type="primary"
             shape="round"
             onClick={() => {
+              setType('login')
               setOpen(true);
             }}
           >
             登录
           </TzButton>
-          <TzButton shape="round" className="ml-[14px]">
+          <TzButton shape="round" className="ml-[14px]" onClick={()=>{
+            setType('register1')
+            setOpen(true)
+          }}>
             注册
           </TzButton>
         </>
@@ -79,7 +84,7 @@ export default function LoginButton() {
           setOpen(false);
         }}
       >
-        <LoginWrap setOpen={setOpen}/>
+        <LoginWrap setOpen={setOpen} type={type}/>
       </TzModal>
     </>
   );
