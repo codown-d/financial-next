@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import TzModal from "@/components/TzModal";
 import LoginWrap from "./components/LoginWrap";
 import { TzButton } from "@/components/TzButton";
