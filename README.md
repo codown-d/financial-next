@@ -41,5 +41,6 @@ Code released under the MIT license.
 
 ngrok http http://localhost:3000
 pm2 delete all
+pm2 save
 pm2 restart next-app
 pm2 start npm --name "next-app" -- start
