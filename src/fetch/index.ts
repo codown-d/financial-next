@@ -73,10 +73,23 @@ export const getPolicyByRowguid = async (
     params
   );
 };
+export const yhb1loginajax = async (
+  params?: any
+): Promise<IResponseData<any>> => {
+  return http.post(
+    "http://129.211.162.64/gy001/public/Api2024/yhb1loginajax",
+    params
+  );
+};
 export const getProxyApplyPolicyList = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post("/api/proxy", params);
+};
+export const login = async (
+  params?: any
+): Promise<IResponseData<GetPolicyListProps>> => {
+  return http.post("/api/proxy", params,{headers:{'x-target-api':'login'}});
 };
 export const postYhb1loginajax = async (
   params?: any

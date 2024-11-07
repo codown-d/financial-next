@@ -6,7 +6,7 @@ import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
 import { useGlobalContext } from "@/hooks/GlobalContext";
-import { postYhb1loginajax } from "@/fetch";
+import { login, postYhb1loginajax, yhb1loginajax } from "@/fetch";
 import { useState } from "react";
 
 export default function (props) {
@@ -59,7 +59,7 @@ export default function (props) {
               return
             }
             formIns.validateFields().then(val=>{
-              postYhb1loginajax(val).then(res=>{
+              login(val).then(res=>{
                 localStorage.setItem(
                   "userInfo",
                   JSON.stringify({

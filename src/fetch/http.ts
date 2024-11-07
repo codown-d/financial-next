@@ -1,4 +1,4 @@
-import { AxiosResponse } from "axios";
+import { AxiosHeaders, AxiosRequestConfig, AxiosResponse } from "axios";
 import axiosIns from "./axios";
 import { IResponseData } from "./definition";
 
@@ -16,8 +16,8 @@ const get = (url, params = {}): Promise<IResponseData<any>> => {
  * @param {string} url - 请求的 URL
  * @param {object} data - 请求体数据
  */
-const post = (url, data): Promise<IResponseData<any>>  => {
-  return axiosIns.post(url, data);
+const post = (url, data,config?:AxiosRequestConfig<any>): Promise<IResponseData<any>>  => {
+  return axiosIns.post(url, data, config);
 };
 
 /**

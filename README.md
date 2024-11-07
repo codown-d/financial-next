@@ -40,6 +40,6 @@ Code released under the MIT license.
 - [ ] Animation using Framer Motion
 
 ngrok http http://localhost:3000
-
+pm2 delete all
 pm2 restart next-app
 pm2 start npm --name "next-app" -- start
