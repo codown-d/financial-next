@@ -1,14 +1,15 @@
 import TzTabs from "@/components/TzTabs";
 import AccountLogin from "./AccountLogin";
 import SMSLogin from "./SMSLogin";
-import { Form, Modal } from "antd";
+import { Form, message, Modal } from "antd";
 import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
 import { useGlobalContext } from "@/hooks/GlobalContext";
+import { postYhb1loginajax } from "@/fetch";
+import { useState } from "react";
 
 export default function (props) {
-  let {setOpen} = props
   let [formIns] = Form.useForm();
 
   const { setContentType } = useLoginContext();
@@ -25,6 +26,7 @@ export default function (props) {
       children: <SMSLogin formIns={formIns} />,
     },
   ];
+  let [radio,setRadio] = useState(false)
   return (
     <div className="flex-1 px-10 mt-2">
       <TzTabs
@@ -34,7 +36,8 @@ export default function (props) {
         className="border-0"
       />
       <div className="flex flex-col  mt-[38px]">
-        <TzRadio>
+        <TzRadio value={radio} onChange={(val)=>{
+          setRadio(val.target.checked)}}>
           <div className=" text-[12px]">
             我已阅读并同意
             <a href="" className="text-[#3D5AF5] ml-1">
@@ -51,14 +54,22 @@ export default function (props) {
           type={"primary"}
           size={"large"}
           onClick={() => {
-            localStorage.setItem(
-              "userInfo",
-              JSON.stringify({
-                account: formIns.getFieldValue('account'),
+            if(radio === false){  
+              message.warning('用户协议未勾选');
+              return
+            }
+            formIns.validateFields().then(val=>{
+              postYhb1loginajax(val).then(res=>{
+                localStorage.setItem(
+                  "userInfo",
+                  JSON.stringify({
+                    account: formIns.getFieldValue('account'),
+                  })
+                );
+                Modal.destroyAll();
+                setUserInfo({account:formIns.getFieldValue('account')})
               })
-            );
-            Modal.destroyAll();
-            setUserInfo({account:formIns.getFieldValue('account')})
+            })
           }}
         >
           登录

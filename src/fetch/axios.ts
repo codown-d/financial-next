@@ -1,3 +1,4 @@
+import { message } from 'antd';
 import axios, { AxiosResponse } from 'axios';
 
 const axiosIns = axios.create({
@@ -29,10 +30,13 @@ axiosIns.interceptors.response.use(
   (error) => {
     // 处理响应错误
     const { response } = error;
+    console.log('response', response,error)
     if (response) {
       // 根据响应状态码处理不同的情况
       console.error('API error:', response);
     } else {
+      // 处理网络错误
+      message.error(error.message);
       console.error('Network error:', error);
     }
     return Promise.reject(error);

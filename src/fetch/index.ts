@@ -78,3 +78,9 @@ export const getProxyApplyPolicyList = async (
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post("/api/proxy", params);
 };
+export const postYhb1loginajax = async (
+  params?: any
+): Promise<IResponseData<GetPolicyListProps>> => {
+  return http.post(api.yhb1loginajax, params);
+};
+
