@@ -11,11 +11,11 @@ const nextConfig = {
   // env,
   // basePath: env.NEXT_PUBLIC_BASE_PATH,
   // output: "export", //适合不需要图片优化的静态网站，适合不依赖服务器的纯静态站点。
-  // images: {
-  //   // 默认情况下会启用图片优化
-  //   path: `${env.NEXT_PUBLIC_BASE_PATH}`,
-  //   unoptimized: true, // 禁用图片优化
-  // },
+  images: {
+    // 默认情况下会启用图片优化
+    // path: `${env.NEXT_PUBLIC_BASE_PATH}`,
+    unoptimized: true, // 禁用图片优化
+  },
   // distDir: "dist",
   async rewrites() {
     return [

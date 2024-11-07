@@ -1,10 +1,5 @@
-// app/api/proxy/route.ts
+import { apiEndpoints } from "../apiEndpoints";
 
-const apiEndpoints = {
-    host: "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getPolicyList",
-    login: "http://129.211.162.64/gy001/public/Api2024/yhb1loginajax",
-  };
-  
   export async function GET(request: Request) {
     const targetApi = request.headers.get("x-target-api") || "host";
     const targetUrl = apiEndpoints[targetApi];
@@ -44,7 +39,6 @@ const apiEndpoints = {
   }
   
   export async function POST(request: Request) {
-    console.log(request)
     const targetApi = request.headers.get("x-target-api") || "host";
     const targetUrl = apiEndpoints[targetApi];
   
