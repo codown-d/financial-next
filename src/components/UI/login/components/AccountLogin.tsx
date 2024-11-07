@@ -30,7 +30,7 @@ export default function (props: { formIns: FormInstance<any> }) {
           <TzInput placeholder="请输入" size={"large"} />
         </TzFormItem>
         <div className="w-0 flex-1 ml-3">
-          <img src="/images/baoxian.png" alt="" className="w-full h-10" />
+          <img src="http://129.211.162.64/gy001/public/Api2024/captchainfo" alt="" className="w-full h-10" />
         </div>
       </div>
     </TzForm>
