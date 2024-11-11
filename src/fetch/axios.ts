@@ -25,6 +25,7 @@ axiosIns.interceptors.request.use(
 axiosIns.interceptors.response.use(
   (response:AxiosResponse<any, any>) => {
     // 处理响应数据
+    console.log(response.data)
     return response.data; // 直接返回数据
   },
   (error) => {

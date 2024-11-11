@@ -10,10 +10,11 @@ import { login, postYhb1loginajax, yhb1loginajax } from "@/fetch";
 import { useState } from "react";
 
 export default function (props) {
+  let { setOpen } = props;
   let [formIns] = Form.useForm();
 
   const { setContentType } = useLoginContext();
-  let {setUserInfo} = useGlobalContext()
+  let { setUserInfo } = useGlobalContext();
   let items = [
     {
       label: "账号登录",
@@ -26,7 +27,7 @@ export default function (props) {
       children: <SMSLogin formIns={formIns} />,
     },
   ];
-  let [radio,setRadio] = useState(false)
+  let [radio, setRadio] = useState(false);
   return (
     <div className="flex-1 px-10 mt-2">
       <TzTabs
@@ -36,8 +37,12 @@ export default function (props) {
         className="border-0"
       />
       <div className="flex flex-col  mt-[38px]">
-        <TzRadio value={radio} onChange={(val)=>{
-          setRadio(val.target.checked)}}>
+        <TzRadio
+          value={radio}
+          onChange={(val) => {
+            setRadio(val.target.checked);
+          }}
+        >
           <div className=" text-[12px]">
             我已阅读并同意
             <a href="" className="text-[#3D5AF5] ml-1">
@@ -54,22 +59,24 @@ export default function (props) {
           type={"primary"}
           size={"large"}
           onClick={() => {
-            if(radio === false){  
-              message.warning('用户协议未勾选');
-              return
+            if (radio === false) {
+              message.warning("用户协议未勾选");
+              return;
             }
-            formIns.validateFields().then(val=>{
-              login(val).then(res=>{
-                localStorage.setItem(
-                  "userInfo",
-                  JSON.stringify({
-                    account: formIns.getFieldValue('account'),
-                  })
-                );
-                Modal.destroyAll();
-                setUserInfo({account:formIns.getFieldValue('account')})
-              })
-            })
+            formIns.validateFields().then((val) => {
+              console.log(val);
+              localStorage.setItem(
+                "userInfo",
+                JSON.stringify({
+                  account: val.zh1,
+                })
+              );
+              setOpen(false);
+              setUserInfo({
+                account: val.zh1,
+              });
+              login(val).then((res) => {});
+            });
           }}
         >
           登录
