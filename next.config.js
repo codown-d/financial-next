@@ -23,6 +23,10 @@ const nextConfig = {
         source: '/proxyApi/:path*',
         destination: 'http://123.56.86.66:3000/:path*', // 目标 API 地址
       },
+      {
+        source: '/api/:path*',
+        destination: 'http://34282y467g.oicp.vip/:path*', // 目标 API 地址
+      },
     ];
   },
   async redirects() {

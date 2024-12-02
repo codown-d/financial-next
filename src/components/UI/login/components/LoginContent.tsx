@@ -6,8 +6,10 @@ import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
 import { useGlobalContext } from "@/hooks/GlobalContext";
-import { login, postYhb1loginajax, yhb1loginajax } from "@/fetch";
-import { useState } from "react";
+import {
+  login,
+} from "@/fetch";
+import { useCallback, useEffect, useState } from "react";
 
 export default function (props) {
   let { setOpen } = props;
@@ -28,6 +30,7 @@ export default function (props) {
     },
   ];
   let [radio, setRadio] = useState(false);
+
   return (
     <div className="flex-1 px-10 mt-2">
       <TzTabs
@@ -64,18 +67,13 @@ export default function (props) {
               return;
             }
             formIns.validateFields().then((val) => {
-              console.log(val);
-              localStorage.setItem(
-                "userInfo",
-                JSON.stringify({
-                  account: val.zh1,
-                })
-              );
-              setOpen(false);
-              setUserInfo({
-                account: val.zh1,
+              login(val).then((res) => {
+                localStorage.setItem("token", res.token);
+                setOpen(false);
+                setUserInfo({
+                  userInfo: val.zh1,
+                });
               });
-              login(val).then((res) => {});
             });
           }}
         >

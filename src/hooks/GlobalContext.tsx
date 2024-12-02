@@ -1,4 +1,5 @@
 "use client";
+import { getUserInfo } from "@/fetch";
 import { createContext, useState, useContext, useEffect } from "react";
 // 创建上下文
 const GlobalContext = createContext<any>(undefined);
@@ -6,7 +7,10 @@ const GlobalContext = createContext<any>(undefined);
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
   const [userInfo, setUserInfo] = useState<any>();
   useEffect(() => {
-    setUserInfo(JSON.parse(window.localStorage.getItem("userInfo")));
+    getUserInfo().then(res=>{
+      setUserInfo(res.userInfo)
+      window.localStorage.setItem("userInfo", JSON.stringify(res.userInfo));                  
+    })
   }, []);
   return (
     <GlobalContext.Provider value={{ userInfo, setUserInfo }}>

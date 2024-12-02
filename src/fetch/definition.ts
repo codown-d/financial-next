@@ -21,6 +21,8 @@ export interface IResponseData<T> {
   errorOn?: Array<string>;
   waitingOn?: Array<string>;
   successOn?: Array<string>;
+
+  [x:string]:any;
 }
 export enum FinancingEntityEmu {
   /** 企业 */

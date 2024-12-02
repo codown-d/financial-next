@@ -1,6 +1,7 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
 import { FinanceDataTypeEmu } from "@/constant";
+import { getUnique, postImgCode } from "@/fetch";
 import { FinanceItemProps } from "@/fetch/definition";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -89,4 +90,24 @@ export const useFundModal = () => {
     });
   }, []);
   return { getFundModal };
+};
+
+type ImgCodeType = "user_login" | "register";
+export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
+  let [imgCode, setImgCode] = useState("");
+  let [token, setToken] = useState("");
+  let getImgCode = useCallback(() => {
+    getUnique().then((res) => {
+      let { token } = res;
+      setToken(token)
+      postImgCode({ token, send_type }).then((res: any) => {
+        setImgCode(res.img);
+      });
+    });
+  }, []);
+  return {
+    getImgCode,
+    imgCode,
+    token
+  };
 };

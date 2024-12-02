@@ -51,6 +51,10 @@ export const getHotWordList = async (
     return http.get(api.policy, params);
   }
 };
+interface ResProps {
+  code: Number;
+  data: any;
+}
 interface GetPolicyListProps {
   custom: {
     list: any[];
@@ -86,14 +90,28 @@ export const getProxyApplyPolicyList = async (
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post("/api/proxy", params);
 };
-export const login = async (
-  params?: any
-): Promise<IResponseData<GetPolicyListProps>> => {
-  return http.post("/api/proxy", params,{headers:{'x-target-api':'login'}});
-};
+
 export const postYhb1loginajax = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post(api.yhb1loginajax, params);
+};
+export const getUnique = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.unique, params);
+};
+export const postImgCode = async (params: any): Promise<IResponseData<any>> => {
+  let { token,...otherParams } = params;
+  return http.post(api.imgCode, otherParams, { headers: { token: token } });
+};
+export const login = async (
+  params?: any
+): Promise<IResponseData<any>> => {
+  let { token ,...otherParams} = params;
+  return http.post(api.userLogin, otherParams, {
+    headers: { token },
+  });
+};
+export const getUserInfo = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.userInfo, params, {silence:true});
 };
 

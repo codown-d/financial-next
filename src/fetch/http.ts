@@ -7,8 +7,8 @@ import { IResponseData } from "./definition";
  * @param {string} url - 请求的 URL
  * @param {object} params - 查询参数
  */
-const get = (url, params = {}): Promise<IResponseData<any>> => {
-  return axiosIns.get(url, { params });
+const get = (url, params = {},config?:any): Promise<IResponseData<any>> => {
+  return axiosIns.get(url, { params,  ...config });
 };
 
 /**

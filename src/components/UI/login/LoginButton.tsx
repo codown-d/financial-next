@@ -76,6 +76,7 @@ export default function LoginButton() {
       <TzModal
         open={open}
         footer={null}
+        destroyOnClose
         width={620}
         styles={{
           content: { padding: "0px", borderRadius: "16px", marginTop: 200 },
