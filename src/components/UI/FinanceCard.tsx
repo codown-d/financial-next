@@ -26,6 +26,7 @@ export default function (props: FinanceCardProps) {
     id,
     ...otherProps
   } = props;
+  console.log(props)
   let getRateList = useMemo(() => {
     return dataType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
@@ -132,7 +133,7 @@ export default function (props: FinanceCardProps) {
             {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
               <div className="mt-3 text-left leading-[14px]">
                 担保方式：{ collateralOp.reduce((pre:any[],item)=>{
-                  if(guaranteeMethod.includes(item.value)){
+                  if(guaranteeMethod?.includes(item.value)){
                      pre?.push?.(item.label)
                   }
                   return pre

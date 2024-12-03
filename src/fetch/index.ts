@@ -114,4 +114,7 @@ export const login = async (
 export const getUserInfo = async (params?: any): Promise<IResponseData<any>> => {
   return http.get(api.userInfo, params, {silence:true});
 };
+export const getProduct = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.product, params, );
+};
 

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import TzTabs from "./TzTabs";
 import TitleBg from "./UI/TitleBg";
 import Image from "next/image";
@@ -13,33 +13,49 @@ import {
 } from "@/constant";
 import FinancialServices from "./FinancialServices";
 import { useRouter } from "next/navigation";
+import { getProduct } from "@/fetch";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
+  let [dataList, setDataList] = useState([]);
+  let items = useMemo(() => {
+    Microloans.list=dataList.filter((item) => item.product_type === 2);
+    EmergencyRefinancing.list=dataList.filter((item) => item.product_type === 4);
+    EquityFinancing.list=dataList.filter((item) => item.product_type === 5);
+    FinanceGuarantee.list=dataList.filter((item) => item.product_type === 3);
+    ElectronicGuarantee.list=dataList.filter((item) => item.product_type === 7);
   let tabItems_1 = [Microloans, EmergencyRefinancing, EquityFinancing];
   let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
-  let items = [
-    {
-      label: (
-        <div className="flex flex-col items-center px-[76px]" >
-          <Image src={"/images/rzfw.png"} alt={""} width={88} height={88} />
-          <span>融资服务</span>
-        </div>
-      ),
-      key: "key_1",
-      children: <FinancialTab items={tabItems_1} />,
-    },
-    {
-      label: (
-        <div className="flex flex-col items-center px-[76px]" >
-          <Image src={"/images/zxfw.png"} alt={""} width={88} height={88} />
-          <span>增信服务</span>
-        </div>
-      ),
-      key: "key_2",
-      children: <FinancialTab items={tabItems_2} />,
-    },
-  ];
+    return [
+      {
+        label: (
+          <div className="flex flex-col items-center px-[76px]">
+            <Image src={"/images/rzfw.png"} alt={""} width={88} height={88} />
+            <span>融资服务</span>
+          </div>
+        ),
+        key: "key_1",
+        children: <FinancialTab items={tabItems_1} />,
+      },
+      {
+        label: (
+          <div className="flex flex-col items-center px-[76px]">
+            <Image src={"/images/zxfw.png"} alt={""} width={88} height={88} />
+            <span>增信服务</span>
+          </div>
+        ),
+        key: "key_2",
+        children: <FinancialTab items={tabItems_2} />,
+      },
+    ];
+  }, [dataList]);
+  useEffect(() => {
+    getProduct().then((res) => {
+      let { dataList } = res;
+      console.log(dataList);
+      setDataList(dataList);
+    });
+  }, []);
   return (
     <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-white-500 ">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">

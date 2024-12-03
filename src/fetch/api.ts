@@ -10,4 +10,5 @@ export default {
   userRegister:'user/register',
   modifyPass:'/user/modify/pass',
   userInfo:'/user/info',
+  product:'/index/product'
 }

@@ -8,6 +8,7 @@ import { Autoplay, Pagination, Scrollbar, A11y } from "swiper/modules";
 import { TzButton } from "../TzButton";
 import TzIcon from "../TzIcon";
 import { useRouter } from "next/navigation";
+import TzNextImage from "../TzNextImage";
 
 const SwiperBanner = () => {
   const [activeIndex, setActiveIndex] = useState(0); // 当前激活的索引
@@ -17,7 +18,7 @@ const SwiperBanner = () => {
   const onAutoplayTimeLeft = useCallback((s, time, progress) => {
     setProgress(progress);
   }, []);
-  let itemList = ["banner", "banner2", "banner3"];
+  let itemList = ["banner0", "banner1", "banner2"];
 
   const router = useRouter();
   return (
@@ -41,34 +42,34 @@ const SwiperBanner = () => {
               className={`relative  flex  items-center h-[520px] bg-cover bg-center`}
               style={{ backgroundImage: `url('/images/${item}.png')` }}
             >
-              {index == 0 || index == 2 ? (
-                <motion.h3
-                  variants={scrollAnimation}
-                  className="font-bold text-white-300 leading-relaxed  px-20 overflow-hidden "
-                >
-                  <Image
-                    src={`/images/banner${index == 0 ? "" : 3}-text.png`}
-                    alt={""}
+              {index != 1 ? (
+                <div className="flex flex-col px-20">
+                  <TzNextImage
+                    src={`/images/banner${index}-text.png`}
                     width={798}
                     height={0}
                   />
-                  <TzButton
-                    shape={"round"}
-                    type={'primary'}
-                    className="mt-[100px]"
-                    icon={
-                      <TzIcon
-                        className={"fa-arrow-right text-white-500 text-sm"}
-                      />
-                    }
-                    iconPosition={"end"}
-                    onClick={() => {
-                      router.push(`/product-introduction?id=equityFinancing1&dataType=equityFinancing`);
-                    }}
-                  >
-                    查看详情
-                  </TzButton>
-                </motion.h3>
+                  <div>
+                    {index!=0?<TzButton
+                      shape={"round"}
+                      type={"primary"}
+                      className="mt-[100px]"
+                      icon={
+                        <TzIcon
+                          className={"fa-arrow-right text-white-500 text-sm"}
+                        />
+                      }
+                      iconPosition={"end"}
+                      onClick={() => {
+                        router.push(
+                          `/product-introduction?id=equityFinancing1&dataType=equityFinancing`
+                        );
+                      }}
+                    >
+                      查看详情
+                    </TzButton>:null}
+                  </div>
+                </div>
               ) : null}
             </div>
           </SwiperSlide>
