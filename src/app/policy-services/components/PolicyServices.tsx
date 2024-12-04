@@ -10,7 +10,7 @@ import TzDivider from "@/components/TzDivider";
 import { useCallback, useState } from "react";
 import { TzTableServerPage } from "@/components/TzTable";
 import PolicyTableItem from "./PolicyTableItem";
-import { getApplyPolicyList, getProxyApplyPolicyList } from "@/fetch";
+import {  getPolicyList } from "@/fetch";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import TzSearch from "@/components/TzSearch";
 import { FilterSortEmu } from "@/fetch/definition";
@@ -22,44 +22,26 @@ export interface DataType {
 }
 
 export default function PolicyServices(props: any) {
-  let { hotWords, initialData, total } = props;
+  let { hotWords, initialData, total,body_type:bt} = props;
   const [dataTotal, setDataTotal] = useState(total);
-  const [lawlevel, setLawlevel] = useState(10);
-  const [taskname, setTaskname] = useState("");
-  const [orderfrom, setOrderfrom] = useState(FilterSortEmu.Desc);
+  const [area_type, setArea_type] = useState(1);
+  const [body_type, setBody_type] = useState(Number(bt));
+  const [keyword, setKeyword] = useState("");
+  const [add_time_sort, setOrderfrom] = useState(FilterSortEmu.Desc);
 
   let getTableData = useCallback(
     async (pagination) => {
       const { current = 1, pageSize = 10 } = pagination;
-      let res: any = await getProxyApplyPolicyList({
-        params: {
-          currentpage: current - 1,
-          pagesize: pageSize,
-          lawlevel: lawlevel,
-          lawtheme: "",
-          applicableindustry: "",
-          orderfrom: orderfrom,
-          areacode: "",
-          publishdatetype: "",
-          publishdatefrom: "",
-          publishdateto: "",
-          msjxType: "",
-          area: "",
-          ouguid: "",
-
-          keyword: taskname,
-          tran: 0,
-          policytype: "",
-          msjxitem: 0,
-        },
-        token: "epoint_webserivce_**##0601",
-      });
+      let res: any = await getPolicyList({
+        page:current,
+        limit:pageSize,
+        area_type,keyword,body_type,add_time_sort});
       return {
-        data: res.custom.rtnlist,
-        total: res.custom.totalnum,
+        data: res.dataList,
+        total: res.count,
       };
     },
-    [lawlevel, taskname, orderfrom]
+    [area_type, keyword, add_time_sort,body_type]
   );
   let columns = [
     {
@@ -92,7 +74,7 @@ export default function PolicyServices(props: any) {
               className="!w-[560px] p-1"
               enterButton="搜索"
               size={"large"}
-              onSearch={(val) => setTaskname(val)}
+              onSearch={(val) => setKeyword(val)}
             />
             <div className="mt-2 flex items-start w-full pl-3">
               {hotWords.map((item, index) => (
@@ -110,20 +92,20 @@ export default function PolicyServices(props: any) {
             left={
               <TzSegmented
                 onChange={(val: number) => {
-                  setLawlevel(val);
+                  setArea_type(val);
                 }}
                 options={[
                   {
                     label: <span className="px-[38px]">国家级</span>,
-                    value: 10,
+                    value: 1,
                   },
                   {
                     label: <span className="px-[38px]">省级</span>,
-                    value: 20,
+                    value: 2,
                   },
                   {
                     label: <span className="px-[38px]">市级</span>,
-                    value: 30,
+                    value: 3,
                   },
                 ]}
               />
@@ -134,7 +116,10 @@ export default function PolicyServices(props: any) {
                   <TzCheckableTagNormal
                     items={PolicyTags}
                     style={{ padding: "4px 16px", fontSize: 14 }}
-                    defaultChecked={["key1"]}
+                    defaultChecked={body_type}
+                    onChange={(val)=>{
+                      setBody_type(val)}
+                    }
                   />
                 </div>
                 <TzDivider type={"vertical"} className="!mx-10" />
@@ -159,7 +144,7 @@ export default function PolicyServices(props: any) {
             <TzTableServerPage
               initialData={initialData}
               columns={columns}
-              rowKey={"item_id"}
+              rowKey={"id"}
               showHeader={false}
               reqFun={getTableData}
             />

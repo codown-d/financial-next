@@ -122,17 +122,17 @@ export const MenuList = [
 ];
 export enum FinanceDataTypeEmu {
   /** 银行贷款 */
-  BankLoans = "bankLoans",
+  BankLoans = 1,
   /** 小额贷款 */
-  Microloans = "microloans",
+  Microloans = 2,
   /** 股权融资 基金 */
-  EmergencyRefinancing = "emergencyRefinancing",
+  EmergencyRefinancing = 5,
   /** 应急转贷 */
-  EquityFinancing = "equityFinancing",
+  EquityFinancing = 4,
   /** 融资担保 */
-  FinanceGuarantee = "financeGuarantee",
+  FinanceGuarantee =3,
   /** 电子保函 */
-  ElectronicGuarantee = "electronicGuarantee",
+  ElectronicGuarantee = 7,
 }
 export enum TabType {
   service = "service",
@@ -806,7 +806,7 @@ export const FinancialMarket = {
   entity: [
     {
       label: "全部",
-      value: "all",
+      value: 0,
     },
     {
       label: "企业",
@@ -820,7 +820,7 @@ export const FinancialMarket = {
   type: [
     {
       label: "全部",
-      value: "all",
+      value: 0,
     },
     {
       label: "政策性",
@@ -834,7 +834,7 @@ export const FinancialMarket = {
   institution: [
     {
       label: "全部",
-      value: "all",
+      value: 0,
     },
     {
       label: "银行",
@@ -856,7 +856,7 @@ export const FinancialMarket = {
   financing: [
     {
       label: "全部",
-      value: "all",
+      value: 0,
     },
     ...selectOp,
   ],
@@ -867,19 +867,19 @@ export const FinancialMarket = {
     },
     {
       label: "0-50万（含）",
-      value: 50,
+      value: 1,
     },
     {
       label: "50万-100万（含）",
-      value: 100,
+      value: 2,
     },
     {
       label: "100万-500万（含）",
-      value: 500,
+      value: 3,
     },
     {
       label: "500万以上",
-      value: Infinity,
+      value: 4,
     },
   ],
   term: [
@@ -889,34 +889,34 @@ export const FinancialMarket = {
     },
     {
       label: "6个月以下",
-      value: 6,
+      value: 1,
     },
     {
       label: "12个月及以下",
-      value: 12,
+      value: 2,
     },
     {
       label: "36个月及以下",
-      value: 36,
+      value: 3,
     },
     {
       label: "60个月及以下",
-      value: 60,
+      value: 4,
     },
   ],
 };
 export const PolicyTags = [
   {
     label: "全部",
-    value: "key1",
+    value: "",
   },
   {
     label: "原文",
-    value: "key2",
+    value: 1,
   },
   {
     label: "解读",
-    value: "key3",
+    value: 2,
   },
 ];
 export const MicroloansOp = [
@@ -941,5 +941,37 @@ export const MicroloansOp2 = [
   {
     label: "搭桥贷",
     value: "搭桥贷",
+  },
+];
+
+//1 银行贷款，2小额贷款，3融资担保，4应急转贷、5基金、6保险、7保函
+export const prodTypeEmu = [
+  {
+    label: "银行贷款",
+    value: 1,
+  },
+  {
+    label: "小额贷款",
+    value: 2,
+  },
+  {
+    label: "融资担保",
+    value: 3,
+  },
+  {
+    label: "应急转贷",
+    value: 4,
+  },
+  {
+    label: "基金",
+    value: 5,
+  },
+  {
+    label: "保险",
+    value: 6,
+  },
+  {
+    label: "保函",
+    value: 7,
   },
 ];

@@ -1,8 +1,9 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
 import { FinanceDataTypeEmu } from "@/constant";
-import { getUnique, postImgCode } from "@/fetch";
+import { getUnique, postImgCode, postPhoneCode } from "@/fetch";
 import { FinanceItemProps } from "@/fetch/definition";
+import { promises } from "dns";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ResizeProps {
@@ -99,7 +100,7 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
   let getImgCode = useCallback(() => {
     getUnique().then((res) => {
       let { token } = res;
-      setToken(token)
+      setToken(token);
       postImgCode({ token, send_type }).then((res: any) => {
         setImgCode(res.img);
       });
@@ -108,6 +109,32 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
   return {
     getImgCode,
     imgCode,
-    token
+    token,
+  };
+};
+export const useGetPhoneCode = (send_type: ImgCodeType = "user_login") => {
+  let [imgCode, setImgCode] = useState("");
+  let [token, setToken] = useState("");
+  let getPhoneCode = useCallback((val) => {
+    return new Promise(async (resolve, reject) => {
+      let res = await getUnique();
+      if (res.code != 200) {
+        reject();
+        return;
+      }
+      setToken(res.token);
+      let res1 = await postPhoneCode({...val,token:res.token});
+      if (res1.code != 200) {
+        reject();
+        return;
+      }
+      setImgCode(res1.send_code);
+      resolve(res1);
+    });
+  }, []);
+  return {
+    getPhoneCode,
+    imgCode,
+    token,
   };
 };

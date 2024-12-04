@@ -8,22 +8,22 @@ import {
   ElectronicGuarantee,
   EmergencyRefinancing,
   EquityFinancing,
+  FinanceDataTypeEmu,
   FinanceGuarantee,
   Microloans,
 } from "@/constant";
 import FinancialServices from "./FinancialServices";
-import { useRouter } from "next/navigation";
-import { getProduct } from "@/fetch";
+import { useGetProduct } from "@/hooks/server";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
-  let [dataList, setDataList] = useState([]);
+  let {dataList}=useGetProduct()
   let items = useMemo(() => {
-    Microloans.list=dataList.filter((item) => item.product_type === 2);
-    EmergencyRefinancing.list=dataList.filter((item) => item.product_type === 4);
-    EquityFinancing.list=dataList.filter((item) => item.product_type === 5);
-    FinanceGuarantee.list=dataList.filter((item) => item.product_type === 3);
-    ElectronicGuarantee.list=dataList.filter((item) => item.product_type === 7);
+    Microloans.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.Microloans);
+    EmergencyRefinancing.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.EmergencyRefinancing);
+    EquityFinancing.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.EquityFinancing);
+    FinanceGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.FinanceGuarantee);
+    ElectronicGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.ElectronicGuarantee);
   let tabItems_1 = [Microloans, EmergencyRefinancing, EquityFinancing];
   let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
     return [
@@ -49,13 +49,6 @@ const FinancialProduct = () => {
       },
     ];
   }, [dataList]);
-  useEffect(() => {
-    getProduct().then((res) => {
-      let { dataList } = res;
-      console.log(dataList);
-      setDataList(dataList);
-    });
-  }, []);
   return (
     <div className="overflow-hidden bg-gradient-to-r from-[#F9F9F9] to-white-500 ">
       <div className="max-w-screen-lg  mx-auto flex mt-14 flex-col w-full text-center justify-center">

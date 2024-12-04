@@ -26,35 +26,35 @@ export interface IResponseData<T> {
 }
 export enum FinancingEntityEmu {
   /** 企业 */
-  Enterprise = "enterprise",
+  Enterprise = 2,
   /** 个人 */
-  Personal = "personal",
+  Personal = 3,
 }
 export enum FinancingTypeEmu {
   /** 政策性 */
-  Policy = "policy",
+  Policy = 2,
   /**  商业性 */
-  Commercial = "commercial",
+  Commercial = 1,
 }
 export enum InstitutionTypeEmu {
   /** 银行 */
-  Bank = "bank ",
+  Bank = 1,
   /**  担保 */
-  Guaranteed = "guaranteed",
+  Guaranteed =3,
   /**  小额贷款 */
-  SmallLoan = "smallLoan",
+  SmallLoan = 2,
   /**  基金 */
-  Fund = "fund",
+  Fund = 5,
 }
 export enum GuaranteeMethodEmu {
   /** 信用 */
-  Credit = "credit",
+  Credit = 1,
   /**  抵质押 */
-  LoanPledge = "loanPledge",
+  LoanPledge = 2,
   /**  保证 */
-  Guarantee = "guarantee",
+  Guarantee = 3,
   /**  组合 */
-  Combination = "combination",
+  Combination = 4,
   /**  电子保函 */
   ElectronicGuarantee = "electronicGuarantee",
   /**  纸质保函 */
@@ -62,7 +62,7 @@ export enum GuaranteeMethodEmu {
 }
 export enum FilterSortEmu {
    /** 暂无排序 */
-  All = "all",
+  All = "",
   /** 升序 */
   Desc = "desc",
   /**  降序 */
@@ -73,14 +73,14 @@ export interface FinanceItemProps {
   tabType: TabType;
   id: string;
   dataType: FinanceDataTypeEmu;
-  logoUrl: string;
+  logoUrl: string;//logo
   companyName: string;
   prodType: string;
   name: string;
   rateDown: string;
   rateUp: string;
   rate: number;
-  term: number;
+  term: number;//贷款期限
   amount: number;
   dealOrder: number;
   //融资主体

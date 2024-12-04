@@ -20,12 +20,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/proxyApi/:path*',
-        destination: 'http://123.56.86.66:3000/:path*', // 目标 API 地址
-      },
-      {
         source: '/api/:path*',
-        destination: 'http://34282y467g.oicp.vip/:path*', // 目标 API 地址
+        destination: `${process.env.NEXT_PUBLIC_API_HOST}/:path*`, // 目标 API 地址
       },
     ];
   },

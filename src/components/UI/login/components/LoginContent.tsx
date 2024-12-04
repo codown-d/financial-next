@@ -68,6 +68,7 @@ export default function (props) {
             }
             formIns.validateFields().then((val) => {
               login(val).then((res) => {
+                if(res.code!=200){return;}
                 localStorage.setItem("token", res.token);
                 setOpen(false);
                 setUserInfo({

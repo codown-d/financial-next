@@ -5,9 +5,9 @@ import PolicyTableItem from "./PolicyTableItem";
 export interface DataType {
   id: any;
   title: string;
-  publishdate: number;
+  add_time: number;
   name: string;
-  fwbh:string;
+  summary:string;
   policyguid:string;
   rowguid:string
 }

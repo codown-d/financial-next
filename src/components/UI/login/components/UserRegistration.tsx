@@ -14,17 +14,20 @@ export default function () {
     <>
       <div className="flex-1 mt-2">
         <div className="text-[20px] text-[#333333] flex-r-c py-3 !justify-between">
-          <TzIcon onClick={()=>{
-            setContentType((pre) =>
+          <TzIcon
+            onClick={() => {
+              setContentType((pre) =>
                 pre === "register1"
                   ? "login"
                   : pre === "register2"
                   ? "register1"
                   : "register2"
               );
-          }} className="text-[14px] cursor-pointer text-[#DDDDDD] pl-[24px] fa-chevron-left" /> 
-          <span>注册</span>   
-          <span></span>             
+            }}
+            className="text-[14px] cursor-pointer text-[#DDDDDD] pl-[24px] fa-chevron-left"
+          />
+          <span>注册</span>
+          <span></span>
         </div>
         <div className="h-[240px] px-10">
           {contentType === "register1" ? (
@@ -41,30 +44,34 @@ export default function () {
             type={"primary"}
             size={"large"}
             onClick={() => {
-              setContentType((pre) =>
-                pre === "register1"
-                  ? "register2"
-                  : pre === "register2"
-                  ? "register3"
-                  : "login"
-              );
+              formIns.validateFields().then((val) => {
+                setContentType((pre) =>
+                  pre === "register1"
+                    ? "register2"
+                    : pre === "register2"
+                    ? "register3"
+                    : "login"
+                );
+              });
             }}
           >
             {contentType === "register3" ? "立即登录" : "下一步"}
           </TzButton>
-          {contentType !== "register3"?<div className="flex justify-center px-2 mb-5 text-[12px]">
-            <span>
-              我有账号，
-              <span
-                className="text-[#3D5AF5] cursor-pointer"
-                onClick={() => {
-                  setContentType("login");
-                }}
-              >
-                返回登录
+          {contentType !== "register3" ? (
+            <div className="flex justify-center px-2 mb-5 text-[12px]">
+              <span>
+                我有账号，
+                <span
+                  className="text-[#3D5AF5] cursor-pointer"
+                  onClick={() => {
+                    setContentType("login");
+                  }}
+                >
+                  返回登录
+                </span>
               </span>
-            </span>
-          </div>:null}
+            </div>
+          ) : null}
         </div>
       </div>
     </>

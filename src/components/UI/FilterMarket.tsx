@@ -1,12 +1,15 @@
 import { Form, Pagination } from "antd";
 import TzForm, { TzFormItem } from "../TzForm";
-import { FinanceDataTypeEmu, MarketDataList, TabType } from "@/constant";
+import { FinanceDataTypeEmu, MarketDataList, prodTypeEmu, TabType } from "@/constant";
 import TzSpace from "../TzSpace";
 import FilterHeader from "./FilterHeader";
 import MarketCard from "./MarketCard";
 import ItemSort from "./ItemSort";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { FilterSortEmu } from "@/fetch/definition";
+import { useGetProduct } from "@/hooks/server";
+import { getProduct } from "@/fetch";
+import { find } from "lodash";
 
 export default function FilterMarket(props: {
   type: TabType;
@@ -15,76 +18,35 @@ export default function FilterMarket(props: {
 }) {
   let { type, filter, keyword } = props;
   let [filterData, setFilterData] = useState({
-    amount: FilterSortEmu.All,
-    term: FilterSortEmu.All,
-    rate: FilterSortEmu.All,
+    highest_money_sort: FilterSortEmu.All,
+    term_sort: FilterSortEmu.All,
+    rate_sort: FilterSortEmu.All,
   });
+  let [dataList,setMarketDataList]=useState([])
   const [form] = Form.useForm();
-  let dataList = useMemo(() => {
-    let list = MarketDataList.filter((item) => {
-      let entity =
-        filter.entity === "all" ? true : filter.entity === item.financingEntity;
-      let type =
-        filter.type === "all" ? true : filter.type === item.financingType;
-      let institution =
-        filter.institution === "all"
-          ? true
-          : filter.institution === item.institutionType;
-      let financing =
-        filter.financing === "all"
-          ? true
-          : item.guaranteeMethod.includes(filter.financing);
-
-      let guarantee = filter.guarantee === 0 ? true : false;
-      if (filter.guarantee == 50) {
-        guarantee = item.amount <= filter.guarantee&&item.dataType!== FinanceDataTypeEmu.EmergencyRefinancing
-      } else if (filter.guarantee == 100) {
-        guarantee = item.amount <= filter.guarantee && item.amount > 50;
-      } else if (filter.guarantee == 500) {
-        guarantee = item.amount <= filter.guarantee && item.amount > 100;
-      } else {
-        guarantee = item.amount > filter.guarantee ||item.dataType=== FinanceDataTypeEmu.EmergencyRefinancing
-      }
-      let term = filter.term === 0 ? true : item.term <= filter.term;
-      return (
-        item.tabType === props.type &&
-        entity &&
-        type &&
-        institution &&
-        financing &&
-        guarantee &&
-        term
+  
+  let getProductFn=useCallback(()=>{
+    getProduct({...props.filter,...filterData,name:keyword}).then((res) => {
+      let { dataList } = res;
+      setMarketDataList(
+        dataList.map((item) => {
+          return {
+            ...item,
+            logoUrl: item.financial_organs.logo || "/images/logo.png",
+            companyName:item.financial_organs.organs_name,
+            amount: item.highest_money,
+            guaranteeMethod: [item.data_type],
+            dataType: item.data_type,
+            dealOrder: item.success_count || Math.ceil(Math.random() * 1000),
+            prodType:find(prodTypeEmu,(ite)=>{return ite.value==item.product_type})?.label 
+          };
+        })
       );
-    }).filter((item) => !keyword || item.name.includes(keyword));
-    if (filterData.amount !== FilterSortEmu.All) {
-      list.sort((a, b) => {
-        if (filterData.amount === FilterSortEmu.Asc) {
-          return b.rate - a.rate;
-        } else {
-          return a.rate - b.rate;
-        }
-      });
-    }
-    if (filterData.term !== FilterSortEmu.All) {
-      list.sort((a, b) => {
-        if (filterData.term === FilterSortEmu.Asc) {
-          return b.rate - a.rate;
-        } else {
-          return a.rate - b.rate;
-        }
-      });
-    }
-    if (filterData.rate !== FilterSortEmu.All) {
-      list.sort((a, b) => {
-        if (filterData.rate === FilterSortEmu.Asc) {
-          return b.rate - a.rate;
-        } else {
-          return a.rate - b.rate;
-        }
-      });
-    }
-    return list;
-  }, [props.filter, filterData, keyword]);
+    })
+  },[props.filter,filterData,keyword])
+  useEffect(()=>{
+    getProductFn()
+  },[getProductFn])
   return (
     <div>
       <div className="mb-2 mt-1 ml-3 text-[#999]">
@@ -101,13 +63,13 @@ export default function FilterMarket(props: {
               setFilterData({ ...allValues, ...changedValues });
             }}
           >
-            <TzFormItem noStyle name={"rate"}>
+            <TzFormItem noStyle name={"rate_sort"}>
               <ItemSort label={"利率"} className="mr-10" />
             </TzFormItem>
-            <TzFormItem noStyle name={"term"}>
+            <TzFormItem noStyle name={"term_sort"}>
               <ItemSort label={"期限"} className="mr-10" />
             </TzFormItem>
-            <TzFormItem noStyle name={"amount"}>
+            <TzFormItem noStyle name={"highest_money_sort"}>
               <ItemSort label={"最高额度"} />
             </TzFormItem>
           </TzForm>

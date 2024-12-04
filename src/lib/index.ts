@@ -1,4 +1,5 @@
 import { colorScale } from "@/constant";
+import dayjs from "dayjs";
 // import dayjs from 'dayjs';
 
 export function generateRandomColor() {
@@ -18,6 +19,5 @@ export function getColorScale(i: number) {
 }
 
 export function timeFormat(time: number, format = "YYYY-MM-DD HH:mm:ss") {
-  return time
-//  return dayjs(time, format)
+ return dayjs(time).format(format)
 }

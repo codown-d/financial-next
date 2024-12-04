@@ -1,59 +1,24 @@
-import { getApplyPolicyList, getHotWordList } from "@/fetch";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
+import { useRouter } from "next/navigation";
 import PolicyServices from "./components/PolicyServices";
-
+const apiHost = process.env.NEXT_PUBLIC_API_HOST;
 async function getServerSideProps(context) {
-  const {
-    currentpage = 1,
-    pageSize = 10,
-    lawlevel = 10,
-    taskname = "",
-  } = context;
-  const res: any = await getApplyPolicyList({
-    params: {
-      currentpage: currentpage,
-      pagesize: pageSize,
-      lawlevel: lawlevel,
-      lawtheme: "",
-      applicableindustry: "",
-      keyword: taskname,
-      orderfrom: "desc",
-      areacode: "",
-      publishdatetype: "",
-      publishdatefrom: "",
-      publishdateto: "",
-      msjxType: "",
-      area: "",
-      ouguid: "",
-      tran: 0,
-      policytype: "",
-      msjxitem: 0,
-    },
-    token: "epoint_webserivce_**##0601",
-  });
+  const res = await fetch( `${apiHost}/admin/enterprise/service/policy/all/list`, { cache: 'no-store' });
+  const data = await res.json();
+  
   return {
-    items: res.custom.rtnlist,
-    total: res.custom.totalnum,
+    items: data.dataList,
+    total:data.count,
   };
 }
-async function getServerHotWordList() {
-  const res = await getHotWordList();
-  return res;
-}
-
-export default async function () {
-  const { items: initialData, total } = await getServerSideProps({
-    currentpage: 0,
-    pageSize: 10,
-    lawlevel: 10,
-    taskname: "",
-  });
-  const { items: hotWords } = await getServerHotWordList();
+export default async function ({ searchParams }) {
+  let {body_type} = searchParams
+  const { items: initialData, total } = await getServerSideProps({});
   return (
     <PolicyServices
-      hotWords={hotWords}
+      hotWords={["发改委", "住建局", "财政部"]}
       initialData={initialData}
       total={total}
+      body_type={body_type}
     />
   );
 }

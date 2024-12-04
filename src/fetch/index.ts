@@ -6,8 +6,8 @@ import {
 import api from "./api";
 import http from "./http";
 import { IResponseData } from "./definition";
-
-export const getPolicyList = async (params): Promise<IResponseData<any>> => {
+const apiHost = process.env.NEXT_PUBLIC_API_HOST;
+export const getServerSidePolicyList = async (params): Promise<IResponseData<any>> => {
   if (process.env.NEXT_PUBLIC_USE_MOCK) {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -65,7 +65,7 @@ export const getApplyPolicyList = async (
   params?: any
 ): Promise<IResponseData<GetPolicyListProps>> => {
   return http.post(
-    "https://gyx.gyzwfw.com/gygyx/rest/ayystPolicy/getPolicyList",
+    `${apiHost}/admin/enterprise/service/policy/all/list`,
     params
   );
 };
@@ -85,11 +85,7 @@ export const yhb1loginajax = async (
     params
   );
 };
-export const getProxyApplyPolicyList = async (
-  params?: any
-): Promise<IResponseData<GetPolicyListProps>> => {
-  return http.post("/api/proxy", params);
-};
+
 
 export const postYhb1loginajax = async (
   params?: any
@@ -117,4 +113,24 @@ export const getUserInfo = async (params?: any): Promise<IResponseData<any>> => 
 export const getProduct = async (params?: any): Promise<IResponseData<any>> => {
   return http.get(api.product, params, );
 };
-
+export const getPolicyList = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.policyList, params, );
+};
+export const getPolicyThemeFeature = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.policyThemeFeature, params, );
+};
+export const getPolicyDetail = async (params?: any): Promise<IResponseData<any>> => {
+  let {id} = params
+  return http.get(`${api.policyDetail}/${id}`, params, );
+};
+export const getServicePolicy = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(`${api.servicePolicy}`, params, );
+};
+export const postPhoneCode = async (params?: any): Promise<IResponseData<any>> => {
+  let { token,...otherParams } = params;
+  console.log(token)
+  return http.post(`${api.phoneCode}`, otherParams, { headers: { token: token } });
+};
+export const modifyPass = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.modifyPass}`, params);
+};

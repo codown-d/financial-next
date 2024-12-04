@@ -74,6 +74,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   let modalItems = MarketDataList.filter(
     (item) => item.dataType === FinanceDataTypeEmu.Microloans
   );
+  
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8]">
@@ -117,8 +118,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             >
               <TzFormItem
                 label={"融资主体"}
-                name={"entity"}
-                initialValue={"all"}
+                name={"application_form"}
+                initialValue={0}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.entity} />
@@ -126,8 +127,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzDivider />
               <TzFormItem
                 label={"融资类型"}
-                name={"type"}
-                initialValue={"all"}
+                name={"finance_type"}
+                initialValue={0}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.type} />
@@ -135,8 +136,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzDivider />
               <TzFormItem
                 label={"机构类型"}
-                name={"institution"}
-                initialValue={searchParams.get("institution")||"all"}
+                name={"product_type"}
+                initialValue={searchParams.get("product_type")||0}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.institution} />
@@ -144,8 +145,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzDivider />
               <TzFormItem
                 label={"担保类型"}
-                name={"financing"}
-                initialValue={"all"}
+                name={"data_type"}
+                initialValue={0}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.financing} />
@@ -153,7 +154,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzDivider />
               <TzFormItem
                 label={"融资额度"}
-                name={"guarantee"}
+                name={"highest_money"}
                 initialValue={0}
                 style={{ marginBottom: "12px" }}
               >

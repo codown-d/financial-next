@@ -10,5 +10,13 @@ export default {
   userRegister:'user/register',
   modifyPass:'/user/modify/pass',
   userInfo:'/user/info',
-  product:'/index/product'
+  product:'/index/product',
+  enterpriseVerify:'/user/enterprise/verify',
+  productapply:'/user/product/apply',
+  userVerify:'/user/real/name/verify',
+  phoneLogin:'/user/phone/login',
+  policyList:'/admin/enterprise/service/policy/all/list',
+  policyThemeFeature:'/admin/policy/theme/feature/list',
+  policyDetail:'/enterprise/service/policy/detail',
+  servicePolicy:'/enterprise/service/policy',
 }

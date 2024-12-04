@@ -35,8 +35,8 @@ export const TzCheckableTag = TzTag.CheckableTag;
 interface TzCheckableTagNormalProps
   extends Omit<TzCheckableTagProps, "onChange" | "checked"> {
   items: DefaultOptionType[];
-  onChange?: (values: any[]) => void;
-  defaultChecked?: any[];
+  onChange?: (values: any) => void;
+  defaultChecked?: any;
   value?: any[];
   checked?: boolean;
   multiple?: boolean;

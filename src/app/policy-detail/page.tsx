@@ -1,25 +1,23 @@
 import TzCard from "@/components/TzCard";
 import Title from "@/components/UI/Title";
-import { getPolicyByRowguid } from "@/fetch";
+import { getPolicyByRowguid, getPolicyDetail } from "@/fetch";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Breadcrumb } from "antd";
 import ClientFinanceCard from "./components/ClientFinanceCard";
 import ClientButton from "./components/ClientButton";
-
+import { timeFormat } from "@/lib";
+const apiHost = process.env.NEXT_PUBLIC_API_HOST;
 async function getServerSideProps(context) {
-  const { params, token } = context;
-  const res: any = await getPolicyByRowguid({
-    params,
-    token,
-  });
-  return res;
+  const { policyId} = context;
+  const res = await fetch( `${apiHost}/enterprise/service/policy/detail/${policyId}`, { cache: 'no-store' });
+  const data = await res.json();
+  return data;
 }
 
 export default async function ({ searchParams }) {
-  const { custom, status } = await getServerSideProps({
-    params: searchParams,
-    token: "epoint_webserivce_**##0601",
-  });
+
+  const {data} = await getServerSideProps(searchParams);
+  console.log(data)
   return (
     <AntdRegistry>
       <div className="bg-[#F8F8F8]">
@@ -30,7 +28,9 @@ export default async function ({ searchParams }) {
             className="!mt-5 !mb-5"
           />
           <TzCard>
-            <div dangerouslySetInnerHTML={{ __html: custom.content }}></div>
+            <h1 className="text-[20px] font-bold text-center">{data.title}</h1>
+            <h2 className="text-[14px] font-bold text-center py-4">{timeFormat(data.add_time)}</h2>
+            <div dangerouslySetInnerHTML={{ __html: data.body }}></div>
             <div className="flex justify-center mt-[60px] mb-5">
               <ClientButton/>
             </div>
