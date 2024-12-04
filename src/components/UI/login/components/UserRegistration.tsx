@@ -6,10 +6,11 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import TzIcon from "@/components/TzIcon";
+import { userRegister } from "@/fetch";
 
 export default function () {
+  const { contentType, setContentType ,formRegistration} = useLoginContext();
   let [formIns] = Form.useForm();
-  const { contentType, setContentType } = useLoginContext();
   return (
     <>
       <div className="flex-1 mt-2">
@@ -45,13 +46,21 @@ export default function () {
             size={"large"}
             onClick={() => {
               formIns.validateFields().then((val) => {
-                setContentType((pre) =>
+                console.log(formRegistration,val)
+                formRegistration.setFieldsValue(val)
+                if(contentType==='register2'){
+                  console.log(formRegistration.getFieldsValue())
+                  userRegister(formRegistration.getFieldsValue()).then(()=>{})
+                }else{
+                  setContentType((pre) =>
                   pre === "register1"
                     ? "register2"
                     : pre === "register2"
                     ? "register3"
                     : "login"
                 );
+                }
+                
               });
             }}
           >

@@ -134,3 +134,9 @@ export const postPhoneCode = async (params?: any): Promise<IResponseData<any>> =
 export const modifyPass = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.modifyPass}`, params);
 };
+export const userRegister = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.userRegister}`, params);
+};
+export const phoneLogin = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.phoneLogin}`, params);
+};

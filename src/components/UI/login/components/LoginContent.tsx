@@ -8,6 +8,7 @@ import { useLoginContext } from "./LoginWrap";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import {
   login,
+  phoneLogin,
 } from "@/fetch";
 import { useCallback, useEffect, useState } from "react";
 
@@ -30,6 +31,7 @@ export default function (props) {
     },
   ];
   let [radio, setRadio] = useState(false);
+  let [activeKey, setActiveKey] = useState('/login');
 
   return (
     <div className="flex-1 px-10 mt-2">
@@ -38,6 +40,7 @@ export default function (props) {
         centered
         tabBarStyle={{ borderBottom: "none" }}
         className="border-0"
+        onChange={setActiveKey}
       />
       <div className="flex flex-col  mt-[38px]">
         <TzRadio
@@ -67,7 +70,8 @@ export default function (props) {
               return;
             }
             formIns.validateFields().then((val) => {
-              login(val).then((res) => {
+                let fn = '/login'==activeKey?login:phoneLogin
+                fn(val).then((res) => {
                 if(res.code!=200){return;}
                 localStorage.setItem("token", res.token);
                 setOpen(false);

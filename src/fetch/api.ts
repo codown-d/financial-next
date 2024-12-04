@@ -7,7 +7,7 @@ export default {
   imgCode:'/img/code',
   uploadImage:'/upload/image',
   userLogin:'/user/login',
-  userRegister:'user/register',
+  userRegister:'/user/register',
   modifyPass:'/user/modify/pass',
   userInfo:'/user/info',
   product:'/index/product',

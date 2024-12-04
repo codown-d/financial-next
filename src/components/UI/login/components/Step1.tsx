@@ -51,7 +51,7 @@ export default function (props: { formIns: FormInstance<any> }) {
         >
           <TzInput placeholder="请输入" size={"large"} />
         </TzFormItem>
-        <div className="flex items-end justify-between">
+        <div className="flex items-start justify-between">
           <TzFormItem
             label="验证码"
             name={"verify_phone_code"}
