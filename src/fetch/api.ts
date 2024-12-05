@@ -19,4 +19,6 @@ export default {
   policyThemeFeature:'/admin/policy/theme/feature/list',
   policyDetail:'/enterprise/service/policy/detail',
   servicePolicy:'/enterprise/service/policy',
+  phoneModify:'/user/phone/modify/two',
+  quit:'/admin/quit'
 }

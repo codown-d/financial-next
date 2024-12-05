@@ -6,34 +6,10 @@ import { postPhoneCode } from "@/fetch";
 import { useGetPhoneCode } from "@/hooks";
 import { Form, FormInstance } from "antd";
 import { useCallback, useEffect, useState } from "react";
+import SendCodeBtn from "./SendCodeBtn";
 
 export default function (props: { formIns: FormInstance<any> }) {
-  const [countdown, setCountdown] = useState(0);
-  const [isSending, setIsSending] = useState(false);
   let { formIns } = props;
-  useEffect(() => {
-    let intervalId;
-
-    if (countdown > 0) {
-      intervalId = setInterval(() => {
-        setCountdown((prev) => prev - 1);
-      }, 1000);
-    } else if (countdown === 0) {
-      setIsSending(false);
-    }
-
-    return () => clearInterval(intervalId);
-  }, [countdown]);
-
-  let {getPhoneCode} = useGetPhoneCode()
-  const handleSendCode = useCallback(() => {
-    formIns.validateFields(["phone",'send_type']).then((val) => {
-      getPhoneCode(val).then((res) => {
-        setIsSending(true);
-        setCountdown(10);
-      });
-    });
-  }, [formIns]);
   return (
     <div className="h-[240px] pt-[50px]">
       <TzForm form={formIns} colon={false} layout={"vertical"}>
@@ -57,15 +33,7 @@ export default function (props: { formIns: FormInstance<any> }) {
           >
             <TzInput placeholder="请输入" size={"large"} />
           </TzFormItem>
-          <TzButton
-            size={"large"}
-            className="w-0 flex-1 ml-3 mt-[30px]"
-            type={"primary"}
-            disabled={isSending}
-            onClick={handleSendCode}
-          >
-            {isSending ? `${countdown}秒后可以重发` : "发送验证"}
-          </TzButton>
+          <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
         </div>
       </TzForm>
     </div>

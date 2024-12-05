@@ -1,7 +1,7 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
 import { FinanceDataTypeEmu } from "@/constant";
-import { getUnique, postImgCode, postPhoneCode } from "@/fetch";
+import { getUnique, getUserInfo, postImgCode, postPhoneCode } from "@/fetch";
 import { FinanceItemProps } from "@/fetch/definition";
 import { promises } from "dns";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -112,29 +112,39 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
     token,
   };
 };
-export const useGetPhoneCode = (send_type: ImgCodeType = "user_login") => {
-  let [imgCode, setImgCode] = useState("");
-  let [token, setToken] = useState("");
-  let getPhoneCode = useCallback((val) => {
+export const useGetPhoneCode = () => {
+  let getPhoneCode = useCallback((val?:any) => {
     return new Promise(async (resolve, reject) => {
       let res = await getUnique();
       if (res.code != 200) {
         reject();
         return;
       }
-      setToken(res.token);
-      let res1 = await postPhoneCode({...val,token:res.token});
+      let res1 = await postPhoneCode({ ...val, token: res.token });
       if (res1.code != 200) {
         reject();
         return;
       }
-      setImgCode(res1.send_code);
       resolve(res1);
     });
   }, []);
   return {
     getPhoneCode,
-    imgCode,
-    token,
+  };
+};
+export const useUserInfo = () => {
+  let [userInfo, setUserInfo] = useState({});
+  let getUserInfoFn = useCallback(async (cal?:(arg:any)=>void) => {
+    let res = await getUserInfo();
+    if (res.code != 200) {
+      return;
+    }
+    console.log(res.data)
+    setUserInfo(res.data);
+    cal?.(res.data)
+  }, []);
+  return {
+    getUserInfoFn,
+    userInfo,
   };
 };

@@ -1,16 +1,17 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { forwardRef, useMemo } from "react";
 import {  Select } from 'antd';
 import type {  SelectProps } from 'antd';
 
 
 interface TzSelectProps extends SelectProps{}
-export default function TzSelect(props: TzSelectProps) {
+const TzSelect= forwardRef((props: TzSelectProps,ref?: any)=> {
   const realProps = useMemo(() => {
     return {
       ...props,
       className: `tz-select ${props.className}`,
     };
   }, [props]);
-  return <Select {...realProps}/>;
-}
+  return <Select {...realProps} ref={ref}/>;
+})
+export default TzSelect

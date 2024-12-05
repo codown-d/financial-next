@@ -14,5 +14,5 @@ export default function TzNextImage(props: TzNextImageProps) {
       className: `tz-image inline-block ${props.className}`,
     };
   }, [props]);
-  return <Image  width={500} height={300} {...realProps}/>;
+  return props.src?<Image  width={500} height={0} {...realProps} src={props.src}/>:null;
 }

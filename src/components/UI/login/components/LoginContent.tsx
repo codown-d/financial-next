@@ -75,9 +75,8 @@ export default function (props) {
                 if(res.code!=200){return;}
                 localStorage.setItem("token", res.token);
                 setOpen(false);
-                setUserInfo({
-                  userInfo: val.zh1,
-                });
+                console.log(res)
+                setUserInfo({...val,token:res.token});
               });
             });
           }}

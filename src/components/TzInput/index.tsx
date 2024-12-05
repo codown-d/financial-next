@@ -1,15 +1,15 @@
 "use client";
 import { Input, InputProps } from "antd";
-import { SearchProps } from "antd/es/input";
-import { useMemo } from "react";
+import { InputRef } from "antd/es/input";
+import { forwardRef, useMemo } from "react";
 
 interface TzInputProps extends InputProps {}
-export default function TzInput(props: TzInputProps) {
+export default forwardRef<InputRef, TzInputProps>(function TzInput(props: TzInputProps,ref) {
   const realProps = useMemo(() => {
     return {
       ...props,
       className: `tz-input ${props.className || ""}`,
     };
   }, [props]);
-  return <Input {...realProps} />;
-}
+  return <Input {...realProps} ref={ref}/>;
+})

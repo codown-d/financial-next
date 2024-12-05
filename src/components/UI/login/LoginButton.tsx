@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TzModal, { TzConfirm } from "@/components/TzModal";
 import LoginWrap from "./components/LoginWrap";
 import { TzButton } from "@/components/TzButton";
@@ -7,6 +7,7 @@ import TzDropdown from "@/components/TzDropdown";
 import TzIcon from "@/components/TzIcon";
 import Link from "next/link";
 import { useGlobalContext } from "@/hooks/GlobalContext";
+import { useUserInfo } from "@/hooks";
 
 export default function LoginButton() {
   const [open, setOpen] = useState(false);
@@ -45,7 +46,7 @@ export default function LoginButton() {
   ];
   return (
     <>
-      {!userInfo?.account ? (
+      {!userInfo?.user_name ? (
         <>
           <TzButton
             type="primary"
@@ -67,7 +68,7 @@ export default function LoginButton() {
       ) : (
         <TzDropdown menu={{ items }}>
           <div className="w-[190px] text-[#333333] leading-[60px] ">
-            {userInfo?.account}
+            {userInfo?.user_name}
             <TzIcon className={"ml-[6px] fa-caret-down"} />
           </div>
         </TzDropdown>

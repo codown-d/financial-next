@@ -2,14 +2,25 @@
 import { getUserInfo } from "@/fetch";
 import { createContext, useState, useContext, useEffect } from "react";
 // 创建上下文
-const GlobalContext = createContext<any>(undefined);
+const GlobalContext = createContext<{
+  userInfo:{
+  token:string;
+  user_name:string;
+  verify_status:1|2|3;
+  enterprise_verify_status:1|2|3;
+}
+[x:string]:any
+}>(undefined);
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
-  const [userInfo, setUserInfo] = useState<any>();
+  const [userInfo, setUserInfo] = useState<{
+    token:string;
+    user_name:string
+  }>();
   useEffect(() => {
     getUserInfo().then(res=>{
-      setUserInfo(res.userInfo)
-      window.localStorage.setItem("userInfo", JSON.stringify(res.userInfo));                  
+      setUserInfo(res.data)
+      window.localStorage.setItem("userInfo", JSON.stringify(res.data));                  
     })
   }, []);
   return (

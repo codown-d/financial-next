@@ -11,7 +11,6 @@ const axiosIns = axios.create({
 });
 axiosIns.interceptors.request.use(
   (config) => {
-    console.log(config)
     // let { token } = config;
     // if (token) {
     //   config.headers["token"] = `${token}`;

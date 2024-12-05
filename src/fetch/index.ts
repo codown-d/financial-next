@@ -140,3 +140,11 @@ export const userRegister = async (params?: any): Promise<IResponseData<any>> =>
 export const phoneLogin = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.phoneLogin}`, params);
 };
+export const phoneModify = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.phoneModify}`, params);
+};
+export const quit = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.quit}`, params);
+};
+
+
