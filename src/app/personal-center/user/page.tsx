@@ -1,16 +1,19 @@
+"use client";
 import { TzForm, TzFormItem, TzInput } from "@/components";
 import { TzButton } from "@/components/TzButton";
 import TzCard from "@/components/TzCard";
 import TzDivider from "@/components/TzDivider";
 import TzNextImage from "@/components/TzNextImage";
 import TzSelect from "@/components/TzSelect";
-import FinanceCard from "@/components/UI/FinanceCard";
+import FinanceCard, { FinanceCardProps } from "@/components/UI/FinanceCard";
 import Loan from "@/components/UI/Loan";
 import StepFlow from "@/components/UI/StepFlow";
 import { purposeOp, termOp, selectOp, MarketDataList } from "@/constant";
+import { productRecommend } from "@/fetch";
+import { dealProduct } from "@/lib";
 import { insertAfterOddIndices } from "@/lib/utils";
 import { Row, Col } from "antd";
-import { useCallback } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 export default function User() {
   let infoList = [
@@ -35,6 +38,7 @@ export default function User() {
       imgUrl: "/images/dslsq.png",
     },
   ];
+  let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getDom = useCallback((items) => {
     return insertAfterOddIndices(
       items.slice(0, 2).map((item) => {
@@ -53,6 +57,42 @@ export default function User() {
       }),
       <TzDivider type="vertical" style={{ height: "60px" }} />
     );
+  }, []);
+  let getproductRecommend = () => {
+    productRecommend().then((res) => {
+      console.log(res);
+      res.data = [
+        {
+          id: 2,
+          add_time: 1731893880,
+          name: "小额贷款",
+          fo_id: 1,
+          product_intro: "产品介绍",
+          service_object: "服务对象",
+          term: 0,
+          data_type: 1,
+          application_info_enterprise: "",
+          application_info: "申请资料",
+          application_condition: "申请条件",
+          repayment_method: 2,
+          application_info_user: "",
+          application_form: 1,
+          highest_money: 10000,
+          rate: "5.6",
+          product_type: 2,
+          fund_company_intro: "",
+          highest_money_unit: 0,
+          guarantee_highest_money: "0.0",
+          guarantee_form: 0,
+          premium_search: 0,
+          success_count: 0,
+        },
+      ];
+      setMarketDataList(res.data.map(dealProduct));
+    });
+  };
+  useEffect(() => {
+    getproductRecommend();
   }, []);
   return (
     <>
@@ -109,7 +149,7 @@ export default function User() {
           AI智能匹配您可能需要的金融产品
         </div>
         <div className="flex flex-wrap ">
-          {MarketDataList.map((item, index) => {
+          {marketDataList.map((item, index) => {
             return (
               <div key={index} className="w-1/3 bg-blue-500 p-4">
                 <FinanceCard {...item} />

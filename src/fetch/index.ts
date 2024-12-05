@@ -146,5 +146,23 @@ export const phoneModify = async (params?: any): Promise<IResponseData<any>> => 
 export const quit = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.quit}`, params);
 };
+export const adminQuit = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(`${api.adminQuit}`, params);
+};
 
-
+export const userVerify = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.userVerify}`, params);
+};
+export const enterpriseVerify = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.enterpriseVerify}`, params);
+};
+export const getArea = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(`${api.getArea}`, params);
+};
+export const productRecommend = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(`${api.productRecommend}`, params);
+};
+export const productDetail = async (params?: any): Promise<IResponseData<any>> => {
+  let {id }=params
+  return http.get(`${api.productDetail}/${id}`, params);
+};

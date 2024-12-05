@@ -71,7 +71,9 @@ export enum FilterSortEmu {
 
 export interface FinanceItemProps {
   tabType: TabType;
-  id: string;
+  add_time:number;
+  id: string|number;
+  fo_id:number;
   dataType: FinanceDataTypeEmu;
   logoUrl: string;//logo
   companyName: string;
@@ -79,7 +81,7 @@ export interface FinanceItemProps {
   name: string;
   rateDown: string;
   rateUp: string;
-  rate: number;
+  rate: number|string;
   term: number;//贷款期限
   amount: number;
   dealOrder: number;

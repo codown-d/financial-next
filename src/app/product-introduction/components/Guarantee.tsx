@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { TzButton } from "@/components/TzButton";
 import TzCard from "@/components/TzCard";
 import TzDivider from "@/components/TzDivider";
@@ -7,19 +7,24 @@ import DataTypeCom from "@/components/UI/DataTypeCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { collateralOp, FinanceDataTypeEmu, MarketDataList, MicroloansOp, selectOp } from "@/constant";
+import {
+  collateralOp,
+  FinanceDataTypeEmu,
+  MarketDataList,
+  MicroloansOp,
+  selectOp,
+} from "@/constant";
 import { find, keys } from "lodash";
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj } from "../hooks/const";
+import { productDetail } from "@/fetch";
+import { dealProduct } from "@/lib";
 
 export default function Guarantee(props: { id: string }) {
-  let {id} = props
-  let dataInfo = useMemo(() => {
-    console.log(find(MarketDataList, (item) => item.id == props.id))
-    return find(MarketDataList, (item) => item.id == props.id);
-  }, [props.id]);
+  let { id } = props;
+  let [dataInfo, setDataInfo] = useState();
   let {
     Submit,
     Success,
@@ -30,9 +35,17 @@ export default function Guarantee(props: { id: string }) {
   } = useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
+  let getProductDetail = useCallback(() => {
+    productDetail({ id: props.id }).then((res) => {
+      setDataInfo(dealProduct(res.data));
+    });
+  }, [props]);
+  useEffect(() => {
+    getProductDetail();
+  }, [getProductDetail]);
   return (
     <>
-       <Submit
+      <Submit
         form={form}
         type={"业务申请"}
         callback={(val) => {
@@ -86,7 +99,7 @@ export default function Guarantee(props: { id: string }) {
                 method={"担保方式"}
                 desc={collateralOp
                   .reduce((pre: any[], item) => {
-                    if (dataInfo?.guaranteeMethod.includes(item.value)) {
+                    if (dataInfo?.guaranteeMethod?.includes(item.value)) {
                       pre?.push?.(item.label);
                     }
                     return pre;
@@ -99,9 +112,13 @@ export default function Guarantee(props: { id: string }) {
             </div>
           </div>
           <div className="w-[245px] flex flex-col justify-center items-center">
-            <TzButton type={"primary"} shape={"round"} onClick={() => {
+            <TzButton
+              type={"primary"}
+              shape={"round"}
+              onClick={() => {
                 setSubmitVisible(true);
-            }}>
+              }}
+            >
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
@@ -123,11 +140,13 @@ export default function Guarantee(props: { id: string }) {
           <div className="text-[#666]">{dataInfo?.serviceObjects}</div>
           <TzDivider />
         </DescInfo>
-        {dataInfo.dataType==FinanceDataTypeEmu.FinanceGuarantee || <DescInfo title={"受益人"}>
-          <div className="text-[#666]">{dataInfo?.beneficiary}</div>
-          <TzDivider />
-        </DescInfo>}
-        
+        {dataInfo?.dataType == FinanceDataTypeEmu.FinanceGuarantee || (
+          <DescInfo title={"受益人"}>
+            <div className="text-[#666]">{dataInfo?.beneficiary}</div>
+            <TzDivider />
+          </DescInfo>
+        )}
+
         <DescInfo title={"产品介绍"}>
           <div className="text-[#666]">{dataInfo?.productIntroduction}</div>
         </DescInfo>

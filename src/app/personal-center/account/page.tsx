@@ -9,11 +9,11 @@ import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
 import { purposeOp, termOp, selectOp } from "@/constant";
 import { useGetImgCode, useGetPhoneCode } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
-import { Row, Col, Form, FormInstance, ConfigProvider } from "antd";
+import { Row, Col, Form, FormInstance, ConfigProvider, Popconfirm } from "antd";
 import modal from "antd/es/modal";
 import { useEffect } from "react";
 import zhCN from "antd/locale/zh_CN";
-import { modifyPass, phoneModify, quit } from "@/fetch";
+import { adminQuit, modifyPass, phoneModify, quit } from "@/fetch";
 import { useRouter } from "next/navigation";
 
 let Phone = (props: { formIns: FormInstance<any> }) => {
@@ -157,9 +157,9 @@ export default function Account() {
                           modifyPass(val).then((res) => {
                             if (res.code == 200) {
                               resolve("");
-                              quit().then(res=>{
-                                router.push('/');
-                              })
+                              adminQuit().then((res) => {
+                                router.push("/");
+                              });
                             } else {
                               reject();
                             }
@@ -184,7 +184,19 @@ export default function Account() {
           注销登录后将看不到您的需求信息和申请信息
         </div>
         <div className="h-[40px] leading-[40px] w-[100px] rounded-[6px] bg-[#eee] text-center ml-3 mt-[30px]">
-          注销登录
+          <Popconfirm
+            title={null}
+            description={"确认注销登录"}
+            okText="是"
+            onConfirm={() => {
+              quit().then((res) => {
+                router.push("/");
+              });
+            }}
+            cancelText="否"
+          >
+            注销登录
+          </Popconfirm>
         </div>
       </TzCard>
     </>

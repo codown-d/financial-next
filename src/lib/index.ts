@@ -19,5 +19,21 @@ export function getColorScale(i: number) {
 }
 
 export function timeFormat(time: number, format = "YYYY-MM-DD HH:mm:ss") {
- return dayjs(time).format(format)
+  return dayjs(time).format(format);
+}
+export function dealProduct(item) {
+  return {
+    ...item,
+    logoUrl: item.financial_organs?.logo || "/images/logo.png",
+    amount: item.highest_money,
+    guaranteeMethod: [item.data_type],
+    dataType: item.data_type,
+    dealOrder: item.success_count || Math.ceil(Math.random() * 1000),
+    applicationInformation:item.application_info,
+    productIntroduction:item.product_intro,
+    beneficiary:'item.product_intro',
+    serviceObjects:item.service_object,
+    guaranteePeriod:item.term,
+    guaranteeAmount:item.highest_money,
+  };
 }

@@ -9,7 +9,7 @@ import { FinanceItemProps } from "@/fetch/definition";
 import TzNextImage from "../TzNextImage";
 import CountUp from "react-countup";
 import { useRouter } from "next/navigation";
-type FinanceCardProps = TzCardProps & FinanceItemProps;
+export type FinanceCardProps = FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
     dataType,

@@ -20,5 +20,9 @@ export default {
   policyDetail:'/enterprise/service/policy/detail',
   servicePolicy:'/enterprise/service/policy',
   phoneModify:'/user/phone/modify/two',
-  quit:'/admin/quit'
+  quit:'/user/quit',
+  adminQuit:'/admin/quit',
+  getArea:'/get/area',
+  productRecommend:'/get/product/recommend',
+  productDetail:'/index/product/detail'
 }
