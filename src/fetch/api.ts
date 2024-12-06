@@ -24,5 +24,6 @@ export default {
   adminQuit:'/admin/quit',
   getArea:'/get/area',
   productRecommend:'/get/product/recommend',
-  productDetail:'/index/product/detail'
+  productDetail:'/index/product/detail',
+  productApply:'/user/product/apply'
 }
