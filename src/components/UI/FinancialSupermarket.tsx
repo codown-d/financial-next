@@ -112,7 +112,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             />
           </div>
         </div>
-        <div className="flex absolute shadow-sm w-full top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
+        <div className="max-w-screen-lg flex absolute shadow-sm w-full top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
           <TzCard className="w-0 flex-1">
             <TzForm
               form={form}

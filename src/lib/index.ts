@@ -31,7 +31,7 @@ export function dealProduct(item) {
     dealOrder: item.success_count || Math.ceil(Math.random() * 1000),
     applicationInformation:item.application_info,
     productIntroduction:item.product_intro,
-    beneficiary:'item.product_intro',
+    beneficiary:item.product_intro,
     serviceObjects:item.service_object,
     guaranteePeriod:item.term,
     guaranteeAmount:item.highest_money,

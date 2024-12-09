@@ -24,7 +24,7 @@ import { dealProduct } from "@/lib";
 
 export default function Guarantee(props: { id: string }) {
   let { id } = props;
-  let [dataInfo, setDataInfo] = useState();
+  let [dataInfo, setDataInfo] = useState(null!);
   let {
     Submit,
     Success,
