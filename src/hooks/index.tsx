@@ -1,7 +1,7 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
 import { FinanceDataTypeEmu } from "@/constant";
-import { getUnique, getUserInfo, postImgCode, postPhoneCode } from "@/fetch";
+import { getArea, getUnique, getUserInfo, postImgCode, postPhoneCode } from "@/fetch";
 import { FinanceItemProps } from "@/fetch/definition";
 import { promises } from "dns";
 import { useCallback, useEffect, useMemo, useState } from "react";
@@ -148,3 +148,20 @@ export const useUserInfo = () => {
     userInfo,
   };
 };
+export const useGetArea = () => {
+  let [area, setArea] = useState(null!);
+  let getAreaFn = useCallback(async () => {
+    let res = await getArea();
+    if (res.code != 200) {
+      return;
+    }
+    setArea(res.data);
+  }, []);
+  useEffect(()=>{
+    getAreaFn()
+  },[getAreaFn])
+  return {
+    area,
+  };
+};
+

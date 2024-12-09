@@ -71,9 +71,9 @@ export enum FilterSortEmu {
 
 export interface FinanceItemProps {
   tabType: TabType;
-  add_time:number;
+  add_time?:number;
   id: string|number;
-  fo_id:number;
+  fo_id?:number;
   dataType: FinanceDataTypeEmu;
   logoUrl: string;//logo
   companyName: string;

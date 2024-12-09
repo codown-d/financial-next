@@ -169,3 +169,6 @@ export const productDetail = async (params?: any): Promise<IResponseData<any>> =
 export const productApply = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.productApply}`, params);
 };
+export const financeAdd = async (params?: any): Promise<IResponseData<any>> => {
+  return http.post(`${api.financeAdd}`, params);
+};

@@ -9,13 +9,21 @@ import TzCard from "./TzCard";
 import TzForm, { TzFormItem } from "./TzForm";
 import TzInput from "./TzInput";
 import TzSelect from "./TzSelect";
-import { Col, Row } from "antd";
+import { Col, Form, message, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
-import { collateralOp, FinanceDataTypeEmu, purposeOp, selectOp, termOp } from "@/constant";
+import {
+  collateralOp,
+  FinanceDataTypeEmu,
+  purposeOp,
+  selectOp,
+  termOp,
+} from "@/constant";
 import SwiperBanner from "./UI/SwiperBanner";
 import { useRouter } from "next/navigation";
 import { InstitutionTypeEmu } from "@/fetch/definition";
+import { useGlobalContext } from "@/hooks/GlobalContext";
+import { financeAdd } from "@/fetch";
 
 const FinancialBusiness = (props) => {
   const scrollAnimation = useMemo(() => getScrollAnimation(), []);
@@ -23,70 +31,72 @@ const FinancialBusiness = (props) => {
     {
       name: "贷款",
       number: "390",
-      key:InstitutionTypeEmu.SmallLoan,
+      key: InstitutionTypeEmu.SmallLoan,
       icon: "fa-user",
       img: "/images/daikuan.png",
-      path:'/small-loan'
+      path: "/small-loan",
     },
     {
       name: "担保",
       number: "20",
-      key:InstitutionTypeEmu.Guaranteed,
+      key: InstitutionTypeEmu.Guaranteed,
       icon: "fa-briefcase",
       img: "/images/danbao.png",
-      path:'/ele-bond'
+      path: "/ele-bond",
     },
     {
       name: "转贷",
       number: "50",
-      key:InstitutionTypeEmu.Guaranteed,
+      key: InstitutionTypeEmu.Guaranteed,
       icon: "fa-coins",
       img: "/images/zhuandai.png",
-      path:'/small-loan'
+      path: "/small-loan",
     },
 
     {
       name: "保函",
       number: "50",
-      key:InstitutionTypeEmu.Guaranteed,
+      key: InstitutionTypeEmu.Guaranteed,
       icon: "fa-clipboard",
       img: "/images/baohan.png",
-      path:'/ele-bond'
+      path: "/ele-bond",
     },
     {
       name: "保险",
       number: "50",
-      key:null,
+      key: null,
       icon: "fa-clipboard",
       img: "/images/baoxian.png",
-      path:''
+      path: "",
     },
     {
       name: "投资",
       number: "50",
-      key:InstitutionTypeEmu.Fund,
+      key: InstitutionTypeEmu.Fund,
       icon: "fa-clipboard",
       img: "/images/touzi.png",
-      path:'/small-loan'
+      path: "/small-loan",
     },
     {
       name: "政策",
       number: "50",
-      key:'policy',
+      key: "policy",
       icon: "fa-clipboard",
       img: "/images/zhengce.png",
-      path:'/policy-services'
+      path: "/policy-services",
     },
     {
       name: "服务",
       number: "50",
-      key:'investment',
+      key: "investment",
       icon: "fa-clipboard",
       img: "/images/fuwu.png",
-      path:'/equity-investment'
+      path: "/equity-investment",
     },
   ];
   const router = useRouter();
+  let { userInfo } = useGlobalContext();
+  let [formIns] = Form.useForm();
   return (
     <>
       <motion.div variants={scrollAnimation}>
@@ -106,8 +116,10 @@ const FinancialBusiness = (props) => {
                 className="flex flex-col items-center hover:bg-[#F7F7F7] w-[152px]"
                 hoverable
                 bordered={false}
-                onClick={()=>{
-                  item.path.indexOf('/')==0?router.push(`${item.path}?institution=${item.key}`):null
+                onClick={() => {
+                  item.path.indexOf("/") == 0
+                    ? router.push(`${item.path}?institution=${item.key}`)
+                    : null;
                 }}
               >
                 <div className="flex flex-col">
@@ -130,33 +142,56 @@ const FinancialBusiness = (props) => {
           >
             <div className="flex flex-col items-center justify-center">
               <div className="text-[32px] text-center ">
-                <Image src={"/images/yjrz.png"} width={123} height={0}alt={""}/></div>
+                <Image
+                  src={"/images/yjrz.png"}
+                  width={123}
+                  height={0}
+                  alt={""}
+                />
+              </div>
               <div className="text-[14px] text-center mb-6 text-[#999]">
                 一键触达，快速响应
               </div>
               <TzForm
+                form={formIns}
                 labelCol={{ flex: "68px" }}
                 colon={false}
                 labelAlign={"right"}
               >
                 <Row gutter={[76, 16]}>
                   <Col span={12}>
-                    <TzFormItem label="金额" name={'amount'}>
-                      <TzInput placeholder="请输入"  suffix="万元"/>
+                    <TzFormItem
+                      label="金额"
+                      name={"apply_money"}
+                      rules={[{ required: true }]}
+                    >
+                      <TzInput placeholder="请输入" suffix="万元" />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="用途" name={'purpose'}>
+                    <TzFormItem
+                      label="用途"
+                      name={"purpose"}
+                      rules={[{ required: true }]}
+                    >
                       <TzSelect placeholder="请选择" options={purposeOp} />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="期限" name={'term'}>
+                    <TzFormItem
+                      label="期限"
+                      name={"term"}
+                      rules={[{ required: true }]}
+                    >
                       <TzSelect placeholder="请选择" options={termOp} />
                     </TzFormItem>
                   </Col>
                   <Col span={12}>
-                    <TzFormItem label="担保方式" name={'collateral'}>
+                    <TzFormItem
+                      label="担保方式"
+                      name={"guarantee_method"}
+                      rules={[{ required: true }]}
+                    >
                       <TzSelect placeholder="请选择" options={selectOp} />
                     </TzFormItem>
                   </Col>
@@ -167,6 +202,22 @@ const FinancialBusiness = (props) => {
                 style={{
                   background:
                     "linear-gradient( 270deg, #7B9DF1 0%, #3C5BF6 100%)",
+                }}
+                onClick={() => {
+                  console.log(userInfo);
+                  if (!userInfo) {
+                    return message.error("请登录账号！");
+                  } else {
+                    formIns.validateFields().then((val) => {
+                      financeAdd(val).then((res) => {
+                        if (res.code == 200) {
+                          message.success("发布成功！");
+                        } else {
+                          // message.success("发布失败！");
+                        }
+                      });
+                    });
+                  }
                 }}
                 shape="round"
               >

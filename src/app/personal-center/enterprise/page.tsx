@@ -6,6 +6,7 @@ import TzModal from "@/components/TzModal";
 import TzNextImage from "@/components/TzNextImage";
 import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
 import { enterpriseVerify, getArea, userVerify } from "@/fetch";
+import { useGetArea } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
@@ -24,14 +25,8 @@ import { useEffect, useState } from "react";
 
 let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
   let { formIns } = props;
-  let [options, setOptions] = useState();
-  useEffect(() => {
-    getArea().then((res) => {
-      if (res.code == 200) {
-        setOptions(res.data);
-      }
-    });
-  }, []);
+  let {area} = useGetArea();
+
   return (
     <ConfigProvider locale={zhCN}>
       <TzForm
@@ -57,6 +52,7 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
         >
           <Upload
             maxCount={1}
+            name={'image'}
             action={`/api/upload/image`}
             listType="picture-card"
             onChange={({ fileList }) => {
@@ -66,7 +62,7 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
               if (uploadedFile && uploadedFile?.response) {
                 if (uploadedFile?.response.code != 200) {
                   message.error({
-                    content: "请上传营业执照",
+                    content: uploadedFile?.response.desc,
                   });
                   // formIns.setFieldsValue({
                   //   idcard_img: undefined, // 假设返回值中包含 url 字段
@@ -105,7 +101,7 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
           rules={[{ required: true }]}
           labelCol={{ flex: "160px" }}
         >
-          <Cascader options={options} placeholder="请选择" />
+          <Cascader options={area} placeholder="请选择" />
         </TzFormItem>
         <TzFormItem label={" "} name={"address"}>
           <TextArea placeholder="请输入" size={"large"} />
@@ -133,7 +129,7 @@ export default function RealName() {
       <div className={"relative w-[460px]"}>
         <TzNextImage
           className="mt-6"
-          src={`/images/${userInfo?.verify_status != 3 ? "wqyrz" : "qyrz"}.png`}
+          src={`/images/${userInfo?.enterprise_verify_status != 3 ? "wqyrz" : "qyrz"}.png`}
           width={460}
           height={0}
         />
@@ -145,7 +141,7 @@ export default function RealName() {
             setSubmitVisible(true);
           }}
         >
-          {userInfo?.verify_status == 3 ? "查看认证" : "立即认证"}
+          {userInfo?.enterprise_verify_status == 3 ? "查看认证" : "立即认证"}
         </TzButton>
       </div>
       <TzModal
@@ -187,6 +183,7 @@ export default function RealName() {
                   prov_id: val.area_id[0],
                   city_id: val.area_id[1],
                   area_id: val.area_id[2],
+                  idcard_img:val.idcard_img[0]
                 }).then((res) => {
                   if (res.code == 200) {
                     resolve("");

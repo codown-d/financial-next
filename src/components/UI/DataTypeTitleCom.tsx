@@ -28,13 +28,14 @@ export default function DataTypeTitleCom(props: DataTypeTitleProps) {
     );
   } else {
     return (
-      <div className="min-w-[240px]">
-        <span className="font-extrabold text-2xl text-[#333333] text-center">
+      <div className="min-w-[260px] flex items-center">
+        <span className="font-extrabold max-w-[160px] text-2xl text-[#333333] text-center !overflow-hidden  !truncate" title={name}>
           {name}
         </span>
-        <span className="ml-3 bg-gradient-to-r to-[#7B9DF1] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
+        <span> <span className="ml-3 bg-gradient-to-r to-[#7B9DF1] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
           {prodType}
-        </span>
+        </span></span>
+       
       </div>
     );
   }

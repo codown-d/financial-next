@@ -25,5 +25,6 @@ export default {
   getArea:'/get/area',
   productRecommend:'/get/product/recommend',
   productDetail:'/index/product/detail',
-  productApply:'/user/product/apply'
+  productApply:'/user/product/apply',
+  financeAdd:'/user/finance/info/add',
 }

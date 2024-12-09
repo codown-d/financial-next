@@ -15,15 +15,23 @@ const GlobalContext = createContext<{
 
 export function GlobalProvider({ children }: { children: React.ReactNode }) {
   const [userInfo, setUserInfo] = useState<UserInfoProps>();
+  const [financeApply, setFinanceApply] = useState<{
+    apply_count:number;
+    apply_count_not:number;
+    finance_count:number;
+    finance_count_not:number;
+  }>();
   useEffect(() => {
     getUserInfo().then(res=>{
-      res.data['verify_status']=1
+      console.log(res)
+      // res.data['verify_status']=1
       setUserInfo(res.data)
+      setFinanceApply(res.finance_apply)
       window.localStorage.setItem("userInfo", JSON.stringify(res.data));                  
     })
   }, []);
   return (
-    <GlobalContext.Provider value={{ userInfo, setUserInfo }}>
+    <GlobalContext.Provider value={{ userInfo, setUserInfo ,financeApply}}>
       {children}
     </GlobalContext.Provider>
   );

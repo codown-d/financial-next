@@ -9,36 +9,38 @@ import FinanceCard, { FinanceCardProps } from "@/components/UI/FinanceCard";
 import Loan from "@/components/UI/Loan";
 import StepFlow from "@/components/UI/StepFlow";
 import { purposeOp, termOp, selectOp, MarketDataList } from "@/constant";
-import { productRecommend } from "@/fetch";
+import { financeAdd, productRecommend } from "@/fetch";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 import { dealProduct } from "@/lib";
 import { insertAfterOddIndices } from "@/lib/utils";
-import { Row, Col } from "antd";
-import { useCallback, useEffect, useState } from "react";
+import { Row, Col, message, Form } from "antd";
+import { useCallback, useEffect, useMemo, useState } from "react";
 
 export default function User() {
-  let infoList = [
+  let { userInfo ,financeApply} = useGlobalContext();
+  let [formIns] = Form.useForm();
+  let infoList = useMemo(()=>([
     {
       title: "总需求",
-      num: "00",
+      num: financeApply?.apply_count,
       imgUrl: "/images/zxq.png",
     },
     {
       title: "待受理需求",
-      num: "00",
+      num: financeApply?.apply_count_not,
       imgUrl: "/images/dslxq.png",
     },
     {
       title: "总申请",
-      num: "00",
+      num: financeApply?.finance_count,
       imgUrl: "/images/zsq.png",
     },
     {
       title: "待受理申请",
-      num: "00",
+      num: financeApply?.finance_count_not,
       imgUrl: "/images/dslsq.png",
     },
-  ];
-  let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
+  ]),[financeApply])
   let getDom = useCallback((items) => {
     return insertAfterOddIndices(
       items.slice(0, 2).map((item) => {
@@ -58,36 +60,9 @@ export default function User() {
       <TzDivider type="vertical" style={{ height: "60px" }} />
     );
   }, []);
+  let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
     productRecommend().then((res) => {
-      console.log(res);
-      res.data = [
-        {
-          id: 2,
-          add_time: 1731893880,
-          name: "小额贷款",
-          fo_id: 1,
-          product_intro: "产品介绍",
-          service_object: "服务对象",
-          term: 0,
-          data_type: 1,
-          application_info_enterprise: "",
-          application_info: "申请资料",
-          application_condition: "申请条件",
-          repayment_method: 2,
-          application_info_user: "",
-          application_form: 1,
-          highest_money: 10000,
-          rate: "5.6",
-          product_type: 2,
-          fund_company_intro: "",
-          highest_money_unit: 0,
-          guarantee_highest_money: "0.0",
-          guarantee_form: 0,
-          premium_search: 0,
-          success_count: 0,
-        },
-      ];
       setMarketDataList(res.data.map(dealProduct));
     });
   };
@@ -112,35 +87,76 @@ export default function User() {
         <div className="flex-c-c !items-start">
           <div className="mb-[30px] text-[20px]">需求发布</div>
           <StepFlow />
-          <TzForm className="!mt-[30px]" colon={false} layout="vertical">
+          <TzForm
+            className="!mt-[30px]"
+            colon={false}
+            layout="vertical"
+            form={formIns}
+          >
             <Row gutter={[120, 0]}>
               <Col span={12}>
-                <TzFormItem label="金额" name={"amount"} className="w-[320px]">
+                <TzFormItem
+                  label="金额"
+                  name={"apply_money"}
+                  className="w-[320px]"
+                  rules={[{ required: true }]}
+                >
                   <TzInput placeholder="请输入" suffix="万元" />
                 </TzFormItem>
               </Col>
               <Col span={12}>
-                <TzFormItem label="用途" name={"purpose"} className="w-[320px]">
+                <TzFormItem
+                  label="用途"
+                  name={"purpose"}
+                  className="w-[320px]"
+                  rules={[{ required: true }]}
+                >
                   <TzSelect placeholder="请选择" options={purposeOp} />
                 </TzFormItem>
               </Col>
               <Col span={12}>
-                <TzFormItem label="期限" name={"term"} className="w-[320px]">
+                <TzFormItem
+                  label="期限"
+                  name={"term"}
+                  className="w-[320px]"
+                  rules={[{ required: true }]}
+                >
                   <TzSelect placeholder="请选择" options={termOp} />
                 </TzFormItem>
               </Col>
               <Col span={12}>
                 <TzFormItem
                   label="担保方式"
-                  name={"collateral"}
+                  name={"guarantee_method"}
                   className="w-[320px]"
+                  rules={[{ required: true }]}
                 >
                   <TzSelect placeholder="请选择" options={selectOp} />
                 </TzFormItem>
               </Col>
             </Row>
           </TzForm>
-          <TzButton type={"primary"}>发布</TzButton>
+          <TzButton
+            type={"primary"}
+            onClick={() => {
+              console.log(userInfo);
+              if (!userInfo) {
+                return message.error("请登录账号！");
+              } else {
+                formIns.validateFields().then((val) => {
+                  financeAdd(val).then((res) => {
+                    if (res.code == 200) {
+                      message.success("发布成功！");
+                    } else {
+                      // message.success("发布失败！");
+                    }
+                  });
+                });
+              }
+            }}
+          >
+            发布
+          </TzButton>
         </div>
       </TzCard>
       <TzCard className="!mt-3">
@@ -151,7 +167,7 @@ export default function User() {
         <div className="flex flex-wrap ">
           {marketDataList.map((item, index) => {
             return (
-              <div key={index} className="w-1/3 bg-blue-500 p-4">
+              <div key={index} className="screen_1280:w-1/3 w-1/2 bg-blue-500 p-4 ">
                 <FinanceCard {...item} />
               </div>
             );

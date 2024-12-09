@@ -750,9 +750,9 @@ export const purposeOp = [
     value: "4",
   },
 ];
-export const termOp = [3, 12, 24, 36].map((item) => ({
+export const termOp = [3, 12, 24, 36].map((item,index) => ({
   label: item + "个月内",
-  value: item,
+  value: index+1,
 }));
 
 export const selectOp = [

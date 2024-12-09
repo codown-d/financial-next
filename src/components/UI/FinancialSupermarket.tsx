@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { Form } from "antd";
+import { Empty, Form } from "antd";
 import { TzButton } from "../TzButton";
 import TzCard from "../TzCard";
 import TzForm, { TzFormItem } from "../TzForm";
@@ -19,8 +19,10 @@ import TzNextImage from "../TzNextImage";
 import { useEffect, useMemo, useState } from "react";
 import TzSearch from "../TzSearch";
 import TzModal, { TzConfirm } from "../TzModal";
-import FinanceCard from "./FinanceCard";
+import FinanceCard, { FinanceCardProps } from "./FinanceCard";
 import { useRouter, useSearchParams } from "next/navigation";
+import { productRecommend } from "@/fetch";
+import { dealProduct } from "@/lib";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const searchParams = useSearchParams();
@@ -71,10 +73,16 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
     ];
   }, [filter, keyword]);
 
-  let modalItems = MarketDataList.filter(
-    (item) => item.dataType === FinanceDataTypeEmu.Microloans
-  );
   
+  let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
+  let getproductRecommend = () => {
+    productRecommend().then((res) => {
+      setMarketDataList(res.data.map(dealProduct));
+    });
+  };
+  useEffect(() => {
+    getproductRecommend();
+  }, []);
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8]">
@@ -104,7 +112,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             />
           </div>
         </div>
-        <div className="flex absolute shadow-sm top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
+        <div className="flex absolute shadow-sm w-full top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
           <TzCard className="w-0 flex-1">
             <TzForm
               form={form}
@@ -195,7 +203,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         </div>
       </div>
       <TzModal
-        width={1248}
+        width={1200}
         open={open}
         footer={
           <div className="flex items-center justify-center mt-[20px] mb-2">
@@ -219,8 +227,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           </div>
         }
       >
-        <div className="flex justify-between mb-[140px]">
-          {modalItems.map((item, index) => {
+        <div className="flex  mb-[100px] justify-center">
+          {marketDataList.length==0?<Empty />:marketDataList.map((item, index) => {
             return <FinanceCard {...item} key={index} />;
           })}
         </div>

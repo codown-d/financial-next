@@ -6,15 +6,18 @@ import TzModal from "@/components/TzModal";
 import TzNextImage from "@/components/TzNextImage";
 import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
 import { userVerify } from "@/fetch";
+import { useGetArea } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { ConfigProvider, Form, FormInstance, message, Upload } from "antd";
+import { Cascader, ConfigProvider, Form, FormInstance, message, Upload } from "antd";
+import TextArea from "antd/es/input/TextArea";
 import modal from "antd/es/modal";
 import zhCN from "antd/locale/zh_CN";
 import { useEffect, useState } from "react";
 
 let RealNameModal = (props: { formIns: FormInstance<any> }) => {
   let { formIns } = props;
+  let {area} = useGetArea();
   return (
     <ConfigProvider locale={zhCN}>
       <TzForm
@@ -23,7 +26,7 @@ let RealNameModal = (props: { formIns: FormInstance<any> }) => {
         labelCol={{ flex: "160px" }}
         layout={"horizontal"}
       >
-        <TzFormItem name={"send_type"} hidden initialValue={"real_name"}>
+        <TzFormItem name={"send_type"} hidden initialValue={"verify"}>
           <TzInput />
         </TzFormItem>
         <TzFormItem label="姓名" name={"name"} rules={[{ required: true }]}>
@@ -43,6 +46,7 @@ let RealNameModal = (props: { formIns: FormInstance<any> }) => {
         >
           <Upload
             maxCount={1}
+            name={'image'}
             action={`/api/upload/image`}
             listType="picture-card"
             onChange={({ fileList }) => {
@@ -70,7 +74,17 @@ let RealNameModal = (props: { formIns: FormInstance<any> }) => {
             <PlusOutlined />
           </Upload>
         </TzFormItem>
-
+        <TzFormItem
+          label="企业地址"
+          name={"area_id"}
+          rules={[{ required: true }]}
+          labelCol={{ flex: "160px" }}
+        >
+          <Cascader options={area} placeholder="请选择" />
+        </TzFormItem>
+        <TzFormItem label={" "} name={"address"}>
+          <TextArea placeholder="请输入" size={"large"} />
+        </TzFormItem>
         <TzFormItem label="手机号" name={"phone"} rules={[{ required: true }]}>
           <TzInput placeholder="请输入" size={"large"} disabled />
         </TzFormItem>
@@ -155,7 +169,11 @@ export default function RealName() {
             formIns
               .validateFields()
               .then((val) => {
-                userVerify(val).then((res) => {
+                userVerify({...val,
+                  prov_id: val.area_id[0],
+                  city_id: val.area_id[1],
+                  area_id: val.area_id[2],
+                  idcard_img:val.idcard_img[0]}).then((res) => {
                   if (res.code == 200) {
                     resolve("");
                     message.success({

@@ -9,6 +9,7 @@ import { FinanceItemProps } from "@/fetch/definition";
 import TzNextImage from "../TzNextImage";
 import CountUp from "react-countup";
 import { useRouter } from "next/navigation";
+import TzImage from "../TzImage";
 export type FinanceCardProps = FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
@@ -74,15 +75,14 @@ export default function (props: FinanceCardProps) {
     <>
       <TzCard
         hoverable
-        className={"!rounded-2xl h-[260px]"}
+        className={"!rounded-2xl h-[260px] flex"}
         styles={{
           body: { padding: "0", position: "relative", display: "inline-block" },
         }}
       >
-        <TzNextImage
+        <TzImage
           src={dataType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
-          width={360}
-          height={0}
+          width={'100%'}
         />
         <div className="flex absolute top-3 items-center left-5">
           <div className="text-[20px] leading-[20px] font-bold">{name}</div>

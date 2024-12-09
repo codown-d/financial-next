@@ -48,7 +48,7 @@ export default function MarketCard(props: FinanceItemProps) {
           <DataTypeCom {...props} />
         </div>
       </div>
-      <div className="w-[245px] flex justify-center items-center">
+      <div className=" flex justify-center items-center">
         <TzButton
           className=""
           shape={"round"}
