@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: '/api/:path*',
-        destination: `${process.env.NEXT_PUBLIC_API_HOST}/:path*`, // 目标 API 地址
+        destination: process.env.NEXT_PUBLIC_API_HOST+'/:path*', // 目标 API 地址
       },
     ];
   },
