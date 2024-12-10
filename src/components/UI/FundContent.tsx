@@ -15,7 +15,7 @@ export default function FundContent() {
           </div>
           <div className="text-[#999]">工作日：09:00-18:00 在线</div>
         </div>
-        <div>
+        {false&&<div>
           <Image
             src="/images/qr-code.jpg"
             width={182}
@@ -24,7 +24,7 @@ export default function FundContent() {
             className="rounded-lg"
           />
           {/* <TzNextImage src="/images/qr-code.png" width={182} height={182} /> */}
-        </div>
+        </div>}
       </div>
     </>
   );

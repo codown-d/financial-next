@@ -1,10 +1,12 @@
 import TzModal, { TzConfirm } from "@/components/TzModal";
-import { DescriptionsProps, Form, FormInstance } from "antd";
+import { DescriptionsProps, Form, FormInstance, message } from "antd";
 import { useCallback, useState } from "react";
 import ProductApplication from "../components/ProductApplication";
 import ApplicationSuccess from "../components/ApplicationSuccess";
 import ApplicationFail from "../components/ApplicationFail";
 import { TzButton } from "@/components/TzButton";
+import { productApply } from "@/fetch";
+import { keys } from "lodash";
 
 export default function useApplicationAction() {
   let [failVisible, setFailVisible] = useState(false);
@@ -13,9 +15,10 @@ export default function useApplicationAction() {
   let Submit = (props: {
     form: FormInstance<any>;
     type: string;
+    product_id:string;
     callback?: (arg: any) => void;
   }) => {
-    let { form, type, callback } = props;
+    let { form, type, callback,product_id } = props;
     return (
       <TzModal
         closeIcon={false}
@@ -50,19 +53,33 @@ export default function useApplicationAction() {
           return form
             .validateFields()
             .then((val) => {
-              callback?.(val);
-              setSubmitVisible(false);
-              form.resetFields();
+              productApply(val).then((res) => {
+                if (res.code == 200) {
+                  callback?.(val);
+                  setSubmitVisible(false);
+                  form.resetFields();
+                  message.success("申请成功");
+                }
+              });
             })
             .catch();
         }}
       >
-        <ProductApplication formIns={form} />
+        <ProductApplication formIns={form} product_id={product_id} />
       </TzModal>
     );
   };
   let Success = (props: DescriptionsProps) => {
     let { items } = props;
+    console.log(items)
+    let newItemsList = keys(items).map((item) => {
+      return {
+        key: item,
+        label: 'UserName',
+        children: <p>Zhou Maomao</p>,
+      }
+    })
+    
     return (
       <TzModal
         closeIcon={false}

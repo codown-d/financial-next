@@ -7,9 +7,8 @@ import CardOverview from "./CardOverview";
 import Loan from "./Loan";
 import { TzButton } from "../TzButton";
 import { SwapRightOutlined } from "@ant-design/icons";
-import { FinanceItemProps } from "@/fetch/definition";
+import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import { useRouter } from "next/navigation";
-import { FinanceDataTypeEmu } from "@/constant";
 interface TabItem {
   title: string;
   description: string;

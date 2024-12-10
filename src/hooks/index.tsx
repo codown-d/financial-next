@@ -1,8 +1,14 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
-import { FinanceDataTypeEmu } from "@/constant";
-import { getArea, getUnique, getUserInfo, postImgCode, postPhoneCode } from "@/fetch";
-import { FinanceItemProps } from "@/fetch/definition";
+import { collateralOp, repaymentMethodOp } from "@/constant";
+import {
+  getArea,
+  getUnique,
+  getUserInfo,
+  postImgCode,
+  postPhoneCode,
+} from "@/fetch";
+import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import { promises } from "dns";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
@@ -30,10 +36,10 @@ export const useResize = (props?: ResizeProps) => {
   }, []);
   return { isMobile };
 };
-export const useDataType = (props: FinanceItemProps) => {
-  let { dataType, rate, amount, term, rateDown, rateUp } = props;
+export const useProductType = (props: FinanceItemProps) => {
+  let { productType, rate, amount, term, rateDown, rateUp } = props;
   let getDataType = useMemo(() => {
-    return dataType === FinanceDataTypeEmu.ElectronicGuarantee
+    return productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
           {
             label: (
@@ -44,18 +50,18 @@ export const useDataType = (props: FinanceItemProps) => {
                 </span>
               </span>
             ),
-            value: `${rateDown}-${rateUp}`,
+            value: `${rate}`,
             p: "%",
           },
         ]
-      : dataType === FinanceDataTypeEmu.EquityFinancing
+      : productType === FinanceDataTypeEmu.EquityFinancing
       ? [
           {
             label: <span className="text-[#333]">最低利率</span>,
             value: <span className="text-[20px]">当期LPR</span>,
           },
         ]
-      : dataType === FinanceDataTypeEmu.EmergencyRefinancing
+      : productType === FinanceDataTypeEmu.EmergencyRefinancing
       ? []
       : [
           {
@@ -76,6 +82,33 @@ export const useDataType = (props: FinanceItemProps) => {
         ];
   }, [props]);
   return getDataType;
+};
+
+export const useRepaymentMethod = (dataInfo: FinanceItemProps) => {
+  let repaymentMethodLabel = useMemo(() => {
+    return repaymentMethodOp
+      .reduce((pre: any[], item) => {
+        if (dataInfo?.repaymentMethod?.includes(item.value)) {
+          pre.push(item.label);
+        }
+        return pre;
+      }, [])
+      .join("/");
+  }, [dataInfo?.repaymentMethod]);
+  return { repaymentMethodLabel };
+};
+export const useDataType = (dataInfo: FinanceItemProps) => {
+  let dataTypeLabel = useMemo(() => {
+    return collateralOp
+      .reduce((pre: any[], item) => {
+        if (dataInfo?.dataType?.includes(item.value)) {
+          pre?.push?.(item.label);
+        }
+        return pre;
+      }, [])
+      .join("/");
+  }, [dataInfo?.dataType]);
+  return { dataTypeLabel };
 };
 
 export const useFundModal = () => {
@@ -113,7 +146,7 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
   };
 };
 export const useGetPhoneCode = () => {
-  let getPhoneCode = useCallback((val?:any) => {
+  let getPhoneCode = useCallback((val?: any) => {
     return new Promise(async (resolve, reject) => {
       let res = await getUnique();
       if (res.code != 200) {
@@ -134,14 +167,14 @@ export const useGetPhoneCode = () => {
 };
 export const useUserInfo = () => {
   let [userInfo, setUserInfo] = useState({});
-  let getUserInfoFn = useCallback(async (cal?:(arg:any)=>void) => {
+  let getUserInfoFn = useCallback(async (cal?: (arg: any) => void) => {
     let res = await getUserInfo();
     if (res.code != 200) {
       return;
     }
-    console.log(res.data)
+    console.log(res.data);
     setUserInfo(res.data);
-    cal?.(res.data)
+    cal?.(res.data);
   }, []);
   return {
     getUserInfoFn,
@@ -157,11 +190,10 @@ export const useGetArea = () => {
     }
     setArea(res.data);
   }, []);
-  useEffect(()=>{
-    getAreaFn()
-  },[getAreaFn])
+  useEffect(() => {
+    getAreaFn();
+  }, [getAreaFn]);
   return {
     area,
   };
 };
-

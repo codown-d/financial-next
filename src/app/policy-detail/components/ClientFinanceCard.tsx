@@ -1,10 +1,11 @@
 "use client";
 import FinanceCard from "@/components/UI/FinanceCard";
-import { FinanceDataTypeEmu, MarketDataList } from "@/constant";
+import { MarketDataList } from "@/constant";
+import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export default function ClientFinanceCard() {
   let items = MarketDataList.filter(
-    (item) => item.dataType === FinanceDataTypeEmu.Microloans
+    (item) => item.productType===FinanceDataTypeEmu.Microloans
   );
   return (
     <div className="flex justify-between mb-[140px]">

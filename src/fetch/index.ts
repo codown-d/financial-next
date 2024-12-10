@@ -5,7 +5,7 @@ import {
 } from "../mock";
 import api from "./api";
 import http from "./http";
-import { IResponseData } from "./definition";
+import { FinanceItemProps, IResponseData } from "./definition";
 const apiHost = process.env.NEXT_PUBLIC_API_HOST;
 export const getServerSidePolicyList = async (params): Promise<IResponseData<any>> => {
   if (process.env.NEXT_PUBLIC_USE_MOCK) {
@@ -162,7 +162,7 @@ export const getArea = async (params?: any): Promise<IResponseData<any>> => {
 export const productRecommend = async (params?: any): Promise<IResponseData<any>> => {
   return http.get(`${api.productRecommend}`, params);
 };
-export const productDetail = async (params?: any): Promise<IResponseData<any>> => {
+export const productDetail = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
   let {id }=params
   return http.get(`${api.productDetail}/${id}`, params);
 };
@@ -171,4 +171,8 @@ export const productApply = async (params?: any): Promise<IResponseData<any>> =>
 };
 export const financeAdd = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.financeAdd}`, params);
+};
+export const loanDetail = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  let {id }=params
+  return http.get(`${api.loanDetail}/${id}`, params);
 };

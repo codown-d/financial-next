@@ -1,4 +1,3 @@
-import { FinanceDataTypeEmu, TabType } from "@/constant";
 
 export interface IResponseData<T> {
   kind?: string;
@@ -48,13 +47,13 @@ export enum InstitutionTypeEmu {
 }
 export enum GuaranteeMethodEmu {
   /** 信用 */
-  Credit = 1,
+  Credit = '1',
   /**  抵质押 */
-  LoanPledge = 2,
+  LoanPledge = '2',
   /**  保证 */
-  Guarantee = 3,
+  Guarantee = '3',
   /**  组合 */
-  Combination = 4,
+  Combination = '4',
   /**  电子保函 */
   ElectronicGuarantee = "electronicGuarantee",
   /**  纸质保函 */
@@ -68,16 +67,32 @@ export enum FilterSortEmu {
   /**  降序 */
   Asc = "asc",
 }
-
+export enum FinanceDataTypeEmu {
+  /** 银行贷款 */
+  BankLoans = 1,
+  /** 小额贷款 */
+  Microloans = 2,
+  /** 股权融资 基金 */
+  EmergencyRefinancing = 5,
+  /** 应急转贷 */
+  EquityFinancing = 4,
+  /** 融资担保 */
+  FinanceGuarantee =3,
+  /** 电子保函 */
+  ElectronicGuarantee = 7,
+}
+export enum TabType {
+  service = "service",
+  credit = "credit",
+}
 export interface FinanceItemProps {
   tabType: TabType;
   add_time?:number;
   id: string|number;
   fo_id?:number;
-  dataType: FinanceDataTypeEmu;
   logoUrl: string;//logo
   companyName: string;
-  prodType: string;
+  productType: FinanceDataTypeEmu;//c产品名称
   name: string;
   rateDown: string;
   rateUp: string;
@@ -92,7 +107,7 @@ export interface FinanceItemProps {
   //机构类型
   institutionType: InstitutionTypeEmu;
   //担保类型
-  guaranteeMethod: GuaranteeMethodEmu[];
+  dataType: GuaranteeMethodEmu[];
   //产品介绍
   productIntroduction?: string;
   repaymentMethod?: string[];
@@ -112,5 +127,7 @@ export interface FinanceItemProps {
   //基金公司介绍
   fundCompanyIntroduction?: string;
   //位置
-  location: string;
+  financial_organs:{area_desc:string};
+  application_info_user:string//个人
+  application_info_enterprise:string//企业
 }
