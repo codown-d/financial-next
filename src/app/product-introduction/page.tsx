@@ -10,7 +10,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 
 export default function ProductIntroduction(props) {
   const searchParams = useSearchParams();
-  const dataType = searchParams.get("dataType") as FinanceDataTypeEmu;
+  const dataType = searchParams.get("dataType") as any;
   const id = searchParams.get("id");
   let getDataTypeDom = useMemo(() => {
     if (
