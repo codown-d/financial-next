@@ -1,4 +1,9 @@
 node_modules
-npm-debug.log
-Dockerfile
+.next
+out
 .dockerignore
+Dockerfile
+.git
+.gitignore
+.env.local
+*.log
