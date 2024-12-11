@@ -11,8 +11,21 @@ export default function (props: { formIns: FormInstance<any> }) {
   useEffect(() => {
     getImgCode();
   }, [getImgCode]);
+  useEffect(() => {
+    console.log(token);
+    formIns.setFieldsValue({
+      token,
+    });
+  }, [imgCode]);
   return (
     <TzForm form={formIns} colon={false} layout={"vertical"}>
+      <TzFormItem
+        name={"token"}
+        hidden
+        initialValue={token}
+      >
+        <TzInput/>
+      </TzFormItem>
       <TzFormItem
         label="设置密码"
         name={"pass"}

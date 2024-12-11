@@ -7,6 +7,7 @@ import Step2 from "./Step2";
 import Step3 from "./Step3";
 import TzIcon from "@/components/TzIcon";
 import { userRegister } from "@/fetch";
+import { merge } from "lodash";
 
 export default function () {
   const { contentType, setContentType ,formRegistration} = useLoginContext();
@@ -50,7 +51,8 @@ export default function () {
                 formRegistration.setFieldsValue(val)
                 if(contentType==='register2'){
                   console.log(formRegistration.getFieldsValue())
-                  userRegister(formRegistration.getFieldsValue()).then(()=>{})
+                  let prama = merge({},formRegistration.getFieldsValue(),val)
+                  userRegister(prama).then(()=>{})
                 }else{
                   setContentType((pre) =>
                   pre === "register1"

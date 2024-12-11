@@ -11,7 +11,7 @@ async function getServerSideProps(context) {
   };
 }
 export default async function ({ searchParams }) {
-  let {body_type} = searchParams
+  let {body_type=''} = searchParams
   const { items: initialData, total } = await getServerSideProps({});
   return (
     <PolicyServices
