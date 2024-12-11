@@ -177,3 +177,6 @@ export const loanDetail = async (params?: any): Promise<IResponseData<FinanceIte
   let {id }=params
   return http.get(`${api.loanDetail}/${id}`, params);
 };
+export const verifyRegiste = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  return http.post(`${api.verifyRegiste}`, params);
+};

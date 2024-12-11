@@ -17,21 +17,50 @@ import {
   message,
   Radio,
   Upload,
+  UploadFile,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
 import modal from "antd/es/modal";
 import zhCN from "antd/locale/zh_CN";
+import { find } from "lodash";
 import { useEffect, useState } from "react";
 
-let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
-  let { formIns } = props;
+let EnterpriseNameModal = (props: { formIns: FormInstance<any>;enterprise_verify_status:any }) => {
+  let { formIns,enterprise_verify_status } = props;
   let {area} = useGetArea();
-
+  console.log(formIns.getFieldValue("idcard_img"))
+  const [fileList, setFileList] = useState<UploadFile[]>(formIns.getFieldValue("idcard_img")?[
+    {
+      uid: "-1",
+      name:'',
+      status: "done",
+      url: formIns.getFieldValue("idcard_img"), 
+    },
+  ]:undefined);
+  useEffect(() => {
+    let uploadedFile = find(fileList, (file) => file.status === "done");
+    if (uploadedFile && uploadedFile?.response) {
+      if (uploadedFile?.response.code != 200) {
+        message.error({
+          content: uploadedFile?.response.desc,
+        });
+        formIns.setFieldsValue({
+          idcard_img: undefined,
+        });
+        return;
+      } else {
+        formIns.setFieldsValue({
+          idcard_img: uploadedFile.response.file,
+        });
+      }
+    }
+  }, [fileList]);
   return (
     <ConfigProvider locale={zhCN}>
       <TzForm
         form={formIns}
         colon={false}
+        disabled={enterprise_verify_status == 3}
         labelCol={{ flex: "160px" }}
         layout={"horizontal"}
       >
@@ -55,26 +84,9 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any> }) => {
             name={'image'}
             action={`/api/upload/image`}
             listType="picture-card"
+            fileList={fileList}
             onChange={({ fileList }) => {
-              const uploadedFile = (
-                Array.isArray(fileList) ? fileList : []
-              ).find((file) => file.status === "done");
-              if (uploadedFile && uploadedFile?.response) {
-                if (uploadedFile?.response.code != 200) {
-                  message.error({
-                    content: uploadedFile?.response.desc,
-                  });
-                  // formIns.setFieldsValue({
-                  //   idcard_img: undefined, // 假设返回值中包含 url 字段
-                  // });
-                  return;
-                }
-                formIns.setFieldsValue({
-                  idcard_img: uploadedFile.response.file
-                    ? [uploadedFile.response.file]
-                    : undefined, // 假设返回值中包含 url 字段
-                });
-              }
+              setFileList(fileList);
             }}
           >
             <PlusOutlined />
@@ -137,7 +149,8 @@ export default function RealName() {
           size={"large"}
           className="border-0 hover:!text-[#FF9958]  bg-white-500 !absolute !text-[#FF9958] right-[56px] top-[60%]"
           shape={"round"}
-          onClick={() => {
+          onClick={() => { 
+            userInfo?.enterprise_verify_status == 3&&formIns.setFieldsValue({ ...userInfo.enterprise });
             setSubmitVisible(true);
           }}
         >
@@ -150,12 +163,13 @@ export default function RealName() {
         open={submitVisible}
         title={
           <div className="text-center font-bold mb-[20px] text-2xl pt-10 text-gray-800  leading-[32px]">
-            企业认证
+            {userInfo?.enterprise_verify_status == 3 ? "认证信息" : '企业认证'}
           </div>
         }
         okButtonProps={{
           shape: "round",
           style: { minWidth: "120px" },
+          disabled: userInfo?.enterprise_verify_status == 3,
         }}
         cancelButtonProps={{
           shape: "round",
@@ -183,7 +197,6 @@ export default function RealName() {
                   prov_id: val.area_id[0],
                   city_id: val.area_id[1],
                   area_id: val.area_id[2],
-                  idcard_img:val.idcard_img[0]
                 }).then((res) => {
                   if (res.code == 200) {
                     resolve("");
@@ -202,7 +215,8 @@ export default function RealName() {
         }}
       >
         <div className="pr-[40px]">
-          <EnterpriseNameModal formIns={formIns} />
+          <EnterpriseNameModal formIns={formIns} 
+            enterprise_verify_status={userInfo?.enterprise_verify_status} />
         </div>
       </TzModal>
     </TzCard>

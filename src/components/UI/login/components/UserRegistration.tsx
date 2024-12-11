@@ -1,16 +1,17 @@
 import { Form } from "antd";
-import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
 import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import TzIcon from "@/components/TzIcon";
-import { userRegister } from "@/fetch";
+import { userRegister, verifyRegiste } from "@/fetch";
+import TzForm, { TzFormItem } from "@/components/TzForm";
 import { merge } from "lodash";
 
+let register1Val:any
 export default function () {
-  const { contentType, setContentType ,formRegistration} = useLoginContext();
+  const { contentType, setContentType } = useLoginContext();
   let [formIns] = Form.useForm();
   return (
     <>
@@ -32,13 +33,15 @@ export default function () {
           <span></span>
         </div>
         <div className="h-[240px] px-10">
-          {contentType === "register1" ? (
-            <Step1 formIns={formIns} />
-          ) : contentType === "register2" ? (
-            <Step2 formIns={formIns} />
-          ) : (
-            <Step3 />
-          )}
+          <TzForm form={formIns} colon={false} layout={"vertical"}>
+            {contentType === "register1" ? (
+              <Step1 formIns={formIns} />
+            ) : contentType === "register2" ? (
+              <Step2 formIns={formIns} />
+            ) : (
+              <Step3 />
+            )}
+          </TzForm>
         </div>
         <div className="flex flex-col mt-[38px] px-10">
           <TzButton
@@ -46,23 +49,26 @@ export default function () {
             type={"primary"}
             size={"large"}
             onClick={() => {
-              formIns.validateFields().then((val) => {
-                console.log(formRegistration,val)
-                formRegistration.setFieldsValue(val)
-                if(contentType==='register2'){
-                  console.log(formRegistration.getFieldsValue())
-                  let prama = merge({},formRegistration.getFieldsValue(),val)
-                  userRegister(prama).then(()=>{})
-                }else{
-                  setContentType((pre) =>
+              formIns.validateFields().then(async (val) => {
+                if (contentType === "register1") {
+                  register1Val=val
+                  let res = await verifyRegiste(val);
+                  if (res.code != 200) {
+                    return;
+                  }
+                } else if (contentType === "register2") {
+                  let res = await userRegister(merge({},val,register1Val));
+                  if (res.code != 200) {
+                    return;
+                  }
+                }
+                setContentType((pre) =>
                   pre === "register1"
                     ? "register2"
                     : pre === "register2"
                     ? "register3"
                     : "login"
                 );
-                }
-                
               });
             }}
           >

@@ -26,13 +26,13 @@ export default function ProductApplication(props: {
     (changedValues, allValues) => {
       if (changedValues.verify_type == 1) {
         formIns.setFieldsValue({
-          name: userInfo?.realname_name,
-          idcard: userInfo?.idcard,
+          name: userInfo?.realname.name,
+          idcard: userInfo?.realname.idcard,
         });
       } else if (changedValues.verify_type == 2) {
         formIns.setFieldsValue({
-          name: userInfo?.enterprise_name,
-          idcard: userInfo?.idcard,
+          name: userInfo?.enterprise.name         ,
+          idcard: userInfo?.enterprise.idcard,
         });
       }
     },
@@ -110,7 +110,7 @@ export default function ProductApplication(props: {
           name={"idcard"}
           rules={[{ required: true }]}
         >
-          <TzInputNumber placeholder="请输入" />
+          <TzInputNumber placeholder="请输入" disabled/>
         </TzFormItem>
         <TzFormItem
           label="申请金额"

@@ -41,3 +41,10 @@ export function dealProduct(item) {
     applicationConditions:item.application_condition,
   };
 }
+
+export function logout(){
+  localStorage.removeItem('token')
+  localStorage.removeItem('userInfo')
+  window.location.href = '/'
+ 
+}

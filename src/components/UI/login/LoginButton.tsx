@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { useUserInfo } from "@/hooks";
 import { useRouter } from "next/navigation";
+import { logout } from "@/lib";
 
 export default function LoginButton() {
   const [open, setOpen] = useState(false);
@@ -24,24 +25,22 @@ export default function LoginButton() {
         </Link>
       ),
     },
-    // {
-    //   key: "financingManagement",
-    //   label: (
-    //     <Link href={"/personal-center/financing"} passHref>
-    //       融资管理
-    //     </Link>
-    //   ),
-    // },
+    {
+      key: "financingManagement",
+      label: (
+        <Link href={"/personal-center/financing"} passHref>
+          融资管理
+        </Link>
+      ),
+    },
     {
       key: "logout",
       label: (
         
         <span
           onClick={() => {
-            localStorage.removeItem("userInfo");
-            localStorage.removeItem("token");
             setUserInfo({ account: "" });
-            router.push('/');
+            logout()
           }}
         >
           退出登录

@@ -7,18 +7,18 @@ import { useEffect } from "react";
 
 export default function (props: { formIns: FormInstance<any> }) {
   let { formIns } = props;
-  let { getImgCode, imgCode, token } = useGetImgCode("user_login");
+  let { getImgCode, imgCode, token } = useGetImgCode("register");
   useEffect(() => {
+    console.log(123456)
     getImgCode();
-  }, [getImgCode]);
+  }, []);
   useEffect(() => {
-    console.log(token);
     formIns.setFieldsValue({
       token,
     });
   }, [imgCode]);
   return (
-    <TzForm form={formIns} colon={false} layout={"vertical"}>
+    <>
       <TzFormItem
         name={"token"}
         hidden
@@ -61,6 +61,6 @@ export default function (props: { formIns: FormInstance<any> }) {
           />
         </div>
       </div>
-    </TzForm>
+    </>
   );
 }

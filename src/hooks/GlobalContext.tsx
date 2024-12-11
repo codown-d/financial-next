@@ -10,6 +10,8 @@ interface UserInfoProps{
   idcard:string;
   realname_name:string;
   enterprise_name:string;
+  realname:any;
+  enterprise:any
 }
 const GlobalContext = createContext<{
   userInfo:UserInfoProps

@@ -12,7 +12,6 @@ export default function (props: { formIns: FormInstance<any> }) {
   let { formIns } = props;
   return (
     <div className="h-[240px] pt-[50px]">
-      <TzForm form={formIns} colon={false} layout={"vertical"}>
         <TzFormItem hidden name={"send_type"} initialValue={"register"}>
           <TzInput />
         </TzFormItem>
@@ -38,7 +37,6 @@ export default function (props: { formIns: FormInstance<any> }) {
           </TzFormItem>
           <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
         </div>
-      </TzForm>
     </div>
   );
 }

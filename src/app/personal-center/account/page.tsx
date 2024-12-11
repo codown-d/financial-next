@@ -9,12 +9,13 @@ import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
 import { purposeOp, termOp, selectOp } from "@/constant";
 import { useGetImgCode, useGetPhoneCode } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
-import { Row, Col, Form, FormInstance, ConfigProvider, Popconfirm } from "antd";
+import { Row, Col, Form, FormInstance, ConfigProvider, Popconfirm, message } from "antd";
 import modal from "antd/es/modal";
 import { useEffect } from "react";
 import zhCN from "antd/locale/zh_CN";
 import { adminQuit, modifyPass, phoneModify, quit } from "@/fetch";
 import { useRouter } from "next/navigation";
+import { logout } from "@/lib";
 
 let Phone = (props: { formIns: FormInstance<any> }) => {
   let { formIns } = props;
@@ -55,21 +56,21 @@ let Password = (props: { formIns: FormInstance<any> }) => {
           name={"user_pass"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" size={"large"} />
+          <TzInputPassword placeholder="请输入" size={"large"} />
         </TzFormItem>
         <TzFormItem
           label="新密码"
           name={"new_user_pass"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" size={"large"} />
+          <TzInputPassword placeholder="请输入" size={"large"} />
         </TzFormItem>
         <TzFormItem
           label="确认新密码"
           name={"new_user_pass_two"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" size={"large"} />
+          <TzInputPassword placeholder="请输入" size={"large"} />
         </TzFormItem>
       </TzForm>
     </ConfigProvider>
@@ -114,6 +115,8 @@ export default function Account() {
                         .then((val) => {
                           phoneModify(val).then((res) => {
                             if (res.code == 200) {
+                              message.success(res.desc)
+                              window.location.reload();
                               resolve("");
                             } else {
                               reject();
@@ -157,9 +160,7 @@ export default function Account() {
                           modifyPass(val).then((res) => {
                             if (res.code == 200) {
                               resolve("");
-                              adminQuit().then((res) => {
-                                router.push("/");
-                              });
+                              adminQuit().then(logout);
                             } else {
                               reject();
                             }
@@ -189,9 +190,7 @@ export default function Account() {
             description={"确认注销登录"}
             okText="是"
             onConfirm={() => {
-              quit().then((res) => {
-                router.push("/");
-              });
+              quit().then(logout);
             }}
             cancelText="否"
           >

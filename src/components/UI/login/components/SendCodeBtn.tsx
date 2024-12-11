@@ -7,8 +7,9 @@ export default function (props: {
   formIns: FormInstance<any>;
   fields?: string[];
   classNames?: string;
+  [x: string]: any;
 }) {
-  let { formIns, fields,classNames } = props;
+  let { formIns, fields, classNames, ...otherProps } = props;
   const [countdown, setCountdown] = useState(0);
   const [isSending, setIsSending] = useState(false);
   useEffect(() => {
@@ -42,6 +43,7 @@ export default function (props: {
       type={"primary"}
       disabled={isSending}
       onClick={handleSendCode}
+      {...otherProps}
     >
       {isSending ? `${countdown}秒后可以重发` : "发送验证"}
     </TzButton>

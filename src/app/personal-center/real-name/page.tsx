@@ -9,20 +9,59 @@ import { userVerify } from "@/fetch";
 import { useGetArea } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
-import { Cascader, ConfigProvider, Form, FormInstance, message, Upload } from "antd";
+import {
+  Cascader,
+  ConfigProvider,
+  Form,
+  FormInstance,
+  message,
+  Upload,
+  UploadFile,
+} from "antd";
 import TextArea from "antd/es/input/TextArea";
 import modal from "antd/es/modal";
 import zhCN from "antd/locale/zh_CN";
+import { find } from "lodash";
 import { useEffect, useState } from "react";
 
-let RealNameModal = (props: { formIns: FormInstance<any> }) => {
-  let { formIns } = props;
-  let {area} = useGetArea();
+let RealNameModal = (props: {
+  formIns: FormInstance<any>;
+  verify_status: any;
+}) => {
+  let { formIns, verify_status } = props;
+  let { area } = useGetArea();
+  const [fileList, setFileList] = useState<UploadFile[]>(formIns.getFieldValue("idcard_img")?[
+    {
+      uid: "-1",
+      name:'',
+      status: "done",
+      url: formIns.getFieldValue("idcard_img"), 
+    },
+  ]:undefined);
+  useEffect(() => {
+    let uploadedFile = find(fileList, (file) => file.status === "done");
+    if (uploadedFile && uploadedFile?.response) {
+      if (uploadedFile?.response.code != 200) {
+        message.error({
+          content: "请上传身份证正面照片",
+        });
+        formIns.setFieldsValue({
+          idcard_img: undefined,
+        });
+        return;
+      } else {
+        formIns.setFieldsValue({
+          idcard_img: uploadedFile.response.file,
+        });
+      }
+    }
+  }, [fileList]);
   return (
     <ConfigProvider locale={zhCN}>
       <TzForm
         form={formIns}
         colon={false}
+        disabled={verify_status == 3}
         labelCol={{ flex: "160px" }}
         layout={"horizontal"}
       >
@@ -42,33 +81,16 @@ let RealNameModal = (props: { formIns: FormInstance<any> }) => {
         <TzFormItem
           label="身份证正面照片"
           name={"idcard_img"}
-          rules={[{ required: true,message:'请上传身份证正面照片'}]}
+          rules={[{ required: true, message: "请上传身份证正面照片" }]}
         >
           <Upload
             maxCount={1}
-            name={'image'}
+            name={"image"}
             action={`/api/upload/image`}
             listType="picture-card"
+            fileList={fileList}
             onChange={({ fileList }) => {
-              const uploadedFile = (
-                Array.isArray(fileList) ? fileList : []
-              ).find((file) => file.status === "done");
-              if (uploadedFile && uploadedFile?.response) {
-                if (uploadedFile?.response.code != 200) {
-                  message.error({
-                    content: "请上传身份证正面照片",
-                  });
-                  formIns.setFieldsValue({
-                    idcard_img: undefined// 假设返回值中包含 url 字段
-                  });
-                  return;
-                }
-                formIns.setFieldsValue({
-                  idcard_img: uploadedFile.response.file
-                    ? [uploadedFile.response.file]
-                    : undefined, // 假设返回值中包含 url 字段
-                });
-              }
+              setFileList(fileList);
             }}
           >
             <PlusOutlined />
@@ -98,6 +120,7 @@ let RealNameModal = (props: { formIns: FormInstance<any> }) => {
             <TzInput placeholder="请输入" size={"large"} />
           </TzFormItem>
           <SendCodeBtn
+            disabled={verify_status == 3}
             formIns={formIns}
             fields={["phone", "send_type"]}
             classNames="!mt-0"
@@ -129,6 +152,8 @@ export default function RealName() {
           className="border-0 hover:!text-[#FF9958]  bg-white-500 !absolute !text-[#FF9958] right-[56px] top-[60%]"
           shape={"round"}
           onClick={() => {
+            console.log(userInfo.realname);
+            userInfo?.verify_status == 3&&formIns.setFieldsValue({ ...userInfo.realname });
             setSubmitVisible(true);
           }}
         >
@@ -141,12 +166,13 @@ export default function RealName() {
         open={submitVisible}
         title={
           <div className="text-center font-bold mb-[20px] text-2xl pt-10 text-gray-800  leading-[32px]">
-            实名认证
+            {userInfo?.verify_status == 3 ? "认证信息" : "实名认证"}
           </div>
         }
         okButtonProps={{
           shape: "round",
           style: { minWidth: "120px" },
+          disabled: userInfo?.verify_status == 3,
         }}
         cancelButtonProps={{
           shape: "round",
@@ -169,11 +195,12 @@ export default function RealName() {
             formIns
               .validateFields()
               .then((val) => {
-                userVerify({...val,
+                userVerify({
+                  ...val,
                   prov_id: val.area_id[0],
                   city_id: val.area_id[1],
                   area_id: val.area_id[2],
-                  idcard_img:val.idcard_img[0]}).then((res) => {
+                }).then((res) => {
                   if (res.code == 200) {
                     resolve("");
                     message.success({
@@ -191,7 +218,10 @@ export default function RealName() {
         }}
       >
         <div className="pr-[40px]">
-          <RealNameModal formIns={formIns} />
+          <RealNameModal
+            formIns={formIns}
+            verify_status={userInfo?.verify_status}
+          />
         </div>
       </TzModal>
     </TzCard>

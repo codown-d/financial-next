@@ -30,30 +30,9 @@ export default function (props) {
     if (contentType === "login") {
       return <LoginContent setOpen={setOpen} />;
     } else {
-      return (
-        <>
-          <TzForm form={formRegistration} colon={false} layout={"vertical"}>
-            <TzFormItem name={"phone"} hidden>
-              <TzInput />
-            </TzFormItem>
-            <TzFormItem name={"verify_phone_code"} hidden>
-              <TzInput />
-            </TzFormItem>
-            <TzFormItem name={"verify_img_code"} hidden>
-              <TzInput />
-            </TzFormItem>
-            <TzFormItem name={"pass"} hidden>
-              <TzInput />
-            </TzFormItem>
-            <TzFormItem name={"pass_two"} hidden>
-              <TzInput />
-            </TzFormItem>
-          </TzForm>
-          <UserRegistration />
-        </>
-      );
+      return <UserRegistration />;
     }
-  }, [props.setOpen, contentType]);
+  }, [contentType,setOpen]);
   return (
     <div className="flex w-full">
       <TzNextImage src={"/images/login-img.png"} width={220}></TzNextImage>
