@@ -45,3 +45,9 @@ pm2 delete all
 pm2 save
 pm2 restart next-app
 pm2 start npm --name "next-app" -- start
+
+
+docker build -t next .  创建镜像
+docker stop next-app  # 停止容器
+docker rm next-app    # 删除容器
+docker run -d --name next-app -p 3000:3000 next
