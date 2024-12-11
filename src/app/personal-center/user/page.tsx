@@ -63,7 +63,7 @@ export default function User() {
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
     productRecommend().then((res) => {
-      setMarketDataList(res.data.map(dealProduct));
+      setMarketDataList(res.data.map(dealProduct).slice(0,3));
     });
   };
   useEffect(() => {
@@ -164,7 +164,7 @@ export default function User() {
         <div className="text-[#999] mt-2 mb-3">
           AI智能匹配您可能需要的金融产品
         </div>
-        <div className="flex flex-wrap ">
+        <div className="flex flex-wrap">
           {marketDataList.map((item, index) => {
             return (
               <div key={index} className="screen_1280:w-1/3 w-1/2 bg-blue-500 p-4 ">

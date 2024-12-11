@@ -1,5 +1,5 @@
 import FinancialSupermarket from "@/components/UI/FinancialSupermarket";
-import { TabType } from "@/constant";
+import { TabType } from "@/fetch/definition";
 
 
 export default function PerformanceBond() {

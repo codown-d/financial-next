@@ -1,15 +1,15 @@
 import { Form, Pagination } from "antd";
 import TzForm, { TzFormItem } from "../TzForm";
-import { FinanceDataTypeEmu, MarketDataList, prodTypeEmu, TabType } from "@/constant";
 import TzSpace from "../TzSpace";
 import FilterHeader from "./FilterHeader";
 import MarketCard from "./MarketCard";
 import ItemSort from "./ItemSort";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { FilterSortEmu } from "@/fetch/definition";
-import { useGetProduct } from "@/hooks/server";
+import { FilterSortEmu, TabType } from "@/fetch/definition";
 import { getProduct } from "@/fetch";
 import { find } from "lodash";
+import { prodTypeEmu } from "@/constant";
+import { dealProduct } from "@/lib";
 
 export default function FilterMarket(props: {
   type: TabType;
@@ -29,18 +29,7 @@ export default function FilterMarket(props: {
     getProduct({...props.filter,...filterData,name:keyword}).then((res) => {
       let { dataList } = res;
       setMarketDataList(
-        dataList.map((item) => {
-          return {
-            ...item,
-            logoUrl: item.financial_organs.logo || "/images/logo.png",
-            companyName:item.financial_organs.organs_name,
-            amount: item.highest_money,
-            guaranteeMethod: [item.data_type],
-            dataType: item.data_type,
-            dealOrder: item.success_count || Math.ceil(Math.random() * 1000),
-            prodType:find(prodTypeEmu,(ite)=>{return ite.value==item.product_type})?.label 
-          };
-        })
+        dataList.map(dealProduct)
       );
     })
   },[props.filter,filterData,keyword])

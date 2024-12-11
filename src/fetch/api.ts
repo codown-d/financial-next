@@ -12,7 +12,6 @@ export default {
   userInfo:'/user/info',
   product:'/index/product',
   enterpriseVerify:'/user/enterprise/verify',
-  productapply:'/user/product/apply',
   userVerify:'/user/real/name/verify',
   phoneLogin:'/user/phone/login',
   policyList:'/admin/enterprise/service/policy/all/list',
@@ -27,4 +26,5 @@ export default {
   productDetail:'/index/product/detail',
   productApply:'/user/product/apply',
   financeAdd:'/user/finance/info/add',
+  loanDetail:'/admin/bank/loan/detail',
 }

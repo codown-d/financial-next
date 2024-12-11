@@ -6,10 +6,7 @@ import TzCard from "../TzCard";
 import TzForm, { TzFormItem } from "../TzForm";
 import { TzCheckableTagNormal } from "../TzCheckableTag";
 import {
-  FinanceDataTypeEmu,
   FinancialMarket,
-  MarketDataList,
-  TabType,
 } from "@/constant";
 import TzDivider from "../TzDivider";
 import FilterMarket from "./FilterMarket";
@@ -23,6 +20,7 @@ import FinanceCard, { FinanceCardProps } from "./FinanceCard";
 import { useRouter, useSearchParams } from "next/navigation";
 import { productRecommend } from "@/fetch";
 import { dealProduct } from "@/lib";
+import { TabType } from "@/fetch/definition";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const searchParams = useSearchParams();
@@ -76,8 +74,10 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
-    productRecommend().then((res) => {
-      setMarketDataList(res.data.map(dealProduct));
+    productRecommend({
+
+    }).then((res) => {
+      setMarketDataList(res.data.map(dealProduct).slice(0,3));
     });
   };
   useEffect(() => {
@@ -227,7 +227,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           </div>
         }
       >
-        <div className="flex  mb-[100px] justify-center">
+        <div className="flex  mb-[100px] justify-center  space-x-8">
           {marketDataList.length==0?<Empty />:marketDataList.map((item, index) => {
             return <FinanceCard {...item} key={index} />;
           })}

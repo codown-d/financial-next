@@ -8,9 +8,6 @@ import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
 import {
-  collateralOp,
-  FinanceDataTypeEmu,
-  MarketDataList,
   MicroloansOp,
   selectOp,
 } from "@/constant";
@@ -18,20 +15,21 @@ import { find, keys } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
-import { formLabelObj } from "../hooks/const";
+import { formLabelObj, getFormLabelList } from "../hooks/const";
 import { productDetail } from "@/fetch";
 import { dealProduct } from "@/lib";
+import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
+import { useDataType } from "@/hooks";
 
 export default function Guarantee(props: { id: string }) {
   let { id } = props;
-  let [dataInfo, setDataInfo] = useState(null!);
+  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
   let {
     Submit,
     Success,
     Fail,
     setSubmitVisible,
     setSuccessVisible,
-    setFailVisible,
   } = useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
@@ -40,6 +38,7 @@ export default function Guarantee(props: { id: string }) {
       setDataInfo(dealProduct(res.data));
     });
   }, [props]);
+  let {dataTypeLabel} = useDataType(dataInfo);
   useEffect(() => {
     getProductDetail();
   }, [getProductDetail]);
@@ -47,27 +46,10 @@ export default function Guarantee(props: { id: string }) {
     <>
       <Submit
         form={form}
+        product_id={props.id}
         type={"业务申请"}
         callback={(val) => {
-          let items = keys(val).reduce((pre, item) => {
-            let text = val[item];
-            if ("amount" === item) {
-              text = `${text} 万元`;
-            } else if ("deadline" === item) {
-              text = `${text} 个月`;
-            } else if ("type" === item) {
-              text = find(MicroloansOp, (ite) => ite.value === text)?.label;
-            } else if ("measure" === item) {
-              text = find(selectOp, (ite) => ite.value === text)?.label;
-            }
-            pre.push({
-              key: item,
-              label: formLabelObj[item],
-              children: text,
-            });
-            return pre;
-          }, []);
-          setItems(items);
+          setItems(getFormLabelList(val));
           setSuccessVisible(true);
         }}
       />
@@ -92,22 +74,15 @@ export default function Guarantee(props: { id: string }) {
                 </span>
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
-                  {dataInfo?.location}
+                  {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
               <DescMethod
                 method={"担保方式"}
-                desc={collateralOp
-                  .reduce((pre: any[], item) => {
-                    if (dataInfo?.guaranteeMethod?.includes(item.value)) {
-                      pre?.push?.(item.label);
-                    }
-                    return pre;
-                  }, [])
-                  .join("/")}
+                desc={dataTypeLabel}
               />
             </div>
-            <div className="flex ml-[136px]">
+            <div className="flex ml-[100px]">
               <DataTypeCom {...dataInfo} />
             </div>
           </div>
@@ -129,18 +104,18 @@ export default function Guarantee(props: { id: string }) {
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
         <DescInfo title={"担保额度"}>
-          <div className="text-[#666]">{dataInfo?.guaranteeAmount}</div>
+          <div className="text-[#666]">{dataInfo?.guaranteeAmount}万元</div>
           <TzDivider />
         </DescInfo>
         <DescInfo title={"担保期限"}>
-          <div className="text-[#666]">{dataInfo?.guaranteePeriod}</div>
+          <div className="text-[#666]">{dataInfo?.guaranteePeriod}月</div>
           <TzDivider />
         </DescInfo>
         <DescInfo title={"服务对象"}>
           <div className="text-[#666]">{dataInfo?.serviceObjects}</div>
           <TzDivider />
         </DescInfo>
-        {dataInfo?.dataType == FinanceDataTypeEmu.FinanceGuarantee || (
+        {dataInfo?.productType ===FinanceDataTypeEmu.FinanceGuarantee || (
           <DescInfo title={"受益人"}>
             <div className="text-[#666]">{dataInfo?.beneficiary}</div>
             <TzDivider />

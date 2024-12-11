@@ -1,5 +1,7 @@
 import { colorScale } from "@/constant";
+import { GuaranteeMethodEmu } from "@/fetch/definition";
 import dayjs from "dayjs";
+import { isArray } from "lodash";
 // import dayjs from 'dayjs';
 
 export function generateRandomColor() {
@@ -26,8 +28,8 @@ export function dealProduct(item) {
     ...item,
     logoUrl: item.financial_organs?.logo || "/images/logo.png",
     amount: item.highest_money,
-    guaranteeMethod: [item.data_type],
-    dataType: item.data_type,
+    dataType: isArray(item.data_type)?item.data_type.map(item=>item+''):[item.data_type+''] ,
+    productType:item.product_type,
     dealOrder: item.success_count || Math.ceil(Math.random() * 1000),
     applicationInformation:item.application_info,
     productIntroduction:item.product_intro,
@@ -35,5 +37,7 @@ export function dealProduct(item) {
     serviceObjects:item.service_object,
     guaranteePeriod:item.term,
     guaranteeAmount:item.highest_money,
+    repaymentMethod:item.repayment_method,
+    applicationConditions:item.application_condition,
   };
 }

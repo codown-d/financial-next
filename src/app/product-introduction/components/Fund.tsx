@@ -9,7 +9,7 @@ import { find, keys } from "lodash";
 import { useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
-import { formLabelObj } from "../hooks/const";
+import { formLabelObj, getFormLabelList } from "../hooks/const";
 
 export default function Fund(props: { id: string }) {
   let dataInfo = useMemo(() => {
@@ -29,27 +29,10 @@ export default function Fund(props: { id: string }) {
     <>
       <Submit
         form={form}
+        product_id={props.id}
         type={"业务申请"}
         callback={(val) => {
-          let items = keys(val).reduce((pre, item) => {
-            let text = val[item];
-            if ("amount" === item) {
-              text = `${text} 万元`;
-            } else if ("deadline" === item) {
-              text = `${text} 个月`;
-            } else if ("type" === item) {
-              text = find(MicroloansOp, (ite) => ite.value === text)?.label;
-            } else if ("measure" === item) {
-              text = find(selectOp, (ite) => ite.value === text)?.label;
-            }
-            pre.push({
-              key: item,
-              label: formLabelObj[item],
-              children: text,
-            });
-            return pre;
-          }, []);
-          setItems(items);
+          setItems(getFormLabelList(val));
           setSuccessVisible(true);
         }}
       />
@@ -74,7 +57,7 @@ export default function Fund(props: { id: string }) {
                 </span>
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
-                  {dataInfo?.location}
+                  {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
 

@@ -7,6 +7,9 @@ interface UserInfoProps{
   user_name:string;
   verify_status:1|2|3;
   enterprise_verify_status:1|2|3;
+  idcard:string;
+  realname_name:string;
+  enterprise_name:string;
 }
 const GlobalContext = createContext<{
   userInfo:UserInfoProps

@@ -8,11 +8,13 @@ import TzIcon from "@/components/TzIcon";
 import Link from "next/link";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { useUserInfo } from "@/hooks";
+import { useRouter } from "next/navigation";
 
 export default function LoginButton() {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('login');
   let {userInfo,setUserInfo} = useGlobalContext()
+  const router = useRouter();
   const items = [
     {
       key: "personalCenter",
@@ -22,21 +24,24 @@ export default function LoginButton() {
         </Link>
       ),
     },
-    {
-      key: "financingManagement",
-      label: (
-        <Link href={"/personal-center/financing"} passHref>
-          融资管理
-        </Link>
-      ),
-    },
+    // {
+    //   key: "financingManagement",
+    //   label: (
+    //     <Link href={"/personal-center/financing"} passHref>
+    //       融资管理
+    //     </Link>
+    //   ),
+    // },
     {
       key: "logout",
       label: (
+        
         <span
           onClick={() => {
             localStorage.removeItem("userInfo");
+            localStorage.removeItem("token");
             setUserInfo({ account: "" });
+            router.push('/');
           }}
         >
           退出登录
@@ -63,6 +68,11 @@ export default function LoginButton() {
             setOpen(true)
           }}>
             注册
+          </TzButton>
+          
+          <TzButton  type="link" className="ml-[14px] !p-0" onClick={()=>{
+          }}>
+            管理端登录
           </TzButton>
         </>
       ) : (

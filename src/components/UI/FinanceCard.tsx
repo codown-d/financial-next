@@ -4,16 +4,18 @@ import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
 import { TzButton } from "../TzButton";
 import TzIcon from "../TzIcon";
-import { collateralOp, FinanceDataTypeEmu } from "@/constant";
-import { FinanceItemProps } from "@/fetch/definition";
+import { collateralOp } from "@/constant";
+import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import TzNextImage from "../TzNextImage";
 import CountUp from "react-countup";
 import { useRouter } from "next/navigation";
 import TzImage from "../TzImage";
+import { useDataType } from "@/hooks";
 export type FinanceCardProps = FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
     dataType,
+    productType,
     logoUrl,
     companyName,
     name,
@@ -23,12 +25,12 @@ export default function (props: FinanceCardProps) {
     term,
     amount,
     dealOrder,
-    guaranteeMethod,
     id,
     ...otherProps
   } = props;
+  console.log(dataType,dataType,collateralOp)
   let getRateList = useMemo(() => {
-    return dataType === FinanceDataTypeEmu.ElectronicGuarantee
+    return productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
           {
             label: (
@@ -43,13 +45,13 @@ export default function (props: FinanceCardProps) {
             p: "%",
           },
         ]
-        : dataType === FinanceDataTypeEmu.EquityFinancing?[
+        : productType === FinanceDataTypeEmu.EquityFinancing?[
           {
             label: <span className="text-[#333]">最低利率</span>,
             value: <span className="text-[20px]">当期LPR</span>
           },
         ]
-      : dataType === FinanceDataTypeEmu.EmergencyRefinancing
+      : productType === FinanceDataTypeEmu.EmergencyRefinancing
       ? [
           {
             label: <span className="text-[#333]">认缴金额</span>,
@@ -71,6 +73,7 @@ export default function (props: FinanceCardProps) {
         ];
   }, [dataType, rate, amount]);
   const router = useRouter();
+  let {dataTypeLabel} = useDataType(props);
   return (
     <>
       <TzCard
@@ -81,7 +84,7 @@ export default function (props: FinanceCardProps) {
         }}
       >
         <TzImage
-          src={dataType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
+          src={productType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
           width={'100%'}
         />
         <div className="flex absolute top-3 items-center left-5">
@@ -89,7 +92,7 @@ export default function (props: FinanceCardProps) {
           {![
             FinanceDataTypeEmu.EmergencyRefinancing,
             FinanceDataTypeEmu.EquityFinancing,
-          ].includes(dataType) ? (
+          ].includes(productType) ? (
             <div className="relative w-[106px] mt-[2px] ml-[6px]">
               <Image
                 src={"/images/label.png"}
@@ -104,7 +107,7 @@ export default function (props: FinanceCardProps) {
             </div>
           ) : null}
         </div>
-        {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
+        {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
           <CountUp end={dealOrder} separator="," /> 笔需求对接成功
         </div>}
         <div
@@ -129,19 +132,14 @@ export default function (props: FinanceCardProps) {
                 );
               })}
             </div>
-            {dataType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
+            {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
               <div className="mt-3 text-left leading-[14px]">
-                担保方式：{ collateralOp.reduce((pre:any[],item)=>{
-                  if(guaranteeMethod?.includes(item.value)){
-                     pre?.push?.(item.label)
-                  }
-                  return pre
-                },[]).join('/')}
+                担保方式：{ dataTypeLabel}
               </div>
             )}
             <div className="flex items-end justify-between">
               <TzButton
-                className=" !py-[10px] !px-[28px] text-white-500"
+                className=" !py-[10px] !px-[28px]  text-white-500"
                 shape="round"
                 type="primary"
                 icon={

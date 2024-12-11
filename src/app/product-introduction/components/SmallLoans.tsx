@@ -8,25 +8,40 @@ import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { collateralOp, MarketDataList, MicroloansOp, selectOp } from "@/constant";
-import { useMemo, useState } from "react";
+import {
+  collateralOp,
+  MarketDataList,
+  MicroloansOp,
+  repaymentMethodOp,
+  selectOp,
+} from "@/constant";
+import { useEffect, useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
 import useApplicationAction from "../hooks";
 import CountUp from "react-countup";
-import { FinancingEntityEmu } from "@/fetch/definition";
-import { find, keys } from "lodash";
+import { FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
+import { find, isArray, keys } from "lodash";
 import { DescriptionsProps, Form } from "antd";
-import { formLabelObj } from "../hooks/const";
+import { formLabelObj, getFormLabelList } from "../hooks/const";
+import { loanDetail } from "@/fetch";
+import { dealProduct } from "@/lib";
+import { useDataType, useRepaymentMethod } from "@/hooks";
 
 export default function SmallLoans(props: { id: string }) {
   let [segmentedValue, setSegmentedValue] = useState(
     FinancingEntityEmu.Enterprise
   );
-  let dataInfo = useMemo(() => {
-    return find(MarketDataList, (item) => item.id == props.id);
-  }, [props.id]);
+  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
+  useEffect(() => {
+    loanDetail({ id: props.id }).then((res) => {
+      console.log(dealProduct(res.data));
+      setDataInfo(dealProduct(res.data));
+    });
+  }, [props]);
   let getSegmentedDom = useMemo(() => {
     if (segmentedValue === FinancingEntityEmu.Enterprise) {
+      return dataInfo?.application_info_user
+
       let arr = [
         "股东：个人简介、身份证、户口本、结婚证、征信报告、半年银行流水、产调抵押物。",
         "担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
@@ -50,6 +65,7 @@ export default function SmallLoans(props: { id: string }) {
         </DescInfo>
       );
     } else {
+      return dataInfo?.application_info_enterprise
       let arr = [
         "借款人及担保人：身份证、户口本、结离婚证、征信报告、半年银行流水、工作证明、产调。",
         "担保人/担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
@@ -73,42 +89,21 @@ export default function SmallLoans(props: { id: string }) {
         </DescInfo>
       );
     }
-  }, [segmentedValue]); let {
-    Submit,
-    Success,
-    Fail,
-    setSubmitVisible,
-    setSuccessVisible,
-    setFailVisible,
-  } = useApplicationAction();
+  }, [dataInfo,segmentedValue]);
+  let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
+    useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-
+  let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
+  let {dataTypeLabel} = useDataType(dataInfo);
   return (
     <>
-       <Submit
+      <Submit
         form={form}
+        product_id={props.id}
         type={"业务申请"}
         callback={(val) => {
-          let items = keys(val).reduce((pre, item) => {
-            let text = val[item];
-            if ("amount" === item) {
-              text = `${text} 万元`;
-            } else if ("deadline" === item) {
-              text = `${text} 个月`;
-            } else if ("type" === item) {
-              text = find(MicroloansOp, (ite) => ite.value === text)?.label;
-            } else if ("measure" === item) {
-              text = find(selectOp, (ite) => ite.value === text)?.label;
-            }
-            pre.push({
-              key: item,
-              label: formLabelObj[item],
-              children: text,
-            });
-            return pre;
-          }, []);
-          setItems(items);
+          setItems(getFormLabelList(val));
           setSuccessVisible(true);
         }}
       />
@@ -132,11 +127,11 @@ export default function SmallLoans(props: { id: string }) {
                   dataType={dataInfo?.dataType}
                   amount={dataInfo?.amount}
                   name={dataInfo?.name}
-                  prodType={dataInfo?.prodType}
+                  productType={dataInfo?.productType}
                 />
                 <span className="ml-5 flex items-center text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
-                  {dataInfo?.location}
+                  {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
 
@@ -144,19 +139,9 @@ export default function SmallLoans(props: { id: string }) {
                 <DescMethod
                   method={"担保方式"}
                   className="mr-3"
-                  desc={collateralOp
-                    .reduce((pre: any[], item) => {
-                      if (dataInfo?.guaranteeMethod.includes(item.value)) {
-                        pre?.push?.(item.label);
-                      }
-                      return pre;
-                    }, [])
-                    .join("/")}
+                  desc={dataTypeLabel}
                 />
-                <DescMethod
-                  method={"还款方式"}
-                  desc={dataInfo?.repaymentMethod.join("/")}
-                />
+                <DescMethod method={"还款方式"} desc={repaymentMethodLabel} />
               </div>
               <div className="flex mt-10">
                 <DataTypeCom {...dataInfo} />
@@ -190,17 +175,19 @@ export default function SmallLoans(props: { id: string }) {
         </DescInfo>
         <DescInfo title={"申请条件"}>
           <div className="text-[#666]">
-            {dataInfo?.applicationConditions.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index + 1)}
-                >
-                  {item}
-                </div>
-              );
-            })}
+            {isArray(dataInfo?.applicationConditions)
+              ? dataInfo?.applicationConditions?.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
+                      data-index={"0" + (index + 1)}
+                    >
+                      {item}
+                    </div>
+                  );
+                })
+              : dataInfo?.applicationConditions}
           </div>
         </DescInfo>
       </TzCard>
