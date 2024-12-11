@@ -1,7 +1,7 @@
 import { message } from "antd";
 import axios, { AxiosResponse } from "axios";
 import { debounce } from "lodash";
-
+console.log( process.env.NEXT_PUBLIC_API_URL)
 const axiosIns = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL, // API 基础 URL
   timeout: 50000, // 超时设置

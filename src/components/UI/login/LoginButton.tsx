@@ -71,6 +71,7 @@ export default function LoginButton() {
           </TzButton>
           
           <TzButton  type="link" className="ml-[14px] !p-0" onClick={()=>{
+            window.open('http://219.151.185.167:3900/backendadmin/')
           }}>
             管理端登录
           </TzButton>
