@@ -8,12 +8,12 @@ import {
   ElectronicGuarantee,
   EmergencyRefinancing,
   EquityFinancing,
-  FinanceDataTypeEmu,
   FinanceGuarantee,
   Microloans,
 } from "@/constant";
 import FinancialServices from "./FinancialServices";
 import { useGetProduct } from "@/hooks/server";
+import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {

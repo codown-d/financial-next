@@ -13,8 +13,6 @@ import { Col, Form, message, Row } from "antd";
 import { TzButton } from "./TzButton";
 import StepFlow from "./UI/StepFlow";
 import {
-  collateralOp,
-  FinanceDataTypeEmu,
   purposeOp,
   selectOp,
   termOp,
