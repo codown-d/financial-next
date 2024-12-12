@@ -426,3 +426,94 @@ export const prodTypeEmu = [
     value: 7,
   },
 ];
+export const action_status_filter = {
+  '1': {
+    text: '未受理',
+    status: 'Default',
+  },
+  2: {
+    text: '已受理',
+    status: 'Processing',
+  },
+  '3': {
+    text: '完成',
+    status: 'Success',
+  },
+  4: {
+    text: '谢绝',
+    status: 'Error',
+  },
+};
+export const term = {
+  0: {
+    text: '全部',
+  },
+  1: {
+    text: '3个月内',
+  },
+
+  2: {
+    text: '12个月内',
+  },
+
+  3: {
+    text: '24个月内',
+  },
+  4: {
+    text: '36个月内',
+  },
+};
+export const purpose = {
+  1: {
+    text: '生成经营',
+  },
+
+  2: {
+    text: '创业助业',
+  },
+
+  3: {
+    text: '购买资产',
+  },
+
+  4: {
+    text: '归还贷款',
+  },
+};
+export const AREA_TYPE: any = {
+  all:{
+    text: '全部',
+  },
+  1: {
+    text: '国家级',
+  },
+  2: {
+    text: '省级',
+  },
+  3: {
+    text: '市级',
+  },
+  510802: {
+    text: '利州区',
+  },
+  510811: {
+    text: '昭化区',
+  },
+  510812: {
+    text: '朝天区',
+  },
+  510821: {
+    text: '旺苍县',
+  },
+  510822: {
+    text: '青川县',
+  },
+
+  510823: {
+    text: '剑阁县',
+  },
+
+  510824: {
+    text: '苍溪县',
+  },
+};

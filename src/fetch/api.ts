@@ -27,5 +27,9 @@ export default {
   productApply:'/user/product/apply',
   financeAdd:'/user/finance/info/add',
   loanDetail:'/admin/bank/loan/detail',
-  verifyRegiste:'/user/verify/register/code'
+  verifyRegiste:'/user/verify/register/code',
+  financeList:'/finance/all/list',
+  applyList:'/apply/all/list',
+  policyStatistics:'/enterprise/service/policy/statistics',
+  themeFeature:'/admin/policy/theme/feature/list'
 }

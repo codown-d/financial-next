@@ -12,7 +12,7 @@ export default function PersonalCenterLayout(props) {
   let { children } = props;
   let items = [
     { key: "user", label: "个人中心" },
-    // { key: "financing", label: "融资管理" },
+    { key: "financing", label: "融资管理" },
     { key: "real-name", label: "实名认证" },
     { key: "enterprise", label: "企业认证" },
     { key: "account", label: "账户信息" },

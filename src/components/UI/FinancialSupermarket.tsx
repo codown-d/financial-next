@@ -45,7 +45,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         children: (
           <FilterMarket
             type={TabType.service}
-            filter={filter}
+            filter={{...filter,big_type:1}}
             keyword={keyword}
           />
         ),
@@ -63,7 +63,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         children: (
           <FilterMarket
             type={TabType.credit}
-            filter={filter}
+            filter={{...filter,big_type:2}}
             keyword={keyword}
           />
         ),

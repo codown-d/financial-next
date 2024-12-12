@@ -5,43 +5,63 @@ import FilterHeader from "@/components/UI/FilterHeader";
 import TzSegmented from "@/components/TzSegmented";
 import ItemSort from "@/components/UI/ItemSort";
 import { TzCheckableTagNormal } from "@/components/TzCheckableTag";
-import { PolicyTags } from "@/constant";
+import { FinancialMarket, PolicyTags } from "@/constant";
 import TzDivider from "@/components/TzDivider";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TzTableServerPage } from "@/components/TzTable";
 import PolicyTableItem from "./PolicyTableItem";
-import {  getPolicyList } from "@/fetch";
+import { getPolicyList, policyStatistics, themeFeature } from "@/fetch";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import TzSearch from "@/components/TzSearch";
 import { FilterSortEmu } from "@/fetch/definition";
+import PolicyStatistics from "./PolicyStatistics";
+import { TzForm, TzFormItem, TzInput } from "@/components";
+import { Form } from "antd";
+import dayjs from "dayjs";
+import { TzButton } from "@/components/TzButton";
+import { UndoOutlined } from "@ant-design/icons";
+import { merge } from "lodash";
 export interface DataType {
   id: any;
   title: string;
   publishdate: number;
   name: string;
 }
+const getYears = (): number[] => {
+  const currentYear = dayjs().year(); // 获取当前年份
+  const years = [];
 
+  // 循环输出当前年份以及前五年
+  for (let i = 0; i < 5; i++) {
+    years.push(currentYear - i);
+  }
+
+  return years;
+};
 export default function PolicyServices(props: any) {
-  let { hotWords, initialData, total,body_type:bt} = props;
+  let { initialData, total, body_type: bt } = props;
   const [dataTotal, setDataTotal] = useState(total);
-  const [area_type, setArea_type] = useState(1);
-  const [body_type, setBody_type] = useState(Number(bt));
-  const [keyword, setKeyword] = useState("");
-  const [add_time_sort, setOrderfrom] = useState(FilterSortEmu.Desc);
-
+  let [filter, setFilter] = useState({
+    add_time_sort:'desc',
+    area_type:0,
+    body_type:'',
+    keyword:'',
+  });
   let getTableData = useCallback(
     async (pagination) => {
       const { current = 1, pageSize = 10 } = pagination;
       let res: any = await getPolicyList({
-        page:current,
-        limit:pageSize,
-        area_type,keyword,body_type,add_time_sort});
+        page: current,
+        limit: pageSize,
+        ...filter,
+      });
+      setDataTotal(res.count);
       return {
         data: res.dataList,
         total: res.count,
       };
     },
-    [area_type, keyword, add_time_sort,body_type]
+    [filter]
   );
   let columns = [
     {
@@ -50,6 +70,40 @@ export default function PolicyServices(props: any) {
       render: (text, row) => <PolicyTableItem {...row} />,
     },
   ];
+  useEffect(() => {
+    getThemeFeature();
+  }, []);
+  let [feature, setFeature] = useState([]);
+  let [theme, setTheme] = useState([]);
+  let [hotWords, setHotWords] = useState([]);
+  const [form] = Form.useForm();
+  let getThemeFeature = () => {
+    themeFeature().then((res) => {
+      setFeature(
+        res.feature.map((item) => {
+          return {
+            label: item.name,
+            value: item.id,
+          };
+        })
+      );
+      setTheme(
+        res.theme.map((item) => {
+          return {
+            label: item.name,
+            value: item.id,
+          };
+        })
+      );
+      setHotWords(res.hot.map((item) => item.name));
+    });
+  };
+  let timeList = getYears().map((item, index) => {
+    return {
+      label: index === 4 ? item + "年以前" : item + "年",
+      value: item,
+    };
+  });
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8]">
@@ -74,7 +128,14 @@ export default function PolicyServices(props: any) {
               className="!w-[560px] p-1"
               enterButton="搜索"
               size={"large"}
-              onSearch={(val) => setKeyword(val)}
+              onSearch={(val) => {
+                setFilter((pre) => {
+                  return {
+                    ...pre,
+                    keyword: val,
+                  };
+                });
+              }}
             />
             <div className="mt-2 flex items-start w-full pl-3">
               {hotWords.map((item, index) => (
@@ -85,70 +146,130 @@ export default function PolicyServices(props: any) {
             </div>
           </div>
         </div>
-        <div className="max-w-screen-lg  mx-auto overflow-hidden">
-          <div className="mb-2 mt-5 ml-3 text-[#999]">共{dataTotal}条结果</div>
-          <FilterHeader
-            className={"!mb-3 !pl-[10px] !py-2"}
-            left={
-              <TzSegmented
-                onChange={(val: number) => {
-                  setArea_type(val);
+        <div className="max-w-screen-lg  mx-auto overflow-hidden flex">
+          <div className="w-[260px] pr-[20px] mt-3">
+            <PolicyStatistics
+              onChange={(val) => {
+                setFilter((pre) => {
+                  return {
+                    ...pre,
+                    area_type: val,
+                  };
+                });
+              }}
+            />
+          </div>
+          <div className="flex-1">
+            <TzCard className="!mt-3">
+              <TzForm
+                form={form}
+                onValuesChange={(changedValues, allValues) => {
+                  setFilter((pre) => {
+                    return merge({}, pre, changedValues);
+                  });
                 }}
-                options={[
-                  {
-                    label: <span className="px-[38px]">国家级</span>,
-                    value: 1,
-                  },
-                  {
-                    label: <span className="px-[38px]">省级</span>,
-                    value: 2,
-                  },
-                  {
-                    label: <span className="px-[38px]">市级</span>,
-                    value: 3,
-                  },
-                ]}
-              />
-            }
-            right={
-              <div className="flex items-center">
-                <div className="custom-tag">
+              >
+                <TzFormItem
+                  label={"按主题"}
+                  name={"theme_id"}
+                  initialValue={0}
+                  style={{ marginBottom: "12px" }}
+                >
                   <TzCheckableTagNormal
-                    items={PolicyTags}
-                    style={{ padding: "4px 16px", fontSize: 14 }}
-                    defaultChecked={body_type}
-                    onChange={(val)=>{
-                      setBody_type(val)}
-                    }
+                    items={[
+                      {
+                        label: "全部",
+                        value: 0,
+                      },
+                      ...theme,
+                    ]}
+                  />
+                </TzFormItem>
+                <TzDivider />
+                <TzFormItem
+                  label={"按特色"}
+                  name={"feature_id"}
+                  initialValue={0}
+                  style={{ marginBottom: "12px" }}
+                >
+                  <TzCheckableTagNormal
+                    items={[
+                      {
+                        label: "全部",
+                        value: 0,
+                      },
+                      ...feature,
+                    ]}
+                  />
+                </TzFormItem>
+                <TzDivider />
+                <TzFormItem
+                  label={"按时间"}
+                  name={"start"}
+                  initialValue={0}
+                  style={{ marginBottom: 0 }}
+                >
+                  <TzCheckableTagNormal
+                    items={[
+                      {
+                        label: "全部",
+                        value: 0,
+                      },
+                      ...timeList,
+                    ]}
+                  />
+                </TzFormItem>
+              </TzForm>
+            </TzCard>
+            <FilterHeader
+              className={"mb-3 pl-[10px] !py-[14px] mt-3"}
+              left={
+                <div className="flex items-center">
+                  <div className=" ml-3 mr-10 text-[#999]">
+                    共{" "}
+                    <span className="text-[#3C5BF6] font-bold">
+                      {dataTotal}
+                    </span>{" "}
+                    条结果
+                  </div>
+                  <TzButton icon={<UndoOutlined />} className="!px-[12px]">
+                    重置选项
+                  </TzButton>
+                </div>
+              }
+              right={
+                <div className="flex items-center">
+                  <ItemSort
+                    label={"发布时间"}
+                    className="font-medium"
+                    onChange={(val) => {
+                      setFilter((pre) => {
+                        return {
+                          ...pre,
+                          add_time_sort:
+                            val == FilterSortEmu.Asc
+                              ? FilterSortEmu.Asc
+                              : FilterSortEmu.Desc,
+                        };
+                      });
+                    }}
                   />
                 </div>
-                <TzDivider type={"vertical"} className="!mx-10" />
-                <ItemSort
-                  label={"发布时间"}
-                  className="font-medium"
-                  onChange={(val) => {
-                    setOrderfrom(
-                      val == FilterSortEmu.Asc
-                        ? FilterSortEmu.Asc
-                        : FilterSortEmu.Desc
-                    );
-                  }}
-                />
-              </div>
-            }
-          />
-          <TzCard
-            className=" !mt-3 !mb-[96px]"
-            style={{ boxShadow: "0px 4px 16px 0px rgba(0,0,0,0.04)" }}
-          >
-            <TzTableServerPage
-              initialData={initialData}
-              columns={columns}
-              rowKey={"id"}
-              showHeader={false}
-              reqFun={getTableData}
+              }
             />
-          </TzCard>
+            <TzCard
+              className=" !mt-3 !mb-[96px]"
+              style={{ boxShadow: "0px 4px 16px 0px rgba(0,0,0,0.04)" }}
+            >
+              <TzTableServerPage
+                initialData={initialData}
+                columns={columns}
+                rowKey={"id"}
+                showHeader={false}
+                reqFun={getTableData}
+              />
+            </TzCard>
+          </div>
         </div>
       </div>
     </AntdRegistry>

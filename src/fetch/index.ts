@@ -180,3 +180,16 @@ export const loanDetail = async (params?: any): Promise<IResponseData<FinanceIte
 export const verifyRegiste = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
   return http.post(`${api.verifyRegiste}`, params);
 };
+export const financeList = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  return http.get(`${api.financeList}`, params);
+};
+export const applyList = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  return http.get(`${api.applyList}`, params);
+};
+export const policyStatistics = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  return http.get(`${api.policyStatistics}`, params);
+};
+export const themeFeature = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
+  return http.get(`${api.themeFeature}`, params);
+};
+
