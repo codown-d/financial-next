@@ -150,7 +150,6 @@ export const quit = async (params?: any): Promise<IResponseData<any>> => {
 export const adminQuit = async (params?: any): Promise<IResponseData<any>> => {
   return http.get(`${api.adminQuit}`, params);
 };
-
 export const userVerify = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.userVerify}`, params);
 };
@@ -178,7 +177,8 @@ export const loanDetail = async (params?: any): Promise<IResponseData<FinanceIte
   return http.get(`${api.loanDetail}/${id}`, params);
 };
 export const verifyRegiste = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
-  return http.post(`${api.verifyRegiste}`, params);
+  let { token,...otherParams } = params;
+  return http.post(`${api.verifyRegiste}`, otherParams,{ headers: { token: token } });
 };
 export const financeList = async (params?: any): Promise<IResponseData<FinanceItemProps>> => {
   return http.get(`${api.financeList}`, params);

@@ -24,7 +24,10 @@ export default function (props: {
 
     return () => clearInterval(intervalId);
   }, [countdown]);
-  let { getPhoneCode } = useGetPhoneCode();
+  let { getPhoneCode, token } = useGetPhoneCode();
+  useEffect(() => {
+    formIns.setFieldsValue({ token });
+  }, [token]);
   const handleSendCode = useCallback(() => {
     formIns.validateFields(fields).then((val) => {
       getPhoneCode(val).then((res: any) => {

@@ -146,6 +146,7 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
   };
 };
 export const useGetPhoneCode = () => {
+  let [token, setToken] = useState("");
   let getPhoneCode = useCallback((val?: any) => {
     return new Promise(async (resolve, reject) => {
       let res = await getUnique();
@@ -153,6 +154,7 @@ export const useGetPhoneCode = () => {
         reject();
         return;
       }
+      setToken( res.token)
       let res1 = await postPhoneCode({ ...val, token: res.token });
       if (res1.code != 200) {
         reject();
@@ -163,6 +165,7 @@ export const useGetPhoneCode = () => {
   }, []);
   return {
     getPhoneCode,
+    token
   };
 };
 export const useUserInfo = () => {
