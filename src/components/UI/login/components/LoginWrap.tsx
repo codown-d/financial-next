@@ -3,10 +3,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import LoginContent from "./LoginContent";
 import UserRegistration from "./UserRegistration";
 import { CSSTransition } from "react-transition-group";
-import { getUnique, postImgCode } from "@/fetch";
 import { Form } from "antd";
-import TzForm, { TzFormItem } from "@/components/TzForm";
-import TzInput from "@/components/TzInput";
 
 export const LoginContext = createContext(null!);
 export const useLoginContext = () => {

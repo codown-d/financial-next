@@ -1,10 +1,9 @@
 import TzForm, { TzFormItem } from "@/components/TzForm";
 import TzInput from "@/components/TzInput";
 import TzInputPassword from "@/components/TzInputPassword";
-import { getUnique, postImgCode } from "@/fetch";
 import { useGetImgCode } from "@/hooks";
-import { Form, FormInstance } from "antd";
-import { useCallback, useEffect, useRef } from "react";
+import {  FormInstance } from "antd";
+import { useEffect } from "react";
 
 export default function (props: { formIns: FormInstance<any> }) {
   let { formIns } = props;

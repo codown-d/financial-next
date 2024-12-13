@@ -30,7 +30,7 @@ export function dealProduct(item) {
     amount: item.highest_money,
     dataType: isArray(item.data_type)?item.data_type.map(item=>item+''):[item.data_type+''] ,
     productType:item.product_type,
-    success_count: item.success_count<50? ? Math.ceil(Math.random() * 150+50): item.success_count,
+    success_count: item.success_count<50 ? Math.ceil(Math.random() * 150+50): item.success_count,
     applicationInformation:item.application_info,
     productIntroduction:item.product_intro,
     beneficiary:item.product_intro,
