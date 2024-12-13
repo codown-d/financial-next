@@ -8,30 +8,28 @@ import DataTypeTitleCom from "@/components/UI/DataTypeTitleCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import {
-  collateralOp,
-  MarketDataList,
-  MicroloansOp,
-  repaymentMethodOp,
-  selectOp,
-} from "@/constant";
 import { useEffect, useMemo, useState } from "react";
 import TzSegmented from "@/components/TzSegmented";
 import useApplicationAction from "../hooks";
 import CountUp from "react-countup";
 import { FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
 import { find, isArray, keys } from "lodash";
-import { DescriptionsProps, Form } from "antd";
+import { DescriptionsProps, Form, message } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
 import { loanDetail } from "@/fetch";
 import { dealProduct } from "@/lib";
 import { useDataType, useRepaymentMethod } from "@/hooks";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function SmallLoans(props: { id: string }) {
   let [segmentedValue, setSegmentedValue] = useState(
     FinancingEntityEmu.Enterprise
   );
   let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
+  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
+  let {dataTypeLabel} = useDataType(dataInfo);
+  let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
+  let [form] = Form.useForm();
   useEffect(() => {
     loanDetail({ id: props.id }).then((res) => {
       console.log(dealProduct(res.data));
@@ -92,15 +90,13 @@ export default function SmallLoans(props: { id: string }) {
   }, [dataInfo,segmentedValue]);
   let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
     useApplicationAction();
-  let [form] = Form.useForm();
-  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
-  let {dataTypeLabel} = useDataType(dataInfo);
+    let { userInfo } = useGlobalContext();
   return (
     <>
       <Submit
         form={form}
-        product_id={props.id}
+        product_id={dataInfo?.id}
+        product_type={dataInfo?.productType}
         type={"业务申请"}
         callback={(val) => {
           setItems(getFormLabelList(val));
@@ -153,7 +149,12 @@ export default function SmallLoans(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
+                console.log(userInfo)
+                if(userInfo.verify_status==3||userInfo.enterprise_verify_status==3){
                 setSubmitVisible(true);
+                }else{
+                  message.error('暂无权限请实名之后申请！')
+                }
               }}
             >
               立即申请

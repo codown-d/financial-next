@@ -18,7 +18,6 @@ export interface ApplicationProps {
 }
 export default function ProductApplication(props: {
   formIns: FormInstance<any>;
-  product_id: string;
 }) {
   let { formIns, product_id } = props;
   let { userInfo } = useGlobalContext();
@@ -74,9 +73,6 @@ export default function ProductApplication(props: {
         labelAlign={"right"}
         onValuesChange={handleValuesChange}
       >
-        <TzFormItem name={"product_id"} hidden initialValue={product_id}>
-          <TzInput />
-        </TzFormItem>
         <TzFormItem name={"term_unit"} hidden initialValue={2}>
           <TzInput />
         </TzFormItem>

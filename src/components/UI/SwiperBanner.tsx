@@ -62,7 +62,7 @@ const SwiperBanner = () => {
                       iconPosition={"end"}
                       onClick={() => {
                         router.push(
-                          `/product-introduction?id=equityFinancing1&dataType=equityFinancing`
+                          `/product-introduction`
                         );
                       }}
                     >

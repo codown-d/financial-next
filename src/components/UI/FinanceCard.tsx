@@ -146,7 +146,7 @@ export default function (props: FinanceCardProps) {
                   <TzIcon className={"fa-arrow-right text-white-500 text-sm"} />
                 }
                 onClick={()=>{
-                  router.push(`/product-introduction?id=${id}&dataType=${dataType}`)
+                  router.push(`/product-introduction?id=${id}`)
                 }}
                 iconPosition={"end"}
               >

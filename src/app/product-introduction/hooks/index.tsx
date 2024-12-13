@@ -6,7 +6,6 @@ import ApplicationSuccess from "../components/ApplicationSuccess";
 import ApplicationFail from "../components/ApplicationFail";
 import { TzButton } from "@/components/TzButton";
 import { productApply } from "@/fetch";
-import { keys } from "lodash";
 
 export default function useApplicationAction() {
   let [failVisible, setFailVisible] = useState(false);
@@ -15,10 +14,11 @@ export default function useApplicationAction() {
   let Submit = (props: {
     form: FormInstance<any>;
     type: string;
-    product_id:string;
+    product_id: any;
+    product_type: any;
     callback?: (arg: any) => void;
   }) => {
-    let { form, type, callback,product_id } = props;
+    let { form, type, callback, product_id, product_type } = props;
     return (
       <TzModal
         closeIcon={false}
@@ -53,33 +53,26 @@ export default function useApplicationAction() {
           return form
             .validateFields()
             .then((val) => {
-              productApply(val).then((res) => {
-                if (res.code == 200) {
-                  callback?.(val);
-                  setSubmitVisible(false);
-                  form.resetFields();
-                  message.success("申请成功");
+              productApply({ id: product_id, val, product_type }).then(
+                (res) => {
+                  if (res.code == 200) {
+                    callback?.(val);
+                    setSubmitVisible(false);
+                    form.resetFields();
+                    message.success("申请成功");
+                  }
                 }
-              });
+              );
             })
             .catch();
         }}
       >
-        <ProductApplication formIns={form} product_id={product_id} />
+        <ProductApplication formIns={form} />
       </TzModal>
     );
   };
   let Success = (props: DescriptionsProps) => {
     let { items } = props;
-    console.log(items)
-    let newItemsList = keys(items).map((item) => {
-      return {
-        key: item,
-        label: 'UserName',
-        children: <p>Zhou Maomao</p>,
-      }
-    })
-    
     return (
       <TzModal
         closeIcon={false}

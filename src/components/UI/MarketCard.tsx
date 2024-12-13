@@ -47,7 +47,7 @@ let {dataTypeLabel} = useDataType(props);
           className=" mx-4"
           shape={"round"}
           onClick={() => {
-            router.push(`/product-introduction?id=${id}&productType=${productType}`);
+            router.push(`/product-introduction?id=${id}`);
           }}
         >
           查看详情

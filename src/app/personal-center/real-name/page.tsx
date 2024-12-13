@@ -97,7 +97,7 @@ let RealNameModal = (props: {
           </Upload>
         </TzFormItem>
         <TzFormItem
-          label="企业地址"
+          label="地址"
           name={"area_id"}
           rules={[{ required: true }]}
           labelCol={{ flex: "160px" }}
