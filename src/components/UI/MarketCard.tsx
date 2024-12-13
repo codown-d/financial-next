@@ -17,7 +17,7 @@ export default function MarketCard(props: FinanceItemProps) {
     dataType,
     amount,
     logoUrl,
-    dealOrder,
+    success_count,
     productType,
     id,
   } = props;
@@ -34,7 +34,7 @@ let {dataTypeLabel} = useDataType(props);
             {dataTypeLabel}
             <br />
             <span className="text-xs mt-2 text-[#999999]">
-              <CountUp end={dealOrder} /> 笔需求对接成功
+              <CountUp end={success_count} /> 笔需求对接成功
             </span>
           </div>
         </div>

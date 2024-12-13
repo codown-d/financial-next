@@ -24,7 +24,7 @@ export default function (props: FinanceCardProps) {
     rate,
     term,
     amount,
-    dealOrder,
+    success_count,
     id,
     ...otherProps
   } = props;
@@ -41,7 +41,7 @@ export default function (props: FinanceCardProps) {
                 </span>
               </span>
             ),
-            value: `${rateDown}-${rateUp}`,
+            value: `${rate}`,
             p: "%",
           },
         ]
@@ -108,7 +108,7 @@ export default function (props: FinanceCardProps) {
           ) : null}
         </div>
         {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
-          <CountUp end={dealOrder} separator="," /> 笔需求对接成功
+          <CountUp end={success_count} separator="," /> 笔需求对接成功
         </div>}
         <div
           className="absolute top-11  rounded-2xl bg-white-500 w-full"

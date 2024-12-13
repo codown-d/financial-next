@@ -99,7 +99,7 @@ export interface FinanceItemProps {
   rate: number|string;
   term: number;//贷款期限
   amount: number;
-  dealOrder: number;
+  success_count: number;
   //融资主体
   financingEntity: FinancingEntityEmu;
   //融资类型

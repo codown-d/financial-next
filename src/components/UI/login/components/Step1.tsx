@@ -15,7 +15,7 @@ export default function (props: { formIns: FormInstance<any> }) {
       <TzFormItem hidden name={"send_type"} initialValue={"register"}>
         <TzInput />
       </TzFormItem>
-      <TzFormItem name={"token"} >
+      <TzFormItem name={"token"} hidden>
         <TzInput />
       </TzFormItem>
       <TzFormItem

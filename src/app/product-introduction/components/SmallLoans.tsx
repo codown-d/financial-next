@@ -159,7 +159,7 @@ export default function SmallLoans(props: { id: string }) {
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
-              <CountUp end={dataInfo?.dealOrder} /> 笔需求对接成功
+              <CountUp end={dataInfo?.success_count} /> 笔需求对接成功
             </span>
           </div>
         </div>
