@@ -52,8 +52,8 @@ export default function Fund(props: { id: string }) {
                 <span className="font-extrabold text-2xl text-[#333333] ">
                   {dataInfo?.name}
                 </span>
-                <span className="ml-5 flex items-center text-[#3D5AF5]">
-                  <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
+                <span className="ml-5 flex items-start text-[#3D5AF5]">
+                  <TzIcon className={"fa-location-dot text-sm mr-[6px]  mt-1"} />
                   {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>

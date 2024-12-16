@@ -2,6 +2,7 @@
 import { Select, Tag, TagProps } from "antd";
 import { BaseOptionType, DefaultOptionType } from "antd/es/select";
 import CheckableTag, { CheckableTagProps } from "antd/es/tag/CheckableTag";
+import { isArray } from "lodash";
 import {
   useCallback,
   useEffect,
@@ -50,14 +51,7 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
     multiple = false,
     ...otherProps
   } = props;
-
-  let [selectedTags, setSelectedTags] = useState(
-    defaultChecked === undefined && value === undefined
-      ? multiple
-        ? []
-        : undefined
-      : defaultChecked || value
-  );
+  let [selectedTags, setSelectedTags] = useState(defaultChecked || value);
   let handleChange = (tag: any, checked: boolean) => {
     setSelectedTags((pre) => {
       if (checked) {
@@ -72,10 +66,13 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
   }, [selectedTags]);
   let getChecked = useCallback(
     (value) => {
-      return multiple ? selectedTags?.includes(value) : selectedTags === value;
+      return isArray(selectedTags)&&selectedTags?.includes(value)||selectedTags===value;
     },
     [multiple, selectedTags]
   );
+  useEffect(() => {
+    setSelectedTags(props.value);
+  }, [props.value]);
   return (
     <>
       {items.map((item) => {

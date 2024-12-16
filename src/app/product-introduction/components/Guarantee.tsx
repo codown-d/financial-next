@@ -11,8 +11,9 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
-import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
+import { FinanceDataTypeEmu, FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
 import { useDataType, useGetLoanDetail } from "@/hooks";
+import TzSegmented from "@/components/TzSegmented";
 
 export default function Guarantee(props: { id: string }) {
   let {
@@ -26,6 +27,16 @@ export default function Guarantee(props: { id: string }) {
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
   let {dataInfo} = useGetLoanDetail({ id: props.id })
   let {dataTypeLabel} = useDataType(dataInfo);
+  let [segmentedValue, setSegmentedValue] = useState(
+    FinancingEntityEmu.Enterprise
+  );
+  let getSegmentedDom = useMemo(() => {
+    if (segmentedValue === FinancingEntityEmu.Enterprise) {
+      return dataInfo?.application_info_user
+    } else {
+      return dataInfo?.application_info_enterprise
+    }
+  }, [dataInfo,segmentedValue]);
   return (
     <>
       <Submit
@@ -57,8 +68,8 @@ export default function Guarantee(props: { id: string }) {
                 <span className="font-extrabold text-2xl text-[#333333] ">
                   {dataInfo?.name}
                 </span>
-                <span className="ml-5 flex items-center text-[#3D5AF5]">
-                  <TzIcon className={"fa-location-dot text-sm mr-[6px]"} />
+                <span className="ml-5 flex items-start text-[#3D5AF5]">
+                  <TzIcon className={"fa-location-dot text-sm mr-[6px]  mt-1"} />
                   {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
@@ -111,10 +122,27 @@ export default function Guarantee(props: { id: string }) {
           <div className="text-[#666]">{dataInfo?.productIntroduction}</div>
         </DescInfo>
       </TzCard>
-      <TzCard className="flex-1 w-full !mt-3">
-        <DescInfo title={"申请资料"}>
-          <div className="text-[#666]">{dataInfo?.applicationInformation}</div>
-        </DescInfo>
+      <TzCard
+        className="flex-1 w-full !mt-3"
+        title={
+          <TzSegmented
+            onChange={(val: FinancingEntityEmu) => setSegmentedValue(val)}
+            options={[
+              {
+                label: "企业",
+                value: FinancingEntityEmu.Enterprise,
+                icon: <TzIcon className={"fa-building text-sm"} />,
+              },
+              {
+                label: "个人",
+                value: FinancingEntityEmu.Personal,
+                icon: <TzIcon className={"fa-user text-sm"} />,
+              },
+            ]}
+          />
+        }
+      >
+        {getSegmentedDom}
       </TzCard>
     </>
   );

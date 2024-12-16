@@ -17,19 +17,19 @@ import { useEffect, useMemo, useState } from "react";
 import TzSearch from "../TzSearch";
 import TzModal, { TzConfirm } from "../TzModal";
 import FinanceCard, { FinanceCardProps } from "./FinanceCard";
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { productRecommend } from "@/fetch";
 import { dealProduct } from "@/lib";
-import { TabType } from "@/fetch/definition";
+import { InstitutionTypeEmu, TabType } from "@/fetch/definition";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
-  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({});
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  const router = useRouter();
   let items = useMemo(() => {
     return [
       {
@@ -70,19 +70,29 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
       },
     ];
   }, [filter, keyword]);
-
-  
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
-    productRecommend({
-
-    }).then((res) => {
+    productRecommend({}).then((res) => {
       setMarketDataList(res.data.map(dealProduct).slice(0,3));
     });
   };
   useEffect(() => {
     getproductRecommend();
+    let obj={
+      '/bank-loan':InstitutionTypeEmu.Bank,
+      '/small-loan':InstitutionTypeEmu.SmallLoan,
+      '/emergency-refinancing':InstitutionTypeEmu.Fund,
+      '/equity-financing':InstitutionTypeEmu.Fund,
+      '/performance-bond':InstitutionTypeEmu.Guaranteed,
+      '/ele-bond':InstitutionTypeEmu.Guaranteed,
+      '/advance-payment-bond':InstitutionTypeEmu.Guaranteed,
+    }
+    console.log(obj[pathname])
+    form.setFieldsValue({
+      product_type:obj[pathname]
+    })
   }, []);
+
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8]">
@@ -112,7 +122,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             />
           </div>
         </div>
-        <div className="max-w-screen-lg flex absolute shadow-sm w-full top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
+        <div className="max-w-screen-lg flex absolute shadow-sm top-[278px] w-[1440px] left-1/2 transform -translate-x-1/2 ">
           <TzCard className="w-0 flex-1">
             <TzForm
               form={form}
@@ -145,7 +155,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"机构类型"}
                 name={"product_type"}
-                initialValue={searchParams.get("product_type")||0}
+                initialValue={0}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.institution} />
