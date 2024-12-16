@@ -21,39 +21,12 @@ export default function ProductApplication(props: {
 }) {
   let { formIns } = props;
   let { userInfo } = useGlobalContext();
-  const handleValuesChange = useCallback(
-    (changedValues, allValues) => {
-      if (changedValues.verify_type == 1) {
-        formIns.setFieldsValue({
-          name: userInfo?.realname.name,
-          idcard: userInfo?.realname.idcard,
-        });
-      } else if (changedValues.verify_type == 2) {
-        formIns.setFieldsValue({
-          name: userInfo?.enterprise.name         ,
-          idcard: userInfo?.enterprise.idcard,
-        });
-      }
-    },
-    [userInfo]
-  );
-  let newMicroloansOp = useMemo(() => {
-    return MicroloansOp.map((item) => {
-      if (item.value == "2") {
-        return {
-          ...item,
-          disabled: userInfo?.enterprise_verify_status != 3,
-          label: item.label,
-        };
-      } else if (item.value == "1") {
-        return {
-          ...item,
-          disabled: userInfo?.verify_status != 3,
-          label: item.label,
-        };
-      }
+  useEffect(()=>{
+    formIns.setFieldsValue({
+      name: userInfo?.enterprise.name         ,
+      idcard: userInfo?.enterprise.idcard,
     });
-  }, [userInfo]);
+  },[userInfo])
   return (
     <ConfigProvider
       locale={zhCN}
@@ -71,7 +44,6 @@ export default function ProductApplication(props: {
         wrapperCol={{ flex: "400px" }}
         colon={false}
         labelAlign={"right"}
-        onValuesChange={handleValuesChange}
       >
         <TzFormItem name={"term_unit"} hidden initialValue={2}>
           <TzInput />
@@ -88,14 +60,14 @@ export default function ProductApplication(props: {
           name={"name"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入"  />
+          <TzInput placeholder="请输入"  disabled/>
         </TzFormItem>
         <TzFormItem
           label="证件号码"
           name={"idcard"}
           rules={[{ required: true }]}
         >
-          <TzInputNumber placeholder="请输入" />
+          <TzInputNumber placeholder="请输入" disabled/>
         </TzFormItem>
         <TzFormItem
           label="申请金额"
@@ -122,7 +94,7 @@ export default function ProductApplication(props: {
           name={"product_name"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" />
+          <TzInput placeholder="请输入"  />
         </TzFormItem>
         <TzFormItem
           label="保函受益人名称"
