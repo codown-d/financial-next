@@ -43,9 +43,10 @@ export default function PolicyServices(props: any) {
   const [dataTotal, setDataTotal] = useState(total);
   let [filter, setFilter] = useState({
     add_time_sort:'desc',
-    area_type:0,
+    area_type:'all',
     body_type:'',
     keyword:'',
+    
   });
   let getTableData = useCallback(
     async (pagination) => {
@@ -54,6 +55,7 @@ export default function PolicyServices(props: any) {
         page: current,
         limit: pageSize,
         ...filter,
+        area_type:filter.area_type=='all'?0:filter.area_type
       });
       setDataTotal(res.count);
       return {
@@ -232,7 +234,9 @@ export default function PolicyServices(props: any) {
                     </span>{" "}
                     条结果
                   </div>
-                  <TzButton icon={<UndoOutlined />} className="!px-[12px]">
+                  <TzButton icon={<UndoOutlined />} className="!px-[12px]" onClick={()=>{
+                    form.resetFields()
+                  }}>
                     重置选项
                   </TzButton>
                 </div>

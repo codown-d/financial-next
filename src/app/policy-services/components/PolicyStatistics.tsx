@@ -1,19 +1,8 @@
 "use client";
-import Image from "next/image";
 import TzCard from "@/components/TzCard";
-import FilterHeader from "@/components/UI/FilterHeader";
-import TzSegmented from "@/components/TzSegmented";
-import ItemSort from "@/components/UI/ItemSort";
-import { TzCheckableTagNormal } from "@/components/TzCheckableTag";
 import { AREA_TYPE, PolicyTags } from "@/constant";
-import TzDivider from "@/components/TzDivider";
 import { useCallback, useEffect, useState } from "react";
-import { TzTableServerPage } from "@/components/TzTable";
-import PolicyTableItem from "./PolicyTableItem";
 import { getPolicyList, policyStatistics } from "@/fetch";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import TzSearch from "@/components/TzSearch";
-import { FilterSortEmu } from "@/fetch/definition";
 import { keys } from "lodash";
 export interface DataType {
   id: any;
