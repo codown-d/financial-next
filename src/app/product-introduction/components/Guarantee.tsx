@@ -7,23 +7,14 @@ import DataTypeCom from "@/components/UI/DataTypeCom";
 import DescInfo from "@/components/UI/DescInfo";
 import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
-import {
-  MicroloansOp,
-  selectOp,
-} from "@/constant";
-import { find, keys } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
-import { productDetail } from "@/fetch";
-import { dealProduct } from "@/lib";
 import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
-import { useDataType } from "@/hooks";
+import { useDataType, useGetLoanDetail } from "@/hooks";
 
 export default function Guarantee(props: { id: string }) {
-  let { id } = props;
-  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
   let {
     Submit,
     Success,
@@ -33,15 +24,8 @@ export default function Guarantee(props: { id: string }) {
   } = useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let getProductDetail = useCallback(() => {
-    productDetail({ id: props.id }).then((res) => {
-      setDataInfo(dealProduct(res.data));
-    });
-  }, [props]);
+  let {dataInfo} = useGetLoanDetail({ id: props.id })
   let {dataTypeLabel} = useDataType(dataInfo);
-  useEffect(() => {
-    getProductDetail();
-  }, [getProductDetail]);
   return (
     <>
       <Submit

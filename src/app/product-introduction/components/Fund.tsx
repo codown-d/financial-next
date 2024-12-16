@@ -4,33 +4,23 @@ import TzCard from "@/components/TzCard";
 import TzIcon from "@/components/TzIcon";
 import DescInfo from "@/components/UI/DescInfo";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { MarketDataList, MicroloansOp, selectOp } from "@/constant";
-import { find, keys } from "lodash";
 import { useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
-import { FinanceItemProps } from "@/fetch/definition";
-import { loanDetail } from "@/fetch";
-import { dealProduct } from "@/lib";
+import { useFundModal, useGetLoanDetail } from "@/hooks";
 
 export default function Fund(props: { id: string }) {
   let {
     Submit,
     Success,
     Fail,
-    setSubmitVisible,
     setSuccessVisible,
-    setFailVisible,
   } = useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
-  useEffect(() => {
-    loanDetail({ id: props.id }).then((res) => {
-      setDataInfo(dealProduct(res.data));
-    });
-  }, [props]);
+  let {dataInfo} = useGetLoanDetail({ id: props.id })
+  let { getFundModal } = useFundModal();
   return (
     <>
       <Submit
@@ -69,18 +59,12 @@ export default function Fund(props: { id: string }) {
               </div>
 
               <div className="flex mt-10 w-[772px] text-[#999]">
-                {dataInfo?.fundCompanyIntroduction}{" "}
+                {dataInfo?.fund_company_intro}
               </div>
             </div>
           </div>
           <div className="w-[245px] flex flex-col justify-center items-center">
-            <TzButton
-              type={"primary"}
-              shape={"round"}
-              onClick={() => {
-                setSubmitVisible(true);
-              }}
-            >
+            <TzButton shape={"round"} type={"primary"} onClick={getFundModal}>
               立即申请
             </TzButton>
             <span className="text-xs font-bold mt-5 text-[#999999]">
@@ -91,7 +75,7 @@ export default function Fund(props: { id: string }) {
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
         <DescInfo title={"基金简介"}>
-          <div className="text-[#666]">{dataInfo?.fundIntroduction}</div>
+          <div className="text-[#666]">{dataInfo?.product_intro}</div>
         </DescInfo>
       </TzCard>
     </>

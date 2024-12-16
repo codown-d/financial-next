@@ -206,12 +206,6 @@ export const productApply = async (
 export const financeAdd = async (params?: any): Promise<IResponseData<any>> => {
   return http.post(`${api.financeAdd}`, params);
 };
-export const loanDetail = async (
-  params?: any
-): Promise<IResponseData<FinanceItemProps>> => {
-  let { id } = params;
-  return http.get(`${api.loanDetail}/${id}`, params);
-};
 export const verifyRegiste = async (
   params?: any
 ): Promise<IResponseData<FinanceItemProps>> => {

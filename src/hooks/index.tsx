@@ -5,11 +5,12 @@ import {
   getArea,
   getUnique,
   getUserInfo,
+  productDetail,
   postImgCode,
   postPhoneCode,
 } from "@/fetch";
 import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
-import { promises } from "dns";
+import { dealProduct } from "@/lib";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ResizeProps {
@@ -209,3 +210,18 @@ export const useGetArea = () => {
     area,
   };
 };
+export const useGetLoanDetail = (props) => {
+  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
+  let getLoanDetail = useCallback(async () => {
+    productDetail(props).then((res) => {
+        res?.data&&setDataInfo(dealProduct(res.data));
+    });
+  }, [props.id]);
+  useEffect(() => {
+    getLoanDetail();
+  }, [getLoanDetail]);
+  return {
+    dataInfo,
+  };
+};
+

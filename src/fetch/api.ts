@@ -26,7 +26,6 @@ export default {
   productDetail:'/index/product/detail',
   productApply:'/user/product/apply',
   financeAdd:'/user/finance/info/add',
-  loanDetail:'/admin/bank/loan/detail',
   verifyRegiste:'/user/verify/register/code',
   financeList:'/finance/all/list',
   applyList:'/apply/all/list',

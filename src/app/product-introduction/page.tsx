@@ -7,17 +7,20 @@ import Fund from "./components/Fund";
 import Guarantee from "./components/Guarantee";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
+import { useGetLoanDetail } from "@/hooks";
 
 export default function ProductIntroduction(props) {
   const searchParams = useSearchParams();
-  const productType = Number(searchParams.get("productType"));
   const id = searchParams.get("id");
+  let { dataInfo } = useGetLoanDetail({ id });
+  let productType = useMemo(() => {
+    return dataInfo?.productType;
+  }, [dataInfo]);
   let getDataTypeDom = useMemo(() => {
     if (
-      [
-        FinanceDataTypeEmu.BankLoans,
-        FinanceDataTypeEmu.Microloans,
-      ].includes(productType)
+      [FinanceDataTypeEmu.BankLoans, FinanceDataTypeEmu.Microloans].includes(
+        productType
+      )
     ) {
       return <SmallLoans id={id} />;
     } else if (

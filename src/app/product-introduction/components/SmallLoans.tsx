@@ -16,25 +16,18 @@ import { FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
 import { find, isArray, keys } from "lodash";
 import { DescriptionsProps, Form, message } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
-import { loanDetail } from "@/fetch";
-import { dealProduct } from "@/lib";
-import { useDataType, useRepaymentMethod } from "@/hooks";
+import { useDataType, useGetLoanDetail, useRepaymentMethod } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function SmallLoans(props: { id: string }) {
   let [segmentedValue, setSegmentedValue] = useState(
     FinancingEntityEmu.Enterprise
   );
-  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
+  let {dataInfo} = useGetLoanDetail(props)
   let {dataTypeLabel} = useDataType(dataInfo);
   let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
   let [form] = Form.useForm();
-  useEffect(() => {
-    loanDetail({ id: props.id }).then((res) => {
-      setDataInfo(dealProduct(res.data));
-    });
-  }, [props]);
   let getSegmentedDom = useMemo(() => {
     if (segmentedValue === FinancingEntityEmu.Enterprise) {
       return dataInfo?.application_info_user

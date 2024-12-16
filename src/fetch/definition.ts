@@ -123,9 +123,9 @@ export interface FinanceItemProps {
   //申请资料
   applicationInformation?: string;
   //基金介绍
-  fundIntroduction?: string;
+  product_intro?: string;
   //基金公司介绍
-  fundCompanyIntroduction?: string;
+  fund_company_intro?: string;
   //位置
   financial_organs:{area_desc:string};
   application_info_user:string//个人

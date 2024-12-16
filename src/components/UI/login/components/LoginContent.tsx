@@ -6,10 +6,7 @@ import TzRadio from "@/components/TzRadio";
 import { TzButton } from "@/components/TzButton";
 import { useLoginContext } from "./LoginWrap";
 import { useGlobalContext } from "@/hooks/GlobalContext";
-import {
-  login,
-  phoneLogin,
-} from "@/fetch";
+import { getUserInfo, login, phoneLogin } from "@/fetch";
 import { useCallback, useEffect, useState } from "react";
 
 export default function (props) {
@@ -31,7 +28,7 @@ export default function (props) {
     },
   ];
   let [radio, setRadio] = useState(false);
-  let [activeKey, setActiveKey] = useState('/login');
+  let [activeKey, setActiveKey] = useState("/login");
 
   return (
     <div className="flex-1 px-10 mt-2">
@@ -70,13 +67,15 @@ export default function (props) {
               return;
             }
             formIns.validateFields().then((val) => {
-                let fn = '/login'==activeKey?login:phoneLogin
-                fn(val).then((res) => {
-                if(res.code!=200){return;}
+              let fn = "/login" == activeKey ? login : phoneLogin;
+              fn(val).then(async (res) => {
+                if (res.code != 200) {
+                  return;
+                }
                 localStorage.setItem("token", res.token);
                 setOpen(false);
-                console.log(res)
-                setUserInfo({...val,token:res.token});
+                let result = await getUserInfo();
+                setUserInfo({ ...result.data, token: res.token });
               });
             });
           }}
