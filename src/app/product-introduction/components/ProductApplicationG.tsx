@@ -1,12 +1,7 @@
 import { TzForm, TzFormItem, TzInput } from "@/components";
 import TzInputNumber from "@/components/TzInputNumber";
 import TzSelect from "@/components/TzSelect";
-import {
-  MicroloansOp,
-  purposeOp,
-  repaymentMethodOp,
-  selectOp,
-} from "@/constant";
+import { MicroloansOp, purposeOp, repaymentMethodOp, selectOp } from "@/constant";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { ConfigProvider, Form, FormInstance } from "antd";
 import zhCN from "antd/locale/zh_CN";
@@ -32,13 +27,11 @@ export default function ProductApplication(props: {
         formIns.setFieldsValue({
           name: userInfo?.realname.name,
           idcard: userInfo?.realname.idcard,
-          user_name:userInfo?.user_name
         });
       } else if (changedValues.verify_type == 2) {
         formIns.setFieldsValue({
-          name: userInfo?.enterprise.name,
+          name: userInfo?.enterprise.name         ,
           idcard: userInfo?.enterprise.idcard,
-          user_name:userInfo?.user_name
         });
       }
     },
@@ -84,25 +77,25 @@ export default function ProductApplication(props: {
           <TzInput />
         </TzFormItem>
         <TzFormItem
-          label="类型"
           name={"verify_type"}
-          rules={[{ required: true, message: "请选择类型" }]}
+          initialValue={2}
+          hidden
         >
-          <TzSelect placeholder="请选择" options={newMicroloansOp} />
+          <TzInput  />
         </TzFormItem>
         <TzFormItem
-          label="公司名称/姓名"
+          label="客户名称"
           name={"name"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" disabled />
+          <TzInput placeholder="请输入"  />
         </TzFormItem>
         <TzFormItem
           label="证件号码"
           name={"idcard"}
           rules={[{ required: true }]}
         >
-          <TzInputNumber placeholder="请输入" disabled />
+          <TzInputNumber placeholder="请输入" />
         </TzFormItem>
         <TzFormItem
           label="申请金额"
@@ -114,30 +107,29 @@ export default function ProductApplication(props: {
         <TzFormItem label="申请期限" name={"term"} rules={[{ required: true }]}>
           <TzInputNumber placeholder="请输入" suffix="月" />
         </TzFormItem>
-        <TzFormItem
-          label="反担保措施"
-          name={"loan_guarantee_method"}
-          rules={[{ required: true }]}
-        >
-          <TzSelect placeholder="请选择" options={selectOp} />
-        </TzFormItem>
         <TzFormItem label="用途" name={"purpose"} rules={[{ required: true }]}>
           <TzSelect placeholder="请选择" options={purposeOp} />
         </TzFormItem>
-
         <TzFormItem
-          label="还款方式"
-          name={"repayment_method"}
+          label="担保方式"
+          name={"loan_guarantee_method"}
           rules={[{ required: true }]}
         >
-          <TzSelect placeholder="请选择" options={repaymentMethodOp} />
+          <TzSelect placeholder="请选择"  options={selectOp}/>
         </TzFormItem>
         <TzFormItem
-          label="联系方式"
-          name={"user_name"}
+          label="项目名称"
+          name={"product_name"}
           rules={[{ required: true }]}
         >
-          <TzInput placeholder="请输入" disabled/>
+          <TzInput placeholder="请输入" />
+        </TzFormItem>
+        <TzFormItem
+          label="保函受益人名称"
+          name={"beneficiary"}
+          rules={[{ required: true }]}
+        >
+          <TzInput placeholder="请输入" />
         </TzFormItem>
       </TzForm>
     </ConfigProvider>

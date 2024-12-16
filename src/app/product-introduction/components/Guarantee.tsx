@@ -9,11 +9,12 @@ import DescMethod from "@/components/UI/DescMethod";
 import LogoInfo from "@/components/UI/LogoInfo";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
-import { DescriptionsProps, Form } from "antd";
+import { DescriptionsProps, Form, message } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
 import { FinanceDataTypeEmu, FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
 import { useDataType, useGetLoanDetail } from "@/hooks";
 import TzSegmented from "@/components/TzSegmented";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function Guarantee(props: { id: string }) {
   let {
@@ -37,6 +38,7 @@ export default function Guarantee(props: { id: string }) {
       return dataInfo?.application_info_enterprise
     }
   }, [dataInfo,segmentedValue]);
+  let { userInfo } = useGlobalContext();
   return (
     <>
       <Submit
@@ -87,7 +89,11 @@ export default function Guarantee(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
+                if(userInfo.verify_status==3||userInfo.enterprise_verify_status==3){
                 setSubmitVisible(true);
+                }else{
+                  message.error('暂无权限请实名之后申请！')
+                }
               }}
             >
               立即申请

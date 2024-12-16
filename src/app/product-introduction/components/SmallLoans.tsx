@@ -141,7 +141,6 @@ export default function SmallLoans(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                console.log(userInfo)
                 if(userInfo.verify_status==3||userInfo.enterprise_verify_status==3){
                 setSubmitVisible(true);
                 }else{

@@ -12,7 +12,7 @@ export default function TzForm(props: TzFormProps) {
       className: `tz-form ${props.className || ""}`,
     };
   }, [props]);
-  return <Form {...realProps} />;
+  return <Form labelAlign={'left'} {...realProps} />;
 }
 interface TzFormItemProps extends FormItemProps {
   children?: React.ReactNode;
