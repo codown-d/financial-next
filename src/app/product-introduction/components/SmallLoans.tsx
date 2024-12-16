@@ -32,7 +32,6 @@ export default function SmallLoans(props: { id: string }) {
   let [form] = Form.useForm();
   useEffect(() => {
     loanDetail({ id: props.id }).then((res) => {
-      console.log(dealProduct(res.data));
       setDataInfo(dealProduct(res.data));
     });
   }, [props]);

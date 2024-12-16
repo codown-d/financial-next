@@ -6,15 +6,15 @@ import DescInfo from "@/components/UI/DescInfo";
 import LogoInfo from "@/components/UI/LogoInfo";
 import { MarketDataList, MicroloansOp, selectOp } from "@/constant";
 import { find, keys } from "lodash";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
+import { FinanceItemProps } from "@/fetch/definition";
+import { loanDetail } from "@/fetch";
+import { dealProduct } from "@/lib";
 
 export default function Fund(props: { id: string }) {
-  let dataInfo = useMemo(() => {
-    return find(MarketDataList, (item) => item.id == props.id);
-  }, [props.id]);
   let {
     Submit,
     Success,
@@ -25,11 +25,18 @@ export default function Fund(props: { id: string }) {
   } = useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
+  let [dataInfo, setDataInfo] = useState<FinanceItemProps>();
+  useEffect(() => {
+    loanDetail({ id: props.id }).then((res) => {
+      setDataInfo(dealProduct(res.data));
+    });
+  }, [props]);
   return (
     <>
       <Submit
         form={form}
-        product_id={props.id}
+        product_id={dataInfo?.id}
+        product_type={dataInfo?.productType}
         type={"业务申请"}
         callback={(val) => {
           setItems(getFormLabelList(val));

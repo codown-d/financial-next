@@ -46,7 +46,8 @@ export default function Guarantee(props: { id: string }) {
     <>
       <Submit
         form={form}
-        product_id={props.id}
+        product_id={dataInfo?.id}
+        product_type={dataInfo?.productType}
         type={"业务申请"}
         callback={(val) => {
           setItems(getFormLabelList(val));

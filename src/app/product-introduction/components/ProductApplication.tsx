@@ -19,7 +19,7 @@ export interface ApplicationProps {
 export default function ProductApplication(props: {
   formIns: FormInstance<any>;
 }) {
-  let { formIns, product_id } = props;
+  let { formIns } = props;
   let { userInfo } = useGlobalContext();
   const handleValuesChange = useCallback(
     (changedValues, allValues) => {
