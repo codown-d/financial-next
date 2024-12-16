@@ -34,7 +34,7 @@ export default function (props: {
         if (res.code == 200) {
           message.success(res.desc);
           setIsSending(true);
-          setCountdown(10);
+          setCountdown(60);
         }
       });
     });

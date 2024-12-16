@@ -102,7 +102,7 @@ export const postImgCode = async (params: any): Promise<IResponseData<any>> => {
   return http.post(api.imgCode, otherParams, { headers: { token: token } });
 };
 export const login = async (params?: any): Promise<IResponseData<any>> => {
-  let {  ...otherParams } = params;
+  let { ...otherParams } = params;
   let token = localStorage.getItem("uniqueToken");
   return http.post(api.userLogin, otherParams, {
     headers: { token },
@@ -140,7 +140,7 @@ export const getServicePolicy = async (
 export const postPhoneCode = async (
   params?: any
 ): Promise<IResponseData<any>> => {
-  let {  ...otherParams } = params;
+  let { ...otherParams } = params;
   let token = localStorage.getItem("uniqueToken");
   return http.post(`${api.phoneCode}`, otherParams, {
     headers: { token: token },
@@ -153,14 +153,17 @@ export const userRegister = async (
   params?: any
 ): Promise<IResponseData<any>> => {
   let { ...otherParams } = params;
-  
+
   let token = localStorage.getItem("uniqueToken");
   return http.post(`${api.userRegister}`, otherParams, {
     headers: { token: token },
   });
 };
 export const phoneLogin = async (params?: any): Promise<IResponseData<any>> => {
-  return http.post(`${api.phoneLogin}`, params);
+  let token = localStorage.getItem("uniqueToken");
+  return http.post(`${api.phoneLogin}`, params, {
+    headers: { token: token },
+  });
 };
 export const phoneModify = async (
   params?: any
@@ -213,7 +216,7 @@ export const verifyRegiste = async (
   params?: any
 ): Promise<IResponseData<FinanceItemProps>> => {
   let { ...otherParams } = params;
-  
+
   let token = localStorage.getItem("uniqueToken");
   return http.post(`${api.verifyRegiste}`, otherParams, {
     headers: { token: token },
