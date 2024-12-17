@@ -10,6 +10,7 @@ export default {
   userRegister:'/user/register',
   modifyPass:'/user/modify/pass',
   userInfo:'/user/info',
+  product:'/index/product',
   classProduct:'/index/class/product',
   enterpriseVerify:'/user/enterprise/verify',
   userVerify:'/user/real/name/verify',
