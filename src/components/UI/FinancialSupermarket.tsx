@@ -28,7 +28,7 @@ let obj={
   '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
   '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
   '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
-  '/advance-payment-bond':5,
+  '/advance-payment-bond':6,
 }
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();

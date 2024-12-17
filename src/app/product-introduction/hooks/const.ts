@@ -7,7 +7,7 @@ export const formLabelObj = {
   idcard: "证件号码",
   apply_money: "申请金额",
   term: "申请期限",
-  loan_guarantee_method: "担保方式",
+  guarantee_method: "担保方式",
   purpose:'用途',
   repayment_method:'还款方式',
   user_name: "联系方式",
@@ -24,7 +24,7 @@ export const getFormLabelList = (val: any)=>{
       text = `${text} 个月`;
     } else if ("verify_type" === item) {
       text = find(MicroloansOp, (ite) => ite.value == text)?.label;
-    } else if ("loan_guarantee_method" === item) {
+    } else if ("guarantee_method" === item) {
       text = find(selectOp, (ite) => ite.value == text)?.label;
     }else if ("repayment_method" === item) {
       text = find(repaymentMethodOp, (ite) => ite.value == text)?.label;

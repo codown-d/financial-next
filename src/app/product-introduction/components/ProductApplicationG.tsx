@@ -95,7 +95,7 @@ export default function ProductApplication(props: {
         </TzFormItem>
         <TzFormItem
           label="担保方式"
-          name={"loan_guarantee_method"}
+          name={"guarantee_method"}
           rules={[{ required: true }]}
         >
           <TzSelect placeholder="请选择" options={selectOp} />
