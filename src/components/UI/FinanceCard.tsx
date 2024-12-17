@@ -27,6 +27,7 @@ export default function (props: FinanceCardProps) {
     financial_organs,
     ...otherProps
   } = props;
+    console.log(props)
   let getRateList = useMemo(() => {
     return productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
@@ -116,11 +117,11 @@ export default function (props: FinanceCardProps) {
             <div className="flex  text-[#3D5AF5]">
               {getRateList.map((item, index) => {
                 return (
-                  <div className="mr-2" key={index}>
+                  <div className={`flex flex-col mr-2`} key={index}>
                     <div className="text-[#999999] mb-[6px] text-sm">
                       {item.label}
                     </div>
-                    <div className="bg-[#F9F9F9] min-w-[156px] pt-[11px] pl-[12px] pb-[10px] text-left rounded-lg">
+                    <div className="bg-[#F9F9F9]  pt-[11px] px-[16px] pb-[10px] text-left rounded-lg">
                       <span className="text-[40px] leading-[40px] font-bold inline-flex items-center ">
                         {item.value}
                       </span>

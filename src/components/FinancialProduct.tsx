@@ -10,6 +10,8 @@ import {
   EquityFinancing,
   FinanceGuarantee,
   Microloans,
+  BankLoans,
+  Insurance
 } from "@/constant";
 import FinancialServices from "./FinancialServices";
 import { useGetProduct } from "@/hooks/server";
@@ -19,13 +21,15 @@ export type TabPosition = "left" | "right" | "top" | "bottom";
 const FinancialProduct = () => {
   let {dataList}=useGetProduct()
   let items = useMemo(() => {
+    BankLoans.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.BankLoans);
     Microloans.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.Microloans);
     EmergencyRefinancing.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.EmergencyRefinancing);
     EquityFinancing.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.EquityFinancing);
     FinanceGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.FinanceGuarantee);
     ElectronicGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.ElectronicGuarantee);
-  let tabItems_1 = [Microloans, EmergencyRefinancing, EquityFinancing];
-  let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee];
+    Insurance.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.Insurance);
+  let tabItems_1 = [BankLoans,Microloans, EmergencyRefinancing, EquityFinancing];
+  let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee,Insurance];
     return [
       {
         label: (

@@ -63,6 +63,7 @@ export default function User() {
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
     productRecommend().then((res) => {
+      console.log(res)
       setMarketDataList(res.data.map(dealProduct).slice(0,3));
     });
   };

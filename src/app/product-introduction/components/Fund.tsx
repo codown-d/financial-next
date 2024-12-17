@@ -9,6 +9,7 @@ import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
 import { useFundModal, useGetLoanDetail } from "@/hooks";
+import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export default function Fund(props: { id: string }) {
   let {
@@ -26,7 +27,7 @@ export default function Fund(props: { id: string }) {
       <Submit
         form={form}
         product_id={dataInfo?.id}
-        product_type={dataInfo?.productType}
+        product_type={dataInfo?.product_type}
         type={"业务申请"}
         callback={(val) => {
           setItems(getFormLabelList(val));
@@ -74,7 +75,7 @@ export default function Fund(props: { id: string }) {
         </div>
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
-        <DescInfo title={"基金简介"}>
+        <DescInfo title={`${ FinanceDataTypeEmu.Insurance===dataInfo?.product_type ?'保险简介':'基金简介'}`}>
           <div className="text-[#666]">{dataInfo?.product_intro}</div>
         </DescInfo>
       </TzCard>

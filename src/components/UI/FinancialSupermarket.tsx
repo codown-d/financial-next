@@ -28,7 +28,7 @@ let obj={
   '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
   '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
   '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
-  '/advance-payment-bond':6,
+  '/advance-payment-bond':FinanceDataTypeEmu.Insurance,
 }
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();
@@ -54,7 +54,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         key: TabType.service,
         children: (
           <FilterMarket
-            filter={{...filter,big_type:1}}
+            filter={{...filter}}
             keyword={keyword}
           />
         ),
@@ -71,7 +71,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         key: TabType.credit,
         children: (
           <FilterMarket
-            filter={{...filter,big_type:2}}
+            filter={{...filter}}
             keyword={keyword}
           />
         ),

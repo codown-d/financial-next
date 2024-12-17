@@ -78,6 +78,8 @@ export enum FinanceDataTypeEmu {
   EquityFinancing = 4,
   /** 股权融资 基金 */
   EmergencyRefinancing = 5,
+  /*保险*/
+  Insurance=6,
   /** 电子保函 */
   ElectronicGuarantee = 7,
 }
@@ -97,6 +99,7 @@ export interface FinanceItemProps {
     area_desc:string
   }
   //产品类型
+  product_type:FinanceDataTypeEmu;
   productType: FinanceDataTypeEmu;
   name: string;
   rateDown: string;

@@ -126,7 +126,7 @@ export const MarketDataList: FinanceItemProps[] = [];
 export const BankLoans = {
   title: "银行贷款",
   description: "银行金融业机构，为企业和个人提供资金支持。",
-  key: "BankLoans",
+  key: FinanceDataTypeEmu.BankLoans,
   list: [],
 };
 export const Microloans = {
@@ -157,6 +157,12 @@ export const ElectronicGuarantee = {
   title: "电子保函",
   description: "代替现金保证金，为企业降压减负。",
   key: FinanceDataTypeEmu.ElectronicGuarantee,
+  list:[],
+};
+export const Insurance = {
+  title: "保险",
+  description: "一站式综合保险服务。",
+  key: FinanceDataTypeEmu.Insurance,
   list:[],
 };
 export const purposeOp = [
@@ -287,10 +293,10 @@ export const FinancialMarket = {
       label: "保函",
       value: FinanceDataTypeEmu.ElectronicGuarantee,
     },
-    // {
-    //   label: "保险",
-    //   value: FinanceDataTypeEmu.Fund,
-    // },
+    {
+      label: "保险",
+      value: FinanceDataTypeEmu.Insurance,
+    },
   ],
   financing: [
     {
@@ -538,3 +544,17 @@ export const  term_unitOp=[
     value:2
   }
 ]
+export const data_type = {
+  1: {
+    text: '信用',
+  },
+  2: {
+    text: '抵质押',
+  },
+  3: {
+    text: '保证',
+  },
+  4: {
+    text: '组合',
+  },
+};

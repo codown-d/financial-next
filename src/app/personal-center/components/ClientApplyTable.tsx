@@ -3,13 +3,22 @@ import { TzTableServerPage } from "@/components/TzTable";
 import { applyList, financeList } from "@/fetch";
 import { useCallback } from "react";
 import { ProColumns, ProTable } from "@ant-design/pro-components";
-import { action_status_filter, purpose, term } from "@/constant";
+import { action_status_filter, data_type, purpose, term } from "@/constant";
 
 export default function Financing() {
   let columns: ProColumns<any>[] = [
     {
       title: "机构名称",
       dataIndex: ['financial_organs','organs_name'],
+    },
+    {
+      title: "产品名称",
+      dataIndex: ['product','name'],
+    },
+    {
+      title: "担保方式",
+      dataIndex: 'guarantee_method',
+      valueEnum: {...data_type,0:'-'},
     },
     {
       title: "金额",
