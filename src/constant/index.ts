@@ -265,20 +265,32 @@ export const FinancialMarket = {
     },
     {
       label: "银行",
-      value: InstitutionTypeEmu.Bank,
+      value: FinanceDataTypeEmu.BankLoans,
     },
     {
       label: "担保",
-      value: InstitutionTypeEmu.Guaranteed,
+      value: FinanceDataTypeEmu.FinanceGuarantee,
     },
     {
       label: "小额贷款",
-      value: InstitutionTypeEmu.SmallLoan,
+      value: FinanceDataTypeEmu.Microloans,
     },
     {
       label: "基金",
-      value: InstitutionTypeEmu.Fund,
+      value: FinanceDataTypeEmu.EmergencyRefinancing,
     },
+    {
+      label: "转贷",
+      value: FinanceDataTypeEmu.EquityFinancing,
+    },
+    {
+      label: "保函",
+      value: FinanceDataTypeEmu.ElectronicGuarantee,
+    },
+    // {
+    //   label: "保险",
+    //   value: FinanceDataTypeEmu.Fund,
+    // },
   ],
   financing: [
     {
@@ -427,7 +439,7 @@ export const action_status_filter = {
     text: '未受理',
     status: 'Processing',
   },
-  '3': {
+  3: {
     text: '办理中',
     status: 'Success',
   },
@@ -437,7 +449,7 @@ export const action_status_filter = {
   },
   5: {
     text: '完成',
-    status: 'Error',
+    status: 'Success',
   },
 };
 export const term = {

@@ -27,7 +27,6 @@ export default function (props: FinanceCardProps) {
     financial_organs,
     ...otherProps
   } = props;
-  console.log(dataType,dataType,collateralOp)
   let getRateList = useMemo(() => {
     return productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
@@ -152,8 +151,8 @@ export default function (props: FinanceCardProps) {
                 查看详情
               </TzButton>
               <div className="mr-[23px] mt-[-4px]">
-                <Image src={financial_organs.logo} alt={""} width={52} height={52} />
-                <span className="leading-[14px]">{financial_organs.organs_name}</span>
+                <Image src={financial_organs?.logo} alt={""} width={52} height={52} />
+                <span className="leading-[14px]">{financial_organs?.organs_name}</span>
               </div>
             </div>
           </div>

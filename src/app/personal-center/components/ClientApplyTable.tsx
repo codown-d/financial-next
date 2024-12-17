@@ -9,8 +9,7 @@ export default function Financing() {
   let columns: ProColumns<any>[] = [
     {
       title: "机构名称",
-      dataIndex: "add_time",
-      valueType: "date",
+      dataIndex: ['financial_organs','organs_name'],
     },
     {
       title: "金额",
@@ -29,14 +28,12 @@ export default function Financing() {
     {
       title: "用途",
       dataIndex: "purpose",
-      valueEnum: purpose,
+      valueEnum: {...purpose,0:'-'},
     },
     {
       title: "期限",
-      dataIndex: "term",
-      render(text, record) {
-        return record.term + "个月";
-      },
+      dataIndex: "term_desc",
+     
     },
     {
       title: "联系方式",

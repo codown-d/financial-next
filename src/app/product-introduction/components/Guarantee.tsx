@@ -60,12 +60,12 @@ export default function Guarantee(props: { id: string }) {
         <div className="flex">
           <LogoInfo
             size="large"
-            logo={dataInfo?.financial_organs.organs_name}
-            logoUrl={dataInfo?.financial_organs.logo}
+            logo={dataInfo?.financial_organs?.organs_name}
+            logoUrl={dataInfo?.financial_organs?.logo}
             className="w-[184px]"
           />
           <div className="flex flex-row border-l-[1px] flex-1 border-dashed items-center border-[#EEEEEE] pl-[50px]">
-            <div className="flex flex-col ">
+            <div className="">
               <div className="flex mb-5">
                 <span className="font-extrabold text-2xl text-[#333333] ">
                   {dataInfo?.name}
@@ -75,10 +75,12 @@ export default function Guarantee(props: { id: string }) {
                   {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
-              <DescMethod
+              <div className="inline-block">
+                <DescMethod
                 method={"担保方式"}
                 desc={dataTypeLabel}
               />
+              </div>
             </div>
             <div className="flex ml-[100px]">
               <DataTypeCom {...dataInfo} />

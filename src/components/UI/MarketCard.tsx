@@ -24,7 +24,7 @@ export default function MarketCard(props: FinanceItemProps) {
 let {dataTypeLabel} = useDataType(props);
   return (
     <div className="flex bg-white-500 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)] rounded-[16px] py-9">
-      <LogoInfo logo={financial_organs.logo} logoUrl={financial_organs.organs_name} />
+      <LogoInfo logo={financial_organs?.organs_name} logoUrl={financial_organs?.logo} />
       <div className="flex flex-row border-x-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">
         <div className="flex flex-col mr-9">
           <DataTypeTitleCom dataType={dataType} amount={amount} name={name} productType={productType} />

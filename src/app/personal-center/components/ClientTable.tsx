@@ -27,10 +27,7 @@ export default function Financing() {
     },
     {
       title: "期限",
-      dataIndex: "term",
-      render(text, record) {
-        return record.term + "个月";
-      },
+      dataIndex: "term_desc",
     },
     {
       title: "联系方式",

@@ -13,5 +13,5 @@ export default function TzImage(props: TzImageProps) {
       className: `tz-image ${props.className}`,
     };
   }, [props]);
-  return <Image {...realProps}/>;
+  return <img {...realProps}/>;
 }
