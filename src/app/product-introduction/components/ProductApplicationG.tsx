@@ -91,9 +91,6 @@ export default function ProductApplication(props: {
             <TzSelect  options={term_unitOp} />
           </TzFormItem>
         </TzFormItem>
-        <TzFormItem label="用途" name={"purpose"} rules={[{ required: true }]}>
-          <TzSelect placeholder="请选择" options={purposeOp} />
-        </TzFormItem>
         <TzFormItem
           label="担保方式"
           name={"guarantee_method"}
@@ -103,7 +100,7 @@ export default function ProductApplication(props: {
         </TzFormItem>
         <TzFormItem
           label="项目名称"
-          name={"product_name"}
+          name={"project_name"}
           rules={[{ required: true }]}
         >
           <TzInput placeholder="请输入" />

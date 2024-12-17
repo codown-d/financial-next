@@ -348,26 +348,17 @@ export const PolicyTags = [
 ];
 export const repaymentMethodOp = [
   {
-    label: "按周期付息",
+    label: "按周期付息,到期还本",
     value: '1',
   },
   {
-    label: "到期还本",
-    value: '2',
-  },
-  {
     label: "分期还款",
-    value: '3',
+    value: '2',
   },
   
   {
     label: "一次性还本付息",
-    value: '4',
-  },
-  
-  {
-    label: "随借随还",
-    value: '5',
+    value: '3',
   },
 ];
 export const MicroloansOp = [
@@ -465,7 +456,7 @@ export const term = {
 };
 export const purpose = {
   1: {
-    text: '生成经营',
+    text: '生产经营',
   },
 
   2: {

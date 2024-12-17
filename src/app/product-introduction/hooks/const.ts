@@ -11,7 +11,7 @@ export const formLabelObj = {
   purpose:'用途',
   repayment_method:'还款方式',
   user_name: "联系方式",
-  product_name:'项目名称',
+  project_name:'项目名称',
   beneficiary:'受益人',
 };
 
