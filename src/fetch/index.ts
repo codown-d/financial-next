@@ -114,7 +114,10 @@ export const getUserInfo = async (
   return http.get(api.userInfo, params, { silence: true });
 };
 export const getProduct = async (params?: any): Promise<IResponseData<any>> => {
-  return http.get(api.product, params);
+  return http.get(api.classProduct, params);
+};
+export const classProduct = async (params?: any): Promise<IResponseData<any>> => {
+  return http.get(api.classProduct, params);
 };
 export const getPolicyList = async (
   params?: any

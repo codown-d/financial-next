@@ -1,14 +1,14 @@
-import { getProduct } from "@/fetch";
+import { classProduct } from "@/fetch";
 import { dealProduct } from "@/lib";
 import { useCallback, useEffect, useState } from "react";
 
 export function useGetProduct() {
   let [dataList, setDataList] = useState([]);
   let getProductFn = useCallback(() => {
-    getProduct().then((res) => {
-      let { dataList } = res;
+    classProduct().then((res) => {
+      let { data } = res;
       setDataList(
-        dataList.map(dealProduct)
+        data.map(dealProduct)
       );
     });
   }, []);
