@@ -6,6 +6,7 @@ import {
   purposeOp,
   repaymentMethodOp,
   selectOp,
+  term_unitOp,
 } from "@/constant";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { ConfigProvider, Form, FormInstance } from "antd";
@@ -111,8 +112,21 @@ export default function ProductApplication(props: {
         >
           <TzInputNumber placeholder="请输入" suffix="万元" />
         </TzFormItem>
-        <TzFormItem label="申请期限" name={"term"} rules={[{ required: true }]}>
-          <TzInputNumber placeholder="请输入" suffix="月" />
+        <TzFormItem label="申请期限" required style={{ marginBottom: 0 }}>
+          <TzFormItem
+            name="term"
+            rules={[{ required: true,message:'请输入申请期限' }]}
+            style={{width:'calc(100% - 112px)'}}
+            className="flex-1 inline-block"
+          >
+            <TzInputNumber placeholder="请输入" />
+          </TzFormItem>
+          <TzFormItem
+            name="term_unit"
+            className="w-[100px] inline-block !ml-3"
+          >
+            <TzSelect  defaultValue={2} options={term_unitOp} />
+          </TzFormItem>
         </TzFormItem>
         <TzFormItem
           label="反担保措施"

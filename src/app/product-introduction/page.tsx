@@ -13,18 +13,16 @@ export default function ProductIntroduction(props) {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   let { dataInfo } = useGetLoanDetail({ id });
-  let productType = useMemo(() => {
-    return dataInfo?.productType;
-  }, [dataInfo]);
   let getDataTypeDom = useMemo(() => {
-    if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(productType)) {
+  console.log(FinanceDataTypeEmu.ElectronicGuarantee,dataInfo?.productType)
+    if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataInfo?.productType)) {
       return <Fund id={id} />;
-    } else if (FinanceDataTypeEmu.ElectronicGuarantee == productType) {
+    } else if (FinanceDataTypeEmu.ElectronicGuarantee == dataInfo?.productType) {
       return <Guarantee id={id} />;
     } else {
       return <SmallLoans id={id} />;
     }
-  }, [productType]);
+  }, [dataInfo]);
 
   return (
     <AntdRegistry>

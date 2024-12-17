@@ -7,16 +7,13 @@ import ItemSort from "./ItemSort";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { FilterSortEmu, TabType } from "@/fetch/definition";
 import { getProduct } from "@/fetch";
-import { find } from "lodash";
-import { prodTypeEmu } from "@/constant";
 import { dealProduct } from "@/lib";
 
 export default function FilterMarket(props: {
-  type: TabType;
   filter: any;
   keyword?: string;
 }) {
-  let { type, filter, keyword } = props;
+  let { filter, keyword } = props;
   let [filterData, setFilterData] = useState({
     highest_money_sort: FilterSortEmu.All,
     term_sort: FilterSortEmu.All,
@@ -26,13 +23,13 @@ export default function FilterMarket(props: {
   const [form] = Form.useForm();
   
   let getProductFn=useCallback(()=>{
-    getProduct({...props.filter,...filterData,name:keyword}).then((res) => {
+    getProduct({...filter,...filterData,name:keyword}).then((res) => {
       let { dataList } = res;
       setMarketDataList(
         dataList.map(dealProduct)
       );
     })
-  },[props.filter,filterData,keyword])
+  },[filter,filterData,keyword])
   useEffect(()=>{
     getProductFn()
   },[getProductFn])

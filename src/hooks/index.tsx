@@ -86,16 +86,17 @@ export const useProductType = (props: FinanceItemProps) => {
 };
 
 export const useRepaymentMethod = (dataInfo: FinanceItemProps) => {
+  console.log(dataInfo)
   let repaymentMethodLabel = useMemo(() => {
     return repaymentMethodOp
       .reduce((pre: any[], item) => {
-        if (dataInfo?.repaymentMethod?.includes(item.value)) {
+        if (dataInfo?.repayment_method?.includes(item.value)) {
           pre.push(item.label);
         }
         return pre;
       }, [])
       .join("/");
-  }, [dataInfo?.repaymentMethod]);
+  }, [dataInfo?.repayment_method]);
   return { repaymentMethodLabel };
 };
 export const useDataType = (dataInfo: FinanceItemProps) => {

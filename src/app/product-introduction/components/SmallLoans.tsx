@@ -31,53 +31,8 @@ export default function SmallLoans(props: { id: string }) {
   let getSegmentedDom = useMemo(() => {
     if (segmentedValue === FinancingEntityEmu.Enterprise) {
       return dataInfo?.application_info_user
-
-      let arr = [
-        "股东：个人简介、身份证、户口本、结婚证、征信报告、半年银行流水、产调抵押物。",
-        "担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
-        "经营性资料：企业基础资料证照一套、企业简介章程、征信、产调、主要交易账户半年银行流水、近三年完整年度财务报表及纳税申报表、主要上下游经营合同等。",
-      ];
-      return (
-        <DescInfo title={"申请资料"}>
-          <div className="text-[#666]">
-            {arr.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index + 1)}
-                >
-                  {item}
-                </div>
-              );
-            })}
-          </div>
-        </DescInfo>
-      );
     } else {
       return dataInfo?.application_info_enterprise
-      let arr = [
-        "借款人及担保人：身份证、户口本、结离婚证、征信报告、半年银行流水、工作证明、产调。",
-        "担保人/担保人/抵押物：身份信息、产调、征信报告、价值评估表。",
-        "经营性资料：经营项目情况（项目简介、规模、经营及盈利模式、前期投入及后期盈利目标等）、经营场所的买卖协议（付款凭证）、营业执照、上下游经营合同等。",
-      ];
-      return (
-        <DescInfo title={"申请资料"}>
-          <div className="text-[#666]">
-            {arr.map((item, index) => {
-              return (
-                <div
-                  key={index}
-                  className={`relative before:content-[attr(data-index)] before:mr-2 before:font-bold`}
-                  data-index={"0" + (index + 1)}
-                >
-                  {item}
-                </div>
-              );
-            })}
-          </div>
-        </DescInfo>
-      );
     }
   }, [dataInfo,segmentedValue]);
   let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =

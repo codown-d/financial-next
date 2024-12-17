@@ -517,3 +517,13 @@ export const AREA_TYPE: any = {
     text: '苍溪县',
   },
 };
+export const  term_unitOp=[
+  {
+    label:'天',
+    value:1
+  },
+  {
+    label:'月',
+    value:2
+  }
+]

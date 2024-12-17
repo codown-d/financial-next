@@ -37,7 +37,7 @@ export function dealProduct(item) {
     serviceObjects:item.service_object,
     guaranteePeriod:item.term,
     guaranteeAmount:item.highest_money,
-    repaymentMethod:item.repayment_method,
+    repayment_method:item.repayment_method===0?[]:item.repayment_method,
     applicationConditions:item.application_condition,
   };
 }

@@ -70,7 +70,7 @@ export default function useApplicationAction() {
             .catch();
         }}
       >
-        {product_type == FinanceDataTypeEmu.FinanceGuarantee ? (
+        {product_type == FinanceDataTypeEmu.ElectronicGuarantee ? (
           <ProductApplicationG formIns={form} />
         ) : (
           <ProductApplication formIns={form} />

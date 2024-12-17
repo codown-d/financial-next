@@ -21,12 +21,22 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { productRecommend } from "@/fetch";
 import { dealProduct } from "@/lib";
 import { FinanceDataTypeEmu, InstitutionTypeEmu, TabType } from "@/fetch/definition";
-
+let obj={
+  '/bank-loan':FinanceDataTypeEmu.BankLoans,
+  '/small-loan':FinanceDataTypeEmu.Microloans,
+  '/emergency-refinancing':FinanceDataTypeEmu.EquityFinancing,
+  '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
+  '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
+  '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
+  '/advance-payment-bond':5,
+}
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   let { activeKey = TabType.service } = props;
-  let [filter, setFilter] = useState({});
+  let [filter, setFilter] = useState({
+    product_type:obj[pathname]
+  });
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
@@ -44,7 +54,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         key: TabType.service,
         children: (
           <FilterMarket
-            type={TabType.service}
             filter={{...filter,big_type:1}}
             keyword={keyword}
           />
@@ -62,7 +71,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         key: TabType.credit,
         children: (
           <FilterMarket
-            type={TabType.credit}
             filter={{...filter,big_type:2}}
             keyword={keyword}
           />
@@ -78,16 +86,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   };
   useEffect(() => {
     getproductRecommend();
-    let obj={
-      '/bank-loan':FinanceDataTypeEmu.BankLoans,
-      '/small-loan':FinanceDataTypeEmu.Microloans,
-      '/emergency-refinancing':FinanceDataTypeEmu.EquityFinancing,
-      '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
-      '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
-      '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
-      '/advance-payment-bond':5,
-    }
-    console.log(obj[pathname])
     form.setFieldsValue({
       product_type:obj[pathname]
     })

@@ -72,12 +72,12 @@ export enum FinanceDataTypeEmu {
   BankLoans = 1,
   /** 小额贷款 */
   Microloans = 2,
-  /** 股权融资 基金 */
-  EmergencyRefinancing = 5,
-  /** 应急转贷 */
-  EquityFinancing = 4,
   /** 融资担保 */
   FinanceGuarantee =3,
+  /** 应急转贷 */
+  EquityFinancing = 4,
+  /** 股权融资 基金 */
+  EmergencyRefinancing = 5,
   /** 电子保函 */
   ElectronicGuarantee = 7,
 }
@@ -111,7 +111,7 @@ export interface FinanceItemProps {
   dataType: GuaranteeMethodEmu[];
   //产品介绍
   productIntroduction?: string;
-  repaymentMethod?: string[];
+  repayment_method?: string[];
   //服务对象
   serviceObjects?: string;
   applicationConditions?: string[];
