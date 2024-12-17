@@ -367,10 +367,13 @@ export const repaymentMethodOp = [
     label: "分期还款",
     value: '2',
   },
-  
   {
     label: "一次性还本付息",
     value: '3',
+  },
+  {
+    label: "随借随还",
+    value: '4',
   },
 ];
 export const MicroloansOp = [
