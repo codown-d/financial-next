@@ -92,7 +92,8 @@ export interface FinanceItemProps {
   fo_id?:number;
   logoUrl: string;//logo
   companyName: string;
-  productType: FinanceDataTypeEmu;//c产品名称
+  //产品类型
+  productType: FinanceDataTypeEmu;
   name: string;
   rateDown: string;
   rateUp: string;

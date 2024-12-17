@@ -42,7 +42,7 @@ export default function (props: {
   return (
     <TzButton
       size={"large"}
-      className={`w-0 flex-1 ml-3 mt-[30px] ${classNames}`}
+      className={`w-0 flex-1 ml-3 mt-[22px] ${classNames}`}
       type={"primary"}
       disabled={isSending}
       onClick={handleSendCode}

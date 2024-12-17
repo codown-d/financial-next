@@ -6,6 +6,9 @@ import ApplicationSuccess from "../components/ApplicationSuccess";
 import ApplicationFail from "../components/ApplicationFail";
 import { TzButton } from "@/components/TzButton";
 import { productApply } from "@/fetch";
+import ProductApplicationG from "../components/ProductApplicationG";
+import { FinanceGuarantee } from "@/constant";
+import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export default function useApplicationAction() {
   let [failVisible, setFailVisible] = useState(false);
@@ -53,7 +56,7 @@ export default function useApplicationAction() {
           return form
             .validateFields()
             .then((val) => {
-              productApply({ id: product_id, val, product_type }).then(
+              productApply({ product_id: product_id, ...val, product_type }).then(
                 (res) => {
                   if (res.code == 200) {
                     callback?.(val);
@@ -67,7 +70,11 @@ export default function useApplicationAction() {
             .catch();
         }}
       >
-        <ProductApplication formIns={form} />
+        {product_type == FinanceDataTypeEmu.FinanceGuarantee ? (
+          <ProductApplicationG formIns={form} />
+        ) : (
+          <ProductApplication formIns={form} />
+        )}
       </TzModal>
     );
   };

@@ -10,7 +10,9 @@ export const formLabelObj = {
   loan_guarantee_method: "担保方式",
   purpose:'用途',
   repayment_method:'还款方式',
-  contact: "联系方式",
+  user_name: "联系方式",
+  product_name:'项目名称',
+  beneficiary:'受益人',
 };
 
 export const getFormLabelList = (val: any)=>{

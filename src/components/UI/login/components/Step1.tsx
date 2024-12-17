@@ -1,11 +1,7 @@
 import { TzButton } from "@/components/TzButton";
 import TzForm, { TzFormItem } from "@/components/TzForm";
 import TzInput from "@/components/TzInput";
-import TzInputPassword from "@/components/TzInputPassword";
-import { postPhoneCode } from "@/fetch";
-import { useGetPhoneCode } from "@/hooks";
 import { Form, FormInstance, message } from "antd";
-import { useCallback, useEffect, useState } from "react";
 import SendCodeBtn from "./SendCodeBtn";
 
 export default function (props: { formIns: FormInstance<any> }) {
@@ -13,9 +9,6 @@ export default function (props: { formIns: FormInstance<any> }) {
   return (
     <div className="h-[240px] pt-[50px]">
       <TzFormItem hidden name={"send_type"} initialValue={"register"}>
-        <TzInput />
-      </TzFormItem>
-      <TzFormItem name={"token"} hidden>
         <TzInput />
       </TzFormItem>
       <TzFormItem
