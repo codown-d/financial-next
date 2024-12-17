@@ -89,10 +89,10 @@ export default function Guarantee(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                if(userInfo.verify_status==3||userInfo.enterprise_verify_status==3){
+                if(userInfo.enterprise_verify_status==3){
                 setSubmitVisible(true);
                 }else{
-                  message.error('暂无权限请实名之后申请！')
+                  message.error('暂无权限请通过企业实名认证之后申请！')
                 }
               }}
             >

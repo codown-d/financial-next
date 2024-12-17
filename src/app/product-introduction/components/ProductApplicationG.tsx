@@ -29,8 +29,8 @@ export default function ProductApplication(props: {
   let { userInfo } = useGlobalContext();
   useEffect(() => {
     formIns.setFieldsValue({
-      name: userInfo?.enterprise.name,
-      idcard: userInfo?.enterprise.idcard,
+      name: userInfo?.enterprise?.name,
+      idcard: userInfo?.enterprise?.idcard,
     });
   }, [userInfo]);
   return (
@@ -86,8 +86,9 @@ export default function ProductApplication(props: {
           <TzFormItem
             name="term_unit"
             className="w-[100px] inline-block !ml-3"
+            initialValue={2}
           >
-            <TzSelect  defaultValue={2} options={term_unitOp} />
+            <TzSelect  options={term_unitOp} />
           </TzFormItem>
         </TzFormItem>
         <TzFormItem label="用途" name={"purpose"} rules={[{ required: true }]}>

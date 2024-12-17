@@ -14,7 +14,6 @@ export default function ProductIntroduction(props) {
   const id = searchParams.get("id");
   let { dataInfo } = useGetLoanDetail({ id });
   let getDataTypeDom = useMemo(() => {
-  console.log(FinanceDataTypeEmu.ElectronicGuarantee,dataInfo?.productType)
     if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataInfo?.productType)) {
       return <Fund id={id} />;
     } else if (FinanceDataTypeEmu.ElectronicGuarantee == dataInfo?.productType) {
