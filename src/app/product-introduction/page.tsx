@@ -17,21 +17,12 @@ export default function ProductIntroduction(props) {
     return dataInfo?.productType;
   }, [dataInfo]);
   let getDataTypeDom = useMemo(() => {
-    if (
-      [FinanceDataTypeEmu.BankLoans, FinanceDataTypeEmu.Microloans].includes(
-        productType
-      )
-    ) {
-      return <SmallLoans id={id} />;
-    } else if (
-      [
-        FinanceDataTypeEmu.EmergencyRefinancing,
-        FinanceDataTypeEmu.EquityFinancing,
-      ].includes(productType)
-    ) {
+    if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(productType)) {
       return <Fund id={id} />;
-    } else {
+    } else if (FinanceDataTypeEmu.ElectronicGuarantee == productType) {
       return <Guarantee id={id} />;
+    } else {
+      return <SmallLoans id={id} />;
     }
   }, [productType]);
 

@@ -20,7 +20,7 @@ import FinanceCard, { FinanceCardProps } from "./FinanceCard";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { productRecommend } from "@/fetch";
 import { dealProduct } from "@/lib";
-import { InstitutionTypeEmu, TabType } from "@/fetch/definition";
+import { FinanceDataTypeEmu, InstitutionTypeEmu, TabType } from "@/fetch/definition";
 
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();
@@ -79,13 +79,13 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   useEffect(() => {
     getproductRecommend();
     let obj={
-      '/bank-loan':InstitutionTypeEmu.Bank,
-      '/small-loan':InstitutionTypeEmu.SmallLoan,
-      '/emergency-refinancing':InstitutionTypeEmu.Fund,
-      '/equity-financing':InstitutionTypeEmu.Fund,
-      '/performance-bond':InstitutionTypeEmu.Guaranteed,
-      '/ele-bond':InstitutionTypeEmu.Guaranteed,
-      '/advance-payment-bond':InstitutionTypeEmu.Guaranteed,
+      '/bank-loan':FinanceDataTypeEmu.BankLoans,
+      '/small-loan':FinanceDataTypeEmu.Microloans,
+      '/emergency-refinancing':FinanceDataTypeEmu.EquityFinancing,
+      '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
+      '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
+      '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
+      '/advance-payment-bond':5,
     }
     console.log(obj[pathname])
     form.setFieldsValue({
