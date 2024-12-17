@@ -42,8 +42,8 @@ export default function Fund(props: { id: string }) {
         <div className="flex">
           <LogoInfo
             size="large"
-            logo={dataInfo?.companyName}
-            logoUrl={dataInfo?.logoUrl}
+            logo={dataInfo?.financial_organs.organs_name}
+            logoUrl={dataInfo?.financial_organs.logo}
             className="w-[184px]"
           />
           <div className="flex flex-row border-l-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">

@@ -418,20 +418,25 @@ export const prodTypeEmu = [
   },
 ];
 export const action_status_filter = {
-  '1': {
-    text: '未受理',
+  //1已申请，2未受理，3办理中，4谢绝，5完成
+  1: {
+    text: '已申请',
     status: 'Default',
   },
   2: {
-    text: '已受理',
+    text: '未受理',
     status: 'Processing',
   },
   '3': {
-    text: '完成',
+    text: '办理中',
     status: 'Success',
   },
   4: {
     text: '谢绝',
+    status: 'Error',
+  },
+  5: {
+    text: '完成',
     status: 'Error',
   },
 };

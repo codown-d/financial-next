@@ -91,7 +91,11 @@ export interface FinanceItemProps {
   id: string|number;
   fo_id?:number;
   logoUrl: string;//logo
-  companyName: string;
+  financial_organs:{
+    organs_name:string;
+    logo:string;
+    area_desc:string
+  }
   //产品类型
   productType: FinanceDataTypeEmu;
   name: string;
@@ -128,7 +132,6 @@ export interface FinanceItemProps {
   //基金公司介绍
   fund_company_intro?: string;
   //位置
-  financial_organs:{area_desc:string};
   application_info_user:string//个人
   application_info_enterprise:string//企业
 }
