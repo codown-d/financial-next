@@ -120,8 +120,8 @@ export default function SmallLoans(props: { id: string }) {
               shape={"round"}
               onClick={() => {
                 if (
-                  userInfo.verify_status == 3 ||
-                  userInfo.enterprise_verify_status == 3
+                  userInfo?.verify_status == 3 ||
+                  userInfo?.enterprise_verify_status == 3
                 ) {
                   setSubmitVisible(true);
                 } else {
