@@ -2,10 +2,8 @@
 import Image from "next/image";
 import TzCard from "@/components/TzCard";
 import FilterHeader from "@/components/UI/FilterHeader";
-import TzSegmented from "@/components/TzSegmented";
 import ItemSort from "@/components/UI/ItemSort";
 import { TzCheckableTagNormal } from "@/components/TzCheckableTag";
-import { FinancialMarket, PolicyTags } from "@/constant";
 import TzDivider from "@/components/TzDivider";
 import { useCallback, useEffect, useState } from "react";
 import { TzTableServerPage } from "@/components/TzTable";

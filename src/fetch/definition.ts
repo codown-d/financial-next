@@ -100,6 +100,9 @@ export interface FinanceItemProps {
   }
   //产品类型
   product_type:FinanceDataTypeEmu;
+  application_form:0|1|2|3|4;
+  application_info:string;
+  application_condition:string;
   productType: FinanceDataTypeEmu;
   name: string;
   rateDown: string;

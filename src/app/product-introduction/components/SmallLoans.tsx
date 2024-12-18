@@ -24,20 +24,43 @@ export default function SmallLoans(props: { id: string }) {
     FinancingEntityEmu.Enterprise
   );
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let {dataInfo} = useGetLoanDetail(props)
-  let {dataTypeLabel} = useDataType(dataInfo);
+  let { dataInfo } = useGetLoanDetail(props);
+  let { dataTypeLabel } = useDataType(dataInfo);
   let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
   let [form] = Form.useForm();
   let getSegmentedDom = useMemo(() => {
-    if (segmentedValue === FinancingEntityEmu.Enterprise) {
-      return dataInfo?.application_info_user
+    if(dataInfo?.application_form==1){
+      return dataInfo?.application_info;
+    }else if (segmentedValue === FinancingEntityEmu.Personal) {
+      return dataInfo?.application_info_user;
     } else {
-      return dataInfo?.application_info_enterprise
+      return dataInfo?.application_info_enterprise;
     }
-  }, [dataInfo,segmentedValue]);
+  }, [dataInfo, segmentedValue]);
   let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
     useApplicationAction();
-    let { userInfo } = useGlobalContext();
+  let { userInfo } = useGlobalContext();
+  let getOpt = useMemo(() => {
+    let arr = [
+      {
+        label: "企业",
+        value: FinancingEntityEmu.Enterprise,
+        icon: <TzIcon className={"fa-building text-sm"} />,
+      },
+      {
+        label: "个人",
+        value: FinancingEntityEmu.Personal,
+        icon: <TzIcon className={"fa-user text-sm"} />,
+      },
+    ].filter((item) => {
+      if (dataInfo?.application_form == 1) return true;
+      else {
+        return item.value == dataInfo?.application_form||dataInfo?.application_form==4;
+      }
+    });
+    setSegmentedValue(arr[0]?.value);
+    return arr;
+  }, [dataInfo]);
   return (
     <>
       <Submit
@@ -96,10 +119,13 @@ export default function SmallLoans(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                if(userInfo.verify_status==3||userInfo.enterprise_verify_status==3){
-                setSubmitVisible(true);
-                }else{
-                  message.error('暂无权限请实名之后申请！')
+                if (
+                  userInfo.verify_status == 3 ||
+                  userInfo.enterprise_verify_status == 3
+                ) {
+                  setSubmitVisible(true);
+                } else {
+                  message.error("暂无权限请实名之后申请！");
                 }
               }}
             >
@@ -142,19 +168,9 @@ export default function SmallLoans(props: { id: string }) {
         className="flex-1 w-full !mt-3"
         title={
           <TzSegmented
+          value={segmentedValue}
             onChange={(val: FinancingEntityEmu) => setSegmentedValue(val)}
-            options={[
-              {
-                label: "企业",
-                value: FinancingEntityEmu.Enterprise,
-                icon: <TzIcon className={"fa-building text-sm"} />,
-              },
-              {
-                label: "个人",
-                value: FinancingEntityEmu.Personal,
-                icon: <TzIcon className={"fa-user text-sm"} />,
-              },
-            ]}
+            options={getOpt}
           />
         }
       >

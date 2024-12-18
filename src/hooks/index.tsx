@@ -59,7 +59,7 @@ export const useProductType = (props: FinanceItemProps) => {
         ? [
           {
             label: <span className="text-[#333]">最低利率</span>,
-            value: <span className="text-[20px]">当期LPR</span>,
+            value: <span className="text-[20px]"><span className="text-[40px]">{rate}</span>%</span>,
           },
         ]
         : productType === FinanceDataTypeEmu.EmergencyRefinancing

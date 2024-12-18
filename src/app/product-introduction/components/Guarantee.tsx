@@ -11,34 +11,59 @@ import { useCallback, useEffect, useMemo, useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form, message } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
-import { FinanceDataTypeEmu, FinanceItemProps, FinancingEntityEmu } from "@/fetch/definition";
+import {
+  FinanceDataTypeEmu,
+  FinanceItemProps,
+  FinancingEntityEmu,
+} from "@/fetch/definition";
 import { useDataType, useGetLoanDetail } from "@/hooks";
 import TzSegmented from "@/components/TzSegmented";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function Guarantee(props: { id: string }) {
-  let {
-    Submit,
-    Success,
-    Fail,
-    setSubmitVisible,
-    setSuccessVisible,
-  } = useApplicationAction();
+  let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
+    useApplicationAction();
   let [form] = Form.useForm();
   let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let {dataInfo} = useGetLoanDetail({ id: props.id })
-  let {dataTypeLabel} = useDataType(dataInfo);
+  let { dataInfo } = useGetLoanDetail({ id: props.id });
+  let { dataTypeLabel } = useDataType(dataInfo);
   let [segmentedValue, setSegmentedValue] = useState(
     FinancingEntityEmu.Enterprise
   );
   let getSegmentedDom = useMemo(() => {
-    if (segmentedValue === FinancingEntityEmu.Enterprise) {
-      return dataInfo?.application_info_user
+    if (dataInfo?.application_form == 1||dataInfo?.application_form == 0) {
+      return dataInfo?.application_info;
+    } else if (segmentedValue === FinancingEntityEmu.Personal) {
+      return dataInfo?.application_info_user;
     } else {
-      return dataInfo?.application_info_enterprise
+      return dataInfo?.application_info_enterprise;
     }
-  }, [dataInfo,segmentedValue]);
+  }, [dataInfo, segmentedValue]);
   let { userInfo } = useGlobalContext();
+  let getOpt = useMemo(() => {
+    let arr = [
+      {
+        label: "企业",
+        value: FinancingEntityEmu.Enterprise,
+        icon: <TzIcon className={"fa-building text-sm"} />,
+      },
+      {
+        label: "个人",
+        value: FinancingEntityEmu.Personal,
+        icon: <TzIcon className={"fa-user text-sm"} />,
+      },
+    ].filter((item) => {
+      if (dataInfo?.application_form == 1) return true;
+      else {
+        return (
+          item.value == dataInfo?.application_form ||
+          dataInfo?.application_form == 4
+        );
+      }
+    });
+    setSegmentedValue(arr[0]?.value);
+    return arr;
+  }, [dataInfo]);
   return (
     <>
       <Submit
@@ -71,15 +96,14 @@ export default function Guarantee(props: { id: string }) {
                   {dataInfo?.name}
                 </span>
                 <span className="ml-5 flex items-start text-[#3D5AF5]">
-                  <TzIcon className={"fa-location-dot text-sm mr-[6px]  mt-1"} />
+                  <TzIcon
+                    className={"fa-location-dot text-sm mr-[6px]  mt-1"}
+                  />
                   {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
               <div className="inline-block">
-                <DescMethod
-                method={"担保方式"}
-                desc={dataTypeLabel}
-              />
+                <DescMethod method={"担保方式"} desc={dataTypeLabel} />
               </div>
             </div>
             <div className="flex ml-[100px]">
@@ -91,10 +115,10 @@ export default function Guarantee(props: { id: string }) {
               type={"primary"}
               shape={"round"}
               onClick={() => {
-                if(userInfo.enterprise_verify_status==3){
-                setSubmitVisible(true);
-                }else{
-                  message.error('暂无权限请通过企业实名认证之后申请！')
+                if (userInfo.enterprise_verify_status == 3) {
+                  setSubmitVisible(true);
+                } else {
+                  message.error("暂无权限请通过企业实名认证之后申请！");
                 }
               }}
             >
@@ -119,7 +143,7 @@ export default function Guarantee(props: { id: string }) {
           <div className="text-[#666]">{dataInfo?.serviceObjects}</div>
           <TzDivider />
         </DescInfo>
-        {dataInfo?.productType ===FinanceDataTypeEmu.FinanceGuarantee || (
+        {dataInfo?.productType === FinanceDataTypeEmu.FinanceGuarantee || (
           <DescInfo title={"受益人"}>
             <div className="text-[#666]">{dataInfo?.beneficiary}</div>
             <TzDivider />
@@ -132,25 +156,12 @@ export default function Guarantee(props: { id: string }) {
       </TzCard>
       <TzCard
         className="flex-1 w-full !mt-3"
-        title={
-          <TzSegmented
-            onChange={(val: FinancingEntityEmu) => setSegmentedValue(val)}
-            options={[
-              {
-                label: "企业",
-                value: FinancingEntityEmu.Enterprise,
-                icon: <TzIcon className={"fa-building text-sm"} />,
-              },
-              {
-                label: "个人",
-                value: FinancingEntityEmu.Personal,
-                icon: <TzIcon className={"fa-user text-sm"} />,
-              },
-            ]}
-          />
-        }
       >
-        {getSegmentedDom}
+        <DescInfo title={"申请条件"}></DescInfo>
+        {dataInfo?.application_condition}
+        <TzDivider /> 
+        <DescInfo title={"申请资料"}></DescInfo>
+        {dataInfo?.application_info}
       </TzCard>
     </>
   );
