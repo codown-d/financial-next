@@ -62,7 +62,7 @@ const SwiperBanner = () => {
                       iconPosition={"end"}
                       onClick={() => {
                         router.push(
-                          `/product-introduction`
+                          `/product-introduction?id=34`
                         );
                       }}
                     >
