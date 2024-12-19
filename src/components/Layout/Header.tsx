@@ -25,7 +25,7 @@ const Header = () => {
           (scrollActive ? " shadow-md pt-0" : "")
         }
       >
-        <nav className="max-w-screen-lg mx-auto flex justify-between items-center">
+        <nav className="px-10 flex justify-between items-center">
           <div className=" flex items-center">
             <Logo />
             <div className="ml-[5px]">

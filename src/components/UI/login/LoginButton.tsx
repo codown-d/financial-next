@@ -89,6 +89,7 @@ export default function LoginButton() {
         footer={null}
         destroyOnClose
         width={620}
+        style={{ top: 0}}
         styles={{
           content: { padding: "0px", borderRadius: "16px", marginTop: 200 },
         }}

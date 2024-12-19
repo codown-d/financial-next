@@ -45,7 +45,7 @@ export default function TzMenuUi() {
             <Menu.Item
               key={item.key}
               title={item.label}
-              className="leading-[60px] w-40 text-center hover:!bg-[#3C5BF6] hover:!text-[#fff] font-bold"
+              className="leading-[60px] w-[100px] text-center hover:!bg-[#3C5BF6] hover:!text-[#fff] font-bold"
             >
               {item.label}
             </Menu.Item>

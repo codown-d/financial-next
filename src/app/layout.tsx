@@ -7,7 +7,7 @@ import zhCN from "antd/locale/zh_CN";
 import "@/styles/globals.scss";
 // 设置页面的元数据
 export const metadata: Metadata = {
-  title: "广元金融服务集团",
+  title: "广元市综合金融服务平台",
   description: "广元金融服务集团",
 };
 
