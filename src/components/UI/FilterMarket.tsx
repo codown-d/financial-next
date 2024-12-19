@@ -63,7 +63,7 @@ export default function FilterMarket(props: {
       />
       <TzSpace direction="vertical" size="middle" style={{ display: "flex" }}>
         {dataList.map((item, index) => {
-          return <MarketCard {...item} key={index} />;
+          return <MarketCard {...item} key={item.id} />;
         })}
       </TzSpace>
       <div className="mt-[60px] mb-[90px] flex justify-end">
