@@ -11,10 +11,12 @@ import { useGlobalContext } from "@/hooks/GlobalContext";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Cascader,
+  Checkbox,
   ConfigProvider,
   Form,
   FormInstance,
   message,
+  Modal,
   Radio,
   Upload,
   UploadFile,
@@ -25,18 +27,25 @@ import zhCN from "antd/locale/zh_CN";
 import { find } from "lodash";
 import { useEffect, useState } from "react";
 
-let EnterpriseNameModal = (props: { formIns: FormInstance<any>;enterprise_verify_status:any }) => {
-  let { formIns,enterprise_verify_status } = props;
-  let {area} = useGetArea();
-  console.log(formIns.getFieldValue("idcard_img"))
-  const [fileList, setFileList] = useState<UploadFile[]>(formIns.getFieldValue("idcard_img")?[
-    {
-      uid: "-1",
-      name:'',
-      status: "done",
-      url: formIns.getFieldValue("idcard_img"), 
-    },
-  ]:undefined);
+let EnterpriseNameModal = (props: {
+  formIns: FormInstance<any>;
+  enterprise_verify_status: any;
+}) => {
+  let { formIns, enterprise_verify_status } = props;
+  let { area } = useGetArea();
+  console.log(formIns.getFieldValue("idcard_img"));
+  const [fileList, setFileList] = useState<UploadFile[]>(
+    formIns.getFieldValue("idcard_img")
+      ? [
+          {
+            uid: "-1",
+            name: "",
+            status: "done",
+            url: formIns.getFieldValue("idcard_img"),
+          },
+        ]
+      : undefined
+  );
   useEffect(() => {
     let uploadedFile = find(fileList, (file) => file.status === "done");
     if (uploadedFile && uploadedFile?.response) {
@@ -81,7 +90,7 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any>;enterprise_verify
         >
           <Upload
             maxCount={1}
-            name={'image'}
+            name={"image"}
             action={`/api/upload/image`}
             listType="picture-card"
             fileList={fileList}
@@ -118,11 +127,27 @@ let EnterpriseNameModal = (props: { formIns: FormInstance<any>;enterprise_verify
         <TzFormItem label={" "} name={"address"}>
           <TextArea placeholder="请输入" size={"large"} />
         </TzFormItem>
-        <TzFormItem label={null}>
-          <div className="pl-[160px]">
-            <Radio>我已阅读并同意</Radio>
-            <span className="text-[#3D5AF5]">《信息授权协议》</span>
-          </div>
+        <TzFormItem label={" "} name={"click_protocol"} valuePropName="checked">
+          <Checkbox>
+            {" "}
+            我已阅读并同意
+            <span
+              className="text-[#3D5AF5]"
+              onClick={(e) => {
+                e.preventDefault();
+                Modal.info({
+                  width: "70%",
+                  icon:null,
+                  title: "信息授权协议",
+                  okText:'确定',
+                  content: <div>123456</div>,
+                  onOk() {},
+                });
+              }}
+            >
+              《信息授权协议》
+            </span>
+          </Checkbox>
         </TzFormItem>
       </TzForm>
     </ConfigProvider>
@@ -141,7 +166,9 @@ export default function RealName() {
       <div className={"relative w-[460px]"}>
         <TzNextImage
           className="mt-6"
-          src={`/images/${userInfo?.enterprise_verify_status != 3 ? "wqyrz" : "qyrz"}.png`}
+          src={`/images/${
+            userInfo?.enterprise_verify_status != 3 ? "wqyrz" : "qyrz"
+          }.png`}
           width={460}
           height={0}
         />
@@ -149,8 +176,9 @@ export default function RealName() {
           size={"large"}
           className="border-0 hover:!text-[#FF9958]  bg-white-500 !absolute !text-[#FF9958] right-[56px] top-[60%]"
           shape={"round"}
-          onClick={() => { 
-            userInfo?.enterprise_verify_status == 3&&formIns.setFieldsValue({ ...userInfo.enterprise });
+          onClick={() => {
+            userInfo?.enterprise_verify_status == 3 &&
+              formIns.setFieldsValue({ ...userInfo.enterprise });
             setSubmitVisible(true);
           }}
         >
@@ -163,7 +191,7 @@ export default function RealName() {
         open={submitVisible}
         title={
           <div className="text-center font-bold mb-[20px] text-2xl pt-10 text-gray-800  leading-[32px]">
-            {userInfo?.enterprise_verify_status == 3 ? "认证信息" : '企业认证'}
+            {userInfo?.enterprise_verify_status == 3 ? "认证信息" : "企业认证"}
           </div>
         }
         okButtonProps={{
@@ -215,8 +243,10 @@ export default function RealName() {
         }}
       >
         <div className="pr-[40px]">
-          <EnterpriseNameModal formIns={formIns} 
-            enterprise_verify_status={userInfo?.enterprise_verify_status} />
+          <EnterpriseNameModal
+            formIns={formIns}
+            enterprise_verify_status={userInfo?.enterprise_verify_status}
+          />
         </div>
       </TzModal>
     </TzCard>

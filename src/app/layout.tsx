@@ -28,6 +28,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             theme={theme}
             button={{ autoInsertSpace: false }}
             locale={zhCN}
+           
           >
             <MainLayout>{children}</MainLayout>
           </ConfigProvider>

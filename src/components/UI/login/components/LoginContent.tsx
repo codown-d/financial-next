@@ -27,7 +27,6 @@ export default function (props) {
       children: <SMSLogin formIns={formIns} />,
     },
   ];
-  let [radio, setRadio] = useState(false);
   let [activeKey, setActiveKey] = useState("/login");
 
   return (
@@ -40,32 +39,12 @@ export default function (props) {
         onChange={setActiveKey}
       />
       <div className="flex flex-col  mt-[38px]">
-        <TzRadio
-          value={radio}
-          onChange={(val) => {
-            setRadio(val.target.checked);
-          }}
-        >
-          <div className=" text-[12px]">
-            我已阅读并同意
-            <a href="" className="text-[#3D5AF5] ml-1">
-              《用户协议》
-            </a>
-            ，
-            <a href="" className="text-[#3D5AF5] ml-1">
-              《隐私协议》
-            </a>
-          </div>
-        </TzRadio>
+        
         <TzButton
           className="!h-[44px] mt-3 mb-3"
           type={"primary"}
           size={"large"}
           onClick={() => {
-            if (radio === false) {
-              message.warning("用户协议未勾选");
-              return;
-            }
             formIns.validateFields().then((val) => {
               let fn = "/login" == activeKey ? login : phoneLogin;
               fn(val).then(async (res) => {

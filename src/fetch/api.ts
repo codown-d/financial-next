@@ -15,7 +15,7 @@ export default {
   enterpriseVerify:'/user/enterprise/verify',
   userVerify:'/user/real/name/verify',
   phoneLogin:'/user/phone/login',
-  policyList:'/admin/enterprise/service/policy/all/list',
+  policyList:'/enterprise/service/policy',
   policyThemeFeature:'/admin/policy/theme/feature/list',
   policyDetail:'/enterprise/service/policy/detail',
   servicePolicy:'/enterprise/service/policy',

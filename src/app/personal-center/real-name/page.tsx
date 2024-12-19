@@ -11,15 +11,16 @@ import { useGlobalContext } from "@/hooks/GlobalContext";
 import { LoadingOutlined, PlusOutlined } from "@ant-design/icons";
 import {
   Cascader,
+  Checkbox,
   ConfigProvider,
   Form,
   FormInstance,
   message,
+  Modal,
   Upload,
   UploadFile,
 } from "antd";
 import TextArea from "antd/es/input/TextArea";
-import modal from "antd/es/modal";
 import zhCN from "antd/locale/zh_CN";
 import { find } from "lodash";
 import { useEffect, useState } from "react";
@@ -30,14 +31,18 @@ let RealNameModal = (props: {
 }) => {
   let { formIns, verify_status } = props;
   let { area } = useGetArea();
-  const [fileList, setFileList] = useState<UploadFile[]>(formIns.getFieldValue("idcard_img")?[
-    {
-      uid: "-1",
-      name:'',
-      status: "done",
-      url: formIns.getFieldValue("idcard_img"), 
-    },
-  ]:undefined);
+  const [fileList, setFileList] = useState<UploadFile[]>(
+    formIns.getFieldValue("idcard_img")
+      ? [
+          {
+            uid: "-1",
+            name: "",
+            status: "done",
+            url: formIns.getFieldValue("idcard_img"),
+          },
+        ]
+      : undefined
+  );
   useEffect(() => {
     let uploadedFile = find(fileList, (file) => file.status === "done");
     if (uploadedFile && uploadedFile?.response) {
@@ -90,7 +95,12 @@ let RealNameModal = (props: {
             listType="picture-card"
             fileList={fileList}
             onChange={({ fileList }) => {
-              setFileList(fileList);
+              console.log(fileList);
+              setFileList(
+                fileList.map((item) => {
+                  return { ...item, url: item?.response?.file };
+                })
+              );
             }}
           >
             <PlusOutlined />
@@ -126,12 +136,26 @@ let RealNameModal = (props: {
             classNames="!mt-0"
           />
         </div>
+        <TzFormItem label={" "} name={"click_protocol"}  valuePropName="checked">
+           <Checkbox > 我已阅读并同意<span className="text-[#3D5AF5]" onClick={(e)=>{
+            e.preventDefault()
+            Modal.info({
+              width:'70%',
+              icon:null,
+              title: "信息授权协议",
+              okText:'确定',
+              content: <div>123456</div>,
+              onOk() {},
+            });
+           }}>《信息授权协议》</span></Checkbox >
+        </TzFormItem>
       </TzForm>
     </ConfigProvider>
   );
 };
 export default function RealName() {
   let { userInfo } = useGlobalContext();
+  const [isButtonDisabled, setIsButtonDisabled] = useState(false);
   let [formIns] = Form.useForm();
   let [submitVisible, setSubmitVisible] = useState(false);
   useEffect(() => {
@@ -153,7 +177,8 @@ export default function RealName() {
           shape={"round"}
           onClick={() => {
             console.log(userInfo.realname);
-            userInfo?.verify_status == 3&&formIns.setFieldsValue({ ...userInfo.realname });
+            userInfo?.verify_status == 3 &&
+              formIns.setFieldsValue({ ...userInfo.realname });
             setSubmitVisible(true);
           }}
         >
@@ -172,7 +197,7 @@ export default function RealName() {
         okButtonProps={{
           shape: "round",
           style: { minWidth: "120px" },
-          disabled: userInfo?.verify_status == 3,
+          disabled: userInfo?.verify_status == 3 || isButtonDisabled,
         }}
         cancelButtonProps={{
           shape: "round",
@@ -191,6 +216,7 @@ export default function RealName() {
           setSubmitVisible(false);
         }}
         onOk={() => {
+          setIsButtonDisabled(true);
           return new Promise((resolve, reject) => {
             formIns
               .validateFields()
@@ -208,12 +234,16 @@ export default function RealName() {
                     });
                     setSubmitVisible(false);
                     formIns.resetFields();
+                    window.location.reload();
                   } else {
+                    setIsButtonDisabled(false);
                     reject();
                   }
                 });
               })
-              .catch(reject);
+              .catch(() => {
+                setIsButtonDisabled(false);
+              });
           });
         }}
       >

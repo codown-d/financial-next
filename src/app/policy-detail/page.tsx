@@ -30,7 +30,7 @@ export default async function ({ searchParams }) {
           <TzCard>
             <h1 className="text-[20px] font-bold text-center">{data.title}</h1>
             <h2 className="text-[14px] font-bold text-center py-4">{timeFormat(data.add_time)}</h2>
-            <div dangerouslySetInnerHTML={{ __html: data.body }}></div>
+            <div dangerouslySetInnerHTML={{ __html: data.body }} className="content-info"></div>
             <div className="flex justify-center mt-[60px] mb-5">
               <ClientButton/>
             </div>
