@@ -29,7 +29,21 @@ export default function (props: FinanceCardProps) {
   } = props;
     console.log(props)
   let getRateList = useMemo(() => {
-    return productType === FinanceDataTypeEmu.ElectronicGuarantee
+    return productType === FinanceDataTypeEmu.Insurance
+    ? [
+        {
+          label: (
+            <span className="text-[#333]">
+              收费标准
+              <span className="font-normal text-xs text-gray-400 leading-3 ml-6">
+                以审批结果为准
+              </span>
+            </span>
+          ),
+          value: `${rate}`,
+          p: "%",
+        },
+      ]:productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
           {
             label: (
@@ -47,7 +61,7 @@ export default function (props: FinanceCardProps) {
         : productType === FinanceDataTypeEmu.EquityFinancing?[
           {
             label: <span className="text-[#333]">最低利率</span>,
-            value: <span className="text-[20px]">当期LPR</span>
+            value: <span className="text-[20px]"><span className="text-[40px]">{rate}</span>%</span>
           },
         ]
       : productType === FinanceDataTypeEmu.EmergencyRefinancing
