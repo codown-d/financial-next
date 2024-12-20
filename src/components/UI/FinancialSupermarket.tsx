@@ -153,7 +153,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               <TzFormItem
                 label={"机构类型"}
                 name={"product_type"}
-                initialValue={0}
+                initialValue={obj[pathname]}
                 style={{ marginBottom: "12px" }}
               >
                 <TzCheckableTagNormal items={FinancialMarket.institution} />
