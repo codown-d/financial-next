@@ -122,7 +122,7 @@ export const useDataType = (dataInfo: FinanceItemProps) => {
         }
       })
       .reduce((pre: any[], item) => {
-        if (dataInfo?.dataType?.includes(item.value+'')) {
+        if (dataInfo?.dataType?.includes((item.value+'') as any)) {
           pre?.push?.(item.label);
         }
         return pre;
