@@ -55,7 +55,7 @@ export default function (props: FinanceCardProps) {
           {
             label: <span className="text-[#333]">认缴金额</span>,
             value: amount,
-            p: "亿元",
+            p: "万元",
           },
         ]
       : [
