@@ -1,6 +1,7 @@
 import { FinanceItemProps } from "@/fetch/definition";
 import { useProductType } from "@/hooks";
 export default function DataTypeCom(props: FinanceItemProps) {
+  console.log(123,props)
   let dataTypeList = useProductType(props);
   return (
     <>

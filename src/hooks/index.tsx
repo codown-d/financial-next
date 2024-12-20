@@ -1,6 +1,6 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
-import { collateralOp, repaymentMethodOp } from "@/constant";
+import { collateralOp, insurance_type, repaymentMethodOp } from "@/constant";
 import {
   getArea,
   getUnique,
@@ -11,6 +11,7 @@ import {
 } from "@/fetch";
 import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import { dealProduct } from "@/lib";
+import { keys } from "lodash";
 import { useCallback, useEffect, useMemo, useState } from "react";
 
 interface ResizeProps {
@@ -64,7 +65,18 @@ export const useProductType = (props: FinanceItemProps) => {
         ]
         : productType === FinanceDataTypeEmu.EmergencyRefinancing
           ? []
-          : [
+          : productType === FinanceDataTypeEmu.Insurance?[
+            {
+              label: "最高额度",
+              value: amount,
+              p: "万元",
+            },
+            {
+              label: "期限",
+              value: `1-${term}`,
+              p: "个月",
+            },
+          ]:[
             {
               label: "最高额度",
               value: amount,
@@ -101,7 +113,23 @@ export const useRepaymentMethod = (dataInfo: FinanceItemProps) => {
 };
 export const useDataType = (dataInfo: FinanceItemProps) => {
   let dataTypeLabel = useMemo(() => {
-    return collateralOp
+      console.log(dataInfo)
+    if(FinanceDataTypeEmu.Insurance===dataInfo?.productType){
+      return keys(insurance_type).map(item=>{
+        return {
+          label:insurance_type[item].text,
+          value:item+'',
+        }
+      })
+      .reduce((pre: any[], item) => {
+        if (dataInfo?.dataType?.includes(item.value+'')) {
+          pre?.push?.(item.label);
+        }
+        return pre;
+      }, [])
+      .join("/");
+    }else{
+      return collateralOp
       .reduce((pre: any[], item) => {
         if (dataInfo?.dataType?.includes(item.value)) {
           pre?.push?.(item.label);
@@ -109,6 +137,8 @@ export const useDataType = (dataInfo: FinanceItemProps) => {
         return pre;
       }, [])
       .join("/");
+    }
+    
   }, [dataInfo?.dataType]);
   return { dataTypeLabel };
 };

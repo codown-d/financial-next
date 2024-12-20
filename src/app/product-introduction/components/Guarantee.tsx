@@ -17,7 +17,6 @@ import {
   FinancingEntityEmu,
 } from "@/fetch/definition";
 import { useDataType, useGetLoanDetail } from "@/hooks";
-import TzSegmented from "@/components/TzSegmented";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function Guarantee(props: { id: string }) {

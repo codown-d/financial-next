@@ -558,3 +558,23 @@ export const data_type = {
     text: '组合',
   },
 };
+export const insurance_type = {
+  1: {
+    text: '财产险',
+  },
+  2: {
+    text: '责任险',
+  },
+  3: {
+    text: '寿险',
+  },
+  4: {
+    text: '意外险',
+  },
+  5: {
+    text: '保证险',
+  },
+  6: {
+    text: '综合险',
+  },
+};

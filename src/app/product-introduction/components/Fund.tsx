@@ -60,7 +60,7 @@ export default function Fund(props: { id: string }) {
               </div>
 
               <div className="flex mt-10 w-[772px] text-[#999]">
-                {dataInfo?.fund_company_intro}
+                {dataInfo?.product_type===FinanceDataTypeEmu.Insurance?dataInfo?.application_condition: dataInfo?.fund_company_intro}
               </div>
             </div>
           </div>
