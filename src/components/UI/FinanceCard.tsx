@@ -30,20 +30,14 @@ export default function (props: FinanceCardProps) {
     console.log(props)
   let getRateList = useMemo(() => {
     return productType === FinanceDataTypeEmu.Insurance
-    ? [
-        {
-          label: (
-            <span className="text-[#333]">
-              收费标准
-              <span className="font-normal text-xs text-gray-400 leading-3 ml-6">
-                以审批结果为准
-              </span>
-            </span>
-          ),
-          value: `${rate}`,
-          p: "%",
-        },
-      ]:productType === FinanceDataTypeEmu.ElectronicGuarantee
+      ? [
+          {
+            label: "保额",
+            value: amount,
+            p: "万元",
+          },
+        ]
+      : productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
           {
             label: (
@@ -58,10 +52,15 @@ export default function (props: FinanceCardProps) {
             p: "%",
           },
         ]
-        : productType === FinanceDataTypeEmu.EquityFinancing?[
+      : productType === FinanceDataTypeEmu.EquityFinancing
+      ? [
           {
             label: <span className="text-[#333]">最低利率</span>,
-            value: <span className="text-[20px]"><span className="text-[40px]">{rate}</span>%</span>
+            value: (
+              <span className="text-[20px]">
+                <span className="text-[40px]">{rate}</span>%
+              </span>
+            ),
           },
         ]
       : productType === FinanceDataTypeEmu.EmergencyRefinancing
@@ -147,7 +146,7 @@ export default function (props: FinanceCardProps) {
             </div>
             {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
               <div className="mt-3 text-left leading-[14px]">
-                担保方式：{ dataTypeLabel}
+                 {productType== FinanceDataTypeEmu.Insurance?'种类':'担保方式'}：{ dataTypeLabel}
               </div>
             )}
             <div className="flex items-end justify-between">

@@ -67,7 +67,7 @@ export const useProductType = (props: FinanceItemProps) => {
           ? []
           : productType === FinanceDataTypeEmu.Insurance?[
             {
-              label: "最高额度",
+              label: "保额",
               value: amount,
               p: "万元",
             },

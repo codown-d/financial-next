@@ -130,10 +130,10 @@ export default function Guarantee(props: { id: string }) {
         </div>
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
-        <DescInfo title={"担保额度"}>
+        {/* <DescInfo title={"担保额度"}>
           <div className="text-[#666]">{dataInfo?.guaranteeAmount}万元</div>
           <TzDivider />
-        </DescInfo>
+        </DescInfo> */}
         <DescInfo title={"担保期限"}>
           <div className="text-[#666]">{dataInfo?.guaranteePeriod}月</div>
           <TzDivider />

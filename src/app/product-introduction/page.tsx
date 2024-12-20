@@ -4,6 +4,7 @@ import SmallLoans from "./components/SmallLoans";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import Fund from "./components/Fund";
+import Insurance from "./components/Insurance";
 import Guarantee from "./components/Guarantee";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
@@ -14,7 +15,9 @@ export default function ProductIntroduction(props) {
   const id = searchParams.get("id");
   let { dataInfo } = useGetLoanDetail({ id });
   let getDataTypeDom = useMemo(() => {
-    if ([FinanceDataTypeEmu.EmergencyRefinancing,FinanceDataTypeEmu.Insurance].includes(dataInfo?.productType)) {
+    if ([FinanceDataTypeEmu.Insurance].includes(dataInfo?.productType)) {
+      return <Insurance id={id} />;
+    } else if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataInfo?.productType)) {
       return <Fund id={id} />;
     } else if (FinanceDataTypeEmu.ElectronicGuarantee == dataInfo?.productType) {
       return <Guarantee id={id} />;

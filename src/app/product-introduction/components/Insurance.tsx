@@ -10,6 +10,7 @@ import { DescriptionsProps, Form } from "antd";
 import { formLabelObj, getFormLabelList } from "../hooks/const";
 import { useFundModal, useGetLoanDetail } from "@/hooks";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
+import TzDivider from "@/components/TzDivider";
 
 export default function Fund(props: { id: string }) {
   let {
@@ -60,7 +61,7 @@ export default function Fund(props: { id: string }) {
               </div>
 
               <div className="flex mt-10 w-[772px] text-[#999]">
-                { dataInfo?.fund_company_intro}
+                {dataInfo?.application_condition}
               </div>
             </div>
           </div>
@@ -75,10 +76,19 @@ export default function Fund(props: { id: string }) {
         </div>
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
-        <DescInfo title={'基金简介'}>
+        <DescInfo title={"保险额度"}>
+          <div className="text-[#666]">{dataInfo?.guaranteeAmount}万元</div>
+          <TzDivider />
+        </DescInfo>
+        <DescInfo title={"担保期限"}>
+          <div className="text-[#666]">{dataInfo?.guaranteePeriod}月</div>
+          <TzDivider />
+        </DescInfo>
+        <DescInfo title={"产品介绍"}>
           <div className="text-[#666]">{dataInfo?.product_intro}</div>
         </DescInfo>
       </TzCard>
+      
     </>
   );
 }
