@@ -42,7 +42,7 @@ export default async function EquityInvestment() {
             <div className="flex">
               <div>
                 <TzNextImage
-                  src={"/images/gxxd.png"}
+                  src={"/images/gcqf.png"}
                   width={80}
                   height={80}
                   className="ml-8 mr-6"

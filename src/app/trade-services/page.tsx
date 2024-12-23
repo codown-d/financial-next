@@ -54,7 +54,7 @@ export default function TradeServices() {
             >
               <div className="flex justify-between items-end">
                 <span className="text-[32px] font-medium">广发创投</span>
-                <TzNextImage src={"/images/gxxd.png"} width={80} height={80} />
+                <TzNextImage src={"/images/gfct.png"} width={80} height={80} />
               </div>
               <p className="mt-5 mb-10 text-[#999] ">
                 供应链贸易业务，通过有效地整合和管理供应链上的各个环节，实现产品从生产到销售的无缝衔接和协同运作，提高供应链的效率、降低成本和提升服务质量，实现企业间的合作共赢，促进我市经济发展。

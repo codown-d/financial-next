@@ -77,7 +77,7 @@ export default function LoginButton() {
         </>
       ) : (
         <TzDropdown menu={{ items }}>
-          <div className="w-[190px] text-[#333333] leading-[60px] ">
+          <div className="w-[130px] text-[#333333] leading-[60px] ">
             {userInfo?.user_name}
             <TzIcon className={"ml-[6px] fa-caret-down"} />
           </div>

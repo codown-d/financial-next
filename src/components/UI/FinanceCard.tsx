@@ -4,7 +4,7 @@ import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
 import { TzButton } from "../TzButton";
 import TzIcon from "../TzIcon";
-import { collateralOp } from "@/constant";
+import { collateralOp, term_unit } from "@/constant";
 import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import TzNextImage from "../TzNextImage";
 import CountUp from "react-countup";
@@ -114,7 +114,7 @@ export default function (props: FinanceCardProps) {
               />
               <div className="absolute top-0 flex items-center justify-between w-full h-full px-2 text-[12px] text-white-500">
                 <span>期限</span>
-                <span className="text-[#3D5AF5] ">1-{term}个月</span>
+                <span className="text-[#3D5AF5] ">1-{term}{term_unit[props.term_unit]?.text}</span>
               </div>
             </div>
           ) : null}

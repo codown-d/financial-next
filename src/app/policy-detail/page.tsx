@@ -62,7 +62,7 @@ export default async function ({ searchParams }) {
             </div>
             <div
               dangerouslySetInnerHTML={{ __html: data.body }}
-              className="content-info"
+              className="content-info flex justify-center"
             ></div>
             <div className="flex justify-center mt-[60px] mb-5">
               <ClientButton />

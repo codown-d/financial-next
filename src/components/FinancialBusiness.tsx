@@ -19,7 +19,7 @@ import {
 } from "@/constant";
 import SwiperBanner from "./UI/SwiperBanner";
 import { useRouter } from "next/navigation";
-import { InstitutionTypeEmu } from "@/fetch/definition";
+import { FinanceDataTypeEmu, InstitutionTypeEmu } from "@/fetch/definition";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { financeAdd } from "@/fetch";
 
@@ -29,7 +29,7 @@ const FinancialBusiness = (props) => {
     {
       name: "贷款",
       number: "390",
-      key: InstitutionTypeEmu.SmallLoan,
+      key: FinanceDataTypeEmu.Microloans,
       icon: "fa-user",
       img: "/images/daikuan.png",
       path: "/small-loan",
@@ -37,24 +37,24 @@ const FinancialBusiness = (props) => {
     {
       name: "担保",
       number: "20",
-      key: InstitutionTypeEmu.Guaranteed,
+      key: FinanceDataTypeEmu.FinanceGuarantee,
       icon: "fa-briefcase",
       img: "/images/danbao.png",
-      path: "/ele-bond",
+      path: "/performance-bond",
     },
     {
       name: "转贷",
       number: "50",
-      key: InstitutionTypeEmu.Guaranteed,
+      key: FinanceDataTypeEmu.EquityFinancing,
       icon: "fa-coins",
       img: "/images/zhuandai.png",
-      path: "/small-loan",
+      path: "/emergency-refinancing",
     },
 
     {
       name: "保函",
       number: "50",
-      key: InstitutionTypeEmu.Guaranteed,
+      key: FinanceDataTypeEmu.ElectronicGuarantee,
       icon: "fa-clipboard",
       img: "/images/baohan.png",
       path: "/ele-bond",
@@ -62,18 +62,18 @@ const FinancialBusiness = (props) => {
     {
       name: "保险",
       number: "50",
-      key: null,
+      key: FinanceDataTypeEmu.Insurance,
       icon: "fa-clipboard",
       img: "/images/baoxian.png",
-      path: "",
+      path: "/advance-payment-bond",
     },
     {
       name: "投资",
       number: "50",
-      key: InstitutionTypeEmu.Fund,
+      key: FinanceDataTypeEmu.EmergencyRefinancing,
       icon: "fa-clipboard",
       img: "/images/touzi.png",
-      path: "/small-loan",
+      path: "/equity-financing",
     },
     {
       name: "政策",

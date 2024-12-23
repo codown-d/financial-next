@@ -1,6 +1,6 @@
 import { TzConfirm } from "@/components/TzModal";
 import FundContent from "@/components/UI/FundContent";
-import { collateralOp, insurance_type, repaymentMethodOp } from "@/constant";
+import { collateralOp, insurance_type, repaymentMethodOp, term_unit } from "@/constant";
 import {
   getArea,
   getUnique,
@@ -41,6 +41,7 @@ export const useResize = (props?: ResizeProps) => {
 export const useProductType = (props: FinanceItemProps) => {
   let { productType, rate, amount, term, rateDown, rateUp } = props;
   let getDataType = useMemo(() => {
+    let p=term_unit[props.term_unit]?.text
     return productType === FinanceDataTypeEmu.ElectronicGuarantee
       ? [
         {
@@ -74,7 +75,7 @@ export const useProductType = (props: FinanceItemProps) => {
             {
               label: "期限",
               value: `1-${term}`,
-              p: "个月",
+              p
             },
           ]:[
             {
@@ -90,7 +91,7 @@ export const useProductType = (props: FinanceItemProps) => {
             {
               label: "期限",
               value: `1-${term}`,
-              p: "个月",
+              p
             },
           ];
   }, [props]);

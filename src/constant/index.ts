@@ -133,7 +133,7 @@ export const Microloans = {
   title: "小额贷款",
   description: "短期资金周转，办理便捷、形式灵活。",
   key: FinanceDataTypeEmu.Microloans,
-  list:[],
+  list: [],
 };
 export const EmergencyRefinancing = {
   title: "股权融资",
@@ -157,13 +157,13 @@ export const ElectronicGuarantee = {
   title: "电子保函",
   description: "代替现金保证金，为企业降压减负。",
   key: FinanceDataTypeEmu.ElectronicGuarantee,
-  list:[],
+  list: [],
 };
 export const Insurance = {
   title: "保险",
   description: "一站式综合保险服务。",
   key: FinanceDataTypeEmu.Insurance,
-  list:[],
+  list: [],
 };
 export const purposeOp = [
   {
@@ -183,9 +183,9 @@ export const purposeOp = [
     value: "4",
   },
 ];
-export const termOp = [3, 12, 24, 36].map((item,index) => ({
+export const termOp = [3, 12, 24, 36].map((item, index) => ({
   label: item + "个月内",
-  value: index+1,
+  value: index + 1,
 }));
 
 export const selectOp = [
@@ -367,19 +367,19 @@ export const PolicyTags = [
 export const repaymentMethodOp = [
   {
     label: "按周期付息,到期还本",
-    value: '1',
+    value: "1",
   },
   {
     label: "分期还款",
-    value: '2',
+    value: "2",
   },
   {
     label: "一次性还本付息",
-    value: '3',
+    value: "3",
   },
   {
     label: "随借随还",
-    value: '4',
+    value: "4",
   },
 ];
 export const MicroloansOp = [
@@ -441,140 +441,148 @@ export const prodTypeEmu = [
 export const action_status_filter = {
   //1已申请，2未受理，3办理中，4谢绝，5完成
   1: {
-    text: '已申请',
-    status: 'Default',
+    text: "已申请",
+    status: "Default",
   },
   2: {
-    text: '未受理',
-    status: 'Processing',
+    text: "未受理",
+    status: "Processing",
   },
   3: {
-    text: '办理中',
-    status: 'Success',
+    text: "办理中",
+    status: "Success",
   },
   4: {
-    text: '谢绝',
-    status: 'Error',
+    text: "谢绝",
+    status: "Error",
   },
   5: {
-    text: '完成',
-    status: 'Success',
+    text: "完成",
+    status: "Success",
   },
 };
 export const term = {
   0: {
-    text: '全部',
+    text: "全部",
   },
   1: {
-    text: '3个月内',
+    text: "3个月内",
   },
 
   2: {
-    text: '12个月内',
+    text: "12个月内",
   },
 
   3: {
-    text: '24个月内',
+    text: "24个月内",
   },
   4: {
-    text: '36个月内',
+    text: "36个月内",
   },
 };
 export const purpose = {
   1: {
-    text: '生产经营',
+    text: "生产经营",
   },
 
   2: {
-    text: '创业助业',
+    text: "创业助业",
   },
 
   3: {
-    text: '购买资产',
+    text: "购买资产",
   },
 
   4: {
-    text: '归还贷款',
+    text: "归还贷款",
   },
 };
 export const AREA_TYPE: any = {
-  all:{
-    text: '全部',
+  all: {
+    text: "全部",
   },
   1: {
-    text: '国家级',
+    text: "国家级",
   },
   2: {
-    text: '省级',
+    text: "省级",
   },
   3: {
-    text: '市级',
+    text: "市级",
   },
   510802: {
-    text: '利州区',
+    text: "利州区",
   },
   510811: {
-    text: '昭化区',
+    text: "昭化区",
   },
   510812: {
-    text: '朝天区',
+    text: "朝天区",
   },
   510821: {
-    text: '旺苍县',
+    text: "旺苍县",
   },
   510822: {
-    text: '青川县',
+    text: "青川县",
   },
 
   510823: {
-    text: '剑阁县',
+    text: "剑阁县",
   },
 
   510824: {
-    text: '苍溪县',
+    text: "苍溪县",
   },
 };
-export const  term_unitOp=[
+export const term_unitOp = [
   {
-    label:'天',
-    value:1
+    label: "天",
+    value: 1,
   },
   {
-    label:'月',
-    value:2
-  }
-]
-export const data_type = {
+    label: "月",
+    value: 2,
+  },
+];
+export const term_unit = {
   1: {
-    text: '信用',
+    text: "天",
   },
   2: {
-    text: '抵质押',
+    text: "月",
+  },
+};
+export const data_type = {
+  1: {
+    text: "信用",
+  },
+  2: {
+    text: "抵质押",
   },
   3: {
-    text: '保证',
+    text: "保证",
   },
   4: {
-    text: '组合',
+    text: "组合",
   },
 };
 export const insurance_type = {
   1: {
-    text: '财产险',
+    text: "财产险",
   },
   2: {
-    text: '责任险',
+    text: "责任险",
   },
   3: {
-    text: '寿险',
+    text: "寿险",
   },
   4: {
-    text: '意外险',
+    text: "意外险",
   },
   5: {
-    text: '保证险',
+    text: "保证险",
   },
   6: {
-    text: '综合险',
+    text: "综合险",
   },
 };

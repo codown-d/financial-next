@@ -109,6 +109,8 @@ export interface FinanceItemProps {
   rateUp: string;
   rate: number|string;
   term: number;//贷款期限
+  term_desc:string;
+  term_unit:1|2;
   amount: number;
   success_count: number;
   //融资主体
