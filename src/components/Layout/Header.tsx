@@ -30,7 +30,7 @@ const Header = () => {
             <Logo />
             <div className="ml-[5px]">
               <div className="text-2xl leading-6 font-bold">
-                广元市综合金融服务平台
+              广元市综合金融服务平台
               </div>
               <div className="text-xs leading-3 text-[#959595]">
                 GUANGYUAN INTEGRATED FINANCIAL SERVICES PLATFORM

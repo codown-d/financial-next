@@ -34,7 +34,7 @@ export default function FilterMarket(props: {
     getProductFn()
   },[getProductFn])
   return (
-    <div>
+    <>
       <div className="mb-2 mt-1 ml-3 text-[#999]">
         共{dataList.length}条结果
       </div>
@@ -69,6 +69,6 @@ export default function FilterMarket(props: {
       <div className="mt-[60px] mb-[90px] flex justify-end">
         <Pagination defaultCurrent={6} total={dataList.length} />
       </div>
-    </div>
+    </>
   );
 }
