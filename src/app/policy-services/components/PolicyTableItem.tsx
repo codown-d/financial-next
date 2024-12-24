@@ -31,6 +31,7 @@ export default function PolicyTableItem(props: DataType) {
           }
           iconPosition={"end"}
           onClick={() => {
+            // window.open(`/policy-detail?policyId=${id}`);
             router.push(`/policy-detail?policyId=${id}`);
           }}
         >

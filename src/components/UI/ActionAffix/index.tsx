@@ -2,6 +2,7 @@
 import Image from "next/image";
 import TzFloatButton, { TzFloatButtonGroup } from "../../TzIFloatButton";
 import TzPageProgress from "../../TzPageProgress";
+import { Modal } from "antd";
 export default function ActionAffix() {
   return (
     <>
@@ -18,13 +19,69 @@ export default function ActionAffix() {
               width={32}
               height={32}
               alt={""}
+              onClick={() => {
+                Modal.info({
+                  title: null,
+                  width: 500,
+                  icon: null,
+                  content: (
+                    <div className="flex justify-between ">
+                      <div>
+                        <div className="text-[24px] font-bold  pl-2">
+                          {" "}
+                          广元金服
+                        </div>
+                        <Image
+                          src="/images/code1.png"
+                          width={200}
+                          height={200}
+                          alt=""
+                          className="rounded-lg"
+                        />
+                      </div>
+                      <div>
+                        <div className="text-[24px] font-bold pl-2">
+                          {" "}
+                          广财企服
+                        </div>
+                        <Image
+                          src="/images/code2.png"
+                          width={200}
+                          height={200}
+                          alt=""
+                          className="rounded-lg"
+                        />
+                      </div>
+                    </div>
+                  ),
+                  okText: "关闭",
+                  onOk() {},
+                });
+              }}
             />
           }
         />
         <TzFloatButton
           style={{ background: "transparent" }}
           icon={
-            <Image src={"/images/phone.png"} width={32} height={32} alt={""} />
+            <Image
+              src={"/images/phone.png"}
+              width={32}
+              height={32}
+              alt={""}
+              onClick={() => {
+                Modal.info({
+                  title: "联系电话",
+                  width: 500,
+                  icon: null,
+                  content: (
+                    <div className="flex text-[24px] font-bold ">0839-3617508</div>
+                  ),
+                  okText: "关闭",
+                  onOk() {},
+                });
+              }}
+            />
           }
         />
         <TzFloatButton

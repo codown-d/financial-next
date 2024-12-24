@@ -93,7 +93,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
 
   return (
     <AntdRegistry>
-      <div className="relative bg-[#F8F8F8]">
+      <div className="relative bg-[#F8F8F8] overflow-hidden ">
         <div className="h-[360px] relative flex justify-center">
           <Image
             src={"/images/jrcs-banner.png"}
@@ -120,7 +120,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             />
           </div>
         </div>
-        <div className="max-w-screen-lg flex absolute shadow-sm top-[278px] w-[100%] left-1/2 transform -translate-x-1/2 ">
+        <div className="max-w-screen-lg flex absolute top-[278px] w-[100%] left-1/2 transform -translate-x-1/2 ">
           <TzCard className="w-0 flex-1">
             <TzForm
               form={form}
@@ -187,8 +187,8 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               </TzFormItem>
             </TzForm>
           </TzCard>
-          <div className="w-[360px] relative ">
-            <TzNextImage src={"/images/znpp.png"} width={340} height={0} />
+          <div className="w-[360px] relative ml-4">
+            <TzNextImage src={"/images/znpp.png"} width={340} height={0} style={{boxShadow: '0 0 15px 5px rgba(0, 0, 0, 0.3)',borderRadius:'16px'}}/>
             <TzButton
               onClick={() => setOpen(true)}
               className="text-[16px] font-bold !w-[180px] !text-white-500 !absolute bottom-[48px] left-[90px] !bg-gradient-to-l !from-[#7B9DF1] !to-[#3C5BF6] !shadow-[0px_4px_10px_rgba(14,38,162,0.42)] border-2 border-white"
@@ -198,8 +198,12 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             </TzButton>
           </div>
         </div>
-        <div className="max-w-screen-lg  mx-auto ">
-          <TzTabs
+        <div className="max-w-screen-lg  mx-auto pt-[290px]">
+        <FilterMarket
+            filter={{...filter}}
+            keyword={keyword}
+          />
+          {/* <TzTabs
             activeKey={activeKey}
             className="financing-services-tab !mt-[380px]"
             items={items}
@@ -207,7 +211,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             destroyInactiveTabPane
             tabBarGutter={96}
             tabBarStyle={{ padding: "0px 76px" }}
-          />
+          /> */}
         </div>
       </div>
       <TzModal

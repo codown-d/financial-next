@@ -6,8 +6,12 @@ const Footer = () => {
   
   let link = [
     {
+      title: "广元市财政局",
+      url:'http://sczj.cngy.gov.cn/'
+    },
+    {
       title: "广元市中小企业金融服务有限公司",
-      url:'http://www.gyjrfw.com/'
+      url:'http://www.gygfct.com/'
     },
   ];
   return (
@@ -35,15 +39,15 @@ const Footer = () => {
             className="rounded-lg"
           />
         </div>
-        <div className=" row-span-2 sm:col-span-2 sm:col-start-5 sm:col-end-8 flex flex-col">
-          <div className="footer-item  mb-6">
+        <div className=" row-span-2 sm:col-span-2 sm:col-start-6 sm:col-end-10 flex flex-col">
+          <div className="footer-item mb-3">
             联系方式
           </div>
-          <div className="text-[#7BF1C2] mb-4">0839-3617508</div>
-          <div className="text-desc mb-4">邮箱：1598436243@qq.com</div>
-          <div className="text-desc mb-4">地址：广元市利州区利州东路二段509号康隆财富旺角21楼</div>
+          <div className="text-desc mb-3">客服电话：0839-3617508</div>
+          <div className="text-desc mb-3">邮箱：1598436243@qq.com</div>
+          <div className="text-desc mb-3">地址：广元市利州区利州东路二段509号康隆财富旺角21楼</div>
         </div>
-        <div className="row-span-2 sm:col-span-2 sm:col-start-8 sm:col-end-10 flex flex-col">
+        {/* <div className="row-span-2 sm:col-span-2 sm:col-start-8 sm:col-end-10 flex flex-col">
           <p className="footer-item mb-4">关于我们</p>
           <ul className="text-black-500">
             {[].map((item, index) => {
@@ -57,17 +61,17 @@ const Footer = () => {
               );
             })}
           </ul>
-        </div>
+        </div> */}
         <div className="row-span-2 sm:col-span-2 sm:col-start-10 sm:col-end-12 flex flex-col">
-          <p className="footer-item  mb-4">友情链接</p>
+          <p className="footer-item  mb-3">友情链接</p>
           <ul className="text-black-500">
             {link.map((item, index) => {
               return (
                 <li
                   key={index}
-                  className="text-desc mb-6"
+                  className="text-desc mb-3 hover:bg-blue-700"
                 >
-                  {item.title}
+                  <a href={item.url} target="_blank" className="hover:bg-blue-700">{item.title}</a>
                 </li>
               );
             })}
