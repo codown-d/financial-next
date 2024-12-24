@@ -15,7 +15,7 @@ export default function DataTypeTitleCom(props: DataTypeTitleProps) {
           {name}
         </span>
         <span className="ml-3 bg-[#F0F3FF] py-2 px-3 text-xs leading-[14px] rounded-[12px_4px_12px_4px] ">
-          <span className="text-[#3D5AF5] text-sm font-bold">{amount}亿元</span>{" "}
+          <span className="text-[#3D5AF5] text-sm font-bold">{amount}万元</span>{" "}
           认缴规模
         </span>
       </div>
