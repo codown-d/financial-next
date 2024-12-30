@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import { TzButton } from "@/components/TzButton";
 import { UndoOutlined } from "@ant-design/icons";
 import { merge } from "lodash";
+import { useRouter } from "next/navigation";
 export interface DataType {
   id: any;
   title: string;
@@ -37,24 +38,23 @@ const getYears = (): number[] => {
   return years;
 };
 export default function PolicyServices(props: any) {
-  let { initialData, total, body_type: bt } = props;
+  let { initialData, total, body_type: bt ,query} = props;
   const [dataTotal, setDataTotal] = useState(total);
-  let [filter, setFilter] = useState({
-    add_time_sort:'desc',
-    area_type:'all',
-    body_type:'',
-    keyword:'',
-    
+  let [filter, setFilter] = useState(query);
+  let [defaultPagination] = useState({
+    defaultCurrent:  2,
+    defaultPageSize:10,
   });
   let getTableData = useCallback(
     async (pagination) => {
       const { current = 1, pageSize = 10 } = pagination;
-      let res: any = await getPolicyList({
+      let p = {
         page: current,
         limit: pageSize,
         ...filter,
-        area_type:filter.area_type=='all'?0:filter.area_type
-      });
+        area_type: filter?.area_type == "all" ? 0 : filter.area_type,
+      };
+      let res: any = await getPolicyList(p);
       setDataTotal(res.count);
       return {
         data: res.dataList,
@@ -104,6 +104,7 @@ export default function PolicyServices(props: any) {
       value: item,
     };
   });
+  const router = useRouter();
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8] overflow-hidden">
@@ -167,6 +168,8 @@ export default function PolicyServices(props: any) {
                   setFilter((pre) => {
                     return merge({}, pre, changedValues);
                   });
+                  console.log(123456)
+                  router.push(`/policy-services?query=${JSON.stringify(allValues)}`);
                 }}
               >
                 <TzFormItem
@@ -232,9 +235,13 @@ export default function PolicyServices(props: any) {
                     </span>{" "}
                     条结果
                   </div>
-                  <TzButton icon={<UndoOutlined />} className="!px-[12px]" onClick={()=>{
-                    form.resetFields()
-                  }}>
+                  <TzButton
+                    icon={<UndoOutlined />}
+                    className="!px-[12px]"
+                    onClick={() => {
+                      form.resetFields();
+                    }}
+                  >
                     重置选项
                   </TzButton>
                 </div>

@@ -1,7 +1,6 @@
 import { apiEndpoints } from "../apiEndpoints";
 
   export async function GET(request: Request) {
-    console.log(request)
     const targetApi = request.headers.get("x-target-api") || "host";
     const targetUrl = apiEndpoints[targetApi];
   

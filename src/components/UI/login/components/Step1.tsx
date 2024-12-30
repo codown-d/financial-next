@@ -28,7 +28,9 @@ export default function (props: { formIns: FormInstance<any> }) {
         >
           <TzInput placeholder="请输入" size={"large"} />
         </TzFormItem>
-        <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
+        <TzFormItem label=" " className="flex-1">
+          <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
+        </TzFormItem>
       </div>
     </div>
   );

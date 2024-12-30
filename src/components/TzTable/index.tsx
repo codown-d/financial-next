@@ -53,6 +53,7 @@ export const TzTableServerPage = forwardRef((
 ) =>{
   const { reqFun, defaultPagination,initialData, ...tableProps } = props;
   let dfp = merge({}, defaultTablePagination, defaultPagination);
+  console.log(dfp)
   const [dataSource, setDataSource] = useState(initialData);
   const [pagination, setPagination] = useState(dfp);
   const [filters, setFilters] = useState([]);

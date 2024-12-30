@@ -63,7 +63,6 @@ export default function Financing() {
       columns={columns}
       request={async (params, sorter, filter) => {
         let res = await applyList();
-        console.log(res.dataList);
         return {
           data: res.dataList,
           success: true,

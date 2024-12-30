@@ -45,7 +45,7 @@ export const MenuList = [
   },
   {
     label: "融资服务",
-    key: "financialProduct",
+    key: "/bank-loan",
     children: [
       {
         label: "银行贷款",
@@ -68,7 +68,8 @@ export const MenuList = [
   },
   {
     label: "增信服务",
-    key: "guaranteeServices",
+    // key: "guaranteeServices",
+    key: "/performance-bond",
     children: [
       {
         label: "融资担保",

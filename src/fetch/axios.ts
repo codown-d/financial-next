@@ -44,7 +44,6 @@ axiosIns.interceptors.response.use(
   (error) => {
     // 处理响应错误
     const { response } = error;
-    console.log("response", response, error);
     if (response) {
       // 根据响应状态码处理不同的情况
       console.error("API error:", response);

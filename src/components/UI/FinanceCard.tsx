@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import TzCard, { TzCardProps } from "../TzCard";
 import Image from "next/image";
 import { TzButton } from "../TzButton";
@@ -27,7 +27,6 @@ export default function (props: FinanceCardProps) {
     financial_organs,
     ...otherProps
   } = props;
-    console.log(props)
   let getRateList = useMemo(() => {
     return productType === FinanceDataTypeEmu.Insurance
       ? [
@@ -90,7 +89,7 @@ export default function (props: FinanceCardProps) {
     <>
       <TzCard
         hoverable
-        className={"!rounded-2xl h-[260px] flex"}
+        className={"!rounded-2xl h-[260px] flex flex-1 w-0 "}
         styles={{
           body: { padding: "0", position: "relative", display: "inline-block" },
         }}

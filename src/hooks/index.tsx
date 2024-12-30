@@ -99,7 +99,6 @@ export const useProductType = (props: FinanceItemProps) => {
 };
 
 export const useRepaymentMethod = (dataInfo: FinanceItemProps) => {
-  console.log(dataInfo)
   let repaymentMethodLabel = useMemo(() => {
     return repaymentMethodOp
       .reduce((pre: any[], item) => {
@@ -114,7 +113,6 @@ export const useRepaymentMethod = (dataInfo: FinanceItemProps) => {
 };
 export const useDataType = (dataInfo: FinanceItemProps) => {
   let dataTypeLabel = useMemo(() => {
-      console.log(dataInfo)
     if(FinanceDataTypeEmu.Insurance===dataInfo?.productType){
       return keys(insurance_type).map(item=>{
         return {
@@ -217,7 +215,6 @@ export const useUserInfo = () => {
     if (res.code != 200) {
       return;
     }
-    console.log(res.data);
     setUserInfo(res.data);
     cal?.(res.data);
   }, []);

@@ -31,5 +31,6 @@ export default {
   financeList:'/finance/all/list',
   applyList:'/apply/all/list',
   policyStatistics:'/enterprise/service/policy/statistics',
-  themeFeature:'/admin/policy/theme/feature/list'
+  themeFeature:'/admin/policy/theme/feature/list',
+  findPass:'/user/find/pass'
 }

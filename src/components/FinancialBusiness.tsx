@@ -202,7 +202,6 @@ const FinancialBusiness = (props) => {
                     "linear-gradient( 270deg, #7B9DF1 0%, #3C5BF6 100%)",
                 }}
                 onClick={() => {
-                  console.log(userInfo);
                   if (!userInfo) {
                     return message.error("请登录账号！");
                   } else {

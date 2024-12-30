@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
-import { Empty, Form } from "antd";
+import { DescriptionsProps, Empty, Form, message } from "antd";
 import { TzButton } from "../TzButton";
 import TzCard from "../TzCard";
 import TzForm, { TzFormItem } from "../TzForm";
 import { TzCheckableTagNormal } from "../TzCheckableTag";
-import {
-  FinancialMarket,
-} from "@/constant";
+import { FinancialMarket } from "@/constant";
 import TzDivider from "../TzDivider";
 import FilterMarket from "./FilterMarket";
 import TzTabs from "../TzTabs";
@@ -20,77 +18,92 @@ import FinanceCard, { FinanceCardProps } from "./FinanceCard";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { productRecommend } from "@/fetch";
 import { dealProduct } from "@/lib";
-import { FinanceDataTypeEmu, InstitutionTypeEmu, TabType } from "@/fetch/definition";
-let obj={
-  '/bank-loan':FinanceDataTypeEmu.BankLoans,
-  '/small-loan':FinanceDataTypeEmu.Microloans,
-  '/emergency-refinancing':FinanceDataTypeEmu.EquityFinancing,
-  '/equity-financing':FinanceDataTypeEmu.EmergencyRefinancing,
-  '/performance-bond':FinanceDataTypeEmu.FinanceGuarantee,
-  '/ele-bond':FinanceDataTypeEmu.ElectronicGuarantee,
-  '/advance-payment-bond':FinanceDataTypeEmu.Insurance,
-}
+import {
+  FinanceDataTypeEmu,
+  InstitutionTypeEmu,
+  TabType,
+} from "@/fetch/definition";
+import { useGlobalContext } from "@/hooks/GlobalContext";
+import useApplicationAction from "@/app/product-introduction/hooks";
+import { find } from "lodash";
+import { getFormLabelList } from "@/app/product-introduction/hooks/const";
+import { useFundModal } from "@/hooks";
+let obj = {
+  "/bank-loan": FinanceDataTypeEmu.BankLoans,
+  "/small-loan": FinanceDataTypeEmu.Microloans,
+  "/emergency-refinancing": FinanceDataTypeEmu.EquityFinancing,
+  "/equity-financing": FinanceDataTypeEmu.EmergencyRefinancing,
+  "/performance-bond": FinanceDataTypeEmu.FinanceGuarantee,
+  "/ele-bond": FinanceDataTypeEmu.ElectronicGuarantee,
+  "/advance-payment-bond": FinanceDataTypeEmu.Insurance,
+};
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();
   const pathname = usePathname();
   let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({
-    product_type:obj[pathname]
+    product_type: obj[pathname],
   });
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  let items = useMemo(() => {
+  const [formApply] = Form.useForm();
+  let itemsc = useMemo(() => {
     return [
       {
         label: (
-          <div className="flex flex-col items-center px-[76px]" onClick={()=>{
-            router.push(`/small-loan`);
-          }}>
+          <div
+            className="flex flex-col items-center px-[76px]"
+            onClick={() => {
+              router.push(`/small-loan`);
+            }}
+          >
             <TzNextImage src={"/images/rzfw.png"} width={88} height={88} />
             <span>融资服务</span>
           </div>
         ),
         key: TabType.service,
-        children: (
-          <FilterMarket
-            filter={{...filter}}
-            keyword={keyword}
-          />
-        ),
+        children: <FilterMarket filter={{ ...filter }} keyword={keyword} />,
       },
       {
         label: (
-          <div className="flex flex-col items-center px-[76px]"  onClick={()=>{
-            router.push(`/performance-bond`);
-          }}>
+          <div
+            className="flex flex-col items-center px-[76px]"
+            onClick={() => {
+              router.push(`/performance-bond`);
+            }}
+          >
             <TzNextImage src={"/images/zxfw.png"} width={88} height={88} />
             <span>增信服务</span>
           </div>
         ),
         key: TabType.credit,
-        children: (
-          <FilterMarket
-            filter={{...filter}}
-            keyword={keyword}
-          />
-        ),
+        children: <FilterMarket filter={{ ...filter }} keyword={keyword} />,
       },
     ];
   }, [filter, keyword]);
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
-  let getproductRecommend = () => {
+  let getProductRecommend = () => {
     productRecommend({}).then((res) => {
-      setMarketDataList(res.data.map(dealProduct).slice(0,3));
+      setMarketDataList(res.data.map(dealProduct).slice(0, 3));
     });
   };
   useEffect(() => {
-    getproductRecommend();
+    getProductRecommend();
     form.setFieldsValue({
-      product_type:obj[pathname]
-    })
+      product_type: obj[pathname],
+    });
   }, []);
-
+  let [actItem, setActItem] = useState<any>("");
+  let { userInfo } = useGlobalContext();
+  let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
+    useApplicationAction();
+  let dataInfo = useMemo(() => {
+    let node = find(marketDataList, (item) => item.id === actItem);
+    return node;
+  }, [actItem]);
+  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
+  let { getFundModal } = useFundModal();
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8] overflow-hidden ">
@@ -188,7 +201,15 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
             </TzForm>
           </TzCard>
           <div className="w-[360px] relative ml-4">
-            <TzNextImage src={"/images/znpp.png"} width={340} height={0} style={{boxShadow: '0 0 15px 5px rgba(0, 0, 0, 0.3)',borderRadius:'16px'}}/>
+            <TzNextImage
+              src={"/images/znpp.png"}
+              width={340}
+              height={0}
+              style={{
+                boxShadow: "0 0 15px 5px rgba(0, 0, 0, 0.3)",
+                borderRadius: "16px",
+              }}
+            />
             <TzButton
               onClick={() => setOpen(true)}
               className="text-[16px] font-bold !w-[180px] !text-white-500 !absolute bottom-[48px] left-[90px] !bg-gradient-to-l !from-[#7B9DF1] !to-[#3C5BF6] !shadow-[0px_4px_10px_rgba(14,38,162,0.42)] border-2 border-white"
@@ -199,10 +220,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           </div>
         </div>
         <div className="max-w-screen-lg  mx-auto pt-[290px]">
-        <FilterMarket
-            filter={{...filter}}
-            keyword={keyword}
-          />
+          <FilterMarket filter={{ ...filter }} keyword={keyword} />
           {/* <TzTabs
             activeKey={activeKey}
             className="financing-services-tab !mt-[380px]"
@@ -226,7 +244,21 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               className="ml-5"
               shape={"round"}
               type={"primary"}
-              onClick={() => setOpen(false)}
+              onClick={() => {
+                console.log(userInfo, 123);
+                if (
+                  userInfo?.verify_status == 3 ||
+                  userInfo?.enterprise_verify_status == 3
+                ) {
+                  if([FinanceDataTypeEmu.EmergencyRefinancing,FinanceDataTypeEmu.Insurance].includes(dataInfo?.product_type) ){
+                    getFundModal()
+                  }else{
+                  setSubmitVisible(true);
+                  }
+                } else {
+                  message.error("暂无权限请实名之后申请！");
+                }
+              }}
             >
               提交申请
             </TzButton>
@@ -240,11 +272,40 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         }
       >
         <div className="flex  mb-[100px] justify-center  space-x-8">
-          {marketDataList.length==0?<Empty />:marketDataList.map((item, index) => {
-            return <FinanceCard {...item} key={index} />;
-          })}
+          {marketDataList.length == 0 ? (
+            <Empty />
+          ) : (
+            marketDataList.map((item, index) => {
+              return (
+                <div
+                  className={`flex flex-1 w-0 rounded-[8px] ${
+                    actItem == item.id ? "act-item-card" : ""
+                  }`}
+                  style={{ border: "2px solid transparent" }}
+                  onClick={() => {
+                    setActItem(item.id);
+                  }}
+                >
+                  <FinanceCard {...item} key={index} />
+                </div>
+              );
+            })
+          )}
         </div>
       </TzModal>
+      <Submit
+        form={formApply}
+        product_id={dataInfo?.id}
+        product_type={dataInfo?.productType}
+        type={"业务申请"}
+        callback={(val) => {
+          console.log(val)
+          setItems(getFormLabelList(val));
+          setSuccessVisible(true);
+        }}
+      />
+      <Success items={items} />
+      <Fail />
     </AntdRegistry>
   );
 }

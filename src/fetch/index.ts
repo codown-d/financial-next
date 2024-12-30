@@ -239,3 +239,8 @@ export const themeFeature = async (
 ): Promise<IResponseData<FinanceItemProps>> => {
   return http.get(`${api.themeFeature}`, params);
 };
+export const findPass = async (
+  params?: any
+): Promise<IResponseData<any>> => {
+  return http.post(`${api.findPass}`, params);
+};
