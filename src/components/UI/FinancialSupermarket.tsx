@@ -245,7 +245,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
               shape={"round"}
               type={"primary"}
               onClick={() => {
-                console.log(userInfo, 123);
                 if (
                   userInfo?.verify_status == 3 ||
                   userInfo?.enterprise_verify_status == 3
@@ -299,7 +298,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
         product_type={dataInfo?.productType}
         type={"业务申请"}
         callback={(val) => {
-          console.log(val)
           setItems(getFormLabelList(val));
           setSuccessVisible(true);
         }}
