@@ -28,6 +28,7 @@ import useApplicationAction from "@/app/product-introduction/hooks";
 import { find } from "lodash";
 import { getFormLabelList } from "@/app/product-introduction/hooks/const";
 import { useFundModal } from "@/hooks";
+import SmartMatch from "./SmartMatch";
 let obj = {
   "/bank-loan": FinanceDataTypeEmu.BankLoans,
   "/small-loan": FinanceDataTypeEmu.Microloans,
@@ -47,7 +48,6 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  const [formApply] = Form.useForm();
   let itemsc = useMemo(() => {
     return [
       {
@@ -82,28 +82,12 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
       },
     ];
   }, [filter, keyword]);
-  let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
-  let getProductRecommend = () => {
-    productRecommend({}).then((res) => {
-      setMarketDataList(res.data.map(dealProduct).slice(0, 3));
-    });
-  };
+
   useEffect(() => {
-    getProductRecommend();
     form.setFieldsValue({
       product_type: obj[pathname],
     });
   }, []);
-  let [actItem, setActItem] = useState<any>("");
-  let { userInfo } = useGlobalContext();
-  let { Submit, Success, Fail, setSubmitVisible, setSuccessVisible } =
-    useApplicationAction();
-  let dataInfo = useMemo(() => {
-    let node = find(marketDataList, (item) => item.id === actItem);
-    return node;
-  }, [actItem]);
-  let [items, setItems] = useState<DescriptionsProps["items"]>([]);
-  let { getFundModal } = useFundModal();
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8] overflow-hidden ">
@@ -232,78 +216,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
           /> */}
         </div>
       </div>
-      <TzModal
-        width={1200}
-        open={open}
-        footer={
-          <div className="flex items-center justify-center mt-[20px] mb-2">
-            <TzButton shape={"round"} onClick={() => setOpen(false)}>
-              关闭
-            </TzButton>
-            <TzButton
-              className="ml-5"
-              shape={"round"}
-              type={"primary"}
-              onClick={() => {
-                if (
-                  userInfo?.verify_status == 3 ||
-                  userInfo?.enterprise_verify_status == 3
-                ) {
-                  if([FinanceDataTypeEmu.EmergencyRefinancing,FinanceDataTypeEmu.Insurance].includes(dataInfo?.product_type) ){
-                    getFundModal()
-                  }else{
-                  setSubmitVisible(true);
-                  }
-                } else {
-                  message.error("暂无权限请实名之后申请！");
-                }
-              }}
-            >
-              提交申请
-            </TzButton>
-          </div>
-        }
-        okText={"提交申请"}
-        title={
-          <div className="text-center font-bold mb-[50px] text-2xl text-gray-800 mt-5 leading-[32px]">
-            智能匹配
-          </div>
-        }
-      >
-        <div className="flex  mb-[100px] justify-center  space-x-8">
-          {marketDataList.length == 0 ? (
-            <Empty />
-          ) : (
-            marketDataList.map((item, index) => {
-              return (
-                <div
-                  className={`flex flex-1 w-0 rounded-[8px] ${
-                    actItem == item.id ? "act-item-card" : ""
-                  }`}
-                  style={{ border: "2px solid transparent" }}
-                  onClick={() => {
-                    setActItem(item.id);
-                  }}
-                >
-                  <FinanceCard {...item} key={index} />
-                </div>
-              );
-            })
-          )}
-        </div>
-      </TzModal>
-      <Submit
-        form={formApply}
-        product_id={dataInfo?.id}
-        product_type={dataInfo?.productType}
-        type={"业务申请"}
-        callback={(val) => {
-          setItems(getFormLabelList(val));
-          setSuccessVisible(true);
-        }}
-      />
-      <Success items={items} />
-      <Fail />
+     <SmartMatch open={open} setOpen={setOpen}/>
     </AntdRegistry>
   );
 }

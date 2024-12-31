@@ -3,7 +3,10 @@ import Image from "next/image";
 import TzFloatButton, { TzFloatButtonGroup } from "../../TzIFloatButton";
 import TzPageProgress from "../../TzPageProgress";
 import { Modal } from "antd";
+import SmartMatch from "../SmartMatch";
+import { useState } from "react";
 export default function ActionAffix() {
+  let [open, setOpen] = useState(false);
   return (
     <>
       <TzFloatButtonGroup
@@ -93,19 +96,12 @@ export default function ActionAffix() {
             />
           }
           onClick={()=>{
-            Modal.info({
-              title: "联系电话",
-              width: 500,
-              icon: null,
-              content: (
-                <div className="flex text-[24px] font-bold ">0839-3617508</div>
-              ),
-              okText: "关闭",
-              onOk() {},
-            });
+            setOpen(true)
           }}
         />
       </TzFloatButtonGroup>
+      
+     <SmartMatch open={open} setOpen={setOpen}/>
       <TzPageProgress />
     </>
   );
