@@ -125,6 +125,7 @@ export default function PolicyServices(props: any) {
             <TzSearch
               placeholder="请输入你想要搜索的内容"
               allowClear
+              value={filter.keyword}
               className="!w-[560px] p-1"
               enterButton="搜索"
               size={"large"}
@@ -139,7 +140,14 @@ export default function PolicyServices(props: any) {
             />
             <div className="mt-2 flex items-start w-full pl-3">
               {hotWords.map((item, index) => (
-                <span className="mr-6 text-white-500 text-sm" key={index}>
+                <span className="mr-6 text-white-500 text-sm cursor-pointer" key={index} onClick={()=>{
+                  setFilter((pre) => {
+                    return {
+                      ...pre,
+                      keyword: item,
+                    };
+                  });
+                }}>
                   {item}
                 </span>
               ))}
