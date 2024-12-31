@@ -63,7 +63,6 @@ export default function User() {
   let [marketDataList, setMarketDataList] = useState<FinanceCardProps[]>([]);
   let getproductRecommend = () => {
     productRecommend().then((res) => {
-      console.log(res)
       setMarketDataList(res.data.map(dealProduct).slice(0,3));
     });
   };
@@ -140,7 +139,6 @@ export default function User() {
           <TzButton
             type={"primary"}
             onClick={() => {
-              console.log(userInfo);
               if (!userInfo) {
                 return message.error("请登录账号！");
               } else {
@@ -168,7 +166,7 @@ export default function User() {
         <div className="flex flex-wrap">
           {marketDataList.map((item, index) => {
             return (
-              <div key={index} className="screen_1280:w-1/3 w-1/2 bg-blue-500 p-4 ">
+              <div key={index} className="screen_1280:w-1/3 w-1/2 bg-blue-500 p-4 flex">
                 <FinanceCard {...item} />
               </div>
             );

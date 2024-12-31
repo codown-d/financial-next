@@ -37,7 +37,7 @@ export default function DataTypeTitleCom(props: DataTypeTitleProps) {
         >
           {name}
         </span>
-        <span className="ml-3 bg-gradient-to-r to-[#7B9DF1] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
+        <span className="ml-3 bg-gradient-to-r to-[#7B9DF1] text-[12px] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
           {node}
         </span>
       </div>

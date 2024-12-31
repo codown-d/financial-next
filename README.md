@@ -45,6 +45,8 @@ pm2 delete all
 pm2 save
 pm2 restart next-app
 pm2 start npm --name "next-app" -- start
+pm2 start npm --name "next-app" -- start --env HTTPS=true --env SSL_CERT_PATH="./path/to/cert.pem" --env SSL_KEY_PATH="./path/to/key.pem"
+
 
 
 docker build -t next .  创建镜像

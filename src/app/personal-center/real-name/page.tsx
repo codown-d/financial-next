@@ -34,13 +34,13 @@ let RealNameModal = (props: {
   const [fileList, setFileList] = useState<UploadFile[]>(
     formIns.getFieldValue("idcard_img")
       ? [
-          {
-            uid: "-1",
-            name: "",
-            status: "done",
-            url: formIns.getFieldValue("idcard_img"),
-          },
-        ]
+        {
+          uid: "-1",
+          name: "",
+          status: "done",
+          url: formIns.getFieldValue("idcard_img"),
+        },
+      ]
       : undefined
   );
   useEffect(() => {
@@ -95,7 +95,6 @@ let RealNameModal = (props: {
             listType="picture-card"
             fileList={fileList}
             onChange={({ fileList }) => {
-              console.log(fileList);
               setFileList(
                 fileList.map((item) => {
                   return { ...item, url: item?.response?.file };
@@ -129,25 +128,23 @@ let RealNameModal = (props: {
           >
             <TzInput placeholder="请输入" size={"large"} />
           </TzFormItem>
-          <SendCodeBtn
-            disabled={verify_status == 3}
-            formIns={formIns}
-            fields={["phone", "send_type"]}
-            classNames="!mt-0"
-          />
+          <TzFormItem label=" " className="flex-1">
+            <SendCodeBtn
+              disabled={verify_status == 3} formIns={formIns} fields={["phone", "send_type"]} />
+          </TzFormItem>
         </div>
-        <TzFormItem label={" "} name={"click_protocol"}  valuePropName="checked">
-           <Checkbox > 我已阅读并同意<span className="text-[#3D5AF5]" onClick={(e)=>{
+        <TzFormItem label={" "} name={"click_protocol"} valuePropName="checked">
+          <Checkbox > 我已阅读并同意<span className="text-[#3D5AF5]" onClick={(e) => {
             e.preventDefault()
             Modal.info({
-              width:'70%',
-              icon:null,
+              width: '70%',
+              icon: null,
               title: "信息授权协议",
-              okText:'确定',
+              okText: '确定',
               content: <div>123456</div>,
-              onOk() {},
+              onOk() { },
             });
-           }}>《信息授权协议》</span></Checkbox >
+          }}>《信息授权协议》</span></Checkbox >
         </TzFormItem>
       </TzForm>
     </ConfigProvider>
@@ -176,7 +173,6 @@ export default function RealName() {
           className="border-0 hover:!text-[#FF9958]  bg-white-500 !absolute !text-[#FF9958] right-[56px] top-[60%]"
           shape={"round"}
           onClick={() => {
-            console.log(userInfo.realname);
             userInfo?.verify_status == 3 &&
               formIns.setFieldsValue({ ...userInfo.realname });
             setSubmitVisible(true);

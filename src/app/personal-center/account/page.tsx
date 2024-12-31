@@ -6,8 +6,6 @@ import TzInputPassword from "@/components/TzInputPassword";
 import TzNextImage from "@/components/TzNextImage";
 import TzSelect from "@/components/TzSelect";
 import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
-import { purposeOp, termOp, selectOp } from "@/constant";
-import { useGetImgCode, useGetPhoneCode } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import { Row, Col, Form, FormInstance, ConfigProvider, Popconfirm, message } from "antd";
 import modal from "antd/es/modal";
@@ -37,7 +35,9 @@ let Phone = (props: { formIns: FormInstance<any> }) => {
           >
             <TzInput placeholder="请输入" size={"large"} />
           </TzFormItem>
-          <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
+          <TzFormItem  label=" " className="flex-1">
+              <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
+            </TzFormItem>
         </div>
       </TzForm>
     </ConfigProvider>

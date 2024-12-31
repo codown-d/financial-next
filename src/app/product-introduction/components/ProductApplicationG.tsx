@@ -31,6 +31,7 @@ export default function ProductApplication(props: {
     formIns.setFieldsValue({
       name: userInfo?.enterprise?.name,
       idcard: userInfo?.enterprise?.idcard,
+      term:undefined
     });
   }, [userInfo]);
   return (

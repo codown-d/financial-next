@@ -32,7 +32,7 @@ export default function () {
           <span>注册</span>
           <span></span>
         </div>
-        <div className="h-[240px] px-10">
+        <div className=" px-10">
           <TzForm form={formIns} colon={false} layout={"vertical"}>
             {contentType === "register1" ? (
               <Step1 formIns={formIns} />

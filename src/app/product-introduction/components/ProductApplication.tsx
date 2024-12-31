@@ -33,13 +33,15 @@ export default function ProductApplication(props: {
         formIns.setFieldsValue({
           name: userInfo?.realname.name,
           idcard: userInfo?.realname.idcard,
-          user_name:userInfo?.user_name
+          user_name:userInfo?.user_name,
+          term:undefined
         });
       } else if (changedValues.verify_type == 2) {
         formIns.setFieldsValue({
           name: userInfo?.enterprise?.name,
           idcard: userInfo?.enterprise?.idcard,
-          user_name:userInfo?.user_name
+          user_name:userInfo?.user_name,
+          term:undefined
         });
       }
     },

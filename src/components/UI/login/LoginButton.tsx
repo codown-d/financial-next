@@ -15,7 +15,6 @@ export default function LoginButton() {
   const [open, setOpen] = useState(false);
   const [type, setType] = useState('login');
   let {userInfo,setUserInfo} = useGlobalContext()
-  const router = useRouter();
   const items = [
     {
       key: "personalCenter",

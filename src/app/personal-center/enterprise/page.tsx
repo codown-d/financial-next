@@ -4,7 +4,6 @@ import { TzButton } from "@/components/TzButton";
 import TzCard from "@/components/TzCard";
 import TzModal from "@/components/TzModal";
 import TzNextImage from "@/components/TzNextImage";
-import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
 import { enterpriseVerify, getArea, userVerify } from "@/fetch";
 import { useGetArea } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
@@ -33,7 +32,6 @@ let EnterpriseNameModal = (props: {
 }) => {
   let { formIns, enterprise_verify_status } = props;
   let { area } = useGetArea();
-  console.log(formIns.getFieldValue("idcard_img"));
   const [fileList, setFileList] = useState<UploadFile[]>(
     formIns.getFieldValue("idcard_img")
       ? [

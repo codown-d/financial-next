@@ -21,7 +21,6 @@ export default function MarketCard(props: FinanceItemProps) {
     financial_organs,
   } = props;
   const router = useRouter();
-  console.log(123,props)
 let {dataTypeLabel} = useDataType(props);
   return (
     <div className="flex bg-white-500 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)] rounded-[16px] py-9">

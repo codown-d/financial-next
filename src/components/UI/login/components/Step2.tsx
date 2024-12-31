@@ -10,7 +10,6 @@ export default function (props: { formIns: FormInstance<any> }) {
   let { formIns } = props;
   let { getImgCode, imgCode, token } = useGetImgCode("register");
   useEffect(() => {
-    console.log(123456);
     getImgCode();
   }, []);
   useEffect(() => {
@@ -48,15 +47,15 @@ export default function (props: { formIns: FormInstance<any> }) {
         >
           <TzInput placeholder="请输入" size={"large"} />
         </TzFormItem>
-        <div className="w-0 flex-1 ml-3 mt-[20px]">
+        <TzFormItem label=" "  className="flex-1 flex w-0" style={{width:'100%'}}>
           <img
             src={imgCode}
-            className="w-full h-10"
+            className=" ml-3 h-10"
             onClick={function () {
               getImgCode();
             }}
           />
-        </div>
+        </TzFormItem>
       </div>
       <TzFormItem label="" name={"click_protocol"} valuePropName="checked"
           rules={[{ required: true ,message:'请勾选用户协议'}]}>

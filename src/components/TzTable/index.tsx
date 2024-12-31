@@ -26,7 +26,7 @@ export default function TzTable<T extends object>(props: TzTableProps<T>) {
 }
 export interface TzTableServerPageProps extends TableProps {
   defaultPagination?: TablePaginationConfig;
-  initialData?:any[]
+  initialData?: any[];
   reqFun: (
     pagination: TablePaginationConfig,
     filters?: Record<string, FilterValue | null>,
@@ -39,64 +39,66 @@ export interface TzTableServerPageProps extends TableProps {
     pageSize?: number;
   }>;
 }
-const defaultTablePagination:TablePaginationConfig = {
-  current:1,
+const defaultTablePagination: TablePaginationConfig = {
+  current: 1,
   defaultCurrent: 1,
   defaultPageSize: 10,
   pageSize: 10,
   showSizeChanger: true,
   pageSizeOptions: [10, 20, 50, 100],
 };
-export const TzTableServerPage = forwardRef((
-  props: TzTableServerPageProps,
-  ref?: React.Ref<any>
-) =>{
-  const { reqFun, defaultPagination,initialData, ...tableProps } = props;
-  let dfp = merge({}, defaultTablePagination, defaultPagination);
-  const [dataSource, setDataSource] = useState(initialData);
-  const [pagination, setPagination] = useState(dfp);
-  const [filters, setFilters] = useState([]);
-  const [sorter, setSorter] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const reqSubFun = useCallback(
-    async (pagination, filters?: any, sorter?: any, extra?: any) => {
-      setLoading(true);
-      let res = await reqFun(pagination, filters, sorter, extra);
-      setDataSource(res.data);
-      setPagination(pre=>{
-        return merge({}, pre, {total:res.total})
-      })
-      setLoading(false);
-    },
-    [reqFun]
-  );
-  const handleTableChange = (pagination, filters, sorter, extra) => {
-    setPagination(pagination);
-    setFilters(filters);
-    setSorter(sorter);
-    reqSubFun(pagination, filters, sorter, extra);
-  };
-  useEffect(() => {
-    reqSubFun(pagination);
-  }, [reqSubFun]);
-  useImperativeHandle(
-    ref,
-    () => {
-      let action = {
-        refresh(data) {},
-      };
-      return action;
-    },
-    []
-  );
+export const TzTableServerPage = forwardRef(
+  (props: TzTableServerPageProps, ref?: React.Ref<any>) => {
+    const { reqFun, defaultPagination, initialData, ...tableProps } = props;
+    let dfp = merge({}, defaultTablePagination, defaultPagination, {
+      current: defaultPagination.defaultCurrent,
+      pageSize: defaultPagination.defaultPageSize,
+    });
+    const [dataSource, setDataSource] = useState(initialData);
+    const [pagination, setPagination] = useState(dfp);
+    const [filters, setFilters] = useState([]);
+    const [sorter, setSorter] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const reqSubFun = useCallback(
+      async (pagination, filters?: any, sorter?: any, extra?: any) => {
+        setLoading(true);
+        let res = await reqFun(pagination, filters, sorter, extra);
+        setDataSource(res.data);
+        setPagination((pre) => {
+          return merge({}, pre, { total: res.total });
+        });
+        setLoading(false);
+      },
+      [reqFun]
+    );
+    const handleTableChange = (pagination, filters, sorter, extra) => {
+      setPagination(pagination);
+      setFilters(filters);
+      setSorter(sorter);
+      reqSubFun(pagination, filters, sorter, extra);
+    };
+    useEffect(() => {
+      reqSubFun(pagination);
+    }, [reqSubFun]);
+    useImperativeHandle(
+      ref,
+      () => {
+        let action = {
+          refresh(data) {},
+        };
+        return action;
+      },
+      []
+    );
 
-  return (
-    <TzTable
-      loading={loading}
-      dataSource={dataSource}
-      pagination={pagination}
-      {...tableProps}
-      onChange={handleTableChange}
-    />
-  );
-});
+    return (
+      <TzTable
+        loading={loading}
+        dataSource={dataSource}
+        pagination={pagination}
+        {...tableProps}
+        onChange={handleTableChange}
+      />
+    );
+  }
+);

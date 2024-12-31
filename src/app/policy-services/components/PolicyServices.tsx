@@ -5,7 +5,7 @@ import FilterHeader from "@/components/UI/FilterHeader";
 import ItemSort from "@/components/UI/ItemSort";
 import { TzCheckableTagNormal } from "@/components/TzCheckableTag";
 import TzDivider from "@/components/TzDivider";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { TzTableServerPage } from "@/components/TzTable";
 import PolicyTableItem from "./PolicyTableItem";
 import { getPolicyList, policyStatistics, themeFeature } from "@/fetch";
@@ -19,6 +19,7 @@ import dayjs from "dayjs";
 import { TzButton } from "@/components/TzButton";
 import { UndoOutlined } from "@ant-design/icons";
 import { merge } from "lodash";
+import { useRouter } from "next/navigation";
 export interface DataType {
   id: any;
   title: string;
@@ -37,24 +38,25 @@ const getYears = (): number[] => {
   return years;
 };
 export default function PolicyServices(props: any) {
-  let { initialData, total, body_type: bt } = props;
-  const [dataTotal, setDataTotal] = useState(total);
-  let [filter, setFilter] = useState({
-    add_time_sort:'desc',
-    area_type:'all',
-    body_type:'',
-    keyword:'',
-    
+  let { query } = props;
+  const [dataTotal, setDataTotal] = useState(0);
+  let pageQuery = JSON.parse(query);
+  let [filter, setFilter] = useState(pageQuery);
+  let [defaultPagination] = useState({
+    defaultCurrent: pageQuery.page || 1,
+    defaultPageSize: pageQuery.limit || 10,
   });
   let getTableData = useCallback(
     async (pagination) => {
       const { current = 1, pageSize = 10 } = pagination;
-      let res: any = await getPolicyList({
+      let p = {
+        ...filter,
         page: current,
         limit: pageSize,
-        ...filter,
-        area_type:filter.area_type=='all'?0:filter.area_type
-      });
+        area_type: filter?.area_type == "all" ? 0 : filter.area_type,
+      };
+      router.push(`/policy-services?query=${JSON.stringify(p)}`);
+      let res: any = await getPolicyList(p);
       setDataTotal(res.count);
       return {
         data: res.dataList,
@@ -98,12 +100,74 @@ export default function PolicyServices(props: any) {
       setHotWords(res.hot.map((item) => item.name));
     });
   };
-  let timeList = getYears().map((item, index) => {
-    return {
-      label: index === 4 ? item + "年以前" : item + "年",
-      value: item,
-    };
-  });
+  const router = useRouter();
+  let getForm = useMemo(() => {
+    let timeList = getYears().map((item, index) => {
+      return {
+        label: index === 4 ? item + "年以前" : item + "年",
+        value: item,
+      };
+    });
+    return (
+      <TzForm
+        form={form}
+        initialValues={merge(
+          { theme_id: 0, feature_id: 0, start: 0 },
+          pageQuery
+        )}
+        onValuesChange={(changedValues, allValues) => {
+          setFilter((pre) => {
+            return merge({}, pre, changedValues);
+          });
+        }}
+      >
+        <TzFormItem
+          label={"按主题"}
+          name={"theme_id"}
+          style={{ marginBottom: "12px" }}
+        >
+          <TzCheckableTagNormal
+            items={[
+              {
+                label: "全部",
+                value: 0,
+              },
+              ...theme,
+            ]}
+          />
+        </TzFormItem>
+        <TzDivider />
+        <TzFormItem
+          label={"按特色"}
+          name={"feature_id"}
+          style={{ marginBottom: "12px" }}
+        >
+          <TzCheckableTagNormal
+            items={[
+              {
+                label: "全部",
+                value: 0,
+              },
+              ...feature,
+            ]}
+          />
+        </TzFormItem>
+        <TzDivider />
+        <TzFormItem label={"按时间"} name={"start"} style={{ marginBottom: 0 }}>
+          <TzCheckableTagNormal
+            items={[
+              {
+                label: "全部",
+                value: 0,
+              },
+              ...timeList,
+            ]}
+          />
+        </TzFormItem>
+      </TzForm>
+    );
+  }, [feature, theme]);
+
   return (
     <AntdRegistry>
       <div className="relative bg-[#F8F8F8] overflow-hidden">
@@ -168,67 +232,7 @@ export default function PolicyServices(props: any) {
             />
           </div>
           <div className="flex-1">
-            <TzCard className="!mt-3">
-              <TzForm
-                form={form}
-                onValuesChange={(changedValues, allValues) => {
-                  setFilter((pre) => {
-                    return merge({}, pre, changedValues);
-                  });
-                }}
-              >
-                <TzFormItem
-                  label={"按主题"}
-                  name={"theme_id"}
-                  initialValue={0}
-                  style={{ marginBottom: "12px" }}
-                >
-                  <TzCheckableTagNormal
-                    items={[
-                      {
-                        label: "全部",
-                        value: 0,
-                      },
-                      ...theme,
-                    ]}
-                  />
-                </TzFormItem>
-                <TzDivider />
-                <TzFormItem
-                  label={"按特色"}
-                  name={"feature_id"}
-                  initialValue={0}
-                  style={{ marginBottom: "12px" }}
-                >
-                  <TzCheckableTagNormal
-                    items={[
-                      {
-                        label: "全部",
-                        value: 0,
-                      },
-                      ...feature,
-                    ]}
-                  />
-                </TzFormItem>
-                <TzDivider />
-                <TzFormItem
-                  label={"按时间"}
-                  name={"start"}
-                  initialValue={0}
-                  style={{ marginBottom: 0 }}
-                >
-                  <TzCheckableTagNormal
-                    items={[
-                      {
-                        label: "全部",
-                        value: 0,
-                      },
-                      ...timeList,
-                    ]}
-                  />
-                </TzFormItem>
-              </TzForm>
-            </TzCard>
+            <TzCard className="!mt-3">{getForm}</TzCard>
             <FilterHeader
               className={"mb-3 pl-[10px] !py-[14px] mt-3"}
               left={
@@ -240,9 +244,13 @@ export default function PolicyServices(props: any) {
                     </span>{" "}
                     条结果
                   </div>
-                  <TzButton icon={<UndoOutlined />} className="!px-[12px]" onClick={()=>{
-                    form.resetFields()
-                  }}>
+                  <TzButton
+                    icon={<UndoOutlined />}
+                    className="!px-[12px]"
+                    onClick={() => {
+                      form.resetFields();
+                    }}
+                  >
                     重置选项
                   </TzButton>
                 </div>
@@ -272,11 +280,11 @@ export default function PolicyServices(props: any) {
               style={{ boxShadow: "0px 4px 16px 0px rgba(0,0,0,0.04)" }}
             >
               <TzTableServerPage
-                initialData={initialData}
                 columns={columns}
                 rowKey={"id"}
                 showHeader={false}
                 reqFun={getTableData}
+                defaultPagination={defaultPagination}
               />
             </TzCard>
           </div>

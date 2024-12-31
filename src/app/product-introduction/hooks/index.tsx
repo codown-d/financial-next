@@ -7,7 +7,6 @@ import ApplicationFail from "../components/ApplicationFail";
 import { TzButton } from "@/components/TzButton";
 import { productApply } from "@/fetch";
 import ProductApplicationG from "../components/ProductApplicationG";
-import { FinanceGuarantee } from "@/constant";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export default function useApplicationAction() {

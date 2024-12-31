@@ -19,7 +19,6 @@ async function getServerSideProps(context) {
     { cache: "no-store" }
   );
   const { feature, theme } = await feature_theme.json();
-  console.log(data.data.feature_id, data.data.theme_id);
   return merge(data, {
     data: {
       feature: find(feature, (item) => data.data.feature_id == item.id)?.name,
@@ -30,7 +29,6 @@ async function getServerSideProps(context) {
 
 export default async function ({ searchParams }) {
   const { data } = await getServerSideProps(searchParams);
-  console.log(data.theme);
   return (
     <AntdRegistry>
       <div className="bg-[#F8F8F8]">
@@ -68,8 +66,13 @@ export default async function ({ searchParams }) {
               <ClientButton />
             </div>
           </TzCard>
-          <Title title="关联产品" className="mb-5 mt-10" />
+          <div className="mb-10"></div>
+          {
+            false&&<> <Title title="关联产品" className="mb-5 " />
           <ClientFinanceCard />
+            </>
+          }
+         
         </div>
       </div>
     </AntdRegistry>

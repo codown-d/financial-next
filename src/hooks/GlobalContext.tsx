@@ -28,7 +28,6 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
   }>();
   useEffect(() => {
     getUserInfo().then(res=>{
-      console.log(res)
       // res.data['verify_status']=1
       setUserInfo(res.data)
       setFinanceApply(res.finance_apply)

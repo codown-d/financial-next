@@ -1,4 +1,4 @@
-import { MicroloansOp, purposeOp, repaymentMethodOp, selectOp } from "@/constant";
+import { MicroloansOp, purposeOp, repaymentMethodOp, selectOp, term_unit } from "@/constant";
 import { find, keys } from "lodash";
 
 export const formLabelObj = {
@@ -16,12 +16,12 @@ export const formLabelObj = {
 };
 
 export const getFormLabelList = (val: any)=>{
-  return keys(val).filter(item=>!['product_id','term_unit'].includes(item)).reduce((pre, item) => {
+  return keys(val).filter(item=>!['finance_type','application_form','product_id','term_unit'].includes(item)).reduce((pre, item) => {
     let text = val[item];
     if ("apply_money" === item) {
       text = `${text} 万元`;
     } else if ("term" === item) {
-      text = `${text} 个月`;
+      text = `${text} ${term_unit[val['term_unit']].text}`;
     } else if ("verify_type" === item) {
       text = find(MicroloansOp, (ite) => ite.value == text)?.label;
     } else if ("guarantee_method" === item) {

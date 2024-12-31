@@ -32,9 +32,10 @@ export default function PolicyStatistics(props:{onChange:(val:any)=>void}) {
         </span>
       </div>
       <div>
-        {arr.map((item) => {
+        {arr.map((item,index) => {
           return (
             <div
+            key={index}
               className={`flex justify-between ml-[32px] mr-[14px] leading-[44px] hover:text-[#3D5AF5] cursor-pointer ${
                 actItem === item ? "text-[#3D5AF5]" : ""
               }`}
@@ -52,9 +53,10 @@ export default function PolicyStatistics(props:{onChange:(val:any)=>void}) {
         <div className="mb-5">
           {keys(AREA_TYPE)
             .filter((item) => !arr.includes(item + ""))
-            .map((item) => {
+            .map((item,index) => {
               return (
                 <div
+                key={index}
                   className={`flex justify-between ml-[32px] mr-[14px] leading-[44px] hover:text-[#3D5AF5] cursor-pointer ${
                     actItem === item ? "text-[#3D5AF5]" : ""
                   }`}
