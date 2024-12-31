@@ -28,7 +28,6 @@ export default function ActionAffix() {
                     <div className="flex justify-between ">
                       <div>
                         <div className="text-[24px] font-bold  pl-2">
-                          {" "}
                           广元金服
                         </div>
                         <Image
@@ -41,7 +40,6 @@ export default function ActionAffix() {
                       </div>
                       <div>
                         <div className="text-[24px] font-bold pl-2">
-                          {" "}
                           广财企服
                         </div>
                         <Image
@@ -94,6 +92,18 @@ export default function ActionAffix() {
               alt={""}
             />
           }
+          onClick={()=>{
+            Modal.info({
+              title: "联系电话",
+              width: 500,
+              icon: null,
+              content: (
+                <div className="flex text-[24px] font-bold ">0839-3617508</div>
+              ),
+              okText: "关闭",
+              onOk() {},
+            });
+          }}
         />
       </TzFloatButtonGroup>
       <TzPageProgress />

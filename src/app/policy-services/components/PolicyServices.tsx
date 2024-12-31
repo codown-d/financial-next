@@ -41,6 +41,7 @@ export default function PolicyServices(props: any) {
   let { query } = props;
   const [dataTotal, setDataTotal] = useState(0);
   let pageQuery = JSON.parse(query);
+  console.log(pageQuery);
   let [filter, setFilter] = useState(pageQuery);
   let [defaultPagination] = useState({
     defaultCurrent: pageQuery.page || 1,
@@ -117,7 +118,9 @@ export default function PolicyServices(props: any) {
         )}
         onValuesChange={(changedValues, allValues) => {
           setFilter((pre) => {
-            return merge({}, pre, changedValues);
+            return merge({}, pre, changedValues, {
+              page: 1,
+            });
           });
         }}
       >
@@ -204,14 +207,18 @@ export default function PolicyServices(props: any) {
             />
             <div className="mt-2 flex items-start w-full pl-3">
               {hotWords.map((item, index) => (
-                <span className="mr-6 text-white-500 text-sm cursor-pointer" key={index} onClick={()=>{
-                  setFilter((pre) => {
-                    return {
-                      ...pre,
-                      keyword: item,
-                    };
-                  });
-                }}>
+                <span
+                  className="mr-6 text-white-500 text-sm cursor-pointer"
+                  key={index}
+                  onClick={() => {
+                    setFilter((pre) => {
+                      return {
+                        ...pre,
+                        keyword: item,
+                      };
+                    });
+                  }}
+                >
                   {item}
                 </span>
               ))}
@@ -248,7 +255,7 @@ export default function PolicyServices(props: any) {
                     icon={<UndoOutlined />}
                     className="!px-[12px]"
                     onClick={() => {
-                      form.resetFields();
+                      window.location.href = '/policy-services'; 
                     }}
                   >
                     重置选项

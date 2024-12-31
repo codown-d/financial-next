@@ -78,15 +78,21 @@ export const TzTableServerPage = forwardRef(
       reqSubFun(pagination, filters, sorter, extra);
     };
     useEffect(() => {
-      reqSubFun(pagination);
-    }, [reqSubFun]);
+      setPagination((pre) => ({ ...pre, current: 1 }));
+      reqSubFun({...pagination,current: 1});
+    }, [reqFun]);
     useImperativeHandle(
       ref,
       () => {
         let action = {
-          refresh(data) {},
+          refresh() {
+            setPagination((pre) => ({ ...pre, current: 1 }));
+            setTimeout(() => {
+              reqSubFun(pagination);
+            }, 0);
+          },
         };
-        return action;
+        return { ...action };
       },
       []
     );
