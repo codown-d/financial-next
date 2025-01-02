@@ -50,7 +50,7 @@ export default async function ({ searchParams }) {
               <span>{data.feature ? `特色：${data.feature}` : ""}</span>
             </div>
             <h2 className="text-[14px] font-bold text-center pt-4">
-              {timeFormat(data.add_time)}
+              {data.add_time_desc||timeFormat(data.add_time)}
             </h2>
             <div className="text-center py-4">
               来源：
