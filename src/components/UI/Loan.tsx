@@ -15,7 +15,7 @@ export default function Loan(props:{items:FinanceItemProps[]}) {
         return (
           <ScrollAnimationWrapper key={index} >
             <motion.div
-            className="w-[360px] mb-10"
+            className="w-[360px] mb-10 flex"
               variants={scrollAnimation}
               whileHover={{
                 scale: 1.1,
