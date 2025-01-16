@@ -7,8 +7,8 @@ const app = next({ dev });
 const handle = app.getRequestHandler();
 
 const options = {
-  key: fs.readFileSync('/gyzhjr.com_1736393166/privkey.key'),
-  cert: fs.readFileSync('/gyzhjr.com_1736393166/domain.crt'),
+  key: fs.readFileSync('./gyzhjr/Apache/privkey.key'),
+  cert: fs.readFileSync('./gyzhjr/Apache/domain.crt'),
 };
 
 app.prepare().then(() => {
