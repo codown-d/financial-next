@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -H 0.0.0.0",
+    "start": "next start -H 219.151.185.167",
     "pm": "pm2 start npm --name 'next-app' -- start"
   },
   "dependencies": {
