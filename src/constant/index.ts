@@ -113,7 +113,7 @@ export const MenuList = [
       },
       {
         label: "数据资产入表",
-        key: "/equity-investment",
+        key: "/data-elements",
       },
       {
         label: "供应链贸易",
