@@ -124,11 +124,6 @@ export const getPolicyList = async (
 ): Promise<IResponseData<any>> => {
   return http.get(api.policyList, params);
 };
-export const getPolicyThemeFeature = async (
-  params?: any
-): Promise<IResponseData<any>> => {
-  return http.get(api.policyThemeFeature, params);
-};
 export const getPolicyDetail = async (
   params?: any
 ): Promise<IResponseData<any>> => {

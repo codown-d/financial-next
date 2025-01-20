@@ -16,7 +16,7 @@ export default {
   userVerify:'/user/real/name/verify',
   phoneLogin:'/user/phone/login',
   policyList:'/enterprise/service/policy',
-  policyThemeFeature:'/admin/policy/theme/feature/list',
+  themeFeature:'/admin/policy/theme/feature/list',
   policyDetail:'/enterprise/service/policy/detail',
   servicePolicy:'/enterprise/service/policy',
   phoneModify:'/user/phone/modify/two',
@@ -31,6 +31,5 @@ export default {
   financeList:'/finance/all/list',
   applyList:'/apply/all/list',
   policyStatistics:'/enterprise/service/policy/statistics',
-  themeFeature:'/admin/policy/theme/feature/list',
   findPass:'/user/find/pass'
 }
