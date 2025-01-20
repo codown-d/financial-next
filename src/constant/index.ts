@@ -222,7 +222,7 @@ export const collateralOp = [
 export const PolicyData = [
   {
     title: "数据资产入表",
-    key: "/equity-investment",
+    key: "/data-elements",
     imgUrl: "/images/ggfw_2.png",
     descImgUrl: "/images/sjzcrb.png",
     desc: "数据资产入表指的是将企业或组织所拥有的各种数据资源，纳入到资产管理体系中进行有效管理和利用，实质是将数据作为一种有价值的资产进行确认、计量和报告。助力企业优化财务指标，提升融资能力。",
