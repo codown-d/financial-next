@@ -22,6 +22,7 @@ export default function TzTable<T extends object>(props: TzTableProps<T>) {
       className: `tz-table ${props.className}`,
     };
   }, [props]);
+  
   return <Table<T> {...realProps} />;
 }
 export interface TzTableServerPageProps extends TableProps {
@@ -79,8 +80,10 @@ export const TzTableServerPage = forwardRef(
     };
     useEffect(() => {
       setPagination((pre) => ({ ...pre, current: 1 }));
-      reqSubFun({...pagination,current: 1});
     }, [reqFun]);
+    useEffect(() => {
+      reqSubFun({...pagination});
+    }, [reqSubFun ,JSON.stringify(pagination) ]);
     useImperativeHandle(
       ref,
       () => {
@@ -96,7 +99,6 @@ export const TzTableServerPage = forwardRef(
       },
       []
     );
-
     return (
       <TzTable
         loading={loading}

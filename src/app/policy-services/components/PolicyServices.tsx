@@ -19,7 +19,7 @@ import dayjs from "dayjs";
 import { TzButton } from "@/components/TzButton";
 import { UndoOutlined } from "@ant-design/icons";
 import { merge } from "lodash";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 export interface DataType {
   id: any;
   title: string;
@@ -34,14 +34,14 @@ const getYears = (): number[] => {
   for (let i = 0; i < 5; i++) {
     years.push(currentYear - i);
   }
-
   return years;
 };
-export default function PolicyServices(props: any) {
-  let { query } = props;
+export default function PolicyServices() {
+  const searchParams = useSearchParams();
+  const query = searchParams.get("query"); // 获取查询参数 body_type
   const [dataTotal, setDataTotal] = useState(0);
-  let pageQuery = JSON.parse(query);
-  console.log(pageQuery);
+
+  let pageQuery = JSON.parse(query || "{}");
   let [filter, setFilter] = useState(pageQuery);
   let [defaultPagination] = useState({
     defaultCurrent: pageQuery.page || 1,
@@ -180,12 +180,13 @@ export default function PolicyServices(props: any) {
             alt={""}
             fill
             style={{ objectFit: "cover" }}
+            priority
           />
           <div className="mt-[60px] flex flex-col items-center z-10">
             <Image
               src={"/images/zcfw-title.png"}
               alt={""}
-              height={0}
+              height={108}
               width={240}
               className="mb-[56px]"
             />
@@ -228,6 +229,7 @@ export default function PolicyServices(props: any) {
         <div className="max-w-screen-lg  mx-auto overflow-hidden flex">
           <div className="w-[260px] pr-[20px] mt-3">
             <PolicyStatistics
+              area_type={filter?.area_type}
               onChange={(val) => {
                 setFilter((pre) => {
                   return {
@@ -255,7 +257,7 @@ export default function PolicyServices(props: any) {
                     icon={<UndoOutlined />}
                     className="!px-[12px]"
                     onClick={() => {
-                      window.location.href = '/policy-services'; 
+                      window.location.href = "/policy-services";
                     }}
                   >
                     重置选项

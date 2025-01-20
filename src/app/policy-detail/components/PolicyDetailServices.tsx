@@ -41,7 +41,6 @@ export default function () {
     });
   }, []);
   let data:any = useMemo(() => {
-    console.log(info,feature,theme)
     return {
       ...info,
       feature: find(feature, (item) => info?.feature_id == item.id)?.name,

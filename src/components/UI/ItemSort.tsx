@@ -17,7 +17,6 @@ export default function ItemSort(props: {
     return `/images/${obj[value]}`;
   }, [value]);
   useEffect(()=>{
-    console.log(props)
     setValue(props.value)
   },[props.value])
   return (
@@ -25,7 +24,6 @@ export default function ItemSort(props: {
       className={`flex items-center cursor-pointer ${className}`}
       onClick={() => {
         let f=value === FilterSortEmu.All?FilterSortEmu.Desc:value === FilterSortEmu.Desc ?FilterSortEmu.Asc : FilterSortEmu.All
-        console.log(f)
         setValue(f);
         props.onChange?.(f);
       }}

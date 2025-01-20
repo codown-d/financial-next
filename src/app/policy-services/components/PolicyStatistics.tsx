@@ -11,9 +11,9 @@ export interface DataType {
   name: string;
 }
 
-export default function PolicyStatistics(props:{onChange:(val:any)=>void}) {
+export default function PolicyStatistics(props:{area_type:any;onChange:(val:any)=>void}) {
   let [statistics, setStatistics] = useState({});
-  let [actItem, setActItem] = useState<Number | string>();
+  let [actItem, setActItem] = useState<Number | string>(props.area_type);
   let getPolicyStatistics = () => {
     policyStatistics().then((res) => {
       let data = res.data;
