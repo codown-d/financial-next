@@ -28,7 +28,7 @@ const FinancialProduct = () => {
     FinanceGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.FinanceGuarantee);
     ElectronicGuarantee.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.ElectronicGuarantee);
     Insurance.list=dataList.filter((item) => item.product_type === FinanceDataTypeEmu.Insurance);
-  let tabItems_1 = [BankLoans,Microloans, EmergencyRefinancing, EquityFinancing];
+  let tabItems_1 = [EquityFinancing,BankLoans,Microloans, EmergencyRefinancing, ];
   let tabItems_2 = [FinanceGuarantee, ElectronicGuarantee,Insurance];
     return [
       {
