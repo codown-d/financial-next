@@ -30,13 +30,13 @@ import { getFormLabelList } from "@/app/product-introduction/hooks/const";
 import { useFundModal } from "@/hooks";
 import SmartMatch from "./SmartMatch";
 let obj = {
-  "/bank-loan": FinanceDataTypeEmu.BankLoans,
-  "/small-loan": FinanceDataTypeEmu.Microloans,
-  "/emergency-refinancing": FinanceDataTypeEmu.EquityFinancing,
-  "/equity-financing": FinanceDataTypeEmu.EmergencyRefinancing,
-  "/performance-bond": FinanceDataTypeEmu.FinanceGuarantee,
-  "/ele-bond": FinanceDataTypeEmu.ElectronicGuarantee,
-  "/advance-payment-bond": FinanceDataTypeEmu.Insurance,
+  "/bank-loan/": FinanceDataTypeEmu.BankLoans,
+  "/small-loan/": FinanceDataTypeEmu.Microloans,
+  "/emergency-refinancing/": FinanceDataTypeEmu.EquityFinancing,
+  "/equity-financing/": FinanceDataTypeEmu.EmergencyRefinancing,
+  "/performance-bond/": FinanceDataTypeEmu.FinanceGuarantee,
+  "/ele-bond/": FinanceDataTypeEmu.ElectronicGuarantee,
+  "/advance-payment-bond/": FinanceDataTypeEmu.Insurance,
 };
 export default function FinancialSupermarket(props: { activeKey?: string }) {
   const router = useRouter();
@@ -84,6 +84,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   }, [filter, keyword]);
 
   useEffect(() => {
+    console.log(pathname)
     form.setFieldsValue({
       product_type: obj[pathname],
     });
