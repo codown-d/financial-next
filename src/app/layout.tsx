@@ -5,6 +5,7 @@ import { ConfigProvider } from "antd";
 import theme from "@/theme/themeConfig";
 import zhCN from "antd/locale/zh_CN";
 import "@/styles/globals.scss";
+import { GlobalProvider } from "@/hooks/GlobalContext";
 // 设置页面的元数据
 export const metadata: Metadata = {
   title: "广元市综合金融服务平台",
@@ -23,15 +24,15 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         <link rel="stylesheet" href="/fonts/index.css" type="text/css" />
       </head>
       <body>
-
-          <ConfigProvider
-            theme={theme}
-            button={{ autoInsertSpace: false }}
-            locale={zhCN}
-           
-          >
+        <ConfigProvider
+          theme={theme}
+          button={{ autoInsertSpace: false }}
+          locale={zhCN}
+        >
+          <GlobalProvider>
             <MainLayout>{children}</MainLayout>
-          </ConfigProvider>
+          </GlobalProvider>
+        </ConfigProvider>
       </body>
     </html>
   );

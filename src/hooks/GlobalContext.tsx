@@ -1,6 +1,7 @@
 "use client";
 import { getUserInfo } from "@/fetch";
 import { createContext, useState, useContext, useEffect } from "react";
+import { useMobileDetect } from ".";
 // 创建上下文
 interface UserInfoProps{
   token:string;
@@ -26,6 +27,7 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     finance_count:number;
     finance_count_not:number;
   }>();
+  let device = useMobileDetect()
   useEffect(() => {
     getUserInfo().then(res=>{
       // res.data['verify_status']=1
@@ -35,7 +37,7 @@ export function GlobalProvider({ children }: { children: React.ReactNode }) {
     })
   }, []);
   return (
-    <GlobalContext.Provider value={{ userInfo, setUserInfo ,financeApply}}>
+    <GlobalContext.Provider value={{ userInfo, setUserInfo ,financeApply,device}}>
       {children}
     </GlobalContext.Provider>
   );

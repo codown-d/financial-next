@@ -1,10 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
-import { Link as LinkScroll } from "react-scroll";
 import Logo from "../UI/Logo";
 import TzDropdownUI from "../UI/TzDropdownUI";
-import { TzButton } from "../TzButton";
 import useLoginModal from "../UI/login/LoginModal";
 import LoginButton from "../UI/login/LoginButton";
 

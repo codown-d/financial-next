@@ -5,12 +5,12 @@ import ActionAffix from "@/components/UI/ActionAffix";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 function Home() {
   return (
-    <AntdRegistry>
-      <FinancialBusiness />
-      <FinancialProduct />
-      <PolicyServices />
-      <ActionAffix />
-    </AntdRegistry>
+      <AntdRegistry>
+        <FinancialBusiness />
+        <FinancialProduct />
+        <PolicyServices />
+        <ActionAffix />
+      </AntdRegistry>
   );
 }
-export default Home
+export default Home;
