@@ -161,7 +161,7 @@ type ImgCodeType = "user_login" | "register";
 export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
   let [imgCode, setImgCode] = useState("");
   let [token, setToken] = useState("");
-  let getImgCode = useCallback(async () => {
+  let getImgCode = useCallback(async (type?:ImgCodeType) => {
     let uniqueToken = localStorage.getItem("uniqueToken");
     if (!uniqueToken) {
       let res = await getUnique();
@@ -171,7 +171,7 @@ export const useGetImgCode = (send_type: ImgCodeType = "user_login") => {
     }
     postImgCode({
       //  token, 
-      send_type
+      send_type:type||send_type
     }).then((res: any) => {
       setImgCode(res.img);
     });

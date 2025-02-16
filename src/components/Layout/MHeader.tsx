@@ -8,12 +8,12 @@ import { Button } from "antd-mobile";
 const Header = () => {
   return (
     <>
-      <header className={"fixed top-0 w-full  z-30 bg-white-500 transition-all "}>
-        <nav className="px-4 flex justify-between items-center">
-          <div className=" flex items-center">
+      <header className={"fixed top-0 w-full h-[32px]  z-30 bg-white-500 transition-all "}>
+        <nav className="px-4 flex justify-between items-center h-full">
+          <div className="flex items-center">
             <TzNextImage src="/images/logo.png" alt="logo" width={31} height={24} />
             <div>
-              <div className="text-[10px]  font-bold">
+              <div className="text-[10px] font-bold">
               广元市综合金融服务平台
               </div>
               <div className="text-[6px] leading-3 text-[#959595]">

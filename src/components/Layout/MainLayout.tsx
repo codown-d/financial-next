@@ -35,11 +35,15 @@ const MainLayout: React.FC<{
       document.head.appendChild(meta);
     }
   }, [device]);
+  let loginPage=useMemo(()=>{
+    console.log(window.location.pathname)
+    return window.location.pathname.indexOf('/mobile/login')!=-1
+  },[])
   return (
     <>
       <div className={`${styles.container} bg-slate-100`}>
-        {device.isMobile ? <MHeader /> : <Header />}
-        <main className={`${styles.main} ${device.isMobile?'pt-[40px]' :'pt-[60px]'} w-full`}>
+        {device.isMobile ? loginPage?null:<MHeader /> : <Header />}
+        <main className={`${styles.main} ${device.isMobile?'pt-[32px]' :'pt-[60px]'} w-full`}>
           <Suspense fallback={<Spin />}>{children}</Suspense>
         </main>
         {/* <TzFloatButtonGroup className="!w-14 !h-14" icon={<TzIcon className={"fa-phone"} />} trigger="click">

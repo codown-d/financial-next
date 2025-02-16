@@ -39,49 +39,13 @@ let obj = {
   "/advance-payment-bond/": FinanceDataTypeEmu.Insurance,
 };
 export default function FinancialSupermarket(props: { activeKey?: string }) {
-  const router = useRouter();
   const pathname = usePathname();
-  let { activeKey = TabType.service } = props;
   let [filter, setFilter] = useState({
     product_type: obj[pathname],
   });
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-  let itemsc = useMemo(() => {
-    return [
-      {
-        label: (
-          <div
-            className="flex flex-col items-center px-[76px]"
-            onClick={() => {
-              router.push(`/small-loan`);
-            }}
-          >
-            <TzNextImage src={"/images/rzfw.png"} width={88} height={88} />
-            <span>融资服务</span>
-          </div>
-        ),
-        key: TabType.service,
-        children: <FilterMarket filter={{ ...filter }} keyword={keyword} />,
-      },
-      {
-        label: (
-          <div
-            className="flex flex-col items-center px-[76px]"
-            onClick={() => {
-              router.push(`/performance-bond`);
-            }}
-          >
-            <TzNextImage src={"/images/zxfw.png"} width={88} height={88} />
-            <span>增信服务</span>
-          </div>
-        ),
-        key: TabType.credit,
-        children: <FilterMarket filter={{ ...filter }} keyword={keyword} />,
-      },
-    ];
-  }, [filter, keyword]);
 
   useEffect(() => {
     console.log(pathname)

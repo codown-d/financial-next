@@ -127,7 +127,6 @@ let EnterpriseNameModal = (props: {
         </TzFormItem>
         <TzFormItem label={" "} name={"click_protocol"} valuePropName="checked">
           <Checkbox>
-            {" "}
             我已阅读并同意
             <span
               className="text-[#3D5AF5]"
