@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 
-import LoginButton from "../UI/login/LoginButton";
 import TzNextImage from "../TzNextImage";
 import { Button } from "antd-mobile";
 

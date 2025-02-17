@@ -81,6 +81,7 @@ export const TzCheckableTagNormal = (props: TzCheckableTagNormalProps) => {
             key={item.value}
             checked={getChecked(item.value)}
             {...otherProps}
+            
             onChange={(checked) => handleChange(item.value, checked)}
           >
             {item.label}

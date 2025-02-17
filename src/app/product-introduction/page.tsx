@@ -9,6 +9,7 @@ import Guarantee from "./components/Guarantee";
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
 import { useGetLoanDetail } from "@/hooks";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function ProductIntroduction(props) {
   const searchParams = useSearchParams();
@@ -26,9 +27,10 @@ export default function ProductIntroduction(props) {
     }
   }, [dataInfo]);
 
+  let { device } = useGlobalContext();
   return (
     <AntdRegistry>
-      <div className="relative bg-[#F8F8F8] overflow-hidden ">
+      <div className="relative bg-[#F8F8F8] overflow-hidden h-[100vh]">
         <div className="h-[320px] relative flex justify-center z-0">
           <Image
             src={"/images/cp-banner.png"}
@@ -46,7 +48,7 @@ export default function ProductIntroduction(props) {
             />
           </div>
         </div>
-        <div className="max-w-screen-lg mx-auto mb-[90px] !mt-[-98px]">
+        <div className={`max-w-screen-lg mx-auto mb-[90px] !mt-[-98px] ${device.isMobile?"px-4":""}`}>
           {getDataTypeDom}
         </div>
       </div>

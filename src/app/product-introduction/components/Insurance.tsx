@@ -60,7 +60,7 @@ export default function Fund(props: { id: string }) {
                 </span>
               </div>
 
-              <div className="flex mt-10 w-[772px] text-[#999]">
+              <div className="flex mt-10 w-0 flex-1 text-[#999]">
                 {dataInfo?.application_condition}
               </div>
             </div>

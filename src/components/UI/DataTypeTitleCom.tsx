@@ -30,14 +30,14 @@ export default function DataTypeTitleCom(props: DataTypeTitleProps) {
     );
   } else {
     return (
-      <div className="min-w-[260px] flex items-center">
+      <div className=" flex items-start">
         <span
-          className="font-extrabold max-w-[160px] text-2xl text-[#333333] text-center "
+          className="font-extrabold max-w-[160px] text-[24px] text-[#333333] text-center "
           title={name}
         >
           {name}
         </span>
-        <span className="ml-3 bg-gradient-to-r to-[#7B9DF1] text-[12px] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
+        <span className="ml-3 mt-1 min-w-[75px] bg-gradient-to-r to-[#7B9DF1] text-[12px] py-1 px-3 leading-[14px] from-[#3C5BF6] rounded-[12px_4px_12px_4px] text-white-500">
           {node}
         </span>
       </div>

@@ -13,7 +13,7 @@ export default function Loan(props:{items:FinanceItemProps[]}) {
     <div className="grid grid-flow-row grid-cols-1 screen_1080:grid-cols-2 screen_1440:grid-cols-3">
       {items.map((item, index: number) => {
         return (
-          <ScrollAnimationWrapper key={index} >
+          <ScrollAnimationWrapper key={index} className='flex justify-center'>
             <motion.div
             className="w-[360px] mb-10 flex"
               variants={scrollAnimation}

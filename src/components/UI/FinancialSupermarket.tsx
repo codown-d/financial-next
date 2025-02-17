@@ -46,9 +46,7 @@ export default function FinancialSupermarket(props: { activeKey?: string }) {
   let [keyword, setKeyword] = useState("");
   let [open, setOpen] = useState(false);
   const [form] = Form.useForm();
-
   useEffect(() => {
-    console.log(pathname)
     form.setFieldsValue({
       product_type: obj[pathname],
     });

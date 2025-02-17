@@ -88,7 +88,7 @@ export default function Guarantee(props: { id: string }) {
             logoUrl={dataInfo?.financial_organs?.logo}
             className="w-[184px]"
           />
-          <div className="flex flex-row border-l-[1px] flex-1 border-dashed items-center border-[#EEEEEE] pl-[50px]">
+          <div className="w-0 flex flex-row border-l-[1px] flex-1 border-dashed items-center border-[#EEEEEE] pl-[50px]">
             <div className="">
               <div className="flex mb-5">
                 <span className="font-extrabold text-2xl text-[#333333] ">

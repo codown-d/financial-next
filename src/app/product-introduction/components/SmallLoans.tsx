@@ -29,9 +29,9 @@ export default function SmallLoans(props: { id: string }) {
   let { repaymentMethodLabel } = useRepaymentMethod(dataInfo);
   let [form] = Form.useForm();
   let getSegmentedDom = useMemo(() => {
-    if(dataInfo?.application_form==1){
+    if (dataInfo?.application_form == 1) {
       return dataInfo?.application_info;
-    }else if (segmentedValue === FinancingEntityEmu.Personal) {
+    } else if (segmentedValue === FinancingEntityEmu.Personal) {
       return dataInfo?.application_info_user;
     } else {
       return dataInfo?.application_info_enterprise;
@@ -55,12 +55,37 @@ export default function SmallLoans(props: { id: string }) {
     ].filter((item) => {
       if (dataInfo?.application_form == 1) return true;
       else {
-        return item.value == dataInfo?.application_form||dataInfo?.application_form==4;
+        return (
+          item.value == dataInfo?.application_form ||
+          dataInfo?.application_form == 4
+        );
       }
     });
     setSegmentedValue(arr[0]?.value);
     return arr;
   }, [dataInfo]);
+  let { device } = useGlobalContext();
+  let getDom = useMemo(() => {
+    return (
+      <>
+        <div
+          className={`mt-5 flex ${
+            device.isMobile ? "flex-col mb-4" : " mb-10"
+          }`}
+        >
+          <DescMethod
+            method={"担保方式"}
+            className="mr-3 mb-4"
+            desc={dataTypeLabel}
+          />
+          <DescMethod method={"还款方式"} desc={repaymentMethodLabel} />
+        </div>
+        <div className="flex">
+          <DataTypeCom {...dataInfo} />
+        </div>
+      </>
+    );
+  }, [dataInfo, dataTypeLabel, repaymentMethodLabel, device]);
   return (
     <>
       <Submit
@@ -77,65 +102,62 @@ export default function SmallLoans(props: { id: string }) {
       <Fail />
       <TzCard
         className="flex-1 w-full"
-        styles={{ body: { padding: "30px 0px" } }}
+        styles={{ body: { padding: "30px 10px" } }}
       >
         <div className="flex">
           <LogoInfo
-            size="large"
+            size={device.isMobile ? "small" : "large"}
             logo={dataInfo?.financial_organs?.organs_name}
             logoUrl={dataInfo?.financial_organs?.logo}
-            className="w-[184px]"
           />
-          <div className="flex flex-row border-l-[1px] flex-1 border-dashed border-[#EEEEEE] pl-[50px]">
-            <div className="flex flex-col mr-9">
-              <div className="flex">
-                <DataTypeTitleCom
-                  dataType={dataInfo?.dataType}
-                  amount={dataInfo?.amount}
-                  name={dataInfo?.name}
-                  productType={dataInfo?.productType}
-                />
-                <span className="ml-5 flex items-start text-[#3D5AF5]">
+          <div
+            className={`w-0 flex flex-row border-l-[1px] flex-1 border-dashed border-[#EEEEEE] ${
+              device.isMobile ? "pl-[10px]" : "pl-[50px]"
+            }`}
+          >
+            <div className={`flex flex-col ${device.isMobile ? "" : "mr-9"}`}>
+              <div className={`flex ${device.isMobile ? "flex-col" : ""}`}>
+                <div className="mr-5">
+                  <DataTypeTitleCom
+                    dataType={dataInfo?.dataType}
+                    amount={dataInfo?.amount}
+                    name={dataInfo?.name}
+                    productType={dataInfo?.productType}
+                  />
+                </div>
+                <span className=" flex items-start text-[#3D5AF5]">
                   <TzIcon className={"fa-location-dot text-sm mr-[6px] mt-1"} />
                   {dataInfo?.financial_organs.area_desc}
                 </span>
               </div>
-
-              <div className="mt-5 flex">
-                <DescMethod
-                  method={"担保方式"}
-                  className="mr-3"
-                  desc={dataTypeLabel}
-                />
-                <DescMethod method={"还款方式"} desc={repaymentMethodLabel} />
-              </div>
-              <div className="flex mt-10">
-                <DataTypeCom {...dataInfo} />
-              </div>
+              {device.isMobile ? null : getDom}
             </div>
           </div>
-          <div className="w-[245px] flex flex-col justify-center items-center">
-            <TzButton
-              type={"primary"}
-              shape={"round"}
-              onClick={() => {
-                if (
-                  userInfo?.verify_status == 3 ||
-                  userInfo?.enterprise_verify_status == 3
-                ) {
-                  setSubmitVisible(true);
-                } else {
-                  message.error("暂无权限请实名之后申请！");
-                }
-              }}
-            >
-              立即申请
-            </TzButton>
-            <span className="text-xs font-bold mt-5 text-[#999999]">
-              <CountUp end={dataInfo?.success_count} /> 笔需求对接成功
-            </span>
-          </div>
+          {device.isMobile ? null : (
+            <div className="w-[245px] flex flex-col justify-center items-center">
+              <TzButton
+                type={"primary"}
+                shape={"round"}
+                onClick={() => {
+                  if (
+                    userInfo?.verify_status == 3 ||
+                    userInfo?.enterprise_verify_status == 3
+                  ) {
+                    setSubmitVisible(true);
+                  } else {
+                    message.error("暂无权限请实名之后申请！");
+                  }
+                }}
+              >
+                立即申请
+              </TzButton>
+              <span className="text-xs font-bold mt-5 text-[#999999]">
+                <CountUp end={dataInfo?.success_count} /> 笔需求对接成功
+              </span>
+            </div>
+          )}
         </div>
+        {device.isMobile ? getDom : null}
       </TzCard>
       <TzCard className="flex-1 w-full !mt-3">
         <DescInfo title={"服务对象"}>
@@ -168,7 +190,7 @@ export default function SmallLoans(props: { id: string }) {
         className="flex-1 w-full !mt-3"
         title={
           <TzSegmented
-          value={segmentedValue}
+            value={segmentedValue}
             onChange={(val: FinancingEntityEmu) => setSegmentedValue(val)}
             options={getOpt}
           />
