@@ -67,7 +67,7 @@ export default function loginPage() {
                   <img
                     className="flex-1 flex h-10 w-full"
                     src={imgCode}
-                    onClick={getImgCode}
+                    onClick={()=>getImgCode()}
                   />
                 </TzFormItem>
               </div>

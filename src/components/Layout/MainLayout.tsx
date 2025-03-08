@@ -36,7 +36,6 @@ const MainLayout: React.FC<{
     }
   }, [device]);
   let loginPage=useMemo(()=>{
-    console.log(window.location.pathname)
     return window.location.pathname.indexOf('/mobile/login')!=-1
   },[])
   return (
