@@ -1,13 +1,11 @@
 "use client";
 import Image from "next/image";
-import React, { useMemo } from "react";
-import getScrollAnimation from "../utils/getScrollAnimation";
+import React from "react";
 import TitleBg from "./UI/TitleBg";
 import InnovativeServicesCard from "./UI/InnovativeServicesCard";
 import TzIcon from "./TzIcon";
 import { Divider } from "antd";
 import { TzButton } from "./TzButton";
-import SeeMore from "./UI/SeeMore";
 
 const FinancialServices = () => {
   let item = [
@@ -33,7 +31,6 @@ const FinancialServices = () => {
       },
     },
   ];
-  const scrollAnimation = useMemo(() => getScrollAnimation(), []);
   return (
     <>
       <TitleBg
@@ -47,11 +44,11 @@ const FinancialServices = () => {
             <InnovativeServicesCard key={index} className={'w-[320px] sm:w-[280px]'}>
               <div className="relative !h-[400px] overflow-hidden group bg-white shadow-[0_4px_16px_0_rgba(0,0,0,0.1)] rounded-lg hover:bg-white-500 transition-all duration-300 ">
                 <div className="absolute inset-0 flex opacity-100 group-hover:opacity-0 transition-opacity duration-300">
-                  <Image
+                  <img
                     src={item.coverImg}
                     alt={""}
-                    layout="fill"
-                    objectFit="cover"
+                    width={'100%'}
+                    height={'100%'}
                   />
                   <div className="flex flex-col rounded-2xl h-[140px] absolute bottom-0 w-full bg-white-500 py-[30px] px-[30px]">
                     <span className="font-medium text-[24px] text-[#333333] leading-[36px]">

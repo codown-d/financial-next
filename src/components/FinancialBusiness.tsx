@@ -253,6 +253,29 @@ const FinancialBusiness = (props) => {
                 智能匹配
               </TzButton>
             </div>
+            <div className="w-[360px] relative ml-4 flex items-center py-[10px]">
+              <img
+                src={"/images/aikefu.webp"}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  boxShadow: "0 0 15px 5px rgba(0, 0, 0, 0.3)",
+                  borderRadius: "16px",
+                }}
+              />
+              <TzButton
+                onClick={() => {
+                  window.open(
+                    "http://219.151.183.115:3001/chat/lkVEVPzW0dD8OcEZ",
+                    "_blank"
+                  );
+                }}
+                className="text-[16px] font-bold !w-[180px] !text-white-500 !absolute bottom-[48px] left-[90px] !bg-gradient-to-l !from-[#7B9DF1] !to-[#3C5BF6] !shadow-[0px_4px_10px_rgba(14,38,162,0.42)] border-2 border-white"
+                shape={"round"}
+              >
+                智能客服
+              </TzButton>
+            </div>
           </div>
         </motion.div>
       </ScrollAnimationWrapper>

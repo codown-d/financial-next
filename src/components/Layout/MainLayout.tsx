@@ -5,6 +5,7 @@ import { Suspense, useEffect, useMemo } from "react";
 import { Spin } from "antd";
 import MHeader from "./MHeader";
 import Header from "./Header";
+import Footer from "./Footer";
 const MainLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
@@ -36,7 +37,10 @@ const MainLayout: React.FC<{
     }
   }, [device]);
   let loginPage=useMemo(()=>{
+    if (typeof window !== "undefined") {
+      // Client-side-only code
     return window.location.pathname.indexOf('/mobile/login')!=-1
+    }
   },[])
   return (
     <>
@@ -50,7 +54,7 @@ const MainLayout: React.FC<{
             <TzFloatButton icon={<TzIcon className={"fa-wand-magic-sparkles"} />} />
           </TzFloatButtonGroup> */}
 
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   );
