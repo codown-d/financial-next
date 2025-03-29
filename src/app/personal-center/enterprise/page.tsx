@@ -88,8 +88,8 @@ let EnterpriseNameModal = (props: {
         >
           <Upload
             maxCount={1}
-            name={"image"}
-            action={`/api/upload/image`}
+            name={"image"} 
+            action={`https://admin.gyzhjr.com/upload/image`}
             listType="picture-card"
             fileList={fileList}
             onChange={({ fileList }) => {

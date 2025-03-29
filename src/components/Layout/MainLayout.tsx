@@ -2,10 +2,11 @@
 import styles from "./MainLayout.module.css";
 import { GlobalProvider, useGlobalContext } from "@/hooks/GlobalContext";
 import { Suspense, useEffect, useMemo } from "react";
-import { Spin } from "antd";
+import { FloatButton, Spin } from "antd";
 import MHeader from "./MHeader";
 import Header from "./Header";
 import Footer from "./Footer";
+import TzNextImage from "../TzNextImage";
 const MainLayout: React.FC<{
   children: React.ReactNode;
 }> = ({ children }) => {
@@ -36,24 +37,27 @@ const MainLayout: React.FC<{
       document.head.appendChild(meta);
     }
   }, [device]);
-  let loginPage=useMemo(()=>{
+  let loginPage = useMemo(() => {
     if (typeof window !== "undefined") {
       // Client-side-only code
-    return window.location.pathname.indexOf('/mobile/login')!=-1
+      return window.location.pathname.indexOf("/mobile/login") != -1;
     }
-  },[])
+  }, []);
   return (
     <>
       <div className={`${styles.container} bg-slate-100`}>
-        {device.isMobile ? loginPage?null:<MHeader /> : <Header />}
-        <main className={`${styles.main} ${device.isMobile?'pt-[32px]' :'pt-[60px]'} w-full`}>
+        {device.isMobile ? loginPage ? null : <MHeader /> : <Header />}
+        <main
+          className={`${styles.main} ${
+            device.isMobile ? "pt-[32px]" : "pt-[60px]"
+          } w-full`}
+        >
           <Suspense fallback={<Spin />}>{children}</Suspense>
         </main>
         {/* <TzFloatButtonGroup className="!w-14 !h-14" icon={<TzIcon className={"fa-phone"} />} trigger="click">
             <TzFloatButton />
             <TzFloatButton icon={<TzIcon className={"fa-wand-magic-sparkles"} />} />
           </TzFloatButtonGroup> */}
-
         <Footer />
       </div>
     </>

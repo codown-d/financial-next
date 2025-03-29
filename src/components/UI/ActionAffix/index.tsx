@@ -2,16 +2,21 @@
 import Image from "next/image";
 import TzFloatButton, { TzFloatButtonGroup } from "../../TzIFloatButton";
 import TzPageProgress from "../../TzPageProgress";
-import { Modal } from "antd";
+import { FloatButton, Modal } from "antd";
 import SmartMatch from "../SmartMatch";
 import { useState } from "react";
 export default function ActionAffix() {
   let [open, setOpen] = useState(false);
+  let insetInlineEnd = 25
   return (
     <>
+      <FloatButton
+        style={{ position: "fixed", bottom: "270px", insetInlineEnd,padding:0}}
+        icon={<Image src={`/images/ai.svg`} height={52} width={52} alt={""} />}
+      />
       <TzFloatButtonGroup
         shape="square"
-        style={{ position: "fixed", bottom: "130px", insetInlineEnd: 25 }}
+        style={{ position: "fixed", bottom: "130px", insetInlineEnd}}
         className="w-7 bg-gradient-to-br !from-[#7B9DF1] !to-[#3C5BF6] shadow-[0_8px_12px_0_rgba(0,8,170,0.16)] !rounded-[36px]"
       >
         <TzFloatButton
@@ -76,7 +81,9 @@ export default function ActionAffix() {
                   width: 500,
                   icon: null,
                   content: (
-                    <div className="flex text-[24px] font-bold ">0839-3617508</div>
+                    <div className="flex text-[24px] font-bold ">
+                      0839-3617508
+                    </div>
                   ),
                   okText: "关闭",
                   onOk() {},
@@ -95,13 +102,12 @@ export default function ActionAffix() {
               alt={""}
             />
           }
-          onClick={()=>{
-            setOpen(true)
+          onClick={() => {
+            setOpen(true);
           }}
         />
       </TzFloatButtonGroup>
-      
-     <SmartMatch open={open} setOpen={setOpen}/>
+      <SmartMatch open={open} setOpen={setOpen} />
       <TzPageProgress />
     </>
   );

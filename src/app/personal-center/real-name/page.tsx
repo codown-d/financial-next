@@ -91,7 +91,7 @@ let RealNameModal = (props: {
           <Upload
             maxCount={1}
             name={"image"}
-            action={`/api/upload/image`}
+            action={`https://admin.gyzhjr.com/upload/image`}
             listType="picture-card"
             fileList={fileList}
             onChange={({ fileList }) => {
@@ -128,10 +128,10 @@ let RealNameModal = (props: {
           >
             <TzInput placeholder="请输入" size={"large"} />
           </TzFormItem>
-          <TzFormItem label=" " className="flex-1">
+          <div className="flex-1 w-0">
             <SendCodeBtn
-              disabled={verify_status == 3} formIns={formIns} fields={["phone", "send_type"]} />
-          </TzFormItem>
+              formIns={formIns} fields={["phone", "send_type"]} />
+          </div>
         </div>
         <TzFormItem label={" "} name={"click_protocol"} valuePropName="checked">
           <Checkbox > 我已阅读并同意<span className="text-[#3D5AF5]" onClick={(e) => {
