@@ -33,7 +33,7 @@ export function dealProduct(item) {
     success_count: item.success_count<50 ? Math.ceil(Math.random() * 150+50): item.success_count,
     applicationInformation:item.application_info,
     productIntroduction:item.product_intro,
-    beneficiary:item.product_intro,
+    beneficiary:item.beneficiary||'-',
     serviceObjects:item.service_object,
     guaranteePeriod:item.term,
     guaranteeAmount:item.highest_money,
