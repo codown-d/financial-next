@@ -34,7 +34,6 @@ yarn-error.log*
 dist
 dist/*
 dist.zip
-
 .vscode
-out
+out/**
 out/*
