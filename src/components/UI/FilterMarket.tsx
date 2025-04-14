@@ -17,14 +17,21 @@ export default function FilterMarket(props: { filter: any; keyword?: string }) {
     rate_sort: FilterSortEmu.All,
   });
   let [dataList, setMarketDataList] = useState([]);
+  let [count, setCount] = useState(0);
+  let [pag, setPag] = useState({ page: 1, limit: 10 });
+
   const [form] = Form.useForm();
 
   let getProductFn = useCallback(() => {
-    getProduct({ ...filter, ...filterData, name: keyword }).then((res) => {
-      let { dataList } = res;
-      setMarketDataList(dataList.map(dealProduct));
-    });
-  }, [filter, filterData, keyword]);
+    getProduct({ ...filter, ...filterData, name: keyword, ...pag }).then(
+      (res) => {
+        let { dataList, count } = res;
+        console.log(res);
+        setCount(count);
+        setMarketDataList(dataList.map(dealProduct));
+      }
+    );
+  }, [filter, filterData, keyword,pag]);
   useEffect(() => {
     getProductFn();
   }, [getProductFn]);
@@ -33,23 +40,21 @@ export default function FilterMarket(props: { filter: any; keyword?: string }) {
   ) => {
     if (value === "rate_sort") {
       form.setFieldsValue({
-        term_sort: '',
-        highest_money_sort: '',
+        term_sort: "",
+        highest_money_sort: "",
       });
     } else if (value === "term_sort") {
       form.setFieldsValue({
-        rate_sort: '',
-        highest_money_sort: '',
+        rate_sort: "",
+        highest_money_sort: "",
       });
     } else if (value === "highest_money_sort") {
-      form.setFieldsValue({ rate_sort: '', term_sort: '' });
+      form.setFieldsValue({ rate_sort: "", term_sort: "" });
     }
   };
   return (
     <>
-      <div className="mb-2 mt-1 ml-3 text-[#999]">
-        共{dataList.length}条结果
-      </div>
+      <div className="mb-2 mt-1 ml-3 text-[#999]">共{count}条结果</div>
       <FilterHeader
         className={"!mb-3"}
         left={"产品列表"}
@@ -61,21 +66,21 @@ export default function FilterMarket(props: { filter: any; keyword?: string }) {
               setFilterData({ ...changedValues });
             }}
           >
-            <TzFormItem noStyle name={"rate_sort"} initialValue={''}>
+            <TzFormItem noStyle name={"rate_sort"} initialValue={""}>
               <ItemSort
                 label={"利率"}
                 className="mr-10"
                 onChange={() => handleSelect("rate_sort")}
               />
             </TzFormItem>
-            <TzFormItem noStyle name={"term_sort"} initialValue={''}>
+            <TzFormItem noStyle name={"term_sort"} initialValue={""}>
               <ItemSort
                 label={"期限"}
                 className="mr-10"
                 onChange={() => handleSelect("term_sort")}
               />
             </TzFormItem>
-            <TzFormItem noStyle name={"highest_money_sort"} initialValue={''}>
+            <TzFormItem noStyle name={"highest_money_sort"} initialValue={""}>
               <ItemSort
                 label={"最高额度"}
                 onChange={() => handleSelect("highest_money_sort")}
@@ -90,7 +95,13 @@ export default function FilterMarket(props: { filter: any; keyword?: string }) {
         })}
       </TzSpace>
       <div className="mt-[60px] mb-[90px] flex justify-end">
-        <Pagination defaultCurrent={6} total={dataList.length} />
+        <Pagination
+          defaultCurrent={pag.page}
+          total={count}
+          onChange={(page: number, limit: number) => {
+            setPag({ page, limit });
+          }}
+        />
       </div>
     </>
   );
