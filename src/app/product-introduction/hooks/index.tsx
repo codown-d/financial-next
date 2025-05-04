@@ -277,7 +277,7 @@ export default function useApplicationAction() {
       <>
         <ModalForm
           width={900}
-          title="业务申请"
+          title={<h2 className="text-center text-[36px] py-[20px]">业务申请</h2>}
           formRef={formRef}
           modalProps={{
             destroyOnClose: true,
