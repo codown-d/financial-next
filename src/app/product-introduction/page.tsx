@@ -36,6 +36,7 @@ export default function ProductIntroduction(props) {
             src={"/images/cp-banner.png"}
             alt={""}
             fill
+            priority 
             style={{ objectFit: "cover" }}
           />
           <div className="max-w-screen-lg mx-auto mt-[60px] flex flex-col items-start z-10 w-full">

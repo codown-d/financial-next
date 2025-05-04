@@ -26,7 +26,6 @@ export default function FilterMarket(props: { filter: any; keyword?: string }) {
     getProduct({ ...filter, ...filterData, name: keyword, ...pag }).then(
       (res) => {
         let { dataList, count } = res;
-        console.log(res);
         setCount(count);
         setMarketDataList(dataList.map(dealProduct));
       }
