@@ -70,7 +70,7 @@ export default function ProductApplication(props: {
         label="公司名称/姓名"
         name="name"
         disabled
-        rules={[{ required: true }]}
+        rules={[{ required: true ,message: "请输入公司名称/姓名"}]}
         colProps={{
           span: 12,
         }}
@@ -79,7 +79,7 @@ export default function ProductApplication(props: {
         label="证件号码"
         disabled
         name={"idcard"}
-        rules={[{ required: true }]}
+        rules={[{ required: true ,message: "请输入证件号码"}]}
         colProps={{
           span: 12,
         }}
@@ -88,7 +88,7 @@ export default function ProductApplication(props: {
         label="申请金额"
         name={"apply_money"}
         addonAfter={<a>万元</a>}
-        rules={[{ required: true }]}
+        rules={[{ required: true ,message: "请输入申请金额"}]}
         colProps={{
           span: 12,
         }}
@@ -112,7 +112,7 @@ export default function ProductApplication(props: {
       <ProFormSelect
         label="反担保措施"
         name={"guarantee_method"}
-        rules={[{ required: true }]}
+        rules={[{ required: true,message: "请选择反担保措施" }]}
         fieldProps={{ options: selectOp }}
         colProps={{
           span: 12,
@@ -121,7 +121,7 @@ export default function ProductApplication(props: {
       <ProFormSelect
         label="用途"
         name={"purpose"}
-        rules={[{ required: true }]}
+        rules={[{ required: true,message: "请选择用途" }]}
         fieldProps={{ options: purposeOp }}
         colProps={{
           span: 12,
@@ -130,7 +130,7 @@ export default function ProductApplication(props: {
       <ProFormSelect
         label="还款方式"
         name={"repayment_method"}
-        rules={[{ required: true }]}
+        rules={[{ required: true ,message: "请选择还款方式"}]}
         fieldProps={{ options: repaymentMethodOp }}
         colProps={{
           span: 12,
@@ -139,7 +139,7 @@ export default function ProductApplication(props: {
       <ProFormText
         label="联系方式"
         name={"user_name"}
-        rules={[{ required: true }]}
+        rules={[{ required: true,message: "请联系方式" }]}
         disabled
         colProps={{
           span: 12,

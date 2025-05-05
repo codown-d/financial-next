@@ -11,20 +11,21 @@ import {
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import {
   ProFormDigit,
+  ProFormInstance,
   ProFormSelect,
   ProFormText,
 } from "@ant-design/pro-components";
 import { ConfigProvider, Form, FormInstance } from "antd";
 import zhCN from "antd/locale/zh_CN";
-import { useCallback, useEffect, useMemo } from "react";
+import { MutableRefObject, useCallback, useEffect, useMemo } from "react";
 
 export default function ProductApplication(props: {
-  formIns: FormInstance<any>;
+  formRef: MutableRefObject<ProFormInstance>;
 }) {
-  let { formIns } = props;
+  let { formRef } = props;
   let { userInfo } = useGlobalContext();
   useEffect(() => {
-    formIns.setFieldsValue({
+    formRef.current.setFieldsValue({
       name: userInfo?.enterprise?.name,
       idcard: userInfo?.enterprise?.idcard,
       term: undefined,
@@ -43,7 +44,7 @@ export default function ProductApplication(props: {
       <ProFormText
         label="客户名称"
         name={"name"}
-        rules={[{ required: true }]}
+        rules={[{ required: true , message: "请输入客户名称"}]}
         disabled
         colProps={{
           span: 12,
@@ -53,7 +54,7 @@ export default function ProductApplication(props: {
         label="证件号码"
         disabled
         name={"idcard"}
-        rules={[{ required: true }]}
+        rules={[{ required: true , message: "请输入证件号码" }]}
         colProps={{
           span: 12,
         }}
@@ -62,7 +63,7 @@ export default function ProductApplication(props: {
         label="申请金额"
         name={"apply_money"}
         addonAfter={<a>万元</a>}
-        rules={[{ required: true }]}
+        rules={[{ required: true, message: "请输入申请金额" }]}
         colProps={{
           span: 12,
         }}
@@ -86,7 +87,7 @@ export default function ProductApplication(props: {
       <ProFormSelect
         label="担保方式"
         name={"guarantee_method"}
-        rules={[{ required: true }]}
+        rules={[{ required: true ,message: "请选择担保方式" }]}
         fieldProps={{ options: selectOp }}
         colProps={{
           span: 12,
@@ -95,7 +96,7 @@ export default function ProductApplication(props: {
       <ProFormText
         label="项目名称"
         name={"project_name"}
-        rules={[{ required: true }]}
+        rules={[{ required: true,message: "请输入项目名称" }]}
         colProps={{
           span: 12,
         }}
@@ -103,7 +104,7 @@ export default function ProductApplication(props: {
       <ProFormText
         label="保函受益人名称"
         name={"beneficiary"}
-        rules={[{ required: true }]}
+        rules={[{ required: true,message: "请输入保函受益人名称" }]}
         colProps={{
           span: 12,
         }}

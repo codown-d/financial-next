@@ -1,9 +1,14 @@
 "use client";
-import { TzTableServerPage } from "@/components/TzTable";
 import { financeList } from "@/fetch";
-import { useCallback } from "react";
-import { ProColumns, ProTable } from "@ant-design/pro-components";
+import {
+  DrawerForm,
+  ProColumns,
+  ProDescriptions,
+  ProTable,
+} from "@ant-design/pro-components";
 import { action_status_filter, purpose, term } from "@/constant";
+import { TzButton } from "@/components/TzButton";
+import { Button, Image } from "antd";
 
 export default function Financing() {
   let columns: ProColumns<any>[] = [
@@ -15,7 +20,7 @@ export default function Financing() {
     },
     {
       title: "金额",
-      dataIndex: "apply_money", 
+      dataIndex: "apply_money",
       render(text, record) {
         return record.apply_money + "万元";
       },
@@ -36,25 +41,34 @@ export default function Financing() {
         return record.user.user_name;
       },
     },
-
     {
       title: "受理状态",
       dataIndex: "action_status",
       valueEnum: action_status_filter,
     },
+
+ 
   ];
   return (
     <ProTable<any>
       columns={columns}
       request={async (params, sorter, filter) => {
-        let res = await financeList();
+        let res = await financeList({
+          ...params,
+          page: params.current,
+          limit: 10,
+        });
         return {
           data: res.dataList,
+          total: res.count, // 重要！告诉 ProTable 有多少条记录
           success: true,
         };
       }}
       rowKey="id"
       search={false}
+      pagination={{
+        pageSize: 10,
+      }}
     />
   );
 }
