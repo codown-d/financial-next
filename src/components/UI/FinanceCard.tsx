@@ -163,9 +163,9 @@ export default function (props: FinanceCardProps) {
               >
                 查看详情
               </TzButton>
-              <div className="mr-[23px] mt-[-4px]">
-                <Image src={financial_organs?.logo} alt={""} width={52} height={52} />
-                <span className="leading-[14px]">{financial_organs?.organs_name}</span>
+              <div className="mr-[23px] mt-[-4px] flex flex-col">
+                <TzNextImage src={financial_organs?.logo} alt={""} style={{width:'52px',height:'52px'}} />
+                <span className="leading-[14px] mt-1">{financial_organs?.organs_name}</span>
               </div>
             </div>
           </div>

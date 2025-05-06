@@ -5,6 +5,7 @@ import TzPageProgress from "../../TzPageProgress";
 import { FloatButton, Modal } from "antd";
 import SmartMatch from "../SmartMatch";
 import { useState } from "react";
+import TzImage from "@/components/TzImage";
 export default function ActionAffix() {
   let [open, setOpen] = useState(false);
   let insetInlineEnd = 25
@@ -12,7 +13,7 @@ export default function ActionAffix() {
     <>
       <FloatButton
         style={{ position: "fixed", bottom: "270px", insetInlineEnd,padding:0}}
-        icon={<Image src={`/images/ai.svg`} height={52} width={52} alt={""} />}
+        icon={<TzImage src={`/images/ai.svg`} height={52} width={52} alt={""} />}
       />
       <TzFloatButtonGroup
         shape="square"
@@ -22,7 +23,7 @@ export default function ActionAffix() {
         <TzFloatButton
           style={{ background: "transparent" }}
           icon={
-            <Image
+            <TzImage
               src={"/images/img-code.png"}
               width={32}
               height={32}
