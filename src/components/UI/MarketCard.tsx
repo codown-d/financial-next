@@ -9,6 +9,7 @@ import { collateralOp } from "@/constant";
 import CountUp from "react-countup";
 import { isArray } from "lodash";
 import { useDataType } from "@/hooks";
+import DataType from "./DataType";
 
 export default function MarketCard(props: FinanceItemProps) {
   let {
@@ -21,7 +22,6 @@ export default function MarketCard(props: FinanceItemProps) {
     financial_organs,
   } = props;
   const router = useRouter();
-let {dataTypeLabel} = useDataType(props);
   return (
     <div className="flex bg-white-500 shadow-[0px_4px_16px_0px_rgba(0,0,0,0.04)] rounded-[16px] py-9">
       <LogoInfo logo={financial_organs?.organs_name} logoUrl={financial_organs?.logo} />
@@ -29,9 +29,7 @@ let {dataTypeLabel} = useDataType(props);
         <div className="flex flex-col mr-9">
           <DataTypeTitleCom dataType={dataType} amount={amount} name={name} productType={productType} />
           <div className="font-normal text-sm text-[#333333]  text-left mt-6">
-            {productType== FinanceDataTypeEmu.Insurance?'种类':'担保方式'}：
-            {dataTypeLabel}
-            <br />
+          <DataType {...props} />
             <span className="text-xs mt-2 text-[#999999]">
               <CountUp end={success_count} /> 笔需求对接成功
             </span>

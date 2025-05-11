@@ -32,7 +32,7 @@ export default function DataTypeTitleCom(props: DataTypeTitleProps) {
     return (
       <div className=" flex items-start">
         <span
-          className="font-extrabold max-w-[160px] text-[24px] text-[#333333] text-center "
+          className="font-extrabold max-w-[160px] text-[24px] text-[#333333] text-left "
           title={name}
         >
           {name}

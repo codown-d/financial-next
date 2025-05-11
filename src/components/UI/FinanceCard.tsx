@@ -11,6 +11,7 @@ import CountUp from "react-countup";
 import { useRouter } from "next/navigation";
 import TzImage from "../TzImage";
 import { useDataType } from "@/hooks";
+import DataType from "./DataType";
 export type FinanceCardProps = FinanceItemProps;
 export default function (props: FinanceCardProps) {
   let {
@@ -84,7 +85,6 @@ export default function (props: FinanceCardProps) {
         ];
   }, [dataType, rate, amount]);
   const router = useRouter();
-  let {dataTypeLabel} = useDataType(props);
   return (
     <>
       <TzCard
@@ -95,8 +95,12 @@ export default function (props: FinanceCardProps) {
         }}
       >
         <TzImage
-          src={productType===FinanceDataTypeEmu.EmergencyRefinancing ?"/images/card-header-1.png":"/images/card-header.png"}
-          width={'100%'}
+          src={
+            productType === FinanceDataTypeEmu.EmergencyRefinancing
+              ? "/images/card-header-1.png"
+              : "/images/card-header.png"
+          }
+          width={"100%"}
         />
         <div className="flex absolute top-3 items-center left-5">
           <div className="text-[20px] leading-[20px] font-bold">{name}</div>
@@ -113,14 +117,19 @@ export default function (props: FinanceCardProps) {
               />
               <div className="absolute top-0 flex items-center justify-between w-full h-full px-2 text-[12px] text-white-500">
                 <span>期限</span>
-                <span className="text-[#3D5AF5] ">1-{term}{term_unit[props.term_unit]?.text}</span>
+                <span className="text-[#3D5AF5] ">
+                  1-{term}
+                  {term_unit[props.term_unit]?.text}
+                </span>
               </div>
             </div>
           ) : null}
         </div>
-        {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : <div className="absolute top-1 right-2 text-white-500 text-[10px]">
-          <CountUp end={success_count} separator="," /> 笔需求对接成功
-        </div>}
+        {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
+          <div className="absolute top-1 right-2 text-white-500 text-[10px]">
+            <CountUp end={success_count} separator="," /> 笔需求对接成功
+          </div>
+        )}
         <div
           className="absolute top-11  rounded-2xl bg-white-500 w-full"
           style={{ background: "#fff" }}
@@ -137,17 +146,13 @@ export default function (props: FinanceCardProps) {
                       <span className="text-[40px] leading-[40px] font-bold inline-flex items-center ">
                         {item.value}
                       </span>
-                     &nbsp;{item.p}
+                      &nbsp;{item.p}
                     </div>
                   </div>
                 );
               })}
             </div>
-            {productType === FinanceDataTypeEmu.EmergencyRefinancing ? null : (
-              <div className="mt-3 text-left leading-[14px]">
-                 {productType== FinanceDataTypeEmu.Insurance?'种类':'担保方式'}：{ dataTypeLabel}
-              </div>
-            )}
+            <DataType {...props} />
             <div className="flex items-end justify-between">
               <TzButton
                 className=" !py-[10px] !px-[28px]  text-white-500"
@@ -156,16 +161,22 @@ export default function (props: FinanceCardProps) {
                 icon={
                   <TzIcon className={"fa-arrow-right text-white-500 text-sm"} />
                 }
-                onClick={()=>{
-                  router.push(`/product-introduction?id=${id}`)
+                onClick={() => {
+                  router.push(`/product-introduction?id=${id}`);
                 }}
                 iconPosition={"end"}
               >
                 查看详情
               </TzButton>
               <div className="mr-[23px] mt-[-4px] flex flex-col">
-                <TzNextImage src={financial_organs?.logo} alt={""} style={{width:'52px',height:'52px'}} />
-                <span className="leading-[14px] mt-1">{financial_organs?.organs_name}</span>
+                <TzNextImage
+                  src={financial_organs?.logo}
+                  alt={""}
+                  style={{ width: "52px", height: "52px" }}
+                />
+                <span className="leading-[14px] mt-1">
+                  {financial_organs?.organs_name}
+                </span>
               </div>
             </div>
           </div>
