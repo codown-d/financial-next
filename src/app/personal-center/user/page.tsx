@@ -49,7 +49,7 @@ export default function User() {
             <TzNextImage src={item.imgUrl} width={60} height={0} />
             <div className="ml-5">
               <div className="text-[#3D5AF5] text-[40px] leading-[40px] h-10">
-                {item.num}
+                {item.num||0}
                 <span className="text-[12px]">笔</span>
               </div>
               <div> {item.title}</div>
