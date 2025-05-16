@@ -7,8 +7,6 @@ import DataTypeTitleCom from "./DataTypeTitleCom";
 import { FinanceDataTypeEmu, FinanceItemProps } from "@/fetch/definition";
 import { collateralOp } from "@/constant";
 import CountUp from "react-countup";
-import { isArray } from "lodash";
-import { useDataType } from "@/hooks";
 import DataType from "./DataType";
 
 export default function MarketCard(props: FinanceItemProps) {
@@ -33,7 +31,7 @@ export default function MarketCard(props: FinanceItemProps) {
             <span className="text-xs mt-2 text-[#999999]">
               <CountUp end={success_count} /> 笔需求对接成功
             </span>
-          </div>
+          </div>  
         </div>
         <div className="flex flex-wrap">
           <DataTypeCom {...props} />

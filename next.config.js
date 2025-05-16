@@ -9,12 +9,13 @@ const nextConfig = {
   // assetPrefix: env.NEXT_PUBLIC_BASE_PATH,
   // env,
   // basePath: env.NEXT_PUBLIC_BASE_PATH,
-  trailingSlash: true, // 可选，生成 URL 尾部加上斜杠
+  trailingSlash: true, // 生成 URL 尾部加上斜杠，有助于静态部署
   images: {
-    // 默认情况下会启用图片优化
-    // path: `${env.NEXT_PUBLIC_BASE_PATH}`,
-    unoptimized: true, // 禁用图片优化
+    // 静态导出必须禁用图片优化或使用外部图片优化服务
+    unoptimized: true, // 禁用图片优化，必须为静态导出设置为true
   },
+  // 禁用需要服务器的功能
+  compress: true, // 启用静态资源压缩
   // async rewrites() {
   //   if (process.env.NEXT_EXPORT) {
   //     return [];

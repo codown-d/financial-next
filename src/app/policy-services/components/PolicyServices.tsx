@@ -177,7 +177,7 @@ export default function PolicyServices() {
         <div className="h-[320px] relative flex justify-center">
           <Image
             src={"/images/zc-banner.png"}
-            alt={""}
+            alt={"广元市综合金融服务平台政策服务"}
             fill
             style={{ objectFit: "cover" }}
             priority
@@ -185,7 +185,7 @@ export default function PolicyServices() {
           <div className="mt-[60px] flex flex-col items-center z-10">
             <Image
               src={"/images/zcfw-title.png"}
-              alt={""}
+              alt={"政策服务标题"}
               height={108}
               width={240}
               className="mb-[56px]"

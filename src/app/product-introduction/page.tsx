@@ -1,58 +1,14 @@
-"use client";
-import Image from "next/image";
-import SmallLoans from "./components/SmallLoans";
-import { useSearchParams } from "next/navigation";
-import { useMemo } from "react";
-import Fund from "./components/Fund";
-import Insurance from "./components/Insurance";
-import Guarantee from "./components/Guarantee";
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import { FinanceDataTypeEmu } from "@/fetch/definition";
-import { useGetLoanDetail } from "@/hooks";
-import { useGlobalContext } from "@/hooks/GlobalContext";
+import { Metadata } from "next";
+import { pageSEO } from "@/config/seo.config";
+import ProductIntroductionClient from "./ProductIntroductionClient";
 
-export default function ProductIntroduction(props) {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
-  let { dataInfo } = useGetLoanDetail({ id });
-  let getDataTypeDom = useMemo(() => {
-    if ([FinanceDataTypeEmu.Insurance].includes(dataInfo?.productType)) {
-      return <Insurance id={id} />;
-    } else if ([FinanceDataTypeEmu.EmergencyRefinancing].includes(dataInfo?.productType)) {
-      return <Fund id={id} />;
-    } else if (FinanceDataTypeEmu.ElectronicGuarantee == dataInfo?.productType) {
-      return <Guarantee id={id} />;
-    } else {
-      return <SmallLoans id={id} />;
-    }
-  }, [dataInfo]);
+// 为产品介绍页面设置特定的元数据
+export const metadata: Metadata = {
+  title: pageSEO.productIntroduction.title,
+  description: pageSEO.productIntroduction.description,
+  keywords: pageSEO.productIntroduction.keywords,
+};
 
-  let { device } = useGlobalContext();
-  return (
-    <AntdRegistry>
-      <div className="relative bg-[#F8F8F8] overflow-hidden h-[100vh]">
-        <div className="h-[320px] relative flex justify-center z-0">
-          <Image
-            src={"/images/cp-banner.png"}
-            alt={""}
-            fill
-            priority 
-            style={{ objectFit: "cover" }}
-          />
-          <div className="max-w-screen-lg mx-auto mt-[60px] flex flex-col items-start z-10 w-full">
-            <Image
-              src={"/images/cpjs-title.png"}
-              alt={""}
-              height={0}
-              width={332}
-              className="ml-[50px]"
-            />
-          </div>
-        </div>
-        <div className={`max-w-screen-lg mx-auto mb-[90px] !mt-[-98px] ${device.isMobile?"px-4":""}`}>
-          {getDataTypeDom}
-        </div>
-      </div>
-    </AntdRegistry>
-  );
+export default function ProductIntroduction() {
+  return <ProductIntroductionClient />;
 }
