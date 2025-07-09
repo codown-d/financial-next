@@ -5,6 +5,7 @@ import {
   selectOp,
   term_unitOp,
 } from "@/constant";
+import { FinanceDataTypeEmu } from "@/fetch/definition";
 import { useGlobalContext } from "@/hooks/GlobalContext";
 import {
   ProFormDigit,
@@ -16,8 +17,10 @@ import { MutableRefObject, useMemo } from "react";
 
 export default function ProductApplication(props: {
   formRef: MutableRefObject<ProFormInstance>;
+  product_type: FinanceDataTypeEmu;
 }) {
-  let { formRef } = props;
+  let { formRef, product_type } = props;
+  console.log(props);
   let { userInfo } = useGlobalContext();
   let newMicroloansOp = useMemo(() => {
     return MicroloansOp.map((item) => {
@@ -43,7 +46,9 @@ export default function ProductApplication(props: {
           span: 12,
         }}
         name="verify_type"
-        label="类型"
+        label={
+          product_type == FinanceDataTypeEmu.EquityFinancing ? "公司" : "类型"
+        }
         rules={[{ required: true, message: "请选择类型" }]}
         fieldProps={{
           options: newMicroloansOp,
@@ -70,7 +75,7 @@ export default function ProductApplication(props: {
         label="公司名称/姓名"
         name="name"
         disabled
-        rules={[{ required: true ,message: "请输入公司名称/姓名"}]}
+        rules={[{ required: true, message: "请输入公司名称/姓名" }]}
         colProps={{
           span: 12,
         }}
@@ -79,7 +84,7 @@ export default function ProductApplication(props: {
         label="证件号码"
         disabled
         name={"idcard"}
-        rules={[{ required: true ,message: "请输入证件号码"}]}
+        rules={[{ required: true, message: "请输入证件号码" }]}
         colProps={{
           span: 12,
         }}
@@ -88,7 +93,7 @@ export default function ProductApplication(props: {
         label="申请金额"
         name={"apply_money"}
         addonAfter={<a>万元</a>}
-        rules={[{ required: true ,message: "请输入申请金额"}]}
+        rules={[{ required: true, message: "请输入申请金额" }]}
         colProps={{
           span: 12,
         }}
@@ -98,9 +103,12 @@ export default function ProductApplication(props: {
         name="term"
         addonAfter={
           <ProFormSelect
-            initialValue={2}
+            initialValue={
+              product_type == FinanceDataTypeEmu.EquityFinancing ? 1 : 2
+            }
             formItemProps={{ style: { marginBottom: 0 } }}
             name="term_unit"
+            disabled={product_type == FinanceDataTypeEmu.EquityFinancing}
             fieldProps={{ options: term_unitOp }}
           />
         }
@@ -110,9 +118,17 @@ export default function ProductApplication(props: {
         }}
       />
       <ProFormSelect
-        label="反担保措施"
+        label={
+          [
+            FinanceDataTypeEmu.EquityFinancing,
+            FinanceDataTypeEmu.BankLoans,
+            FinanceDataTypeEmu.Microloans,
+          ].includes(product_type)
+            ? "担保措施"
+            : "反担保措施"
+        }
         name={"guarantee_method"}
-        rules={[{ required: true,message: "请选择反担保措施" }]}
+        rules={[{ required: true, message: "请选择" }]}
         fieldProps={{ options: selectOp }}
         colProps={{
           span: 12,
@@ -120,8 +136,12 @@ export default function ProductApplication(props: {
       />
       <ProFormSelect
         label="用途"
+        initialValue={
+          product_type == FinanceDataTypeEmu.EquityFinancing ? "4" : undefined
+        }
+        disabled={product_type == FinanceDataTypeEmu.EquityFinancing}
         name={"purpose"}
-        rules={[{ required: true,message: "请选择用途" }]}
+        rules={[{ required: true, message: "请选择用途" }]}
         fieldProps={{ options: purposeOp }}
         colProps={{
           span: 12,
@@ -129,8 +149,12 @@ export default function ProductApplication(props: {
       />
       <ProFormSelect
         label="还款方式"
+        initialValue={
+          product_type == FinanceDataTypeEmu.EquityFinancing ? "3" : undefined
+        }
+        disabled={product_type == FinanceDataTypeEmu.EquityFinancing}
         name={"repayment_method"}
-        rules={[{ required: true ,message: "请选择还款方式"}]}
+        rules={[{ required: true, message: "请选择还款方式" }]}
         fieldProps={{ options: repaymentMethodOp }}
         colProps={{
           span: 12,
@@ -139,7 +163,7 @@ export default function ProductApplication(props: {
       <ProFormText
         label="联系方式"
         name={"user_name"}
-        rules={[{ required: true,message: "请联系方式" }]}
+        rules={[{ required: true, message: "请联系方式" }]}
         disabled
         colProps={{
           span: 12,

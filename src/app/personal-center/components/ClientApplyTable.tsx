@@ -25,7 +25,7 @@ import {
   personalList,
 } from "@/constant";
 import { useCallback, useRef } from "react";
-import { extractUploadFiles } from "@/utils";
+import { extractUploadFiles, isImage } from "@/utils";
 
 let { Item } = ProDescriptions;
 export default function Financing() {
@@ -111,24 +111,23 @@ export default function Financing() {
           >
             <ProDescriptions column={1}>
               {record.attachment_list.map((item, index) => {
-                let f = item.attachment_url.toLowerCase().endsWith(".pdf");
+                let isPDF = item.attachment_url.toLowerCase().endsWith(".pdf");
+                let isImg = isImage(item.attachment_url)
                 return (
                   <Item key={index} label={item.attachment_name}>
-                    {f ? (
+                    {isPDF ? (
                       <Button
                         type={"primary"}
                         onClick={() => window.open(item.attachment_url)}
                       >
                         预览附件
                       </Button>
-                    ) : (
+                    ) :isImg? (
                       <Image width={200} src={item.attachment_url} />
-                    )}
-                    <Button type={"link"} className="ml-2">
-                      <a href={`${item.attachment_url}?download=yes`}>
+                    ):null}
+                      <a href={`${item.attachment_url}?download=yes`} className='text-[#3d5af5]'>
                         下载附件
                       </a>
-                    </Button>
                   </Item>
                 );
               })}

@@ -180,7 +180,7 @@ export default function useApplicationAction() {
             {product_type == FinanceDataTypeEmu.ElectronicGuarantee ? (
               <ProductApplicationG formRef={formRef} />
             ) : (
-              <ProductApplication formRef={formRef} />
+              <ProductApplication formRef={formRef} product_type={product_type}/>
             )}
           </StepsForm.StepForm>
           {showFile ? (
