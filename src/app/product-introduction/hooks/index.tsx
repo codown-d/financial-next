@@ -44,18 +44,22 @@ export default function useApplicationAction() {
     let { form, type, callback, product_id, product_type } = props;
 
     const formRef = useRef<ProFormInstance>();
-    let [showFile, setShowFile] = useState([
-      FinanceDataTypeEmu.EquityFinancing,
-      FinanceDataTypeEmu.FinanceGuarantee,
-      FinanceDataTypeEmu.Microloans,
-      FinanceDataTypeEmu.BankLoans,
-    ].includes(product_type));
+    let [showFile, setShowFile] = useState(
+      [
+        FinanceDataTypeEmu.EquityFinancing,
+        FinanceDataTypeEmu.FinanceGuarantee,
+        FinanceDataTypeEmu.Microloans,
+        FinanceDataTypeEmu.BankLoans,
+      ].includes(product_type)
+    );
+    let [loading, setLoading] = useState(false);
     return (
       <>
         <StepsForm
           stepsRender={() => <></>}
           formRef={formRef}
           onFinish={async (values) => {
+            setLoading(true);
             let attachmentVal = [
               "attachment_list",
               ...[
@@ -71,6 +75,7 @@ export default function useApplicationAction() {
               ...cleanedValues,
               product_type,
             });
+            setLoading(false);
             if (res.code == 200) {
               const filteredValues = omit(values, [
                 "if_married",
@@ -91,13 +96,14 @@ export default function useApplicationAction() {
               if (props.step === 0) {
                 return (
                   <TzButton
+                  loading={loading}
                     type="primary"
                     onClick={() => {
                       let f = [
                         FinanceDataTypeEmu.FinanceGuarantee,
                         FinanceDataTypeEmu.Microloans,
                         FinanceDataTypeEmu.BankLoans,
-                      ].includes(product_type)
+                      ].includes(product_type);
                       if (f) {
                         modal.confirm({
                           content: "是否上传申请资料",
@@ -117,7 +123,11 @@ export default function useApplicationAction() {
                           },
                         });
                       } else {
-                        props.onSubmit?.();
+                        if (loading) {
+                          message.info("提示正在处理");
+                        } else {
+                          props.onSubmit?.();
+                        }
                       }
                     }}
                   >
@@ -130,9 +140,16 @@ export default function useApplicationAction() {
                   上一步
                 </TzButton>,
                 <TzButton
+                  loading={loading}
                   type="primary"
                   key="goToTree"
-                  onClick={() => props.onSubmit?.()}
+                  onClick={() => {
+                    if (loading) {
+                      message.info("提示正在处理");
+                    } else {
+                      props.onSubmit?.();
+                    }
+                  }}
                 >
                   提交申请
                 </TzButton>,
@@ -142,6 +159,7 @@ export default function useApplicationAction() {
           stepsFormRender={(dom, submitter) => {
             return (
               <Modal
+                maskClosable={false}
                 title={
                   <h2 className="text-center text-[36px] pt-[20px]">
                     业务申请
@@ -197,6 +215,18 @@ export default function useApplicationAction() {
                             max={1}
                             fieldProps={{
                               name: "image",
+                              onChange(info) {
+                                console.log(info);
+                                if (info.file.status === "done") {
+                                  message.success(
+                                    info.file.response?.desc + "!"
+                                  );
+                                } else if (info.file.status === "error") {
+                                  message.error(
+                                    info.file.response?.desc + "123"
+                                  );
+                                }
+                              },
                             }}
                             colProps={{ span: 12 }}
                             action={`${process.env.NEXT_PUBLIC_API_URL}upload/image`}
@@ -351,6 +381,7 @@ export default function useApplicationAction() {
         </StepsForm>
 
         <TzModal
+          maskClosable={false}
           closeIcon={false}
           width={620}
           open={false}
@@ -406,6 +437,7 @@ export default function useApplicationAction() {
     let { items } = props;
     return (
       <TzModal
+        maskClosable={false}
         closeIcon={false}
         width={620}
         open={successVisible}
@@ -438,6 +470,7 @@ export default function useApplicationAction() {
         styles={{ content: { padding: "0px 0px 20px" } }}
         okText={"重新申请"}
         cancelText={"关闭"}
+        maskClosable={false}
         onOk={() => {
           setFailVisible(false);
           setSubmitVisible(true);
