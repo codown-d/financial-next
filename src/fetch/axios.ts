@@ -3,7 +3,7 @@ import axios, { AxiosResponse } from "axios";
 import { debounce } from "lodash";
 const axiosIns = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL, // API 基础 URL
-  timeout: 50000, // 超时设置
+  timeout: 50000000, // 超时设置
   headers: {
     "Content-Type": "application/json",
   },
