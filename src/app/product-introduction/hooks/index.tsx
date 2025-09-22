@@ -103,6 +103,7 @@ export default function useApplicationAction() {
                         FinanceDataTypeEmu.FinanceGuarantee,
                         FinanceDataTypeEmu.Microloans,
                         FinanceDataTypeEmu.BankLoans,
+                        FinanceDataTypeEmu.EquityFinancing,
                       ].includes(product_type);
                       if (f) {
                         modal.confirm({
