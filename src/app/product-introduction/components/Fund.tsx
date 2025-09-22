@@ -4,12 +4,11 @@ import TzCard from "@/components/TzCard";
 import TzIcon from "@/components/TzIcon";
 import DescInfo from "@/components/UI/DescInfo";
 import LogoInfo from "@/components/UI/LogoInfo";
-import { useEffect, useMemo, useState } from "react";
+import {  useState } from "react";
 import useApplicationAction from "../hooks";
 import { DescriptionsProps, Form } from "antd";
-import { formLabelObj, getFormLabelList } from "../hooks/const";
+import { getFormLabelList } from "../hooks/const";
 import { useFundModal, useGetLoanDetail } from "@/hooks";
-import { FinanceDataTypeEmu } from "@/fetch/definition";
 
 export default function Fund(props: { id: string }) {
   let {

@@ -655,7 +655,7 @@ export let fileList = [
     downloadUrl: "https://admintest.gyzhjr.com/other/fj1.docx",
   },
   {
-    label: "申请企业主要负责情况（模板附件2）",
+    label: "申请企业主要负债情况（模板附件2）",
     prop: "loan_leader_info",
     required: true,
     downloadUrl: "https://admintest.gyzhjr.com/other/fj2.docx",
