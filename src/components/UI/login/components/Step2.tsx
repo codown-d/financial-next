@@ -5,6 +5,7 @@ import TzRadio from "@/components/TzRadio";
 import { useGetImgCode } from "@/hooks";
 import { Checkbox, Form, FormInstance, Modal } from "antd";
 import { useEffect } from "react";
+import UserAgreement from "./UserAgreement";
 
 export default function (props: { formIns: FormInstance<any> }) {
   let { formIns } = props;
@@ -69,9 +70,8 @@ export default function (props: { formIns: FormInstance<any> }) {
                 Modal.info({
                   width: "70%",
                   icon: null,
-                  title: "用户协议",
                   okText: "确定",
-                  content: <div>123456</div>,
+                  content: <UserAgreement/>,
                   onOk() {},
                 });
               }}

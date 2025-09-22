@@ -18,7 +18,6 @@ import { MutableRefObject, useMemo } from "react";
 export default function ProductApplication(props: {
   product_type: FinanceDataTypeEmu;
   formRef: MutableRefObject<ProFormInstance>;
-  product_type: FinanceDataTypeEmu;
 }) {
   let { formRef, product_type } = props;
   let { userInfo } = useGlobalContext();
