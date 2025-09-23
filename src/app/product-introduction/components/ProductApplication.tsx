@@ -16,11 +16,10 @@ import {
 import { MutableRefObject, useMemo } from "react";
 
 export default function ProductApplication(props: {
-  formRef: MutableRefObject<ProFormInstance>;
   product_type: FinanceDataTypeEmu;
+  formRef: MutableRefObject<ProFormInstance>;
 }) {
   let { formRef, product_type } = props;
-  console.log(props);
   let { userInfo } = useGlobalContext();
   let newMicroloansOp = useMemo(() => {
     return MicroloansOp.map((item) => {
@@ -47,7 +46,7 @@ export default function ProductApplication(props: {
         }}
         name="verify_type"
         label={
-          product_type == FinanceDataTypeEmu.EquityFinancing ? "公司" : "类型"
+          product_type === FinanceDataTypeEmu.EquityFinancing ? "公司" : "类型"
         }
         rules={[{ required: true, message: "请选择类型" }]}
         fieldProps={{

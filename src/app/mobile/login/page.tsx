@@ -3,6 +3,7 @@ import { TzForm, TzFormItem, TzInput } from "@/components";
 import TzInputPassword from "@/components/TzInputPassword";
 import TzNextImage from "@/components/TzNextImage";
 import SendCodeBtn from "@/components/UI/login/components/SendCodeBtn";
+import UserAgreement from "@/components/UI/login/components/UserAgreement";
 import {
   getUserInfo,
   login,
@@ -178,9 +179,8 @@ export default function loginPage() {
                         Modal.info({
                           width: "70%",
                           icon: null,
-                          title: "用户协议",
                           okText: "确定",
-                          content: <div>123456</div>,
+                          content: <UserAgreement/>,
                           onOk() {},
                         });
                       }}
@@ -222,9 +222,8 @@ export default function loginPage() {
                       Modal.info({
                         width: "70%",
                         icon: null,
-                        title: "用户协议",
                         okText: "确定",
-                        content: <div>123456</div>,
+                        content: <UserAgreement/>,
                         onOk() {},
                       });
                     }}

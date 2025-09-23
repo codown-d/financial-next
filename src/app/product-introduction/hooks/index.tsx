@@ -38,7 +38,7 @@ export default function useApplicationAction() {
     form: FormInstance<any>;
     type: string;
     product_id: any;
-    product_type: any;
+    product_type: FinanceDataTypeEmu;
     callback?: (arg: any) => void;
   }) => {
     let { form, type, callback, product_id, product_type } = props;
