@@ -106,6 +106,10 @@ export default function Financing() {
             {
               percent: 100,
               status: "done",
+              response:{file:cur.attachment_url,
+code
+: 
+200},
               thumbUrl: cur.attachment_url,
             },
           ];

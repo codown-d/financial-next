@@ -6,6 +6,7 @@ export const omitFields = (obj, keysToOmit) => {
   return clone;
 };
 export const extractUploadFiles = (values, fields) => {
+  console.log(values, fields);
   const result = { ...values };
 
   fields.forEach((field) => {
