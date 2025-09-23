@@ -34,13 +34,13 @@ let RealNameModal = (props: {
   const [fileList, setFileList] = useState<UploadFile[]>(
     formIns.getFieldValue("idcard_img")
       ? [
-        {
-          uid: "-1",
-          name: "",
-          status: "done",
-          url: formIns.getFieldValue("idcard_img"),
-        },
-      ]
+          {
+            uid: "-1",
+            name: "",
+            status: "done",
+            url: formIns.getFieldValue("idcard_img"),
+          },
+        ]
       : undefined
   );
   useEffect(() => {
@@ -119,32 +119,42 @@ let RealNameModal = (props: {
         <TzFormItem label="手机号" name={"phone"} rules={[{ required: true }]}>
           <TzInput placeholder="请输入" size={"large"} disabled />
         </TzFormItem>
-        <div className="flex">
-          <TzFormItem
-            label="验证码"
-            name={"verify_phone_code"}
-            className="w-[70%]"
-            rules={[{ required: true }]}
-          >
-            <TzInput placeholder="请输入" size={"large"} />
-          </TzFormItem>
-          <div className="flex-1 w-0">
-            <SendCodeBtn
-              formIns={formIns} fields={["phone", "send_type"]} />
+        {verify_status == 3 ? null : (
+          <div className="flex">
+            <TzFormItem
+              label="验证码"
+              name={"verify_phone_code"}
+              className="w-[70%]"
+              rules={[{ required: true }]}
+            >
+              <TzInput placeholder="请输入" size={"large"} />
+            </TzFormItem>
+            <div className="flex-1 w-0">
+              <SendCodeBtn formIns={formIns} fields={["phone", "send_type"]} />
+            </div>
           </div>
-        </div>
+        )}
         <TzFormItem label={" "} name={"click_protocol"} valuePropName="checked">
-          <Checkbox > 我已阅读并同意<span className="text-[#3D5AF5]" onClick={(e) => {
-            e.preventDefault()
-            Modal.info({
-              width: '70%',
-              icon: null,
-              title: "信息授权协议",
-              okText: '确定',
-              content: <div>123456</div>,
-              onOk() { },
-            });
-          }}>《信息授权协议》</span></Checkbox >
+          <Checkbox>
+            {" "}
+            我已阅读并同意
+            <span
+              className="text-[#3D5AF5]"
+              onClick={(e) => {
+                e.preventDefault();
+                Modal.info({
+                  width: "70%",
+                  icon: null,
+                  title: "信息授权协议",
+                  okText: "确定",
+                  content: <div>123456</div>,
+                  onOk() {},
+                });
+              }}
+            >
+              《信息授权协议》
+            </span>
+          </Checkbox>
         </TzFormItem>
       </TzForm>
     </ConfigProvider>
