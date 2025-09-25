@@ -183,6 +183,14 @@ export const purposeOp = [
     label: "归还贷款",
     value: "4",
   },
+  {
+    label: "借新还旧",
+    value: "5",
+  },
+  {
+    label: "展期",
+    value: "6",
+  },
 ];
 export const termOp = [3, 12, 24, 36].map((item, index) => ({
   label: item + "个月内",
