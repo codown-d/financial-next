@@ -106,10 +106,7 @@ export default function Financing() {
             {
               percent: 100,
               status: "done",
-              response:{file:cur.attachment_url,
-code
-: 
-200},
+              response: { file: cur.attachment_url, code: 200 },
               thumbUrl: cur.attachment_url,
             },
           ];
@@ -226,14 +223,19 @@ code
                         {fileList.map((item) => {
                           return (
                             <ProFormUploadButton
-                              label={<>{item.label} {  item.downloadUrl ? (
-                                  <a
-                                    href={item.downloadUrl}
-                                    className="text-[#3D5AF5]"
-                                  >
-                                    下载模板
-                                  </a>
-                                ) : null}</>}
+                              label={
+                                <>
+                                  {item.label}{" "}
+                                  {item.downloadUrl ? (
+                                    <a
+                                      href={item.downloadUrl}
+                                      className="text-[#3D5AF5]"
+                                    >
+                                      下载模板
+                                    </a>
+                                  ) : null}
+                                </>
+                              }
                               key={item.prop}
                               rules={[
                                 {

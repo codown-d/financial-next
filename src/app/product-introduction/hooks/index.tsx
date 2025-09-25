@@ -29,6 +29,7 @@ import {
   personalList,
 } from "@/constant";
 import modal from "antd/es/modal";
+import { useGlobalContext } from "@/hooks/GlobalContext";
 
 export default function useApplicationAction() {
   let [failVisible, setFailVisible] = useState(false);
@@ -53,6 +54,17 @@ export default function useApplicationAction() {
       ].includes(product_type)
     );
     let [loading, setLoading] = useState(false);
+    let { userInfo } = useGlobalContext();
+    useEffect(() => {
+      if (product_type === FinanceDataTypeEmu.EquityFinancing)
+        formRef.current?.setFieldsValue({
+          verify_type: '2',
+          name: userInfo?.enterprise?.name,
+          idcard: userInfo?.enterprise?.idcard,
+          user_name: userInfo?.user_name,
+          term: undefined,
+        });
+    }, [userInfo]);
     return (
       <>
         <StepsForm
@@ -96,7 +108,7 @@ export default function useApplicationAction() {
               if (props.step === 0) {
                 return (
                   <TzButton
-                  loading={loading}
+                    loading={loading}
                     type="primary"
                     onClick={() => {
                       let f = [
@@ -181,7 +193,10 @@ export default function useApplicationAction() {
             {product_type == FinanceDataTypeEmu.ElectronicGuarantee ? (
               <ProductApplicationG formRef={formRef} />
             ) : (
-              <ProductApplication formRef={formRef} product_type={product_type}/>
+              <ProductApplication
+                formRef={formRef}
+                product_type={product_type}
+              />
             )}
           </StepsForm.StepForm>
           {showFile ? (

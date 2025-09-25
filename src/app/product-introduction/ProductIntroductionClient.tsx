@@ -10,6 +10,7 @@ import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { FinanceDataTypeEmu } from "@/fetch/definition";
 import { useGetLoanDetail } from "@/hooks";
 import { useGlobalContext } from "@/hooks/GlobalContext";
+import EquityFinancing from "./components/EquityFinancing";
 
 export default function ProductIntroductionClient() {
   const searchParams = useSearchParams();

@@ -48,6 +48,7 @@ export default function ProductApplication(props: {
         label={
           product_type === FinanceDataTypeEmu.EquityFinancing ? "公司" : "类型"
         }
+        disabled={product_type === FinanceDataTypeEmu.EquityFinancing}
         rules={[{ required: true, message: "请选择类型" }]}
         fieldProps={{
           options: newMicroloansOp,
