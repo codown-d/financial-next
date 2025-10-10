@@ -660,31 +660,31 @@ export let fileList = [
     label: "应急转贷资金申请表（模板附件1）",
     prop: "loan_form",
     required: true,
-    downloadUrl: "https://admintest.gyzhjr.com/other/fj1.docx",
+    downloadUrl: "https://admin.gyzhjr.com/other/fj1.docx",
   },
   {
     label: "申请企业主要负债情况（模板附件2）",
     prop: "loan_leader_info",
     required: true,
-    downloadUrl: "https://admintest.gyzhjr.com/other/fj2.docx",
+    downloadUrl: "https://admin.gyzhjr.com/other/fj2.docx",
   },
   {
     label: "申请企业主要资产况表（模板附件3）",
     prop: "loan_assets_info",
     required: true,
-    downloadUrl: "https://admintest.gyzhjr.com/other/fj3.docx",
+    downloadUrl: "https://admin.gyzhjr.com/other/fj3.docx",
   },
   {
     label: "资料真实性承诺书（模板附件4）",
     prop: "loan_promise",
     required: true,
-    downloadUrl: "https://admintest.gyzhjr.com/other/fj4.docx",
+    downloadUrl: "https://admin.gyzhjr.com/other/fj4.docx",
   },
   {
     label: "借款申请书(模板附件5)",
     prop: "loan_letter",
     required: true,
-    downloadUrl: "https://admintest.gyzhjr.com/other/fj5.docx",
+    downloadUrl: "https://admin.gyzhjr.com/other/fj5.docx",
   },
 ];
 export let guaranteeList = [
