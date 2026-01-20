@@ -10,8 +10,8 @@ const Footer = () => {
       url:'http://sczj.cngy.gov.cn/'
     },
     {
-      title: "广元市中小企业金融服务有限公司",
-      url:'http://www.gygfct.com/'
+      title: "广元市中小企业金融服务（集团）有限公司",
+      url:'//www.gyjrfw.com'
     },
   ];
   return (
