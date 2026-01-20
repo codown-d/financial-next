@@ -62,7 +62,7 @@ const Footer = () => {
             })}
           </ul>
         </div> */}
-        <div className="row-span-2 sm:col-span-2 sm:col-start-10 sm:col-end-12 flex flex-col">
+        <div className="row-span-3 sm:col-span-2 sm:col-start-10 sm:col-end-13 flex flex-col">
           <p className="footer-item  mb-3">友情链接</p>
           <ul className="text-black-500">
             {link.map((item, index) => {
